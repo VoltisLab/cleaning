@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-dm-sans: var(--font-dm-sans);
+  --font-lato: var(--font-lato);
 }
 
 @theme inline {
@@ -10,6 +12,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-dm-sans: var(--font-dm-sans);
+  --font-lato: var(--font-lato);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +26,14 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom font utilities */
+.font-dm-sans {
+  font-family: var(--font-dm-sans);
+}
+
+.font-lato {
+  font-family: var(--font-lato);
 }
