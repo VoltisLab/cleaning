@@ -1,3 +1,4 @@
+"use client"
 import { MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 

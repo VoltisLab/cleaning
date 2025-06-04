@@ -13,7 +13,7 @@ import Header from "@/components/layout/Header";
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white max-w-[1440px] mx-auto">
+    <div className="min-h-screen bg-white ">
       <Header />
       <HeroSection />
       <FeatureCards />
