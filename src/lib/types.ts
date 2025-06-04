@@ -9,6 +9,7 @@ export interface FeatureCard {
   title: string;
   description: string;
   color: string;
+  iconBg: string;
 }
 
 export interface ServiceCard {

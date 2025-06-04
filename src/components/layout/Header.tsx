@@ -23,8 +23,6 @@ const [activeTab, setActiveTab] = useState<string>("Home");
     { name: 'Be', path: "/landing/header/Be.svg" },
   ];
 
-
-
   return (
     <>
       {/* Top Bar */}
@@ -88,7 +86,7 @@ const [activeTab, setActiveTab] = useState<string>("Home");
       </div>
 
       {/* Main Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white ">
         <div className="max-w-[1139px] mx-auto py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">

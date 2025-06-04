@@ -1,48 +1,51 @@
-import React  from 'react';
+import React from 'react';
+import Image from 'next/image';
+
 const HeroSection: React.FC = () => {
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="mb-6">
-              <span className="text-[#5B7AFF] font-medium text-sm tracking-wide uppercase">
-                LEARN FROM TODAY
+    <section className="bg-gradient-to-br relative overflow-hidden">
+      <div className="max-w-[1139px] mx-auto">
+        <div className="grid lg:grid-cols-2 gap-4 items-center">
+          {/* Left Content */}
+          <div className="relative z-10">
+            <div className="mb-4">
+              <span className="text-[#4977E5] font-medium text-sm tracking-wider uppercase">
+                CLEAN HOME, HAPPY LIFE.
               </span>
             </div>
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Happiness Is Found{' '}
-              <span className="text-[#5B7AFF]">Cleaning</span> House
+            <h1 className="text-[56px] font-dm-sans font-bold text-gray-900 mb-6 leading-tight">
+              With Cleaning Solutions, {' '}
+              <Image
+                src={"/landing/hero/star.svg"}
+                alt={"Star"}
+                width={20}
+                height={20}
+                className="object-contain bottom-60 absolute -left-4"
+              />
+              <span className="text-[#4977E5]">your home’s</span> in good hands.
             </h1>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              Awesome site on the top advertising a Courses available business online
-              includes assembling having awesome site on the top advertising a
-              Courses available business having.
+            <p className="text-[#838B95] text-[15px] mb-10 leading-relaxed max-w-lg font-lato">
+              We&apos;ve got all your cleaning and home services covered! Our fully vetted and highly experienced team are committed to delivering top-quality services. We know how important trust and reliability are to our customers, which is why we carefully choose only the best professionals to join our team.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-[#5B7AFF] text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors">
+              <button className="bg-[#4977E5] text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg">
                 About Us
               </button>
-              <button className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold hover:border-gray-400 transition-colors">
+              <button className="border-2 border-[#4977E5] text-[#4977E5] px-8 py-4 rounded-full font-semibold hover:border-[#5977E5] transition-colors bg-white">
                 Book a Service
               </button>
             </div>
           </div>
-          <div className="relative">
-            <div className="bg-gradient-to-br from-blue-200 to-blue-300 rounded-3xl p-8 relative overflow-hidden">
-              <div className="w-64 h-48 bg-blue-400 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <div className="text-white text-6xl">🧹</div>
-              </div>
-              <div className="absolute top-4 right-4 w-12 h-12 bg-pink-400 rounded-full flex items-center justify-center">
-                <span className="text-white text-xl">🧽</span>
-              </div>
-              <div className="absolute top-20 left-4 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm">✨</span>
-              </div>
-              <div className="absolute bottom-8 right-8 w-10 h-10 bg-purple-400 rounded-full flex items-center justify-center">
-                <span className="text-white text-lg">🧼</span>
-              </div>
-            </div>
+
+          {/* Right Image - Adjusted to match left content height */}
+          <div className="relative h-full w-full ">
+            <Image
+              src={"/landing/hero/heroImage.png"}
+              alt={"Hero cleaning equipment"}
+             fill
+              className="object-cover w-full h-full "
+              priority
+            />
           </div>
         </div>
       </div>
