@@ -5,7 +5,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='w-full flex flex-col items-center  '>
+    <div className='w-full flex flex-col items-center bg-white text-[#051625] '>
         <Hero/>
             <div className='flex lg:flex-row flex-col px-4 lg:px-0  justify-center w-fit mx-auto gap-4  my-6'>
                   <LeftSide/>
