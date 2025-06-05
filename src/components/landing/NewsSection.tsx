@@ -29,7 +29,7 @@ const NewsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-40 ">
+    <section className="pt-20 mb-28">
       <div className="max-w-[1139px] mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Latest News</h2>
@@ -41,14 +41,14 @@ const NewsSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:p-0 p-5">
           {articles.map((article, index) => (
             <div key={index} className="bg-white p-2 gap-4 flex xl:flex-row flex-col xl:max-w-[600px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl ">
-                 <div className="relative sm:w-full">
+                 <div className="relative sm:w-full h-full">
                     <Image
                       src={article.image}
                       alt={"Hero cleaning equipment"}
                       height={245}
                       width={291}
                       objectFit="cover"
-                      className="sm:w-full !xl:w-relative"
+                      className="sm:w-full !xl:w-relative h-full"
                   />
                   </div>
               <div className="xl:w-1/2">
