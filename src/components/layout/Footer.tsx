@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#051625] text-white xl:pt-48 pt-100 pb-16 xl:px-0 px-5" ref={ref}>
+    <footer className="bg-[#051625] text-white md:pt-48 pt-100 pb-16 xl:px-0 px-5" ref={ref}>
       <div className="max-w-[1139px] mx-auto">
         <motion.div
           variants={containerVariants}

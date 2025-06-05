@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br relative overflow-hidden px-4 md:px-6 lg:px-0" ref={ref}>
+    <section className="bg-gradient-to-br relative overflow-hidden px-5 xl:px-0" ref={ref}>
       <div className="max-w-[1139px] mx-auto">
         <div className="grid lg:grid-cols-[40%_60%] gap-6 md:gap-8 lg:gap-12 items-center">
           {/* Left Content */}

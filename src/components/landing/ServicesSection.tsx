@@ -64,7 +64,7 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <section className="pb-20 px-4 sm:px-6 lg:px-0" ref={ref}>
+    <section className="pb-20 px-5 xl:px-0" ref={ref}>
       <div className="max-w-[1139px] mx-auto">
         <motion.div
           variants={headerVariants}
@@ -97,7 +97,7 @@ const ServicesSection: React.FC = () => {
                 boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                 transition: { duration: 0.3 }
               }}
-              className={`${service.color} rounded-3xl p-8 text-left shadow-xl cursor-pointer ${
+              className={`${service.color} rounded-3xl xl:p-8 p-4 text-left shadow-xl cursor-pointer ${
                 index === 0 ? 'text-white' : 'text-gray-800'
               }`}
             >
