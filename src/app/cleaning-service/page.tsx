@@ -4,7 +4,7 @@ import Head from "next/head";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Head>
         <title>Professional Cleaning Services</title>
         <meta
