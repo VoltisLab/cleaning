@@ -8,10 +8,10 @@ interface StatItem {
 
 const StatsSection: React.FC = () => {
  const stats: StatItem[] = [
-    { number: "500+", label: "Projects Done" },
-    { number: "800", label: "Happy Clients" },
-    { number: "18+", label: "Award Winner" },
-    { number: "600+", label: "Team Members" }
+    { number: "200+", label: "Houses Cleaned" },
+    { number: "150", label: "Happy Clients" },
+    { number: "30+", label: "Happy Airbnb Clients" },
+    { number: "100%", label: "Trusted Cleaners" }
   ];
   return (
     <section className="py-20">
@@ -75,9 +75,10 @@ const StatsSection: React.FC = () => {
       <div className="absolute inset-0 bg-blue-600/20" />
 
       {/* Stats grid */}
-      <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-8">
         {stats.map((stat, index) => (
-          <div key={index} className="text-center text-white">
+          <div key={index} className="flex items-center gap-2">
+          <div  className="text-center text-white">
             <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-3 drop-shadow-lg">
               {stat.number}
             </div>
@@ -85,7 +86,10 @@ const StatsSection: React.FC = () => {
               {stat.label}
             </div>
           </div>
+           <span className="mx-4 w-px h-20 bg-white/50 font-bold"></span>
+           </div>
         ))}
+       
       </div>
     </div>
 

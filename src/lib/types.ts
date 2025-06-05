@@ -23,7 +23,6 @@ export interface TeamMember {
   name: string;
   role: string;
   image: string;
-  bgColor: string;
 }
 
 export interface PricingPlan {

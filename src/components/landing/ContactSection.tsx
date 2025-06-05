@@ -1,7 +1,6 @@
 "use client"
-import { MapPin, Phone } from "lucide-react";
 import { useState } from "react";
-
+import Image from "next/image";
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -24,38 +23,31 @@ const ContactSection: React.FC = () => {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl p-8 relative overflow-hidden">
-              <div className="absolute top-4 left-4">
-                <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">✨</span>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-6xl mb-4">👥</div>
-                <div className="bg-white rounded-lg p-4 inline-flex items-center space-x-2 shadow-lg">
-                  <MapPin className="w-5 h-5 text-red-500" />
-                  <div>
-                    <div className="font-bold text-sm">Location</div>
-                    <div className="text-xs text-gray-600">Call for help</div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute bottom-4 left-4 bg-white rounded-lg p-3 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-4 h-4 text-[#5B7AFF]" />
-                  <span className="text-sm font-medium">365-245-0655</span>
-                </div>
-              </div>
-            </div>
+          <div className="relative h-full w-full ">
+            <Image
+              src={"/landing/contact/image.png"}
+              alt={"Hero cleaning equipment"}
+              fill
+              className="object-cover w-full h-full "
+              priority
+            />
           </div>
-          <div>
-            <div className="text-center mb-8">
-              <div className="text-4xl mb-4">📞</div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <div className="shadow-lg p-10 rounded-[16px]">
+             <div className="relative">
+                <Image
+                    src={"/landing/contact/brush1.png"}
+                    alt={"Hero cleaning equipment"}
+                    height={100.28}
+                    width={100.28}
+                    className="object-fit-contain absolute -left-18 -top-20"
+                />
+              </div>
+            <div className="text-center mb-8 ">
+             
+              <h2 className="text-[40px] font-bold text-gray-900 mb-2">
                 Having Question?
               </h2>
-              <h3 className="text-3xl font-bold mb-4">
+              <h3 className="text-[40px] font-bold mb-4 text-gray-900">
                 Get in <span className="text-[#5B7AFF]">touch!</span>
               </h3>
             </div>
