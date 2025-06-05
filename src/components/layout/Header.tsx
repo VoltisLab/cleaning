@@ -108,8 +108,8 @@ const Header = () => {
                   key={index}
                   src={social.path}
                   alt={social.name}
-                  width={15}
-                  height={15}
+                  width={social.name === "Facebook"? 8 : 15}
+                  height={social.name === "Facebook"? 8 : 15}
                   className="hover:opacity-80 transition-opacity cursor-pointer"
                 />
               ))}

@@ -64,7 +64,7 @@ const NewsletterSection: React.FC = () => {
             animate={isInView ? "visible" : "hidden"}
             className="bg-[#4977E5] rounded-2xl md:rounded-3xl py-6 px-4 sm:py-8 sm:px-6 md:px-8 overflow-visible relative w-full"
           >
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
               
               {/* Mobile Image */}
               <motion.div variants={itemVariants} className="md:hidden flex justify-center mb-4">
@@ -78,13 +78,13 @@ const NewsletterSection: React.FC = () => {
               </motion.div>
               
               {/* Empty space for image on desktop */}
-              <div className="hidden xl:block h-32 2xl:h-40" />
+              <div className="hidden md:block h-32 2xl:h-40" />
               
               {/* Content */}
               <div className="text-white text-center xl:text-left">
                 <motion.h2 
                   variants={itemVariants}
-                  className="text-xl sm:text-2xl md:text-3xl lg:text-[28px] xl:text-3xl font-bold mb-3 md:mb-4 font-dm-sans leading-tight"
+                  className="text-[24px] xl:text-[28px] font-bold mb-3 md:mb-4 font-dm-sans leading-tight"
                 >
                   Subscribe to our newsletter to get updates to our latest collections
                 </motion.h2>
@@ -104,13 +104,13 @@ const NewsletterSection: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 placeholder:text-white rounded-full text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-white/50 text-sm sm:text-base"
+                      className="flex-1 px-4 sm:px-2 py-2.5 sm:py-3 placeholder:text-white rounded-full text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-white/50 text-sm sm:text-base"
                     />
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={handleSubmit}
-                      className="bg-white text-[#1D242D] px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap text-sm sm:text-base"
+                      className="bg-white text-[#1D242D] xl:px-4 px-2 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap text-sm sm:text-base"
                     >
                       Subscribe
                     </motion.button>

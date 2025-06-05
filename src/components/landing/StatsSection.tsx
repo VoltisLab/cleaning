@@ -2,12 +2,11 @@
 import { motion, useInView } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 const StatsSection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   const stats = [
     { number: 200, label: "Houses Cleaned", suffix: "+" },
@@ -16,31 +15,9 @@ const StatsSection: React.FC = () => {
     { number: 100, label: "Trusted Cleaners", suffix: "%" }
   ];
 
-  const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string }) => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-      if (isInView && !hasAnimated) {
-        setHasAnimated(true);
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            setCount(target);
-            clearInterval(timer);
-          } else {
-            setCount(Math.floor(current));
-          }
-        }, 16);
-
-        return () => clearInterval(timer);
-      }
-    }, [isInView, target, hasAnimated]);
-
-    return <span>{count}{suffix}</span>;
+  // Simple static number display - no animation
+  const StaticNumber = ({ target, suffix }: { target: number; suffix: string }) => {
+    return <span>{target}{suffix}</span>;
   };
 
   const contentVariants = {
@@ -221,7 +198,7 @@ const StatsSection: React.FC = () => {
                 className="text-center text-white"
               >
                 <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 drop-shadow-lg">
-                  <AnimatedCounter target={stat.number} suffix={stat.suffix} />
+                  <StaticNumber target={stat.number} suffix={stat.suffix} />
                 </div>
                 <div className="text-xs sm:text-sm lg:text-base font-medium opacity-90 drop-shadow-md">
                   {stat.label}

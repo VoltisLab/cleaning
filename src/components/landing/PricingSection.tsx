@@ -94,44 +94,50 @@ const PricingSection: React.FC = () => {
         >
           {plans.map((plan, index) => (
             <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{ 
-                y: -10, 
-                scale: 1.02,
-                boxShadow: "0 20px 40px rgba(73, 119, 229, 0.15)"
-              }}
-              className="bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:border-[#4977E5] transition-colors cursor-pointer"
-            >
-              <div className="text-center mb-8 border-b border-b-gray-300 pb-6">
-                <h3 className="text-xl font-bold text-[#4977E5] mb-2">{plan.type}</h3>
-                <div className="flex items-baseline justify-center">
-                  <span className="text-4xl font-bold text-gray-900">£{plan.price}</span>
-                  <span className="text-gray-600 ml-1">/{plan.period}</span>
-                </div>
-              </div>
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <motion.li 
-                    key={featureIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: 0.1 * featureIndex }}
-                    className="flex items-center space-x-3"
-                  >
-                    <Dot className="w-5 h-5 text-[#4977E5]" />
-                    <span className="text-gray-700">{feature}</span>
-                  </motion.li>
-                ))}
-              </ul>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full bg-[#4977E5] text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors"
-              >
-                Get Now →
-              </motion.button>
-            </motion.div>
+  key={index}
+  variants={cardVariants}
+  whileHover={{ 
+    y: -10, 
+    scale: 1.02,
+    boxShadow: "0 20px 40px rgba(73, 119, 229, 0.15)"
+  }}
+  className="bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:border-[#4977E5] transition-colors cursor-pointer flex flex-col h-full"
+>
+  <div className="text-center mb-8 border-b border-b-gray-300 pb-6">
+    <h3 className="text-xl font-bold text-[#4977E5] mb-2">{plan.type}</h3>
+    <div className="flex items-baseline justify-center">
+      <span className="text-4xl font-bold text-gray-900">£{plan.price}</span>
+      <span className="text-gray-600 ml-1">/{plan.period}</span>
+    </div>
+  </div>
+  
+  {/* Features list with flex-grow to push button down */}
+  <div className="flex-grow">
+    <ul className="space-y-4 mb-8">
+      {plan.features.map((feature, featureIndex) => (
+        <motion.li 
+          key={featureIndex}
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          transition={{ delay: 0.1 * featureIndex }}
+          className="flex items-center space-x-3"
+        >
+          <Dot className="w-5 h-5 text-[#4977E5]" />
+          <span className="text-gray-700">{feature}</span>
+        </motion.li>
+      ))}
+    </ul>
+  </div>
+  
+  {/* Button will always stick to bottom */}
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="w-full bg-[#4977E5] text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors mt-auto"
+  >
+    Get Now →
+  </motion.button>
+</motion.div>
           ))}
         </motion.div>
       </div>
