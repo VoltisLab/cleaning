@@ -48,10 +48,10 @@ const NewsSection: React.FC = () => {
                       height={245}
                       width={291}
                       objectFit="cover"
-                      className="xl:w-1/2 w-full !xl:w-relative h-full"
+                      className=" w-full !xl:w-relative h-full"
                   />
                   </div>
-              <div className="xl:w-1/2">
+              <div className="w-full">
                 <h3 className="font-bold text-[22px] text-gray-900 mb-2 font-dm-sans">{article.title}</h3>
                 <p className="text-gray-600 mb-2 text-[15px] font-lato">{article.excerpt}</p>
                 <button className="text-[#5B7AFF] font-dm-sans font-semibold hover:text-blue-600 transition-colors">
