@@ -97,7 +97,7 @@ const NewsletterSection: React.FC = () => {
                 
                 {/* Newsletter Form */}
                 <motion.div variants={itemVariants} className="space-y-3 sm:space-y-0">
-                  <div className="flex flex-col sm:flex-row bg-white/15 backdrop-blur-sm rounded-full p-1 gap-2 sm:gap-1 border border-gray-400">
+                  <div className="flex flex-col sm:flex-row bg-white/15 backdrop-blur-sm rounded-[30px] xl:rounded-full p-1 gap-2 sm:gap-1 border border-gray-400">
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       type="email"
