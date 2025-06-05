@@ -149,7 +149,7 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col lg:flex-row justify-between items-center">
             <p className="text-white text-sm">
-              © Copyright White Labs 2025. All rights reserved.
+             © Copyright Voltis Labs {new Date().getFullYear()}. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 lg:mt-0">
               {['Privacy Policy', 'Terms of Use', 'Legal', 'Site Map'].map((link, index) => (

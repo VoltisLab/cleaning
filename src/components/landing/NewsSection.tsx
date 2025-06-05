@@ -29,9 +29,9 @@ const NewsSection: React.FC = () => {
   ];
 
   return (
-    <section className="pt-20 mb-28">
+    <section className="pt-20 pb-28">
       <div className="max-w-[1139px] mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center pb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Latest News</h2>
           <p className="text-gray-600">
             Awesome site on the top advertising a business online includes
