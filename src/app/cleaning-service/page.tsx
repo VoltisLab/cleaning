@@ -1,5 +1,7 @@
 import Heroes from "@/components/CleaningServices/Heroes";
 import HowItWorks from "@/components/CleaningServices/HowItWorks";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import Head from "next/head";
 
 export default function Home() {
@@ -14,7 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <Header /> */}
+      <Header />
 
       <main className="flex-grow mb-32">
         <Heroes />
@@ -23,7 +25,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
