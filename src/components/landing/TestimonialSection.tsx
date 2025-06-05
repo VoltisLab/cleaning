@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
 
@@ -12,36 +12,39 @@ interface TestimonialData {
   avatar: string;
 }
 
-  const TestimonialsSection: React.FC = () => {
+const TestimonialsSection: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
   const testimonials: TestimonialData[] = [
     {
       name: 'Alexa Bliss',
       rating: 4,
-      content: '“I booked a deep clean with Cleaning Solutions, and I couldn’t be happier! They tackled all the tricky spots I’d been avoiding for months,  from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!”',
+      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
       avatar: '/landing/test/image.png'
     },
     {
       name: 'John Smith',
       rating: 5,
-      content: '“I booked a deep clean with Cleaning Solutions, and I couldn’t be happier! They tackled all the tricky spots I’d been avoiding for months,  from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!”',
+      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
       avatar: '/landing/test/image.png'
     },
     {
       name: 'Sarah Johnson',
       rating: 5,
-      content: '“I booked a deep clean with Cleaning Solutions, and I couldn’t be happier! They tackled all the tricky spots I’d been avoiding for months,  from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!”',
+      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
       avatar: '/landing/test/image.png'
     },
     {
       name: 'Mike Wilson',
       rating: 4,
-      content: '“I booked a deep clean with Cleaning Solutions, and I couldn’t be happier! They tackled all the tricky spots I’d been avoiding for months,  from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!”',
+      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
       avatar: '/landing/test/image.png'
     },
     {
       name: 'Emma Davis',
       rating: 5,
-      content: '“I booked a deep clean with Cleaning Solutions, and I couldn’t be happier! They tackled all the tricky spots I’d been avoiding for months,  from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!”',
+      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
       avatar: '/landing/test/image.png'
     }
   ];
@@ -64,7 +67,6 @@ interface TestimonialData {
     const diff = index - currentIndex;
     const totalItems = testimonials.length;
     
-    // Normalize the difference to handle wrap-around
     let normalizedDiff = diff;
     if (Math.abs(diff) > totalItems / 2) {
       normalizedDiff = diff > 0 ? diff - totalItems : diff + totalItems;
@@ -74,11 +76,13 @@ interface TestimonialData {
   };
 
   return (
-    <section className="py-16 bg-gray-50 relative">
+    <section className="py-16  relative" ref={ref}>
       <div className="max-w-6xl mx-auto px-4 relative">
         
         {/* Navigation Buttons */}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           onClick={prevTestimonial}
           disabled={currentIndex === 0}
           className={`absolute left-4 top-2/4 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex items-center justify-center transition-colors shadow-lg ${
@@ -88,16 +92,23 @@ interface TestimonialData {
           }`}
         >
           <ChevronLeft className="w-6 h-6" />
-        </button>
+        </motion.button>
         
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           onClick={nextTestimonial}
           className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#5B7AFF] text-white rounded-full flex items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-lg"
         >
           <ChevronRight className="w-6 h-6" />
-        </button>
+        </motion.button>
 
-        <div className="text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
           {/* Avatar Row */}
           <div className="flex justify-center items-center mb-6 relative h-20">
             {testimonials.map((testimonial, index) => {
@@ -121,6 +132,7 @@ interface TestimonialData {
                     damping: 30,
                   }}
                   onClick={() => goToTestimonial(index)}
+                  whileHover={{ scale: isActive ? 1.4 : 1.0 }}
                 >
                   <div className={`relative ${
                     isActive ? 'w-15 h-15' : index === 1 || index === 4 ? 'w-14 h-14' : 'w-12 h-12'
@@ -158,14 +170,20 @@ interface TestimonialData {
               {/* Star Rating */}
               <div className="flex justify-center mb-6">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className={`w-4 h-4 ${
-                      i < testimonials[currentIndex].rating 
-                        ? 'text-yellow-400 fill-current' 
-                        : 'text-gray-300'
-                    }`} 
-                  />
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <Star 
+                      className={`w-4 h-4 ${
+                        i < testimonials[currentIndex].rating 
+                          ? 'text-yellow-400 fill-current' 
+                          : 'text-gray-300'
+                      }`} 
+                    />
+                  </motion.div>
                 ))}
               </div>
 
@@ -175,15 +193,23 @@ interface TestimonialData {
               </p>
 
               {/* Closing Quote */}
-              <div className="text-6xl text-[#5B7AFF] mt-4 font-serif rotate-180 inline-block">&quot;</div>
+              <motion.div 
+                initial={{ opacity: 0, rotate: 180 }}
+                animate={{ opacity: 1, rotate: 180 }}
+                className="text-6xl text-[#5B7AFF] mt-4 font-serif inline-block"
+              >
+                &quot;
+              </motion.div>
             </motion.div>
           </AnimatePresence>
 
           {/* Pagination Dots */}
           <div className="flex justify-center mt-8 space-x-2">
             {testimonials.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.8 }}
                 onClick={() => goToTestimonial(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
                   index === currentIndex ? 'bg-[#5B7AFF]' : 'bg-gray-300'
@@ -191,7 +217,7 @@ interface TestimonialData {
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
