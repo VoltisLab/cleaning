@@ -1,8 +1,10 @@
 "use client"
-import { MapPin, Phone } from "lucide-react";
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 const ContactSection: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,93 +22,144 @@ const ContactSection: React.FC = () => {
     console.log('Form submitted:', formData);
   };
 
+  const imageVariants = {
+    hidden: { opacity: 0, x: -50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const formVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section className="py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl p-8 relative overflow-hidden">
-              <div className="absolute top-4 left-4">
-                <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">✨</span>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-6xl mb-4">👥</div>
-                <div className="bg-white rounded-lg p-4 inline-flex items-center space-x-2 shadow-lg">
-                  <MapPin className="w-5 h-5 text-red-500" />
-                  <div>
-                    <div className="font-bold text-sm">Location</div>
-                    <div className="text-xs text-gray-600">Call for help</div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute bottom-4 left-4 bg-white rounded-lg p-3 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-4 h-4 text-[#5B7AFF]" />
-                  <span className="text-sm font-medium">365-245-0655</span>
-                </div>
-              </div>
+    <section className="py-20" ref={ref}>
+      <div className="max-w-[1139px] mx-auto px-4">
+        <div className="grid xl:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            variants={imageVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="relative h-[400px] lg:h-[500px] w-full"
+          >
+            <Image
+              src={"/landing/contact/image.png"}
+              alt={"Contact us"}
+              fill
+              className="object-cover w-full h-full rounded-xl"
+              priority
+            />
+          </motion.div>
+          
+          <motion.div
+            variants={formVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="shadow-lg md:p-10 p-6 rounded-[16px] relative"
+          >
+            <div className="relative">
+              <motion.div
+                initial={{ opacity: 0, rotate: -20, scale: 0 }}
+                animate={isInView ? { opacity: 1, rotate: 0, scale: 1 } : { opacity: 0, rotate: -20, scale: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                <Image
+                  src={"/landing/contact/brush1.png"}
+                  alt={"Decoration"}
+                  height={100.28}
+                  width={100.28}
+                  className="object-fit-contain absolute -left-18 -top-20"
+                />
+              </motion.div>
             </div>
-          </div>
-          <div>
-            <div className="text-center mb-8">
-              <div className="text-4xl mb-4">📞</div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            
+            <motion.div variants={itemVariants} className="text-center mb-8">
+              <h2 className="md:text-[40px] text-[20px] font-bold text-gray-900 mb-2">
                 Having Question?
               </h2>
-              <h3 className="text-3xl font-bold mb-4">
+              <h3 className="md:text-[40px] text-[20px] font-bold mb-4 text-gray-900">
                 Get in <span className="text-[#5B7AFF]">touch!</span>
               </h3>
-            </div>
+            </motion.div>
+            
             <div className="space-y-6">
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">Your name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Enter your name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-[#5B7AFF]"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">Your Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="Enter your email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-[#5B7AFF]"
-                />
-              </div>
-              <div>
+              {[
+                { label: "Your name", name: "name", type: "text", placeholder: "Enter your name" },
+                { label: "Your Email", name: "email", type: "email", placeholder: "Enter your email" }
+              ].map((field) => (
+                <motion.div key={field.name} variants={itemVariants}>
+                  <label className="block text-gray-700 font-medium mb-2">{field.label}</label>
+                  <motion.input
+                    whileFocus={{ scale: 1.02, borderColor: "#5B7AFF" }}
+                    type={field.type}
+                    name={field.name}
+                    value={formData[field.name as keyof typeof formData]}
+                    onChange={handleInputChange}
+                    placeholder={field.placeholder}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-[#5B7AFF] transition-colors"
+                  />
+                </motion.div>
+              ))}
+              
+              <motion.div variants={itemVariants}>
                 <label className="block text-gray-700 font-medium mb-2">Residence</label>
-                <select
+                <motion.select
+                  whileFocus={{ scale: 1.02, borderColor: "#5B7AFF" }}
                   name="residence"
                   value={formData.residence}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-[#5B7AFF] appearance-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-[#5B7AFF] appearance-none transition-colors"
                 >
                   <option value="">Select your residence</option>
                   <option value="usa">United States</option>
                   <option value="canada">Canada</option>
                   <option value="uk">United Kingdom</option>
-                </select>
-              </div>
-              <button
+                </motion.select>
+              </motion.div>
+              
+              <motion.button
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(91, 122, 255, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleSubmit}
                 className="w-full bg-[#5B7AFF] text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors"
               >
                 Submit
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
 export default ContactSection;
