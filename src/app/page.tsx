@@ -1,7 +1,6 @@
 import ContactSection from "@/components/landing/ContactSection";
 import FeatureCards from "@/components/landing/FeautureCard";
 import HeroSection from "@/components/landing/Hero";
-import NewsletterSection from "@/components/landing/NewsLetterSection";
 import NewsSection from "@/components/landing/NewsSection";
 import PricingSection from "@/components/landing/PricingSection";
 import ServicesSection from "@/components/landing/ServicesSection";
@@ -21,7 +20,6 @@ const Home: React.FC = () => {
       <TestimonialsSection />
       <ContactSection />
       <NewsSection />
-      <NewsletterSection />
     </div>
   );
 };
