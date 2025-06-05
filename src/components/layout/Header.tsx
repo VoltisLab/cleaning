@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ShoppingCart, Search, User, Menu, X, Phone, Mail } from 'lucide-react';
-
 // Define types for better type safety
 interface NavItem {
   label: string;
@@ -26,7 +25,7 @@ const Header = () => {
   const [isServicesOpen, setIsServicesOpen] = useState<boolean>(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  
+
   // Properly type the ref for HTMLDivElement
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -54,9 +53,10 @@ const Header = () => {
   }, []);
 
   const navItems: NavItem[] = [
-    { label: 'Home', href: '#' },
-    { label: 'Services', href: '#', hasDropdown: true },
-    { label: 'Pages', href: '#' },
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/cleaning-service', hasDropdown: true },
+    { label: 'Pricing', href: '#' },
+    { label: 'Blog', href: '/blogs' },
     { label: 'About', href: '#' },
     { label: 'Contact', href: '#' }
   ];
@@ -76,16 +76,19 @@ const Header = () => {
   ];
 
   // Type the label parameter as string
-  const handleTabClick = (label: string): void => {
+  const handleTabClick = (label: string, href:string): void => {
     if (label === 'Services') {
       if (isMobile) {
         setIsMobileServicesOpen(!isMobileServicesOpen);
         setActiveTab(label);
+        window.location.href = href
       } else {
         setIsServicesOpen(!isServicesOpen);
         setActiveTab(label);
+        window.location.href = href
       }
     } else {
+      window.location.href = href
       setActiveTab(label);
       setIsServicesOpen(false);
       setIsMobileServicesOpen(false);
@@ -183,7 +186,8 @@ const Header = () => {
                 alt="Logo"
                 width={138}
                 height={50}
-                className="md:w-36 md:h-14"
+                className="md:w-36 md:h-14 cursor-pointer"
+                onClick={()=> window.location.href = "/"}
               />
             </div>
 
@@ -192,10 +196,10 @@ const Header = () => {
               {navItems.map((item, index) => (
                 <div key={index} className="relative" ref={item.hasDropdown ? dropdownRef : null}>
                   <button
-                    onClick={() => handleTabClick(item.label)}
+                    onClick={() => handleTabClick(item.label, item.href)}
                     className={`${
                       activeTab === item.label ? "text-[#4977E5]" : "text-[#051625]"
-                    } hover:text-[#4977E5] font-medium flex items-center text-[15px] transition-colors duration-200 py-2`}
+                    } hover:text-[#4977E5] font-medium flex items-center text-[15px] transition-colors duration-200 py-2 cursor-pointer`}
                   >
                     {item.label}
                     {item.hasDropdown && (
@@ -272,7 +276,7 @@ const Header = () => {
             {navItems.map((item, index) => (
               <div key={index}>
                 <button
-                  onClick={() => handleTabClick(item.label)}
+                  onClick={() => handleTabClick(item.label, item.href)}
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-left font-medium transition-colors ${
                     activeTab === item.label 
                       ? "bg-[#4977E5]/10 text-[#4977E5]" 
