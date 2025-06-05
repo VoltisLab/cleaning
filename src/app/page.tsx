@@ -8,13 +8,10 @@ import ServicesSection from "@/components/landing/ServicesSection";
 import StatsSection from "@/components/landing/StatsSection";
 import TeamSection from "@/components/landing/TeamSection";
 import TestimonialsSection from "@/components/landing/TestimonialSection";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-white ">
-      <Header />
       <HeroSection />
       <FeatureCards />
       <ServicesSection />
@@ -25,7 +22,6 @@ const Home: React.FC = () => {
       <ContactSection />
       <NewsSection />
       <NewsletterSection />
-      <Footer />
     </div>
   );
 };
