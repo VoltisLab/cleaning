@@ -1,6 +1,6 @@
 'use client'
 import { motion, useInView } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import { Minus } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -131,7 +131,7 @@ const StatsSection: React.FC = () => {
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3"
                 >
-                  <CheckCircle className="w-5 h-5 text-gray-600 flex-shrink-0" />
+                  <Minus color="#4977E5" className="w-5 h-5 flex-shrink-0" />
                   <span className="text-gray-700 text-sm sm:text-base">{text}</span>
                 </motion.div>
               ))}

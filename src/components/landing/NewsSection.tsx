@@ -48,7 +48,7 @@ const NewsSection: React.FC = () => {
                       height={245}
                       width={291}
                       objectFit="cover"
-                      className=" w-full !xl:w-relative h-full"
+                      className=" rounded-l-[12px] w-full !xl:w-relative h-full"
                   />
                   </div>
               <div className="w-full">
