@@ -32,8 +32,8 @@ const PricingSection: React.FC = () => {
 
   return (
     <section className="py-20">
-      <div className="max-w-[1139px] mx-auto flex flex-row justify-between gap-10">
-        <div className="text-left mb-16">
+      <div className="max-w-[1139px] mx-auto flex xl:flex-row flex-col justify-between gap-10">
+        <div className="xl:text-left mb-16 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Save 10% on weekly cleans</h2>
           <p className="text-gray-600 max-w-lg mx-auto mb-8">
             Save an extra 10% when you book our weekly or monthly cleaning services 
@@ -41,7 +41,7 @@ const PricingSection: React.FC = () => {
       
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-4xl xl:mx-auto mx-5">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -50,7 +50,8 @@ const PricingSection: React.FC = () => {
               <div className="text-center mb-8 border-b border-b-gray-300">
                 <h3 className="text-xl font-bold text-[#4977E5] mb-2">{plan.type}</h3>
                 <div className="flex items-baseline justify-center">
-                  <span className="text-4xl font-bold text-gray-900">${plan.price}</span>
+
+                  <span className="text-4xl font-bold text-gray-900">£{plan.price}</span>
                   <span className="text-gray-600 ml-1">/{plan.period}</span>
                 </div>
               </div>

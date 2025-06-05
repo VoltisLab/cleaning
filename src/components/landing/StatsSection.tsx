@@ -16,7 +16,7 @@ const StatsSection: React.FC = () => {
   return (
     <section className="py-20">
       <div className="max-w-[1139px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid xl:grid-cols-2 gap-16 items-center xl:p-0 p-5">
           <div>
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               What We Offer

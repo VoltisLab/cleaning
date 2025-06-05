@@ -3,28 +3,28 @@ import Image from 'next/image';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="bg-gradient-to-br relative overflow-hidden">
+    <section className="bg-gradient-to-br relative overflow-hidden md:px-0 px-5">
       <div className="max-w-[1139px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-4 items-center">
+        <div className="grid lg:grid-cols-[40%_60%] gap-8 items-center">
           {/* Left Content */}
-          <div className="relative z-10">
+          <div className="relative z-10 py-8 lg:py-12">
             <div className="mb-4">
               <span className="text-[#4977E5] font-medium text-sm tracking-wider uppercase">
                 CLEAN HOME, HAPPY LIFE.
               </span>
             </div>
-            <h1 className="text-[56px] font-dm-sans font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-[48px] lg:text-[52px] font-dm-sans font-bold text-gray-900 mb-4 leading-tight">
               With Cleaning Solutions, {' '}
               <Image
                 src={"/landing/hero/star.svg"}
                 alt={"Star"}
                 width={20}
                 height={20}
-                className="object-contain bottom-60 absolute -left-4"
+                className="object-contain absolute -top-4 -left-4"
               />
-              <span className="text-[#4977E5]">your home’s</span> in good hands.
+              <span className="text-[#4977E5]">your home&apos;s</span> in good hands.
             </h1>
-            <p className="text-[#838B95] text-[15px] mb-10 leading-relaxed max-w-lg font-lato">
+            <p className="text-[#838B95] text-[15px] mb-8 leading-relaxed max-w-lg font-lato">
               We&apos;ve got all your cleaning and home services covered! Our fully vetted and highly experienced team are committed to delivering top-quality services. We know how important trust and reliability are to our customers, which is why we carefully choose only the best professionals to join our team.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -37,14 +37,15 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Image - Adjusted to match left content height */}
-          <div className="relative h-full w-full ">
+          {/* Right Image - Taller and wider than text container */}
+          <div className="relative w-full h-[700px] lg:h-[800px]">
             <Image
               src={"/landing/hero/heroImage.png"}
               alt={"Hero cleaning equipment"}
-             fill
-              className="object-cover w-full h-full "
+              fill
+              className="object-cover rounded-2xl"
               priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </div>

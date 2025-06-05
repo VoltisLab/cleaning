@@ -6,9 +6,9 @@ const Footer: React.FC = () => {
   const resourceLinks = ['Courses', 'Become Teacher', 'Service', 'All in One'];
 
   return (
-    <footer className="bg-[#051625] text-white pt-48 pb-16">
+    <footer className="bg-[#051625] text-white pt-48 pb-16 xl:px-0 px-5">
       <div className="max-w-[1139px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-8 items-start">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 items-start">
           
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">

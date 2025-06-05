@@ -21,8 +21,8 @@ const ContactSection: React.FC = () => {
 
   return (
     <section className="py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-[1139px] mx-auto px-4">
+        <div className="grid xl:grid-cols-2 gap-16 items-center">
           <div className="relative h-full w-full ">
             <Image
               src={"/landing/contact/image.png"}
@@ -32,7 +32,7 @@ const ContactSection: React.FC = () => {
               priority
             />
           </div>
-          <div className="shadow-lg p-10 rounded-[16px]">
+          <div className="shadow-lg md:p-10 p-3 rounded-[16px]">
              <div className="relative">
                 <Image
                     src={"/landing/contact/brush1.png"}
@@ -44,10 +44,10 @@ const ContactSection: React.FC = () => {
               </div>
             <div className="text-center mb-8 ">
              
-              <h2 className="text-[40px] font-bold text-gray-900 mb-2">
+              <h2 className="md:text-[40px] text-[20px] font-bold text-gray-900 mb-2">
                 Having Question?
               </h2>
-              <h3 className="text-[40px] font-bold mb-4 text-gray-900">
+              <h3 className="md:text-[40px] text-[20px] font-bold mb-4 text-gray-900">
                 Get in <span className="text-[#5B7AFF]">touch!</span>
               </h3>
             </div>
