@@ -1,11 +1,11 @@
 "use client";
-import { Calendar, Calendar1Icon, ChevronDown } from "lucide-react";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { Calendar1Icon, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdCall, MdMail } from "react-icons/md";
+import { z } from "zod";
 
 // Date regex: DD/MM/YYYY or DD-MM-YYYY
 const dateRegex = /^(0[1-9]|[12][0-9]|3[01])([/-])(0[1-9]|1[0-2])\2(\d{4})$/;
@@ -45,7 +45,7 @@ export default function BookNow() {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors, touchedFields },
+    formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     mode: "onTouched", // Validate on blur after first submit attempt
@@ -94,7 +94,7 @@ export default function BookNow() {
 
         {submitSuccess && (
           <div className="p-3 bg-green-100 text-green-700 rounded-[18px] text-sm">
-            Form submitted successfully! We'll contact you soon.
+            Form submitted successfully! We&apos;ll contact you soon.
           </div>
         )}
 

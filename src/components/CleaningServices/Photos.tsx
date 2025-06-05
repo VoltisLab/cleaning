@@ -1,9 +1,4 @@
 import Image from "next/image";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdCall, MdMail } from "react-icons/md";
-import BookNow from "./BookNow";
-import Services from "./services";
-import HowWeWork from "./HowWeWork";
 
 const images = [
   "/cleaning-services/scrub-floor.png",

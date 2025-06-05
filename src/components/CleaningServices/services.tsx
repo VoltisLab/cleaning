@@ -1,23 +1,3 @@
-const services = [
-  {
-    title: "Bathroom Deep Cleaning",
-    description: "(Without Bathtub, Shower Corner)",
-  },
-  {
-    title: "Sofa/Chair Cleaning",
-    description: "(If needed, price will be shared accordingly)",
-  },
-  {
-    title: "Kitchen Cleaning",
-    description:
-      "(Without Kitchen Hood, inside Cabinet clean, If needed price will add accordingly)",
-  },
-  {
-    title: "Carpet Cleaning",
-    description: "",
-  },
-];
-
 const serviceStats = [
   { name: "Regular Cleaning", percentage: 70 },
   { name: "Pest Control Services", percentage: 80 },

@@ -1,26 +1,8 @@
 "use client";
-import Image from "next/image";
-import { FaLocationDot, FaPlay } from "react-icons/fa6";
-import { MdCall, MdMail } from "react-icons/md";
-import BookNow from "./BookNow";
-import Services from "./services";
-import HowWeWork from "./HowWeWork";
+import { FaPlay } from "react-icons/fa6";
 
-import { useState, useRef, use } from "react";
+import { useRef, useState } from "react";
 import { FaPause } from "react-icons/fa";
-
-const images = [
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-  "/cleaning-services/scrub-floor.png",
-];
 
 export default function Video() {
   const [isPlaying, setIsPlaying] = useState(false);

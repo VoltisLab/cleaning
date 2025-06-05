@@ -1,34 +1,12 @@
 import Image from "next/image";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdCall, MdMail } from "react-icons/md";
 import BookNow from "./BookNow";
-import Services from "./services";
+import Comments from "./Comments";
 import HowWeWork from "./HowWeWork";
 import Photos from "./Photos";
-import Video from "./Video";
-import Testimonials from "./Testimonials";
-import Comments from "./Comments";
 import Review from "./Review";
-
-const steps = [
-  {
-    title: "Booking",
-    description: "From the category, select the service you are looking for.",
-  },
-  {
-    title: "Book your schedule",
-    description: "Select your convenient time slot.",
-  },
-  {
-    title: "Place order",
-    description: "Confirm your order by clicking 'Place order'.",
-  },
-  {
-    title: "Live Service",
-    description:
-      "Our professional will arrive at your place at scheduled time.",
-  },
-];
+import Services from "./services";
+import Testimonials from "./Testimonials";
+import Video from "./Video";
 
 export default function HowItWorks() {
   return (

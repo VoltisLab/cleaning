@@ -1,29 +1,4 @@
-import Image from "next/image";
-import { BiChevronDown, BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { FaQuoteRight } from "react-icons/fa6";
-import { IoMdStarOutline } from "react-icons/io";
-import { MdMoreVert, MdStar, MdStarHalf } from "react-icons/md";
-
-const testimonials = [
-  {
-    name: "Alexa Bliss",
-    comment:
-      "Training programs can bring you a super exciting experience of learning through online! You never face any negative experience while enjoying your classes Awesome site.",
-    date: "January 9, 2022",
-  },
-  {
-    name: "Taylor Swift",
-    comment:
-      "Many remote jobs also come with flexible schedules, which means that workers can start and end their day as they choose, as long as their work.",
-    date: "January 9, 2022",
-  },
-  {
-    name: "Amber Ross",
-    comment:
-      "Many remote jobs also come with flexible schedules, which means that workers can start and end their day as they choose, as long as their work.",
-    date: "January 9, 2022",
-  },
-];
+import { BiChevronDown } from "react-icons/bi";
 
 export default function Review() {
   return (
