@@ -4,6 +4,7 @@ import mainImage from "@/../public/blogs/main-pic.png"
 import MustHaveProd from './MustHaveProd'
 import TakeAway from './TakeAway'
 import LeaveReply from './LeaveReply'
+import Comments from '@/components/CleaningServices/Comments'
 
 const LeftSide = () => {
   return (
@@ -14,6 +15,7 @@ const LeftSide = () => {
       </div>
       <MustHaveProd/>
       <TakeAway/>
+      <Comments/>
       <LeaveReply/>
 
     </div>

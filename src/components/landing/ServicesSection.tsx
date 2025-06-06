@@ -2,7 +2,19 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-const ServicesSection: React.FC = () => {
+
+interface Data {
+  title: string;
+  description: string;
+  color: string;
+  icon: string;
+}
+
+interface ServiceProps {
+  data?: Data[];
+}
+
+const ServicesSection: React.FC<ServiceProps> = ({data}) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -27,6 +39,7 @@ const ServicesSection: React.FC = () => {
     }
   ];
 
+  const servicesData = data ? data : services
 
   const headerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -84,7 +97,7 @@ const ServicesSection: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          {services.map((service, index) => (
+          {servicesData?.map((service, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
