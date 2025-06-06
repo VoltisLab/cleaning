@@ -69,17 +69,17 @@ const HeroSection: React.FC = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <motion.div variants={itemVariants} className="mb-3 md:mb-4 text-center lg:text-left">
+            {/* <motion.div variants={itemVariants} className="mb-3 md:mb-4 text-center lg:text-left">
               <span className="text-[#4977E5] font-medium text-xs md:text-sm tracking-wider uppercase">
                 CLEAN HOME, HAPPY LIFE.
               </span>
-            </motion.div>
+            </motion.div> */}
             
             {/* Title with responsive star positioning */}
             <motion.div variants={itemVariants} className="relative mb-4 md:mb-6">
               <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-[52px] font-dm-sans font-bold text-gray-900 leading-tight text-center lg:text-left">
-                With Cleaning Solutions,{' '}
-                <span className="text-[#4977E5]">your home&apos;s</span> in good hands.
+                Reliable Cleaning. {' '}
+                <span className="text-[#4977E5]">Real Results.</span> 
               </h1>
               {/* Star positioned responsively */}
               <motion.div
@@ -100,7 +100,7 @@ const HeroSection: React.FC = () => {
               variants={itemVariants}
               className="text-[#838B95] text-sm md:text-base lg:text-[15px] mb-6 md:mb-8 leading-relaxed max-w-lg font-lato text-center lg:text-left mx-auto lg:mx-0"
             >
-              We&apos;ve got all your cleaning and home services covered! Our fully vetted and highly experienced team are committed to delivering top-quality services. We know how important trust and reliability are to our customers, which is why we carefully choose only the best professionals to join our team.
+              Pebble Cleaning offers fast, affordable, and flexible cleaning services across homes , offices and multiple property types in the UK
             </motion.p>
             
             {/* Responsive button layout */}
@@ -111,6 +111,7 @@ const HeroSection: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(73, 119, 229, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
+                onClick={()=> window.location.href = '/about'}
                 className="bg-[#4977E5] text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg text-sm md:text-base"
               >
                 About Us

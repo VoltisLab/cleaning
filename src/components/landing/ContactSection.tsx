@@ -103,7 +103,7 @@ const ContactSection: React.FC = () => {
             
             <motion.div variants={itemVariants} className="text-center mb-8">
               <h2 className="md:text-[40px] text-[20px] font-bold text-gray-900 mb-2">
-                Having Question?
+                Have a Question?
               </h2>
               <h3 className="md:text-[40px] text-[20px] font-bold mb-4 text-gray-900">
                 Get in <span className="text-[#5B7AFF]">touch!</span>
