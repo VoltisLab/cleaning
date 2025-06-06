@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ShoppingCart, Search, User, Menu, X, Phone, Mail } from 'lucide-react';
+import { ChevronDown, ChevronRight, ShoppingCart, Search, User, Menu, X, Phone, Mail } from 'lucide-react';
+
 // Define types for better type safety
 interface NavItem {
   label: string;
@@ -9,9 +10,21 @@ interface NavItem {
   hasDropdown?: boolean;
 }
 
-interface ServiceItem {
+interface DetailedService {
   label: string;
   href: string;
+}
+
+interface SubService {
+  label: string;
+  href: string;
+  detailedServices?: DetailedService[];
+}
+
+interface ServiceCategory {
+  label: string;
+  href: string;
+  subServices: SubService[];
 }
 
 interface Social {
@@ -24,7 +37,13 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isServicesOpen, setIsServicesOpen] = useState<boolean>(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState<boolean>(false);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [hoveredSubService, setHoveredSubService] = useState<string | null>(null);
+  const [openMobileCategory, setOpenMobileCategory] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // Properly type the ref for HTMLDivElement
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -45,26 +64,71 @@ const Header = () => {
     const handleClickOutside = (event: MouseEvent): void => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsServicesOpen(false);
+        setHoveredCategory(null);
+        setHoveredSubService(null);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      // Clean up timeout on unmount
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+    };
+  }, [hoverTimeout]);
 
   const navItems: NavItem[] = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '#', hasDropdown: true },
+    { label: 'Services', href: '/cleaning-services', hasDropdown: true },
     { label: 'Pricing', href: '#' },
     { label: 'Blog', href: '/blogs' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' }
   ];
 
-  const serviceItems: ServiceItem[] = [
-    { label: 'Residential Cleaning', href: '#' },
-    { label: 'Commercial Cleaning', href: '#' },
-    { label: 'Laundry Service', href: '#' }
+  const serviceCategories: ServiceCategory[] = [
+    {
+      label: 'Residential Cleaning',
+      href: '/cleaning-services/residential',
+      subServices: [
+        { label: 'Standard Home Cleaning', href: '/cleaning-services/residential/standard' },
+        { label: 'Deep Cleaning', href: '/cleaning-services/residential/deep' },
+        { label: 'Move-In / Move-Out Cleaning', href: '/cleaning-services/residential/move-in-out' },
+        { label: 'End of Tenancy Cleaning', href: '/cleaning-services/residential/tenancy' },
+        { label: 'Spring Cleaning', href: '/cleaning-services/residential/spring' },
+        { label: 'After-Party Cleaning', href: '/cleaning-services/residential/party' },
+        { label: 'Appliance Cleaning', href: '/cleaning-services/residential/appliance' },
+        { label: 'Carpet & Upholstery Cleaning', href: '/cleaning-services/residential/carpet' }
+      ]
+    },
+    {
+      label: 'Commercial Cleaning',
+      href: '/cleaning-services/commercial',
+      subServices: [
+        { label: 'Office Cleaning', href: '/cleaning-services/commercial/office' },
+        { label: 'Retail Store Cleaning', href: '/cleaning-services/commercial/retail' },
+        { label: 'Restaurant & Café Cleaning', href: '/cleaning-services/commercial/restaurant' },
+        { label: 'Parking Lot Cleaning', href: '/cleaning-services/commercial/parking' },
+        { label: 'Gym Cleaning', href: '/cleaning-services/commercial/gym' },
+        { label: 'Salon & Spa Cleaning', href: '/cleaning-services/commercial/salon' },
+        { label: 'Medical Clinic Cleaning', href: '/cleaning-services/commercial/medical' },
+        { label: 'Industrial/Warehouse Cleaning', href: '/cleaning-services/commercial/industrial' }
+      ]
+    },
+    {
+      label: 'Laundry Services',
+      href: '/cleaning-services/laundry',
+      subServices: [
+        { label: 'Wash & Fold Service', href: '/cleaning-services/laundry/wash-fold' },
+        { label: 'Ironing Service', href: '/cleaning-services/laundry/ironing' },
+        { label: 'Pickup & Delivery', href: '/cleaning-services/laundry/pickup-delivery' },
+        { label: 'Dry Cleaning Coordination', href: '/cleaning-services/laundry/dry-cleaning' },
+        { label: 'Delicates Care', href: '/cleaning-services/laundry/delicates' },
+        { label: 'Bedding & Towels Only', href: '/cleaning-services/laundry/bedding' }
+      ]
+    }
   ];
 
   const socials: Social[] = [
@@ -75,19 +139,14 @@ const Header = () => {
   ];
 
   // Type the label parameter as string
-  const handleTabClick = (label: string, href:string): void => {
+  const handleTabClick = (label: string, href: string): void => {
     if (label === 'Services') {
-      if (isMobile) {
-        setIsMobileServicesOpen(!isMobileServicesOpen);
-        setActiveTab(label);
-        window.location.href = href
-      } else {
-        setIsServicesOpen(!isServicesOpen);
-        setActiveTab(label);
-        window.location.href = href
-      }
+      window.location.href = href;
+      setActiveTab(label);
+      setIsServicesOpen(false);
+      setIsMobileServicesOpen(false);
     } else {
-      window.location.href = href
+      window.location.href = href;
       setActiveTab(label);
       setIsServicesOpen(false);
       setIsMobileServicesOpen(false);
@@ -96,6 +155,29 @@ const Header = () => {
         setIsMenuOpen(false);
       }
     }
+  };
+
+  const handleServicesHover = (isHovering: boolean): void => {
+    if (!isMobile) {
+      if (isHovering) {
+        setIsServicesOpen(true);
+      } else {
+        // Add small delay before closing to prevent flickering
+        setTimeout(() => {
+          setIsServicesOpen(false);
+          setHoveredCategory(null);
+        }, 100);
+      }
+    }
+  };
+
+  const toggleMobileServices = (): void => {
+    setIsMobileServicesOpen(!isMobileServicesOpen);
+    setActiveTab('Services');
+  };
+
+  const toggleMobileCategory = (categoryLabel: string): void => {
+    setOpenMobileCategory(openMobileCategory === categoryLabel ? null : categoryLabel);
   };
 
   return (
@@ -134,7 +216,7 @@ const Header = () => {
                   width={15}
                   height={15}
                 />
-                <span className="font-semibold">hello@pebblecleaning.com</span>
+                <span className="font-semibold">contact@pebblecleaning.com</span>
               </div>
               <div className="w-px h-4 bg-white/50"></div>
               <div className="flex items-center space-x-2">
@@ -169,7 +251,7 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-2">
             <Mail size={14} />
-            <span className="text-xs font-semibold">hello@pebblecleaning.com</span>
+            <span className="text-xs font-semibold">contact@pebblecleaning.com</span>
           </div>
         </div>
       </div>
@@ -193,41 +275,107 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8 relative">
               {navItems.map((item, index) => (
-                <div key={index} className="relative" ref={item.hasDropdown ? dropdownRef : null}>
-                  <button
-                    onClick={() => handleTabClick(item.label, item.href)}
-                    className={`${
-                      activeTab === item.label ? "text-[#4977E5]" : "text-[#051625]"
-                    } hover:text-[#4977E5] font-medium flex items-center text-[15px] transition-colors duration-200 py-2 cursor-pointer`}
-                  >
-                    {item.label}
-                    {item.hasDropdown && (
-                      <ChevronDown 
-                        size={16} 
-                        className={`ml-1 transition-transform duration-200 ${
-                          isMobile 
-                            ? (activeTab === item.label && isMobileServicesOpen ? 'rotate-180' : '')
-                            : (isServicesOpen ? 'rotate-180' : '')
-                        }`} 
-                      />
-                    )}
-                  </button>
-                  
-                  {/* Desktop Dropdown */}
-                  {item.hasDropdown && isServicesOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden animate-in slide-in-from-top-2 duration-200">
-                      <div className="py-2">
-                        {serviceItems.map((service, idx) => (
-                          <a
-                            key={idx}
-                            href={service.href}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#4977E5] transition-colors"
-                          >
-                            {service.label}
-                          </a>
-                        ))}
-                      </div>
+                <div 
+                  key={index} 
+                  className="relative" 
+                  ref={item.hasDropdown ? dropdownRef : null}
+                >
+                  {item.hasDropdown ? (
+                    // Services dropdown with extended hover area
+                    <div
+                      className="relative"
+                      onMouseEnter={() => handleServicesHover(true)}
+                      onMouseLeave={() => handleServicesHover(false)}
+                    >
+                      <button
+                        onClick={() => handleTabClick(item.label, item.href)}
+                        className={`${
+                          activeTab === item.label ? "text-[#4977E5]" : "text-[#051625]"
+                        } hover:text-[#4977E5] font-medium flex items-center text-[15px] transition-colors duration-200 py-2 cursor-pointer`}
+                      >
+                        {item.label}
+                        <ChevronDown 
+                          size={16} 
+                          className={`ml-1 transition-transform duration-200 ${
+                            isServicesOpen ? 'rotate-180' : ''
+                          }`} 
+                        />
+                      </button>
+                      
+                      {/* Desktop Dropdown - Level 1 (Main Categories) */}
+                      {isServicesOpen && (
+                        <div 
+                          className="absolute top-full left-0 pt-2 z-50"
+                          onMouseEnter={() => setIsServicesOpen(true)}
+                          onMouseLeave={() => {
+                            setIsServicesOpen(false);
+                            setHoveredCategory(null);
+                          }}
+                        >
+                          <div className="w-64 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden">
+                            <div className="py-3">
+                              {serviceCategories.map((category, idx) => (
+                                <div
+                                  key={idx}
+                                  className="relative"
+                                >
+                                  <div 
+                                    className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#4977E5] transition-colors cursor-pointer"
+                                    onMouseEnter={() => setHoveredCategory(category.label)}
+                                  >
+                                    <span className="font-medium">{category.label}</span>
+                                    <ChevronRight size={16} className="text-gray-400 hover:text-[#4977E5] transition-colors" />
+                                  </div>
+                                  
+                                  {/* Desktop Dropdown - Level 2 (Sub-services) */}
+                                  {hoveredCategory === category.label && (
+                                    <div 
+                                      className=" ml-100 mb-100 fixed z-[100] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden w-60"
+                                      style={{
+                                        left: '320px',
+                                        top: `${idx * 45 + 140}px`
+                                      }}
+                                      onMouseEnter={() => setHoveredCategory(category.label)}
+                                      onMouseLeave={() => setHoveredCategory(null)}
+                                    >
+                                      <div className="py-3">
+                                        <div className="px-2 py-1 bg-gradient-to-r from-[#4977E5]/10 to-blue-50 border-b border-gray-100">
+                                          <h3 className="text-sm font-semibold text-[#4977E5]">{category.label}</h3>
+                                        </div>
+                                        <div className="max-h-80 overflow-y-auto">
+                                          {category.subServices.map((subService, subIdx) => (
+                                            <a
+                                              key={subIdx}
+                                              href={subService.href}
+                                              className="block px-2 py-1 text-sm text-gray-600 hover:bg-blue-50 hover:text-[#4977E5] transition-all duration-200 border-l-3 border-transparent hover:border-[#4977E5] hover:pl-5 hover:shadow-sm group"
+                                            >
+                                              <div className="flex items-center justify-between">
+                                                <span className="font-medium">{subService.label}</span>
+                                                <div className="w-2 h-2 bg-[#4977E5] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                              </div>
+                                            </a>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
+                  ) : (
+                    // Regular navigation items
+                    <button
+                      onClick={() => handleTabClick(item.label, item.href)}
+                      className={`${
+                        activeTab === item.label ? "text-[#4977E5]" : "text-[#051625]"
+                      } hover:text-[#4977E5] font-medium flex items-center text-[15px] transition-colors duration-200 py-2 cursor-pointer`}
+                    >
+                      {item.label}
+                    </button>
                   )}
                 </div>
               ))}
@@ -240,6 +388,9 @@ const Header = () => {
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
                 <ShoppingCart size={20} className="text-gray-600" />
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#4977E5] text-white text-xs rounded-full flex items-center justify-center">
+                  2
+                </span>
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                 <User size={20} className="text-gray-600" />
@@ -271,38 +422,87 @@ const Header = () => {
           <div className="px-4 py-4 space-y-2">
             {navItems.map((item, index) => (
               <div key={index}>
-                <button
-                  onClick={() => handleTabClick(item.label, item.href)}
-                  className={`w-full flex items-center justify-between p-3 rounded-lg text-left font-medium transition-colors ${
-                    activeTab === item.label 
-                      ? "bg-[#4977E5]/10 text-[#4977E5]" 
-                      : "text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  {item.hasDropdown && (
-                    <ChevronDown 
-                      size={16} 
-                      className={`transition-transform duration-200 ${
-                        activeTab === item.label && isServicesOpen ? 'rotate-180' : ''
-                      }`} 
-                    />
-                  )}
-                </button>
-                
-                {/* Mobile Services Dropdown */}
-                {item.hasDropdown && activeTab === item.label && isMobileServicesOpen && (
-                  <div className="mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200 shadow-md rounded-[12px] max-w-48 p-2">
-                    {serviceItems.map((service, idx) => (
-                      <a
-                        key={idx}
-                        href={service.href}
-                        className="block p-3 rounded-lg transition-colors text-gray-700 hover:text-[#4977E5] hover:bg-blue-50"
+                {item.hasDropdown ? (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <button
+                        onClick={() => handleTabClick(item.label, item.href)}
+                        className={`flex-1 text-left p-3 rounded-lg font-medium transition-colors ${
+                          activeTab === item.label 
+                            ? "bg-[#4977E5]/10 text-[#4977E5]" 
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
                       >
-                        {service.label}
-                      </a>
-                    ))}
-                  </div>
+                        {item.label}
+                      </button>
+                      <button
+                        onClick={toggleMobileServices}
+                        className="p-3 rounded-lg transition-colors hover:bg-gray-50"
+                      >
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform duration-200 ${
+                            isMobileServicesOpen ? 'rotate-180' : ''
+                          }`} 
+                        />
+                      </button>
+                    </div>
+                    
+                    {/* Mobile Services Dropdown */}
+                    {isMobileServicesOpen && (
+                      <div className="mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                        {serviceCategories.map((category, idx) => (
+                          <div key={idx} className="ml-4">
+                            <div className="flex items-center justify-between">
+                              <a
+                                href={category.href}
+                                className="flex-1 block p-3 rounded-lg transition-colors text-gray-700 hover:text-[#4977E5] hover:bg-blue-50 font-medium"
+                              >
+                                {category.label}
+                              </a>
+                              <button
+                                onClick={() => toggleMobileCategory(category.label)}
+                                className="p-3 rounded-lg transition-colors hover:bg-gray-50"
+                              >
+                                <ChevronDown 
+                                  size={14} 
+                                  className={`transition-transform duration-200 ${
+                                    openMobileCategory === category.label ? 'rotate-180' : ''
+                                  }`} 
+                                />
+                              </button>
+                            </div>
+                            
+                            {/* Mobile Sub-services */}
+                            {openMobileCategory === category.label && (
+                              <div className="mt-1 ml-4 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                                {category.subServices.map((subService, subIdx) => (
+                                  <a
+                                    key={subIdx}
+                                    href={subService.href}
+                                    className="block p-2.5 rounded-lg transition-colors text-sm text-gray-600 hover:text-[#4977E5] hover:bg-blue-50 border-l-2 border-transparent hover:border-[#4977E5] hover:pl-4"
+                                  >
+                                    {subService.label}
+                                  </a>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <button
+                    onClick={() => handleTabClick(item.label, item.href)}
+                    className={`w-full flex items-center justify-between p-3 rounded-lg text-left font-medium transition-colors ${
+                      activeTab === item.label 
+                        ? "bg-[#4977E5]/10 text-[#4977E5]" 
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                  </button>
                 )}
               </div>
             ))}
@@ -328,7 +528,7 @@ const Header = () => {
                 height={17}
                 className='bg-[#4977E5] p-2 h-8 w-8 rounded-full'
               />
-              <span className="font-medium text-[#4977E5]">hello@pebblecleaning.com</span>
+              <span className="font-medium text-[#4977E5]">contact@pebblecleaning.com</span>
             </div>
             <div className="flex items-center space-x-3 text-sm">
               <Image
