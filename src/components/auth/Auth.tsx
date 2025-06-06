@@ -180,7 +180,7 @@ const AuthForms = () => {
   }
 
   return (
-    <div className="min-h-screen   lg:mt-10 mb-20 max-w-[1139px] mx-auto text-[#051625]">
+    <div className="min-h-screen   lg:pt-10 pb-20  max-w-[1139px] mx-auto text-[#051625]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="min-h-screen flex items-center">
           <div className="w-full grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
