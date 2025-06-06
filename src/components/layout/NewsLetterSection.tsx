@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import Image from 'next/image'
 import { motion, useInView } from "framer-motion";
+import { Mail } from "lucide-react";
 
 const NewsletterSection: React.FC = () => {
   const ref = useRef(null);
@@ -84,13 +85,13 @@ const NewsletterSection: React.FC = () => {
               <div className="text-white text-center xl:text-left">
                 <motion.h2 
                   variants={itemVariants}
-                  className="text-[24px] xl:text-[28px] font-bold mb-3 md:mb-4 font-dm-sans leading-tight"
+                  className="text-[24px] xl:text-[28px] font-bold mb-3 md:mb-4 font-dm-sans leading-tight "
                 >
                   Subscribe to our newsletter to get updates to our latest collections
                 </motion.h2>
                 <motion.p 
                   variants={itemVariants}
-                  className="text-blue-100 mb-6 md:mb-8 text-sm sm:text-base"
+                  className="text-blue-100 mb-6 md:mb-8 text-sm sm:text-base font-dm-sans"
                 >
                   Get 20% off on your first order just by subscribing to our newsletter
                 </motion.p>
@@ -98,14 +99,17 @@ const NewsletterSection: React.FC = () => {
                 {/* Newsletter Form */}
                 <motion.div variants={itemVariants} className="space-y-3 sm:space-y-0">
                   <div className="flex flex-col sm:flex-row bg-white/15 backdrop-blur-sm rounded-[30px] xl:rounded-full p-1 gap-2 sm:gap-1 border border-gray-400">
-                    <motion.input
+                    <div className="flex flex-row gap-1 items-center relative w-full">
+                      <Mail size={18} className="absolute left-2 xl:top-3.5 top-2.5 md:top-4" />
+                      <motion.input
                       whileFocus={{ scale: 1.02 }}
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="flex-1 px-4 sm:px-2 py-2.5 sm:py-3 placeholder:text-white rounded-full text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-white/50 text-sm sm:text-base"
+                      className="flex-1  py-2.5 sm:py-3 placeholder:text-white pl-10 rounded-full text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-white/50 text-sm sm:text-base"
                     />
+                    </div>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -119,11 +123,11 @@ const NewsletterSection: React.FC = () => {
                 
                 <motion.p 
                   variants={itemVariants}
-                  className="text-blue-100 text-xs sm:text-sm mt-3 md:mt-4 leading-relaxed"
+                  className="text-blue-100 text-[13px] mt-3 md:mt-4 font-lato leading-relaxed"
                 >
-                  You will be able to unsubscribe at any time.{' '}
-                  <span className="underline cursor-pointer hover:text-white transition-colors">
-                    Read our privacy policy here
+                  You will be able to unsubscribe at any time.{' '} <br />
+                  <span className="cursor-pointer font-lato hover:text-white transition-colors">
+                    Read our privacy policy <span className="underline">here</span>
                   </span>
                 </motion.p>
               </div>

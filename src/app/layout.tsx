@@ -3,7 +3,7 @@ import { DM_Sans, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import NewsletterSection from "@/components/landing/NewsLetterSection";
+import NewsletterSection from "@/components/layout/NewsLetterSection";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",

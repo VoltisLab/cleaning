@@ -116,6 +116,7 @@ const HeroSection: React.FC = () => {
                 About Us
               </motion.button>
               <motion.button
+                onClick={()=> window.location.href = '/cleaning-service'}
                 whileHover={{ scale: 1.05, borderColor: "#5977E5", backgroundColor: "#f8faff" }}
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-[#4977E5] text-[#4977E5] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-[#5977E5] transition-colors bg-white text-sm md:text-base"
