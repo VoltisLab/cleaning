@@ -9,23 +9,24 @@ const ServicesSection: React.FC = () => {
   const services = [
     {
       title: 'Office Cleaning',
-      description: 'Awesome site on the top advertising a business online includes assembling having the most best.',
+      description: 'We offer office cleaning to the highest standards, making sure your workspace is always fresh and welcoming.',
       color: 'bg-[#4977E5]',
       icon: '/landing/serviceSection/brush.png'
     },
     {
-      title: 'Toilet Cleaning',
-      description: 'Awesome site on the top advertising a business online includes assembling having the most best.',
+      title: 'Laundry Cleaning ',
+      description: 'We provide laundry cleaning that’s thorough and gentle, making sure your clothes come back fresh and spotless every time.',
       color: 'bg-white',
       icon: '/landing/serviceSection/tissue.png'
     },
     {
-      title: 'Laundry Cleaning',
-      description: 'Awesome site on the top advertising a business online includes assembling having the most best.',
+      title: 'Airbnb Cleaning ',
+      description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
       color: 'bg-white',
       icon: '/landing/serviceSection/image.png'
     }
   ];
+
 
   const headerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -73,12 +74,8 @@ const ServicesSection: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="xl:text-[40px] md:text-[32px] text-[24px] font-bold leading-[130%] font-dm-sans xl:max-w-[60%] text-center xl:mx-auto text-[#051625] mb-4">
-            Keep your vision to our latest projects.
+            Our Services
           </h2>
-          <p className="text-gray-600 max-w-md font-lato mx-auto">
-            Awesome site on the top advertising a business online includes
-            assembling having the most best.
-          </p>
         </motion.div>
         
         <motion.div

@@ -18,7 +18,7 @@ const TestimonialsSection: React.FC = () => {
   
   const testimonials: TestimonialData[] = [
     {
-      name: 'Alexa Bliss',
+      name: 'Alex Russel',
       rating: 4,
       content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
       avatar: '/landing/test/image.png'
@@ -27,13 +27,13 @@ const TestimonialsSection: React.FC = () => {
       name: 'John Smith',
       rating: 5,
       content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
-      avatar: '/landing/test/image.png'
+      avatar: '/landing/test/image2.png'
     },
     {
       name: 'Sarah Johnson',
       rating: 5,
       content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
-      avatar: '/landing/test/image.png'
+      avatar: '/landing/test/image3.png'
     },
     {
       name: 'Mike Wilson',
@@ -45,7 +45,7 @@ const TestimonialsSection: React.FC = () => {
       name: 'Emma Davis',
       rating: 5,
       content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
-      avatar: '/landing/test/image.png'
+      avatar: '/landing/test/image2.png'
     }
   ];
 

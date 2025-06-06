@@ -54,11 +54,11 @@ const Header = () => {
 
   const navItems: NavItem[] = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '/cleaning-service', hasDropdown: true },
+    { label: 'Services', href: '#', hasDropdown: true },
     { label: 'Pricing', href: '#' },
     { label: 'Blog', href: '/blogs' },
-    { label: 'About', href: '#' },
-    { label: 'Contact', href: '#' }
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
   ];
 
   const serviceItems: ServiceItem[] = [

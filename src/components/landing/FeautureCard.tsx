@@ -62,7 +62,7 @@ const FeatureCards: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-white" ref={ref}>
+    <section className="pb-16 bg-white" ref={ref}>
       <div className="max-w-[1139px] mx-auto px-4 sm:px-6 lg:px-0">
         <motion.div
           variants={containerVariants}
