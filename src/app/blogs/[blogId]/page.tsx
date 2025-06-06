@@ -1,7 +1,6 @@
 import Banner from '@/components/about/Banner'
 import LeftSide from '@/components/blogs/blog-details/LeftSide'
 import RightSide from '@/components/blogs/blog-details/RightSide'
-import Hero from '@/components/blogs/Hero'
 import React from 'react'
 
 const page = () => {
