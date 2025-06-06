@@ -240,9 +240,6 @@ const Header = () => {
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
                 <ShoppingCart size={20} className="text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#4977E5] text-white text-xs rounded-full flex items-center justify-center">
-                  2
-                </span>
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                 <User size={20} className="text-gray-600" />
