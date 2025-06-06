@@ -1,6 +1,5 @@
 import Banner from '@/components/about/Banner'
 import BlogCard from '@/components/blogs/BlogCard'
-import Hero from '@/components/blogs/Hero'
 import React from 'react'
 
 const page = () => {
