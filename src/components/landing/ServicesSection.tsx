@@ -20,13 +20,13 @@ const ServicesSection: React.FC<ServiceProps> = ({data}) => {
 
   const services = [
     {
-      title: 'Office Cleaning',
+      title: 'Commercial Cleaning',
       description: 'We offer office cleaning to the highest standards, making sure your workspace is always fresh and welcoming.',
       color: 'bg-[#4977E5]',
       icon: '/landing/serviceSection/brush.png'
     },
     {
-      title: 'Laundry Cleaning ',
+      title: 'Residential Cleaning ',
       description: 'We provide laundry cleaning that’s thorough and gentle, making sure your clothes come back fresh and spotless every time.',
       color: 'bg-white',
       icon: '/landing/serviceSection/tissue.png'

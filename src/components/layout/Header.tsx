@@ -62,9 +62,8 @@ const Header = () => {
   ];
 
   const serviceItems: ServiceItem[] = [
-    { label: 'Home Service', href: '#' },
-    { label: 'Car Service', href: '#' },
-    { label: 'Toilet Service', href: '#' },
+    { label: 'Residential Cleaning', href: '#' },
+    { label: 'Commercial Cleaning', href: '#' },
     { label: 'Laundry Service', href: '#' }
   ];
 
@@ -135,7 +134,7 @@ const Header = () => {
                   width={15}
                   height={15}
                 />
-                <span className="font-semibold">support@mail.com</span>
+                <span className="font-semibold">hello@pebblecleaning.com</span>
               </div>
               <div className="w-px h-4 bg-white/50"></div>
               <div className="flex items-center space-x-2">
@@ -170,7 +169,7 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-2">
             <Mail size={14} />
-            <span className="text-xs font-semibold">support@mail.com</span>
+            <span className="text-xs font-semibold">hello@pebblecleaning.com</span>
           </div>
         </div>
       </div>
@@ -241,9 +240,6 @@ const Header = () => {
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
                 <ShoppingCart size={20} className="text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#4977E5] text-white text-xs rounded-full flex items-center justify-center">
-                  2
-                </span>
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                 <User size={20} className="text-gray-600" />
@@ -332,7 +328,7 @@ const Header = () => {
                 height={17}
                 className='bg-[#4977E5] p-2 h-8 w-8 rounded-full'
               />
-              <span className="font-medium text-[#4977E5]">support@mail.com</span>
+              <span className="font-medium text-[#4977E5]">hello@pebblecleaning.com</span>
             </div>
             <div className="flex items-center space-x-3 text-sm">
               <Image

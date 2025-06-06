@@ -297,10 +297,7 @@ const ContactForm = () => {
                 }}
               >
                 <p className="leading-relaxed text-base sm:text-[18px] font-lato text-[#838B95]">
-                  785 15th Street, Office 468
-                </p>
-                <p className='pt-4 sm:pt-6 text-base sm:text-[18px] font-lato text-[#838B95]'>
-                  Berlin, De 845612
+                  88 dukes brow blackburn BB26DH
                 </p>
               </motion.div>
 
@@ -318,7 +315,7 @@ const ContactForm = () => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  creativeitem@gmail.com
+                  hello@pebblecleaning.com
                 </motion.a>
               </motion.div>
 
