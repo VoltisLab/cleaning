@@ -1,3 +1,4 @@
+import Banner from '@/components/about/Banner'
 import BlogCard from '@/components/blogs/BlogCard'
 import Hero from '@/components/blogs/Hero'
 import React from 'react'
@@ -5,7 +6,7 @@ import React from 'react'
 const page = () => {
   return (
     <div className='flex flex-col items-center w-full justify-center overflow-x-hidden text-[#051625] bg-white'>
-        <Hero/>
+        <Banner page='Blog'/>
 
         <div className='flex flex-col items-center gap-6 py-18'>
             <div className='text-center'>
