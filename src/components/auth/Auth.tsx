@@ -3,6 +3,11 @@ import React, { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import SignupForm from './SignUp'
+import LoginForm from './Login'
+import CreatePasswordForm from './CreatePassword'
+import ForgotPasswordForm from './ForgotPassword'
+import VerifyEmailForm from './VerifyPassword'
 
 type FormType = 'signup' | 'login' | 'createPassword' | 'forgotPassword' | 'verifyEmail' | 'home'
 
@@ -170,6 +175,8 @@ const AuthForms = () => {
       </p>
     </div>
   )
+
+  
 
   const renderLoginForm = () => (
     <div className="space-y-6">
@@ -429,55 +436,118 @@ const AuthForms = () => {
 
   const getCurrentForm = () => {
     switch (currentForm) {
-      case 'signup': return renderSignupForm()
-      case 'login': return renderLoginForm()
-      case 'createPassword': return renderCreatePasswordForm()
-      case 'forgotPassword': return renderForgotPasswordForm()
-      case 'verifyEmail': return renderVerifyEmailForm()
-      default: return renderSignupForm()
+      case 'signup': return (
+        <SignupForm
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleSignup={handleSignup}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+          setCurrentForm={setCurrentForm}
+        />
+      )
+      case 'login': return (
+        <LoginForm
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleLogin={handleLogin}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+          setCurrentForm={setCurrentForm}
+          handleGoogleSignIn={handleGoogleSignIn}
+        />
+      )
+      case 'createPassword': return (
+        <CreatePasswordForm
+          showPassword={showPassword}
+          showConfirmPassword={showConfirmPassword}
+          formData={formData}
+          handleInputChange={handleInputChange}
+          setShowPassword={setShowPassword}
+          setShowConfirmPassword={setShowConfirmPassword}
+          handleCreatePassword={handleCreatePassword}
+        />
+      )
+      case 'forgotPassword': return (
+        <ForgotPasswordForm
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleForgotPassword={handleForgotPassword}
+        />
+      )
+      case 'verifyEmail': return (
+        <VerifyEmailForm
+          formData={formData}
+          handleCodeChange={handleCodeChange}
+          handleResendCode={handleResendCode}
+          handleVerifyEmail={handleVerifyEmail}
+        />
+      )
+      default: return (
+        <SignupForm
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleSignup={handleSignup}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+          setCurrentForm={setCurrentForm}
+        />
+      )
     }
   }
 
   return (
-    <div className="min-h-screen max-w-[1139px] mx-auto">
+    <div className="min-h-screen   lg:mt-10 mb-20 max-w-[1139px] mx-auto text-[#051625]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="min-h-screen flex items-center">
           <div className="w-full grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left side - Authentication Forms */}
-            <div className="space-y-8 max-w-md mx-auto lg:mx-0">
-              {/* Header */}
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  {getFormTitle()}
-                </h2>
-                <p className="text-gray-600">
-                  {getFormSubtitle()}
-                </p>
+            <div className='flex flex-col gap-26 h-fit '>
+              <div className="space-y-8 max-w-md mx-auto lg:mx-0">
+                {/* Header */}
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold text-gray-900">
+                    {getFormTitle()}
+                  </h2>
+                  <p className="text-gray-600">
+                    {getFormSubtitle()}
+                  </p>
+                </div>
+
+                {/* Dynamic Form Content */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentForm}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {getCurrentForm()}
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Copyright */}
               </div>
-
-              {/* Dynamic Form Content */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentForm}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {getCurrentForm()}
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Copyright */}
-              <p className="text-center text-sm text-gray-500">
+              <p className=" text-sm text-gray-500">
                 © 2021 All Rights Reserved
               </p>
+
             </div>
 
             {/* Right side - Original Image */}
-            <div className="relative aspect-square lg:aspect-auto lg:h-full">
+            {/* <div className="relative aspect-square lg:aspect-auto lg:h-full">
               <Image
-                src="/about/cleaner.png"
+                src="/auth/loginImage.svg"
+                alt="Hero cleaning equipment"
+                fill
+                className="object-contain rounded-xl"
+                priority
+              />
+            </div> */}
+             <div className="relative hidden lg:flex aspect-square  lg:h-[590px] lg:w-[560px]">
+              <Image
+                src="/auth/loginImage.svg"
                 alt="Hero cleaning equipment"
                 fill
                 className="object-contain rounded-xl"
