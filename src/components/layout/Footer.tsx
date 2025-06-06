@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
                 />
             </div>
             <p className="text-white mb-6 leading-relaxed max-w-xs">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis.
+              Pebble Cleaning is your trusted partner for reliable, affordable, and spotless cleaning across the UK. We treat every home and business like our own. 
             </p>
             <div className="flex space-x-4">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
@@ -132,10 +132,10 @@ const Footer: React.FC = () => {
               </motion.div>
               <motion.div 
                 whileHover={{ x: 5 }}
-                className="flex items-center space-x-2"
+                className="flex items-center "
               >
                 <Mail className="w-4 h-4 text-white" />
-                <span className="text-white text-sm">support@mail.com</span>
+                <span className="text-white text-sm">hello@pebblecleaning.com</span>
               </motion.div>
             </div>
           </motion.div>

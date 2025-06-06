@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion, useInView} from 'framer-motion';
 import { useRef } from "react";
+
 const FeatureCards: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -79,25 +80,36 @@ const FeatureCards: React.FC = () => {
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
-              className="flex flex-col items-center gap-4 p-6 rounded-2xl bg-white hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+              className="flex flex-col h-full p-6 rounded-2xl bg-white hover:shadow-lg transition-shadow duration-300 cursor-pointer"
             >
-              {/* Icon Container */}
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Image
-                  src={feature.icon}
-                  alt={feature.title}
-                  height={47.36}
-                  width={58.29}
-                />
-              </motion.div>
+              {/* Icon Container - Fixed height for alignment */}
+              <div className="flex justify-center mb-4">
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                  className="h-[60px] flex items-center justify-center"
+                >
+                  <Image
+                    src={feature.icon}
+                    alt={feature.title}
+                    height={47.36}
+                    width={58.29}
+                  />
+                </motion.div>
+              </div>
               
-              {/* Content */}
-              <div className="text-center">
-                <h3 className="font-bold text-[#051625] text-[18px] mb-2">{feature.title}</h3>
-                <p className="text-[#838B95] text-xs sm:text-sm leading-relaxed">{feature.description}</p>
+              {/* Title - Fixed height for horizontal alignment */}
+              <div className="text-center mb-4">
+                <h3 className="font-bold text-[#051625] text-[18px] leading-tight h-[44px] flex items-center justify-center">
+                  {feature.title}
+                </h3>
+              </div>
+              
+              {/* Description - Flexible height */}
+              <div className="text-center flex-1">
+                <p className="text-[#838B95] text-xs sm:text-sm leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -106,4 +118,6 @@ const FeatureCards: React.FC = () => {
     </section>
   );
 };
+
 export default FeatureCards;
+
