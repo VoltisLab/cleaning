@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import Image from 'next/image'
 import { motion, useInView } from "framer-motion";
 import { Mail } from "lucide-react";
+import Link from "next/link";
 
 const NewsletterSection: React.FC = () => {
   const ref = useRef(null);
@@ -127,7 +128,7 @@ const NewsletterSection: React.FC = () => {
                 >
                   You will be able to unsubscribe at any time.{' '} <br />
                   <span className="cursor-pointer font-lato hover:text-white transition-colors">
-                    Read our privacy policy <span className="underline">here</span>
+                    Read our privacy policy <Link href={"/privacy"} className="underline">here</Link>
                   </span>
                 </motion.p>
               </div>

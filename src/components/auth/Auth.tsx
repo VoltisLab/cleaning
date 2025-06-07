@@ -434,7 +434,7 @@ const AuthForms = () => {
       case 'createPassword': return renderCreatePasswordForm()
       case 'forgotPassword': return renderForgotPasswordForm()
       case 'verifyEmail': return renderVerifyEmailForm()
-      default: return renderSignupForm()
+      default: return renderLoginForm()
     }
   }
 
