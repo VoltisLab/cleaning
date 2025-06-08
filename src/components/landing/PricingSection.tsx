@@ -135,7 +135,7 @@ const PricingSection: React.FC = () => {
     whileTap={{ scale: 0.95 }}
     className="w-full bg-[#4977E5] text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors mt-auto"
   >
-    Get Now →
+    Book Now →
   </motion.button>
 </motion.div>
           ))}

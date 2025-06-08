@@ -120,12 +120,12 @@ const Footer: React.FC = () => {
             </ul>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="pt-6">
+          <motion.div variants={itemVariants} className="pt-6 min-w-sm">
             <h4 className="font-bold mb-4">Contact Us</h4>
             <div className="space-y-2">
               <motion.div 
                 whileHover={{ x: 5 }}
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-1"
               >
                 <Phone className="w-4 h-4 text-white" />
                 <span className="text-white text-sm">(91) 98765 43321 54</span>
@@ -134,8 +134,13 @@ const Footer: React.FC = () => {
                 whileHover={{ x: 5 }}
                 className="flex items-center "
               >
-                <Mail className="w-4 h-4 text-white" />
-                <span className="text-white text-sm">hello@pebblecleaning.com</span>
+                <Mail className="w-4 h-4 text-white" color="white" />
+                <span className="text-white text-sm ml-1">hello@pebblecleaning.com</span>
+              </motion.div>
+
+              <motion.div className="flex items-center gap-1">
+                <Instagram color='white' size={15}/>
+                <span className="text-white text-sm">Instagram: bebblecleaning</span>
               </motion.div>
             </div>
           </motion.div>

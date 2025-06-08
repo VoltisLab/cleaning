@@ -59,11 +59,11 @@ const ref = useRef(null);
       variants={slideInLeft}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
-      className="lg:mb-10 mb-40 flex flex-col items-center gap-6"
+      className="lg:mb-10 mb-40 flex flex-col items-center gap-6 bg-white"
     >
       <p className="font-[700] text-4xl text-center">Frequently Asked Questions</p>
 
-      <div className="w-full lg:px-0 px-4 items-center flex flex-col">
+      <div className="w-full lg:px-0 px-4 items-center flex flex-col bg-white">
         {array.map((item, index) => (
           <FAQCard
             key={item.id}

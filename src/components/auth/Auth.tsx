@@ -167,13 +167,14 @@ const AuthForms = () => {
         />
       )
       default: return (
-        <SignupForm
+        <LoginForm
           formData={formData}
           handleInputChange={handleInputChange}
-          handleSignup={handleSignup}
+          handleLogin={handleLogin}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
           setCurrentForm={setCurrentForm}
+          handleGoogleSignIn={handleGoogleSignIn}
         />
       )
     }
