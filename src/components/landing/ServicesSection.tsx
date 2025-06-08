@@ -115,7 +115,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 justify-items-center"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 justify-items-center"
         >
           {servicesData?.map((service, index) => (
             <Link key={index} href={service.href} className="w-full max-w-[280px]">

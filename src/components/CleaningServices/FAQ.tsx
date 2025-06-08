@@ -59,7 +59,7 @@ const ref = useRef(null);
       variants={slideInLeft}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
-      className="lg:mb-10 mb-40 flex flex-col items-center gap-6 bg-white"
+      className="lg:pb-10 pb-40 flex flex-col items-center gap-6 bg-white"
     >
       <p className="font-[700] text-4xl text-center">Frequently Asked Questions</p>
 
