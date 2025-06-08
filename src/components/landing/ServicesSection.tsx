@@ -30,21 +30,21 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
       href: ''
     },
     {
-      title: 'Residential Cleaning ',
+      title: 'Residential Cleaning',
       description: `We provide laundry cleaning that's thorough and gentle, making sure your clothes come back fresh and spotless every time.`,
       color: 'bg-white',
       icon: '/landing/serviceSection/tissue.png',
       href: ''
     },
     {
-      title: 'Laundry Cleaning ',
+      title: 'Laundry Service',
       description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
       color: 'bg-white',
       icon: '/landing/serviceSection/image.png',
       href: ''
     },
     {
-      title: 'Airbnb Cleaning ',
+      title: 'Airbnb Cleaning',
       description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
       color: 'bg-white',
       icon: '/landing/serviceSection/image.png',
@@ -53,6 +53,9 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
   ];
 
   const servicesData = data ? data : services
+
+  // Services that should NOT display buttons
+  const excludedServices = ['Commercial Cleaning', 'Residential Cleaning', 'Laundry Service', 'Airbnb Cleaning'];
 
   const headerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -90,6 +93,10 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
     }
   };
 
+  const shouldShowButtons = (serviceTitle: string) => {
+    return !excludedServices.includes(serviceTitle);
+  };
+
   return (
     <section className="pb-20 px-5 xl:px-0" ref={ref}>
       <div className="max-w-[1139px] mx-auto bg-white">
@@ -121,7 +128,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
                   boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                   transition: { duration: 0.3 }
                 }}
-                className={`${service.color} rounded-3xl p-4 text-left shadow-xl cursor-pointer w-full h-[320px] flex flex-col ${
+                className={`${service.color} rounded-3xl p-4 text-left shadow-xl cursor-pointer w-full h-[320px] flex flex-col relative ${
                   index === 0 ? 'text-white' : 'text-gray-800'
                 }`}
               >
@@ -149,6 +156,29 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
                   } ${service.color === "bg-[#4977E5]" ? 'text-white' : ''}`}>
                     {service.description}
                   </p>
+
+                  {/* Buttons - only show if service title is not in excluded list */}
+                  {shouldShowButtons(service.title) && (
+                    <>
+                      {/* Book Now button - top right */}
+                      <button className={`absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                        service.color === "bg-[#4977E5]" 
+                          ? 'bg-white text-[#4977E5] hover:bg-gray-100' 
+                          : 'bg-transparent border border-[#4977E5] text-[#4977E5] hover:bg-[#4977E5] hover:text-white'
+                      }`}>
+                        {service.color === "bg-[#4977E5]" ? 'Book now' : 'Book Now'}
+                      </button>
+                      
+                      {/* Learn More button - bottom right */}
+                      <button className={`absolute bottom-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
+                        service.color === "bg-[#4977E5]" 
+                          ? 'border-white text-white hover:bg-white hover:text-[#4977E5]' 
+                          : 'border-[#4977E5] text-[#4977E5] hover:bg-[#4977E5] hover:text-white'
+                      }`}>
+                        Learn More
+                      </button>
+                    </>
+                  )}
                 </div>
               </motion.div>
             </Link>

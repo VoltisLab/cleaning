@@ -24,7 +24,7 @@ const ContactForm = () => {
   const serviceOptions = [
     'Cleaning Service',
     'Laundry Service',
-    'Airbnb Service',
+    'Airbnb Cleaning',
   ]
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

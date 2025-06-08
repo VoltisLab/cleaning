@@ -13,21 +13,21 @@ export default function Home() {
       href: '/cleaning-service/residential'
     },
     {
-      title: 'Commercial Cleaning ',
+      title: 'Commercial Cleaning',
       description: 'We provide laundry cleaning that’s thorough and gentle, making sure your clothes come back fresh and spotless every time.',
       color: 'bg-white',
       icon: '/landing/serviceSection/tissue.png',
       href: '/cleaning-service/commercial'
     },
     {
-      title: 'Laundry Services ',
+      title: 'Laundry Service',
       description: 'We specialise in Laundry and cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
       color: 'bg-white',
       icon: '/landing/serviceSection/image.png',
       href: '/cleaning-service/laundry'
     },
      {
-      title: 'Airbnb Services ',
+      title: 'Airbnb Cleaning',
       description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
       color: 'bg-white',
       icon: '/landing/serviceSection/image.png',
