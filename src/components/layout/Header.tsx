@@ -92,7 +92,7 @@ const Header = () => {
   const serviceCategories: ServiceCategory[] = [
     {
       label: 'Residential Cleaning',
-      href: '/cleaning-services/residential',
+      href: '/cleaning-service/residential',
       subServices: [
         { label: 'Standard Home Cleaning', href: '/cleaning-services/residential/standard' },
         { label: 'Deep Cleaning', href: '/cleaning-services/residential/deep' },
@@ -106,7 +106,7 @@ const Header = () => {
     },
     {
       label: 'Commercial Cleaning',
-      href: '/cleaning-services/commercial',
+      href: '/cleaning-service/commercial',
       subServices: [
         { label: 'Office Cleaning', href: '/cleaning-services/commercial/office' },
         { label: 'Retail Store Cleaning', href: '/cleaning-services/commercial/retail' },
@@ -120,7 +120,7 @@ const Header = () => {
     },
     {
       label: 'Laundry Services',
-      href: '/cleaning-services/laundry',
+      href: '/cleaning-service/laundry',
       subServices: [
         { label: 'Wash & Fold Service', href: '/cleaning-services/laundry/wash-fold' },
         { label: 'Ironing Service', href: '/cleaning-services/laundry/ironing' },
@@ -331,19 +331,19 @@ const Header = () => {
                             setHoveredCategory(null);
                           }}
                         >
-                          <div className="w-96 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden max-h-96 overflow-y-auto custom-scrollbar">
+                          <div className="w-80 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden max-h-96 overflow-y-auto custom-scrollbar">
                             <style jsx>{`
                               .custom-scrollbar::-webkit-scrollbar {
-                                width: 6px;
+                                width: 3px;
                               }
                               .custom-scrollbar::-webkit-scrollbar-track {
                                 background: #f1f5f9;
                                 border-radius: 10px;
                               }
                               .custom-scrollbar::-webkit-scrollbar-thumb {
-                                background: #cbd5e1;
+                                background: #4977E5;
                                 border-radius: 10px;
-                                border: 1px solid #f1f5f9;
+                                border: 1px solid #4977E5;
                               }
                               .custom-scrollbar::-webkit-scrollbar-thumb:hover {
                                 background: #4977E5;
@@ -353,14 +353,13 @@ const Header = () => {
                                 scrollbar-color: #cbd5e1 #f1f5f9;
                               }
                             `}</style>
-                            <div className="py-3">
+                            <div className="">
                               {serviceCategories.map((category, idx) => (
-                                <div key={idx} className="border-b border-gray-100 last:border-b-0">
+                                <Link href={category.href} key={idx} className="border-b border-gray-100 last:border-b-0 hover:bg-blue-100">
                                   {/* Category Header */}
-                                  <div className="flex items-center justify-between px-4 py-3 text-sm font-semibold text-[#4977E5] bg-gradient-to-r from-[#4977E5]/5 to-blue-50/50">
+                                  <div className="flex items-center justify-between px-4 py-4 text-sm font-semibold text-[#4977E5] hover:bg-blue-50">
                                     <span 
                                       className="cursor-pointer hover:underline transition-all duration-200"
-                                      onClick={() => window.location.href = category.href}
                                     >
                                       {category.label}
                                     </span>
@@ -402,7 +401,7 @@ const Header = () => {
                                       </div>
                                     </div>
                                   )}
-                                </div>
+                                </Link>
                               ))}
                             </div>
                           </div>

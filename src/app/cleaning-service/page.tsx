@@ -9,25 +9,29 @@ export default function Home() {
       title: 'Residential Cleaning',
       description: 'We offer office cleaning to the highest standards, making sure your workspace is always fresh and welcoming.',
       color: 'bg-[#4977E5]',
-      icon: '/landing/serviceSection/brush.png'
+      icon: '/landing/serviceSection/brush.png',
+      href: '/cleaning-service/residential'
     },
     {
       title: 'Commercial Cleaning ',
       description: 'We provide laundry cleaning that’s thorough and gentle, making sure your clothes come back fresh and spotless every time.',
       color: 'bg-white',
-      icon: '/landing/serviceSection/tissue.png'
+      icon: '/landing/serviceSection/tissue.png',
+      href: '/cleaning-service/commercial'
     },
     {
       title: 'Laundry Services ',
-      description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
+      description: 'We specialise in Laundry and cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
       color: 'bg-white',
-      icon: '/landing/serviceSection/image.png'
+      icon: '/landing/serviceSection/image.png',
+      href: '/cleaning-service/laundry'
     },
      {
       title: 'Airbnb Services ',
       description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
       color: 'bg-white',
-      icon: '/landing/serviceSection/image.png'
+      icon: '/landing/serviceSection/image.png',
+      href: '/cleaning-service/airbnb'
     },
   ];
   return (
