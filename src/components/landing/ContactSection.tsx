@@ -61,7 +61,7 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20" ref={ref}>
+    <section className="pt-20 pb-36" ref={ref}>
       <div className="max-w-[1139px] mx-auto px-4">
         <div className="grid xl:grid-cols-2 gap-16 items-center">
           <motion.div 
