@@ -304,7 +304,8 @@ const Header = () => {
                       </button>
                       
                       {/* Desktop Dropdown - Level 1 (Main Categories) */}
-                      {isServicesOpen && (
+                      <div className='relative'>
+                        {isServicesOpen && (
                         <div 
                           className="absolute top-full left-0 pt-2 z-50"
                           onMouseEnter={() => setIsServicesOpen(true)}
@@ -366,6 +367,7 @@ const Header = () => {
                           </div>
                         </div>
                       )}
+                      </div>
                     </div>
                   ) : (
                     // Regular navigation items
