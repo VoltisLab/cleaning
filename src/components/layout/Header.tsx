@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, ShoppingCart, User, Menu, X, Phone, Mail, Instagram } from 'lucide-react';
+import { ChevronDown, ChevronRight, ShoppingCart, User, Menu, X, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 // Define types for better type safety
@@ -94,7 +94,7 @@ const Header = () => {
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/cleaning-service', hasDropdown: true },
     { label: 'Pricing', href: '#' },
-    { label: 'Work With Us', href: '#' },
+    { label: 'Work With Us', href: '/work-with-us' },
     { label: 'Team', href: '/team' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' }
@@ -278,11 +278,7 @@ const Header = () => {
                 />
                 <span className="font-semibold">88 dukes brow Blackburn BB26DH</span>
               </div>
-              <div className="w-px h-4 bg-white/50"></div>
-              <div className="flex items-center space-x-2">
-                <Instagram color='white' size={16}/>
-                <span className="font-semibold">Instagram: bebblecleaning</span>
-              </div>
+             
             </div>
           </div>
         </div>
@@ -502,10 +498,11 @@ const Header = () => {
                       </Link>
                       <button
                         onClick={toggleMobileServices}
-                        className="p-3 rounded-lg transition-colors hover:bg-gray-50"
+                        className="p-4 rounded-lg transition-colors hover:bg-blue-50"
                       >
                         <ChevronDown 
                           size={16} 
+                          color='#4977E5'
                           className={`transition-transform duration-200 ${
                             isMobileServicesOpen ? 'rotate-180' : ''
                           }`} 
