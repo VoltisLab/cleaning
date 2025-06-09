@@ -35,7 +35,7 @@ export default function Home() {
     },
   ];
   return (
-    <div className="min-h-screen bg-white text-[#051625]">
+    <div className="min-h-screen  text-[#051625] overflow-x-hidden max-w-full">
       <Banner page="Services" />
         <div className="my-12 bg-white">
           <ServicesSection data={services}/>
