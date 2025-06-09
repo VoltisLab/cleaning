@@ -137,11 +137,6 @@ const Footer: React.FC = () => {
                 <Mail className="w-4 h-4 text-white" color="white" />
                 <span className="text-white text-sm ml-1">hello@pebblecleaning.com</span>
               </motion.div>
-
-              <motion.div className="flex items-center gap-1">
-                <Instagram color='white' size={15}/>
-                <span className="text-white text-sm">Instagram: bebblecleaning</span>
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>
