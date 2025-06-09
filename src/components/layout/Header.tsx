@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, ShoppingCart, Search, User, Menu, X, Phone, Mail } from 'lucide-react';
+import { ChevronDown, ChevronRight, ShoppingCart, User, Menu, X, Phone, Mail, Instagram } from 'lucide-react';
+import Link from 'next/link';
 
 // Define types for better type safety
 interface NavItem {
@@ -42,7 +43,6 @@ const Header = () => {
   const [hoveredSubService, setHoveredSubService] = useState<string | null>(null);
   const [openMobileCategory, setOpenMobileCategory] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // Properly type the ref for HTMLDivElement
@@ -50,7 +50,18 @@ const Header = () => {
 
   useEffect(() => {
     const checkScreenSize = (): void => {
-      setIsMobile(window.innerWidth < 1024);
+      const newIsMobile = window.innerWidth < 1024;
+      setIsMobile(newIsMobile);
+      
+      // Reset states when switching between mobile and desktop
+      if (!newIsMobile) {
+        setIsMenuOpen(false);
+        setIsMobileServicesOpen(false);
+        setOpenMobileCategory(null);
+      } else {
+        setIsServicesOpen(false);
+        setHoveredCategory(null);
+      }
     };
     
     checkScreenSize();
@@ -83,8 +94,8 @@ const Header = () => {
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/cleaning-service', hasDropdown: true },
     { label: 'Pricing', href: '#' },
-    { label: 'Blog', href: '/blogs' },
-    { label: 'Careers', href: '#' },
+    { label: 'Work With Us', href: '#' },
+    { label: 'Team', href: '/team' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' }
   ];
@@ -92,7 +103,7 @@ const Header = () => {
   const serviceCategories: ServiceCategory[] = [
     {
       label: 'Residential Cleaning',
-      href: '/cleaning-services/residential',
+      href: '/cleaning-service/residential',
       subServices: [
         { label: 'Standard Home Cleaning', href: '/cleaning-services/residential/standard' },
         { label: 'Deep Cleaning', href: '/cleaning-services/residential/deep' },
@@ -106,7 +117,7 @@ const Header = () => {
     },
     {
       label: 'Commercial Cleaning',
-      href: '/cleaning-services/commercial',
+      href: '/cleaning-service/commercial',
       subServices: [
         { label: 'Office Cleaning', href: '/cleaning-services/commercial/office' },
         { label: 'Retail Store Cleaning', href: '/cleaning-services/commercial/retail' },
@@ -120,7 +131,7 @@ const Header = () => {
     },
     {
       label: 'Laundry Services',
-      href: '/cleaning-services/laundry',
+      href: '/cleaning-service/laundry',
       subServices: [
         { label: 'Wash & Fold Service', href: '/cleaning-services/laundry/wash-fold' },
         { label: 'Ironing Service', href: '/cleaning-services/laundry/ironing' },
@@ -140,17 +151,21 @@ const Header = () => {
   ];
 
   // Type the label parameter as string
-  const handleTabClick = (label: string, href: string): void => {
+  const handleTabClick = (label: string): void => {
     if (label === 'Services') {
-      window.location.href = href;
       setActiveTab(label);
-      setIsServicesOpen(false);
-      setIsMobileServicesOpen(false);
+      if (isMobile) {
+        // On mobile, don't close the services dropdown immediately
+        // Let the user interact with it
+      } else {
+        setIsServicesOpen(false);
+        setIsMobileServicesOpen(false);
+      }
     } else {
-      window.location.href = href;
       setActiveTab(label);
       setIsServicesOpen(false);
       setIsMobileServicesOpen(false);
+      setOpenMobileCategory(null);
       // Close mobile menu for other nav items
       if (isMobile) {
         setIsMenuOpen(false);
@@ -175,10 +190,44 @@ const Header = () => {
   const toggleMobileServices = (): void => {
     setIsMobileServicesOpen(!isMobileServicesOpen);
     setActiveTab('Services');
+    // Close any open mobile categories when toggling services
+    if (!isMobileServicesOpen) {
+      setOpenMobileCategory(null);
+    }
   };
 
   const toggleMobileCategory = (categoryLabel: string): void => {
     setOpenMobileCategory(openMobileCategory === categoryLabel ? null : categoryLabel);
+  };
+
+  // Handle category hover with debouncing
+  const handleCategoryHover = (categoryLabel: string): void => {
+    if (!isMobile) {
+      // Clear any existing timeout
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+        setHoverTimeout(null);
+      }
+      
+      // Immediately set the hovered category
+      setHoveredCategory(categoryLabel);
+    }
+  };
+
+  const handleCategoryLeave = (): void => {
+    if (!isMobile) {
+      // Clear any existing timeout
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+      
+      // Set a delay before hiding to prevent flickering
+      const timeout = setTimeout(() => {
+        setHoveredCategory(null);
+      }, 150);
+      
+      setHoverTimeout(timeout);
+    }
   };
 
   return (
@@ -227,17 +276,12 @@ const Header = () => {
                   width={15}
                   height={15}
                 />
-                <span className="font-semibold">380 Albert St, US</span>
+                <span className="font-semibold">88 dukes brow Blackburn BB26DH</span>
               </div>
               <div className="w-px h-4 bg-white/50"></div>
               <div className="flex items-center space-x-2">
-                <Image
-                  src="/landing/header/call.svg"
-                  alt="Hours"
-                  width={15}
-                  height={15}
-                />
-                <span className="font-semibold">Sunday-Friday 9:00am-10pm</span>
+                <Instagram color='white' size={16}/>
+                <span className="font-semibold">Instagram: bebblecleaning</span>
               </div>
             </div>
           </div>
@@ -262,22 +306,21 @@ const Header = () => {
         <div className="max-w-[1139px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center">
+            <Link href={"/"} className="flex items-center">
               <Image
                 src="/landing/header/logo.png"
                 alt="Logo"
                 width={138}
                 height={50}
                 className="md:w-36 md:h-14 cursor-pointer"
-                onClick={()=> window.location.href = "/"}
               />
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8 relative">
               {navItems.map((item, index) => (
+                <Link href={item.href} key={index}  >
                 <div 
-                  key={index} 
                   className="relative" 
                   ref={item.hasDropdown ? dropdownRef : null}
                 >
@@ -289,7 +332,7 @@ const Header = () => {
                       onMouseLeave={() => handleServicesHover(false)}
                     >
                       <button
-                        onClick={() => handleTabClick(item.label, item.href)}
+                        onClick={() => handleTabClick(item.label)}
                         className={`${
                           activeTab === item.label ? "text-[#4977E5]" : "text-[#051625]"
                         } hover:text-[#4977E5] font-medium flex items-center text-[15px] transition-colors duration-200 py-2 cursor-pointer`}
@@ -303,9 +346,8 @@ const Header = () => {
                         />
                       </button>
                       
-                      {/* Desktop Dropdown - Level 1 (Main Categories) */}
-                      <div className='relative'>
-                        {isServicesOpen && (
+                      {/* Desktop Dropdown - Single Level with Inline Categories and Subcategories */}
+                      {isServicesOpen && (
                         <div 
                           className="absolute top-full left-0 pt-2 z-50"
                           onMouseEnter={() => setIsServicesOpen(true)}
@@ -314,65 +356,87 @@ const Header = () => {
                             setHoveredCategory(null);
                           }}
                         >
-                          <div className="w-64 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden">
-                            <div className="py-3">
+                          <div className="w-80 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden max-h-96 overflow-y-auto custom-scrollbar">
+                            <style jsx>{`
+                              .custom-scrollbar::-webkit-scrollbar {
+                                width: 3px;
+                              }
+                              .custom-scrollbar::-webkit-scrollbar-track {
+                                background: #f1f5f9;
+                                border-radius: 10px;
+                              }
+                              .custom-scrollbar::-webkit-scrollbar-thumb {
+                                background: #4977E5;
+                                border-radius: 10px;
+                                border: 1px solid #4977E5;
+                              }
+                              .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                                background: #4977E5;
+                              }
+                              .custom-scrollbar {
+                                scrollbar-width: thin;
+                                scrollbar-color: #cbd5e1 #f1f5f9;
+                              }
+                            `}</style>
+                            <div className="">
                               {serviceCategories.map((category, idx) => (
-                                <div
-                                  key={idx}
-                                  className="relative"
-                                >
-                                  <div 
-                                    className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#4977E5] transition-colors cursor-pointer"
-                                    onMouseEnter={() => setHoveredCategory(category.label)}
-                                  >
-                                    <span className="font-medium">{category.label}</span>
-                                    <ChevronRight size={16} className="text-gray-400 hover:text-[#4977E5] transition-colors" />
+                                <Link href={category.href} key={idx} className="border-b border-gray-100 last:border-b-0 hover:bg-blue-100">
+                                  {/* Category Header */}
+                                  <div className="flex items-center justify-between px-4 py-4 text-sm font-semibold text-[#4977E5] hover:bg-blue-50">
+                                    <span 
+                                      className="cursor-pointer hover:underline transition-all duration-200"
+                                    >
+                                      {category.label}
+                                    </span>
+                                    {/* Hover wrapper for easier triggering */}
+                                    <div 
+                                      className="flex items-center justify-center w-12 h-8 bg-gradient-to-r from-[#4977E5]/5 to-blue-50/50 hover:from-[#4977E5]/10 hover:to-blue-50 rounded-md cursor-pointer transition-all duration-200"
+                                      onMouseEnter={() => handleCategoryHover(category.label)}
+                                      onMouseLeave={handleCategoryLeave}
+                                    >
+                                      <ChevronRight 
+                                        size={16} 
+                                        className={`text-[#4977E5] transition-transform duration-200 ${
+                                          hoveredCategory === category.label ? 'rotate-90' : ''
+                                        }`}
+                                      />
+                                    </div>
                                   </div>
                                   
-                                  {/* Desktop Dropdown - Level 2 (Sub-services) */}
+                                  {/* Subcategories - Show inline when chevron is hovered */}
                                   {hoveredCategory === category.label && (
                                     <div 
-                                      className=" ml-100 mb-100 fixed z-[100] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden w-60"
-                                      style={{
-                                        left: '320px',
-                                        top: `${idx * 45 + 140}px`
-                                      }}
-                                      onMouseEnter={() => setHoveredCategory(category.label)}
-                                      onMouseLeave={() => setHoveredCategory(null)}
+                                      className="px-2 pb-3 bg-gray-50/50 animate-in slide-in-from-top-2 duration-200"
+                                      onMouseEnter={() => handleCategoryHover(category.label)}
+                                      onMouseLeave={handleCategoryLeave}
                                     >
-                                      <div className="py-3">
-                                        <div className="px-2 py-1 bg-gradient-to-r from-[#4977E5]/10 to-blue-50 border-b border-gray-100">
-                                          <h3 className="text-sm font-semibold text-[#4977E5]">{category.label}</h3>
-                                        </div>
-                                        <div className="max-h-80 overflow-y-auto">
-                                          {category.subServices.map((subService, subIdx) => (
-                                            <a
-                                              key={subIdx}
-                                              href={subService.href}
-                                              className="block px-2 py-1 text-sm text-gray-600 hover:bg-blue-50 hover:text-[#4977E5] transition-all duration-200 border-l-3 border-transparent hover:border-[#4977E5] hover:pl-5 hover:shadow-sm group"
-                                            >
-                                              <div className="flex items-center justify-between">
-                                                <span className="font-medium">{subService.label}</span>
-                                                <div className="w-2 h-2 bg-[#4977E5] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                              </div>
-                                            </a>
-                                          ))}
-                                        </div>
+                                      <div className="grid grid-cols-1 gap-1">
+                                        {category.subServices.map((subService, subIdx) => (
+                                          <a
+                                            key={subIdx}
+                                            href={subService.href}
+                                            className="block px-3 py-2 text-sm text-gray-600 hover:bg-white hover:text-[#4977E5] transition-all duration-200 rounded-lg border-l-3 border-transparent hover:border-[#4977E5] hover:pl-4 hover:shadow-sm group"
+                                          >
+                                            <div className="flex items-center justify-between">
+                                              <span className="font-medium">{subService.label}</span>
+                                              <div className="w-2 h-2 bg-[#4977E5] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                            </div>
+                                          </a>
+                                        ))}
                                       </div>
                                     </div>
                                   )}
-                                </div>
+                                </Link>
                               ))}
                             </div>
                           </div>
                         </div>
                       )}
-                      </div>
                     </div>
                   ) : (
                     // Regular navigation items
                     <button
-                      onClick={() => handleTabClick(item.label, item.href)}
+                      onClick={() => handleTabClick(item.label)}
                       className={`${
                         activeTab === item.label ? "text-[#4977E5]" : "text-[#051625]"
                       } hover:text-[#4977E5] font-medium flex items-center text-[15px] transition-colors duration-200 py-2 cursor-pointer`}
@@ -381,19 +445,14 @@ const Header = () => {
                     </button>
                   )}
                 </div>
+                </Link>
               ))}
             </nav>
 
             {/* Desktop Action Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
-              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                <Search size={20} className="text-gray-600" />
-              </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
                 <ShoppingCart size={20} className="text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#4977E5] text-white text-xs rounded-full flex items-center justify-center">
-                  2
-                </span>
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                 <User size={20} className="text-gray-600" />
@@ -404,9 +463,6 @@ const Header = () => {
             <div className="lg:hidden flex items-center space-x-3">
               <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
                 <ShoppingCart size={20} className="text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#4977E5] text-white text-xs rounded-full flex items-center justify-center">
-                  2
-                </span>
               </button>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -428,8 +484,14 @@ const Header = () => {
                 {item.hasDropdown ? (
                   <>
                     <div className="flex items-center justify-between">
-                      <button
-                        onClick={() => handleTabClick(item.label, item.href)}
+                      <Link
+                        href={item.href}
+                        onClick={() => {
+                          setActiveTab(item.label);
+                          setIsMenuOpen(false);
+                          setIsMobileServicesOpen(false);
+                          setOpenMobileCategory(null);
+                        }}
                         className={`flex-1 text-left p-3 rounded-lg font-medium transition-colors ${
                           activeTab === item.label 
                             ? "bg-[#4977E5]/10 text-[#4977E5]" 
@@ -437,7 +499,7 @@ const Header = () => {
                         }`}
                       >
                         {item.label}
-                      </button>
+                      </Link>
                       <button
                         onClick={toggleMobileServices}
                         className="p-3 rounded-lg transition-colors hover:bg-gray-50"
@@ -453,51 +515,115 @@ const Header = () => {
                     
                     {/* Mobile Services Dropdown */}
                     {isMobileServicesOpen && (
-                      <div className="mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                        {serviceCategories.map((category, idx) => (
-                          <div key={idx} className="ml-4">
-                            <div className="flex items-center justify-between">
-                              <a
-                                href={category.href}
-                                className="flex-1 block p-3 rounded-lg transition-colors text-gray-700 hover:text-[#4977E5] hover:bg-blue-50 font-medium"
-                              >
-                                {category.label}
-                              </a>
-                              <button
-                                onClick={() => toggleMobileCategory(category.label)}
-                                className="p-3 rounded-lg transition-colors hover:bg-gray-50"
-                              >
-                                <ChevronDown 
-                                  size={14} 
-                                  className={`transition-transform duration-200 ${
-                                    openMobileCategory === category.label ? 'rotate-180' : ''
-                                  }`} 
-                                />
-                              </button>
-                            </div>
-                            
-                            {/* Mobile Sub-services */}
-                            {openMobileCategory === category.label && (
-                              <div className="mt-1 ml-4 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                                {category.subServices.map((subService, subIdx) => (
-                                  <a
-                                    key={subIdx}
-                                    href={subService.href}
-                                    className="block p-2.5 rounded-lg transition-colors text-sm text-gray-600 hover:text-[#4977E5] hover:bg-blue-50 border-l-2 border-transparent hover:border-[#4977E5] hover:pl-4"
+                      <>
+                        <style jsx>{`
+                          .mobile-custom-scrollbar::-webkit-scrollbar {
+                            width: 3px;
+                          }
+                          .mobile-custom-scrollbar::-webkit-scrollbar-track {
+                            background: #f1f5f9;
+                            border-radius: 10px;
+                          }
+                          .mobile-custom-scrollbar::-webkit-scrollbar-thumb {
+                            background: #4977E5;
+                            border-radius: 10px;
+                            border: 1px solid #4977E5;
+                          }
+                          .mobile-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                            background: #4977E5;
+                          }
+                          .mobile-custom-scrollbar {
+                            scrollbar-width: thin;
+                            scrollbar-color: #cbd5e1 #f1f5f9;
+                          }
+                          .mobile-sub-scrollbar::-webkit-scrollbar {
+                            width: 2px;
+                          }
+                          .mobile-sub-scrollbar::-webkit-scrollbar-track {
+                            background: #f8fafc;
+                            border-radius: 10px;
+                          }
+                          .mobile-sub-scrollbar::-webkit-scrollbar-thumb {
+                            background: #4977E5;
+                            border-radius: 10px;
+                          }
+                          .mobile-sub-scrollbar::-webkit-scrollbar-thumb:hover {
+                            background: #4977E5;
+                          }
+                          .mobile-sub-scrollbar {
+                            scrollbar-width: thin;
+                            scrollbar-color: #4977E5 #f8fafc;
+                          }
+                        `}</style>
+                        <div className="mt-2 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden max-h-80 overflow-y-auto mobile-custom-scrollbar animate-in slide-in-from-top-2 duration-200">
+                          <div className="space-y-1">
+                            {serviceCategories.map((category, idx) => (
+                              <div key={idx} className="border-b border-gray-100 last:border-b-0">
+                                <div className="flex items-center justify-between px-4 py-3">
+                                  <Link
+                                    href={category.href}
+                                    onClick={() => {
+                                      setIsMenuOpen(false);
+                                      setIsMobileServicesOpen(false);
+                                      setOpenMobileCategory(null);
+                                    }}
+                                    className="flex-1 block text-sm font-semibold text-[#4977E5] hover:underline transition-all duration-200"
                                   >
-                                    {subService.label}
-                                  </a>
-                                ))}
+                                    {category.label}
+                                  </Link>
+                                  <button
+                                    onClick={() => toggleMobileCategory(category.label)}
+                                    className="flex items-center justify-center w-10 h-8 bg-gradient-to-r from-[#4977E5]/5 to-blue-50/50 hover:from-[#4977E5]/10 hover:to-blue-50 rounded-md transition-all duration-200"
+                                  >
+                                    <ChevronDown 
+                                      size={14} 
+                                      className={`text-[#4977E5] transition-transform duration-200 ${
+                                        openMobileCategory === category.label ? 'rotate-180' : ''
+                                      }`} 
+                                    />
+                                  </button>
+                                </div>
+                                
+                                {/* Mobile Sub-services */}
+                                {openMobileCategory === category.label && (
+                                  <div className="px-2 pb-3 bg-gray-50/50 max-h-48 overflow-y-auto mobile-sub-scrollbar">
+                                    <div className="space-y-1 animate-in slide-in-from-top-2 duration-200">
+                                      {category.subServices.map((subService, subIdx) => (
+                                        <Link
+                                          key={subIdx}
+                                          href={subService.href}
+                                          onClick={() => {
+                                            setIsMenuOpen(false);
+                                            setIsMobileServicesOpen(false);
+                                            setOpenMobileCategory(null);
+                                          }}
+                                          className="block px-3 py-2 text-sm text-gray-600 hover:bg-white hover:text-[#4977E5] transition-all duration-200 rounded-lg border-l-3 border-transparent hover:border-[#4977E5] hover:pl-4 hover:shadow-sm group"
+                                        >
+                                          <div className="flex items-center justify-between">
+                                            <span className="font-medium">{subService.label}</span>
+                                            <div className="w-2 h-2 bg-[#4977E5] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                          </div>
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
-                            )}
+                            ))}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      </>
                     )}
                   </>
                 ) : (
-                  <button
-                    onClick={() => handleTabClick(item.label, item.href)}
+                  <Link
+                    href={item.href}
+                    onClick={() => {
+                      setActiveTab(item.label);
+                      setIsMenuOpen(false);
+                      setIsMobileServicesOpen(false);
+                      setOpenMobileCategory(null);
+                    }}
                     className={`w-full flex items-center justify-between p-3 rounded-lg text-left font-medium transition-colors ${
                       activeTab === item.label 
                         ? "bg-[#4977E5]/10 text-[#4977E5]" 
@@ -505,7 +631,7 @@ const Header = () => {
                     }`}
                   >
                     <span>{item.label}</span>
-                  </button>
+                  </Link>
                 )}
               </div>
             ))}
@@ -541,7 +667,7 @@ const Header = () => {
                 height={17}
                 className='bg-[#4977E5] p-2 h-8 w-8 rounded-full'
               />
-              <span className="font-medium text-[#4977E5]">380 Albert St, US</span>
+              <span className="font-medium text-[#4977E5]">88 dukes brow Blackburn BB26DH</span>
             </div>
             <div className="flex items-center justify-center space-x-4 pt-3">
               {socials.map((social, index) => (

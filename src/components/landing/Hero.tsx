@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView} from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeroSection: React.FC = () => {
   const ref = useRef(null);
@@ -108,22 +109,26 @@ const HeroSection: React.FC = () => {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
             >
+              <Link href={"/about"}>
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(73, 119, 229, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                onClick={()=> window.location.href = '/about'}
                 className="bg-[#4977E5] text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg text-sm md:text-base"
               >
                 About Us
               </motion.button>
-              <motion.button
-                onClick={()=> window.location.href = '/cleaning-service'}
+              </Link>
+
+                <Link href={"/cleaning-service'"}>
+                  <motion.button
                 whileHover={{ scale: 1.05, borderColor: "#5977E5", backgroundColor: "#f8faff" }}
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-[#4977E5] text-[#4977E5] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-[#5977E5] transition-colors bg-white text-sm md:text-base"
               >
                 Book a Service
               </motion.button>
+              </Link>
+          
             </motion.div>
           </motion.div>
 

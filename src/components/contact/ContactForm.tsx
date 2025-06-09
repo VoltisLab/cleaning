@@ -24,7 +24,7 @@ const ContactForm = () => {
   const serviceOptions = [
     'Cleaning Service',
     'Laundry Service',
-    'Airbnb Service',
+    'Airbnb Cleaning',
   ]
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -288,18 +288,7 @@ const ContactForm = () => {
                 }
               }}
             >
-              {/* Address */}
-              <motion.div 
-                className="text-gray-600"
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-                }}
-              >
-                <p className="leading-relaxed text-base sm:text-[18px] font-lato text-[#838B95]">
-                  88 dukes brow blackburn BB26DH
-                </p>
-              </motion.div>
+              
 
               {/* Email */}
               <motion.div 
