@@ -175,8 +175,7 @@ const ApplicationForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     console.log('Form submitted:', formData);
   };
 
@@ -190,11 +189,11 @@ const ApplicationForm = () => {
     value: 'yes' | 'no' | ''; 
     onChange: (value: 'yes' | 'no') => void;
   }) => (
-    <div className="flex items-center justify-between mb-6">
-      <span className="text-gray-900 font-medium text-sm flex-1 mr-6">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 space-y-4 sm:space-y-0">
+      <span className="text-gray-900 font-medium text-sm sm:flex-1 sm:mr-6">
         {question}
       </span>
-      <div className="flex items-center space-x-8">
+      <div className="flex items-center space-x-6 sm:space-x-8">
         <label className="flex items-center cursor-pointer">
           <div className="relative">
             <input
@@ -267,8 +266,8 @@ const ApplicationForm = () => {
         <option value="manager">Manager</option>
       </select>
       <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-        <div className="w-8 h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
-          <svg className="w-4 h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -300,8 +299,8 @@ const ApplicationForm = () => {
         <option value="weekends">Weekends Only</option>
       </select>
       <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-        <div className="w-8 h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
-          <svg className="w-4 h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -368,8 +367,8 @@ const ApplicationForm = () => {
         <option value="commercial">Commercial</option>
       </select>
       <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-        <div className="w-8 h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
-          <svg className="w-4 h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -402,8 +401,8 @@ const ApplicationForm = () => {
         <option value="a-level">A-Level</option>
       </select>
       <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-        <div className="w-8 h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
-          <svg className="w-4 h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#4977E5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -412,17 +411,17 @@ const ApplicationForm = () => {
   );
 
   return (
-    <div className='max-w-[1139px] mx-auto py-16'>
-    <div className='max-w-2/3 xl:px-0'>
-      <form onSubmit={handleSubmit} className="bg-white py-8">
+    <div className='max-w-[1139px] mx-auto pt-16 pb-40 md:pb-32 xl:py-16 px-4 sm:px-6 lg:px-8 overflow-x-hidden'>
+    <div className='w-full xl:w-2/3 xl:px-0'>
+      <div className="bg-white py-4 md:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-6">Application Form</h1>
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 1 - Personal Details</h2>
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Application Form</h1>
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 1 - Personal Details</h2>
         </div>
 
         {/* Section 1 - Form Fields */}
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
           {/* Full Name */}
           <div>
             <input
@@ -468,7 +467,7 @@ const ApplicationForm = () => {
           </div>
 
           {/* Postcode and City */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
               type="text"
               placeholder="Postcode"
@@ -486,7 +485,7 @@ const ApplicationForm = () => {
           </div>
 
           {/* Mobile Number and Email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
               type="tel"
               placeholder="Mobile number"
@@ -505,7 +504,7 @@ const ApplicationForm = () => {
         </div>
 
         {/* Radio Button Questions */}
-        <div className="mt-12 space-y-1">
+        <div className="mt-8 md:mt-12 space-y-1">
           <RadioGroup
             question="Do you have the right to work in the UK?"
             value={formData.rightToWork}
@@ -526,8 +525,8 @@ const ApplicationForm = () => {
         </div>
 
         {/* Section 2 - Position Details */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 2 - Position Details</h2>
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 2 - Position Details</h2>
           
           <div className="space-y-6">
             {/* Position Question */}
@@ -563,8 +562,8 @@ const ApplicationForm = () => {
         </div>
 
         {/* Section 3 - Availability */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 3 - Availability</h2>
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 3 - Availability</h2>
           
           {/* When are you available */}
           <div className="mb-8">
@@ -575,56 +574,103 @@ const ApplicationForm = () => {
               </span>
             </div>
 
-            {/* Availability Table */}
-            <div className="overflow-hidden">
-              {/* Table Header */}
-              <div className="grid grid-cols-4 mb-4">
-                <div className="px-4 py-3 text-sm font-medium text-gray-900">
-                  Day/Time
+            {/* Availability Table - Mobile Optimized */}
+            <div className="overflow-x-auto">
+              {/* Desktop/Tablet Table */}
+              <div className="hidden sm:block">
+                {/* Table Header */}
+                <div className="grid grid-cols-4 mb-4">
+                  <div className="px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-900">
+                    Day/Time
+                  </div>
+                  <div className="px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-900 text-center">
+                    Mornings (9-12)
+                  </div>
+                  <div className="px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-900 text-center">
+                    Afternoons(12-4)
+                  </div>
+                  <div className="px-2 md:px-4 py-3 text-xs md:text-sm font-medium text-gray-900 text-center">
+                    Evenings (12-4)
+                  </div>
                 </div>
-                <div className="px-4 py-3 text-sm font-medium text-gray-900 text-center">
-                  Mornings (9-12)
-                </div>
-                <div className="px-4 py-3 text-sm font-medium text-gray-900 text-center">
-                  Afternoons(12-4)
-                </div>
-                <div className="px-4 py-3 text-sm font-medium text-gray-900 text-center">
-                  Evenings (12-4)
-                </div>
+
+                {/* Table Rows */}
+                {Object.keys(formData.availability).map((day) => (
+                  <div key={day} className="grid grid-cols-4 mb-2">
+                    <div className="px-2 md:px-4 py-4 text-xs md:text-sm text-gray-900">
+                      Monday
+                    </div>
+                    <div className="px-2 md:px-4 py-4 relative">
+                      <RadioCell
+                        checked={formData.availability[day] === 'mornings'}
+                        onChange={() => handleAvailabilityChange(day, 'mornings')}
+                        name={day}
+                        value="mornings"
+                      />
+                    </div>
+                    <div className="px-2 md:px-4 py-4 relative">
+                      <RadioCell
+                        checked={formData.availability[day] === 'afternoons'}
+                        onChange={() => handleAvailabilityChange(day, 'afternoons')}
+                        name={day}
+                        value="afternoons"
+                      />
+                    </div>
+                    <div className="px-2 md:px-4 py-4 relative">
+                      <RadioCell
+                        checked={formData.availability[day] === 'evenings'}
+                        onChange={() => handleAvailabilityChange(day, 'evenings')}
+                        name={day}
+                        value="evenings"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              {/* Table Rows */}
-              {Object.keys(formData.availability).map((day) => (
-                <div key={day} className="grid grid-cols-4 mb-2">
-                  <div className="px-4 py-4 text-sm text-gray-900">
-                    Monday
+              {/* Mobile Table */}
+              <div className="sm:hidden">
+                {Object.keys(formData.availability).map((day) => (
+                  <div key={day} className="mb-6 p-4 border border-gray-200 rounded-lg">
+                    <div className="text-sm font-medium text-gray-900 mb-4">Monday</div>
+                    <div className="space-y-3">
+                      <label className="flex items-center justify-between cursor-pointer">
+                        <span className="text-sm text-gray-700">Mornings (9-12)</span>
+                        <input
+                          type="radio"
+                          name={day}
+                          value="mornings"
+                          checked={formData.availability[day] === 'mornings'}
+                          onChange={() => handleAvailabilityChange(day, 'mornings')}
+                          className="w-4 h-4 text-[#4977E5] focus:ring-[#4977E5]"
+                        />
+                      </label>
+                      <label className="flex items-center justify-between cursor-pointer">
+                        <span className="text-sm text-gray-700">Afternoons (12-4)</span>
+                        <input
+                          type="radio"
+                          name={day}
+                          value="afternoons"
+                          checked={formData.availability[day] === 'afternoons'}
+                          onChange={() => handleAvailabilityChange(day, 'afternoons')}
+                          className="w-4 h-4 text-[#4977E5] focus:ring-[#4977E5]"
+                        />
+                      </label>
+                      <label className="flex items-center justify-between cursor-pointer">
+                        <span className="text-sm text-gray-700">Evenings (12-4)</span>
+                        <input
+                          type="radio"
+                          name={day}
+                          value="evenings"
+                          checked={formData.availability[day] === 'evenings'}
+                          onChange={() => handleAvailabilityChange(day, 'evenings')}
+                          className="w-4 h-4 text-[#4977E5] focus:ring-[#4977E5]"
+                        />
+                      </label>
+                    </div>
                   </div>
-                  <div className="px-4 py-4 relative">
-                    <RadioCell
-                      checked={formData.availability[day] === 'mornings'}
-                      onChange={() => handleAvailabilityChange(day, 'mornings')}
-                      name={day}
-                      value="mornings"
-                    />
-                  </div>
-                  <div className="px-4 py-4 relative">
-                    <RadioCell
-                      checked={formData.availability[day] === 'afternoons'}
-                      onChange={() => handleAvailabilityChange(day, 'afternoons')}
-                      name={day}
-                      value="afternoons"
-                    />
-                  </div>
-                  <div className="px-4 py-4 relative">
-                    <RadioCell
-                      checked={formData.availability[day] === 'evenings'}
-                      onChange={() => handleAvailabilityChange(day, 'evenings')}
-                      name={day}
-                      value="evenings"
-                    />
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -650,8 +696,8 @@ const ApplicationForm = () => {
         </div>
 
         {/* Section 4 - Experience */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 4 - Experience</h2>
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 4 - Experience</h2>
           
           {/* Previous Cleaning Experience Question */}
           <div className="mb-8">
@@ -681,9 +727,9 @@ const ApplicationForm = () => {
 
           {/* Cleaning Type Question */}
           <div className="mb-6">
-            <div className="flex items-center mb-4">
-              <span className="w-2 h-2 bg-black rounded-full mr-3"></span>
-              <span className="text-gray-900 font-medium text-sm">
+            <div className="flex items-start mb-4">
+              <span className="w-2 h-2 bg-black rounded-full mr-3 mt-1"></span>
+              <span className="text-gray-900 font-medium text-sm leading-relaxed">
                 What kind of cleaning are you most experienced in? (e.g. homes, offices, Airbnb, after-builders)
               </span>
             </div>
@@ -696,9 +742,9 @@ const ApplicationForm = () => {
 
           {/* Cleaning Products/Equipment */}
           <div className="mb-6">
-            <div className="flex items-center mb-4">
-              <span className="w-2 h-2 bg-black rounded-full mr-3"></span>
-              <span className="text-gray-900 font-medium text-sm">
+            <div className="flex items-start mb-4">
+              <span className="w-2 h-2 bg-black rounded-full mr-3 mt-1"></span>
+              <span className="text-gray-900 font-medium text-sm leading-relaxed">
                 List any cleaning products/equipment you&apos;re confident using:
               </span>
             </div>
@@ -713,37 +759,71 @@ const ApplicationForm = () => {
         </div>
 
         {/* Section 5 - Education and Qualifications */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 5 - Education and Qualifications</h2>
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 5 - Education and Qualifications</h2>
           
           {formData.educationRows.map((row, index) => (
-            <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              <div>
-                <label className="text-sm font-medium text-gray-900 mb-2 block">School / College</label>
-                <input
-                  type="text"
-                  placeholder="Write an answer"
-                  value={row.school}
-                  onChange={(e) => updateEducationRow(index, 'school', e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
-                />
+            <div key={index} className="mb-6">
+              {/* Mobile Layout */}
+              <div className="space-y-4 sm:hidden">
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">School / College</label>
+                  <input
+                    type="text"
+                    placeholder="Write an answer"
+                    value={row.school}
+                    onChange={(e) => updateEducationRow(index, 'school', e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">Date attended</label>
+                  <input
+                    type="text"
+                    placeholder="Write an answer"
+                    value={row.dateAttended}
+                    onChange={(e) => updateEducationRow(index, 'dateAttended', e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">Qualifications</label>
+                  <QualificationsDropdown
+                    value={row.qualifications}
+                    onChange={(value) => updateEducationRow(index, 'qualifications', value)}
+                  />
+                </div>
               </div>
-              <div>
-                <label className="text-sm font-medium text-gray-900 mb-2 block">Date attended</label>
-                <input
-                  type="text"
-                  placeholder="Write an answer"
-                  value={row.dateAttended}
-                  onChange={(e) => updateEducationRow(index, 'dateAttended', e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium text-gray-900 mb-2 block">Qualifications</label>
-                <QualificationsDropdown
-                  value={row.qualifications}
-                  onChange={(value) => updateEducationRow(index, 'qualifications', value)}
-                />
+
+              {/* Desktop/Tablet Layout */}
+              <div className="hidden sm:grid sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">School / College</label>
+                  <input
+                    type="text"
+                    placeholder="Write an answer"
+                    value={row.school}
+                    onChange={(e) => updateEducationRow(index, 'school', e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">Date attended</label>
+                  <input
+                    type="text"
+                    placeholder="Write an answer"
+                    value={row.dateAttended}
+                    onChange={(e) => updateEducationRow(index, 'dateAttended', e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">Qualifications</label>
+                  <QualificationsDropdown
+                    value={row.qualifications}
+                    onChange={(value) => updateEducationRow(index, 'qualifications', value)}
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -751,20 +831,20 @@ const ApplicationForm = () => {
           <button
             type="button"
             onClick={addEducationRow}
-            className="bg-[#4977E5] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors mt-4"
+            className="bg-[#4977E5] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors mt-4 w-full sm:w-auto"
           >
             Add row
           </button>
         </div>
 
         {/* Section 6 - Employment History */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 6 - Employment History</h2>
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 6 - Employment History</h2>
           
           {formData.employmentRows.map((row, index) => (
-            <div key={index} className="mb-6">
-              {/* Employer, Position, Dates Row */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div key={index} className="mb-8">
+              {/* Mobile Layout */}
+              <div className="space-y-4 sm:hidden">
                 <div>
                   <label className="text-sm font-medium text-gray-900 mb-2 block">Employer</label>
                   <input
@@ -795,24 +875,79 @@ const ApplicationForm = () => {
                     className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
                   />
                 </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">
+                    Reason for leaving
+                  </label>
+                  <div className="relative">
+                    <textarea
+                      placeholder="Write an answer"
+                      value={row.reasonForLeaving}
+                      onChange={(e) => updateEmploymentRow(index, 'reasonForLeaving', e.target.value)}
+                      maxLength={1000}
+                      rows={4}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-2xl text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors resize-none"
+                    />
+                    <div className="absolute bottom-3 right-4 text-xs text-gray-400">
+                      {1000 - row.reasonForLeaving.length} Remaining
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              {/* Reason for leaving */}
-              <div className="mb-4">
-                <label className="text-sm font-medium text-gray-900 mb-2 block">
-                  Reason for leaving
-                </label>
-                <div className="relative">
-                  <textarea
-                    placeholder="Write an answer"
-                    value={row.reasonForLeaving}
-                    onChange={(e) => updateEmploymentRow(index, 'reasonForLeaving', e.target.value)}
-                    maxLength={1000}
-                    rows={4}
-                    className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-2xl text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors resize-none"
-                  />
-                  <div className="absolute bottom-3 right-4 text-xs text-gray-400">
-                    {1000 - row.reasonForLeaving.length} Remaining
+
+              {/* Desktop/Tablet Layout */}
+              <div className="hidden sm:block">
+                {/* Employer, Position, Dates Row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-900 mb-2 block">Employer</label>
+                    <input
+                      type="text"
+                      placeholder="Write an answer"
+                      value={row.employer}
+                      onChange={(e) => updateEmploymentRow(index, 'employer', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-900 mb-2 block">Position</label>
+                    <input
+                      type="text"
+                      placeholder="Write an answer"
+                      value={row.position}
+                      onChange={(e) => updateEmploymentRow(index, 'position', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-900 mb-2 block">Dates</label>
+                    <input
+                      type="text"
+                      placeholder="BSc"
+                      value={row.dates}
+                      onChange={(e) => updateEmploymentRow(index, 'dates', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                    />
+                  </div>
+                </div>
+                
+                {/* Reason for leaving */}
+                <div className="mb-4">
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">
+                    Reason for leaving
+                  </label>
+                  <div className="relative">
+                    <textarea
+                      placeholder="Write an answer"
+                      value={row.reasonForLeaving}
+                      onChange={(e) => updateEmploymentRow(index, 'reasonForLeaving', e.target.value)}
+                      maxLength={1000}
+                      rows={4}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-2xl text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors resize-none"
+                    />
+                    <div className="absolute bottom-3 right-4 text-xs text-gray-400">
+                      {1000 - row.reasonForLeaving.length} Remaining
+                    </div>
                   </div>
                 </div>
               </div>
@@ -822,20 +957,20 @@ const ApplicationForm = () => {
           <button
             type="button"
             onClick={addEmploymentRow}
-            className="bg-[#4977E5] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors mb-8"
+            className="bg-[#4977E5] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors mb-8 w-full sm:w-auto"
           >
             Add row
           </button>
         </div>
 
         {/* Section 7 - References */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 7 - References</h2>
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 7 - References</h2>
           
           {formData.referenceRows.map((row, index) => (
-            <div key={index} className="mb-6">
-              {/* Name, Relationship, Phone Row */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div key={index} className="mb-8">
+              {/* Mobile Layout */}
+              <div className="space-y-4 sm:hidden">
                 <div>
                   <label className="text-sm font-medium text-gray-900 mb-2 block">Name</label>
                   <input
@@ -866,12 +1001,8 @@ const ApplicationForm = () => {
                     className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
                   />
                 </div>
-              </div>
-              
-              {/* Email */}
-              <div className="mb-4">
-                <label className="text-sm font-medium text-gray-900 mb-2 block">Email</label>
-                <div className="max-w-xs">
+                <div>
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">Email</label>
                   <input
                     type="email"
                     placeholder="Enter Email"
@@ -881,32 +1012,83 @@ const ApplicationForm = () => {
                   />
                 </div>
               </div>
+
+              {/* Desktop/Tablet Layout */}
+              <div className="hidden sm:block">
+                {/* Name, Relationship, Phone Row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-900 mb-2 block">Name</label>
+                    <input
+                      type="text"
+                      placeholder="Write an answer"
+                      value={row.name}
+                      onChange={(e) => updateReferenceRow(index, 'name', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-900 mb-2 block">Relationship</label>
+                    <input
+                      type="text"
+                      placeholder="Write an answer"
+                      value={row.relationship}
+                      onChange={(e) => updateReferenceRow(index, 'relationship', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-900 mb-2 block">Phone</label>
+                    <input
+                      type="tel"
+                      placeholder="Enter Phone number"
+                      value={row.phone}
+                      onChange={(e) => updateReferenceRow(index, 'phone', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                    />
+                  </div>
+                </div>
+                
+                {/* Email */}
+                <div className="mb-4">
+                  <label className="text-sm font-medium text-gray-900 mb-2 block">Email</label>
+                  <div className="max-w-xs">
+                    <input
+                      type="email"
+                      placeholder="Enter Email"
+                      value={row.email}
+                      onChange={(e) => updateReferenceRow(index, 'email', e.target.value)}
+                      className="w-full px-4 py-3 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
           
           <button
             type="button"
             onClick={addReferenceRow}
-            className="bg-[#4977E5] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors mb-8"
+            className="bg-[#4977E5] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors mb-8 w-full sm:w-auto"
           >
             Add row
           </button>
         </div>
 
         {/* Section 8 - Additional Information */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 8 - Additional Information</h2>
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 8 - Additional Information</h2>
           
           {/* Criminal Convictions Question */}
           <div className="mb-4">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-black rounded-full mr-3"></span>
-                <span className="text-gray-900 font-medium text-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 space-y-4 sm:space-y-0">
+              <div className="flex items-start">
+                <span className="w-2 h-2 bg-black rounded-full mr-3 mt-1"></span>
+                <span className="text-gray-900 font-medium text-sm leading-relaxed">
                   Do you have any unspent criminal convictions?
                 </span>
               </div>
-              <div className="flex items-center space-x-8">
+              <div className="flex items-center space-x-6 sm:space-x-8">
                 <label className="flex items-center cursor-pointer">
                   <div className="relative">
                     <input
@@ -979,51 +1161,47 @@ const ApplicationForm = () => {
         </div>
 
         {/* Section 9 - Declaration */}
-        <div className="mt-16">
-          <h2 className="text-lg font-semibold text-gray-900 mb-8">Section 9 - Declaration</h2>
-          
-         
-
-          {/* Submit Button */}
-     
+        <div className="mt-12 md:mt-16">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8">Section 9 - Declaration</h2>
         </div>
-      </form>
+      </div>
 
-      
       
     </div>
-     <div className="mb-8">
-            <label className="flex items-start cursor-pointer">
-              <input
-                type="checkbox"
-                checked={formData.declaration}
-                onChange={(e) => setFormData(prev => ({ ...prev, declaration: e.target.checked }))}
-                className="sr-only"
-              />
-              <div className={`w-5 h-5 border-2 rounded mt-0.5 mr-3 flex-shrink-0 transition-all duration-200 ${
-                formData.declaration 
-                  ? 'border-[#4977E5] bg-[#4977E5]' 
-                  : 'border-gray-300 bg-white'
-              }`}>
-                {formData.declaration && (
-                  <svg className="w-3 h-3 text-white mx-auto mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                )}
-              </div>
-              <span className="text-[16px] font-lato text-gray-900 leading-relaxed">
-                By ticking this box, I can I confirm that the information given in this application is true and complete. I understand that false information may disqualify me from employment or lead to dismissal.
-              </span>
-            </label>
+    {/* Declaration and Submit */}
+      <div className="mb-6 md:mb-8">
+        <label className="flex items-start cursor-pointer">
+          <input
+            type="checkbox"
+            checked={formData.declaration}
+            onChange={(e) => setFormData(prev => ({ ...prev, declaration: e.target.checked }))}
+            className="sr-only"
+          />
+          <div className={`w-5 h-5 border-2 rounded mt-0.5 mr-3 flex-shrink-0 transition-all duration-200 ${
+            formData.declaration 
+              ? 'border-[#4977E5] bg-[#4977E5]' 
+              : 'border-gray-300 bg-white'
+          }`}>
+            {formData.declaration && (
+              <svg className="w-3 h-3 text-white mx-auto mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
+            )}
           </div>
-         <div className="flex justify-center">
-            <button
-              type="submit"
-              className="bg-[#4977E5] text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors"
-            >
-              Submit Application
-            </button>
-          </div>
+          <span className="text-sm md:text-base font-lato text-gray-900 leading-relaxed">
+            By ticking this box, I can I confirm that the information given in this application is true and complete. I understand that false information may disqualify me from employment or lead to dismissal.
+          </span>
+        </label>
+      </div>
+      
+      <div className="flex justify-center">
+        <button
+          onClick={handleSubmit}
+          className="bg-[#4977E5] text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors w-full sm:w-auto"
+        >
+          Submit Application
+        </button>
+      </div>
     </div>
   );
 };
