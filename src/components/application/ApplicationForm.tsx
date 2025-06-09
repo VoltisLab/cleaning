@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 interface FormData {
   fullName: string;
@@ -55,6 +56,9 @@ interface FormData {
 }
 
 const ApplicationForm = () => {
+    const searchParams = useSearchParams();
+
+
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     dob: '',
@@ -97,6 +101,16 @@ const ApplicationForm = () => {
     convictionDetails: '',
     declaration: false
   });
+
+  useEffect(() => {
+    const positionParam = searchParams.get("position");
+    if (positionParam && positionParam.trim() !== "") {
+      setFormData(prev => ({
+        ...prev,
+        position: positionParam
+      }));
+    }
+  }, [searchParams]);
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
@@ -261,9 +275,12 @@ const ApplicationForm = () => {
         <option value="" disabled className="text-gray-400">
           {placeholder}
         </option>
-        <option value="cleaner">Cleaner</option>
-        <option value="supervisor">Supervisor</option>
-        <option value="manager">Manager</option>
+        <option value="Domestic Cleaner">Domestic Cleaner</option>
+      <option value="Commercial Cleaner">Commercial Cleaner</option>
+      <option value="Team Supervisor">Team Supervisor</option>
+      <option value="Laundry Assistant">Laundry Assistant</option>
+      <option value="On-call Cleaner / Floater">On-call Cleaner / Floater</option>
+      <option value="Admin Support">Admin Support</option>
       </select>
       <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
         <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
