@@ -502,10 +502,11 @@ const Header = () => {
                       </Link>
                       <button
                         onClick={toggleMobileServices}
-                        className="p-3 rounded-lg transition-colors hover:bg-gray-50"
+                        className="p-4 rounded-lg transition-colors hover:bg-blue-50"
                       >
                         <ChevronDown 
                           size={16} 
+                          color='#4977E5'
                           className={`transition-transform duration-200 ${
                             isMobileServicesOpen ? 'rotate-180' : ''
                           }`} 

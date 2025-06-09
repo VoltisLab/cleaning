@@ -150,7 +150,7 @@ const ContactSection: React.FC = () => {
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(91, 122, 255, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSubmit}
-                className="w-full bg-[#5B7AFF] text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors"
+                className="w-full bg-[#5B7AFF] cursor-pointer text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors"
               >
                 Submit
               </motion.button>

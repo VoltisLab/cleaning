@@ -83,8 +83,8 @@ export default function Testimonials() {
       </p>
 
       <div className="flex items-center gap-2 justify-between">
-        <button className="size-13 shrink-0 bg-gray-200 shadow flex items-center justify-center rounded-full active:bg-blue-600 cursor-pointer">
-          <BiChevronLeft size={30} />
+        <button className=" cursor-pointer size-13 shrink-0 bg-gray-200 shadow flex items-center justify-center rounded-full active:bg-blue-600 ">
+          <BiChevronLeft className="cursor-pointer" size={30} />
         </button>
 
         <p className="text-center text-[#838B95] text-[15px]">
@@ -94,8 +94,8 @@ export default function Testimonials() {
           available available business having..
         </p>
 
-        <button className="size-13 shrink-0 text-white shadow flex items-center justify-center rounded-full bg-blue-600">
-          <BiChevronRight size={30} />
+        <button className="cursor-pointer size-13 shrink-0 text-white shadow flex items-center justify-center rounded-full bg-blue-600">
+          <BiChevronRight className="cursor-pointer" size={30} />
         </button>
       </div>
 

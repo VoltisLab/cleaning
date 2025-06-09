@@ -27,7 +27,7 @@ const TestimonialsSection: React.FC = () => {
       name: 'John Smith',
       rating: 5,
       content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
-      avatar: '/landing/test/image2.png'
+      avatar: '/landing/test/image1.jpg'
     },
     {
       name: 'Sarah Johnson',
@@ -85,7 +85,7 @@ const TestimonialsSection: React.FC = () => {
           whileTap={{ scale: 0.9 }}
           onClick={prevTestimonial}
           disabled={currentIndex === 0}
-          className={`absolute left-4 top-2/4 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors shadow-lg ${
+          className={`absolute left-4 top-2/4 cursor-pointer -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors shadow-lg ${
             currentIndex === 0 
               ? 'bg-[#93949E] opacity-35 text-gray-600 cursor-not-allowed' 
               : 'bg-[#5B7AFF] text-white hover:bg-[#4A6AEE]'
@@ -98,7 +98,7 @@ const TestimonialsSection: React.FC = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={nextTestimonial}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 bg-[#5B7AFF] text-white rounded-full flex items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-lg"
+          className="absolute right-4 top-1/2 cursor-pointer -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 bg-[#5B7AFF] text-white rounded-full flex items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-lg"
         >
           <ChevronRight className="w-6 h-6" />
         </motion.button>
@@ -135,13 +135,13 @@ const TestimonialsSection: React.FC = () => {
                   whileHover={{ scale: isActive ? 1.4 : 1.0 }}
                 >
                   <div className={`relative ${
-                    isActive ? 'w-15 h-15' : index === 1 || index === 4 ? 'w-14 h-14' : 'w-12 h-12'
+                    isActive ? 'w-12 h-12' : 'w-11 h-11'
                   } rounded-full overflow-hidden shadow-lg`}>
                     <Image
                       src={testimonial.avatar}
                       alt={testimonial.name}
                       fill
-                      className="object-cover"
+                      className="object-cover "
                       sizes="(max-width: 768px) 48px, 64px"
                     />
                   </div>
