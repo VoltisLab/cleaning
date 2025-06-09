@@ -144,7 +144,7 @@ const StatsSection: React.FC = () => {
                 boxShadow: "0 10px 25px rgba(73, 119, 229, 0.3)" 
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#4977E5] text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors text-sm sm:text-base"
+              className="bg-[#4977E5] cursor-pointer text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors text-sm sm:text-base"
             >
               Learn More
             </motion.button>
@@ -172,7 +172,7 @@ const StatsSection: React.FC = () => {
           variants={statsContainerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="relative rounded-2xl lg:rounded-3xl px-4 sm:px-6 lg:px-8 py-12 lg:py-20 mt-16 overflow-hidden"
+          className="relative rounded-2xl lg:rounded-3xl px-4 sm:px-6 lg:px-8 py-12 xl:py-24 mt-24 overflow-hidden"
         >
           {/* Background image */}
           <div 

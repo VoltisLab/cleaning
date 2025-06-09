@@ -115,7 +115,7 @@ const NewsletterSection: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={handleSubmit}
-                      className="bg-white text-[#1D242D] xl:px-4 px-2 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap text-sm sm:text-base"
+                      className="bg-white cursor-pointer text-[#1D242D] xl:px-4 px-2 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap text-sm sm:text-base"
                     >
                       Subscribe
                     </motion.button>
