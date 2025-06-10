@@ -1,4 +1,4 @@
-import Banner from '@/components/about/Banner'
+import Banner from '@/components/shared/Banner'
 import BookingForm from '@/components/booking/BookinForm'
 import React from 'react'
 

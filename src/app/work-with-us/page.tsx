@@ -1,4 +1,4 @@
-import Banner from '@/components/about/Banner'
+import Banner from '@/components/shared/Banner'
 import FAQ from '@/components/shared/FAQ'
 import Availablerole from '@/components/work-with-us/Availablerole'
 import BeforeApply from '@/components/work-with-us/BeforeApply'
