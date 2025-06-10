@@ -136,37 +136,39 @@ const SubDropdownField = ({
   );
 
   return (
-    <div className="relative w-full">
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      className="w-full px-4 py-3  border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors appearance-none bg-white cursor-pointer"
-      >
-        <option value="" disabled>
-          {placeholder}
-        </option>
+    <div className="relative w-full ">
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        // Apply the same styling as the main DropdownField
+        className="w-full px-4 py-3 pr-16 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors appearance-none bg-white cursor-pointer"
+      >
+        <option value="" disabled>
+          {placeholder}
+        </option>
 
-        {matchedCategory?.subcategory.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+        {/* Render subcategory options if a matching category is found */}
+        {matchedCategory?.subcategory.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
 
-      <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
-        <svg
-          className="w-3 h-3 sm:w-4 sm:h-4 text-[#4977E5]"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+      <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
+          <svg
+            className="w-3 h-3 sm:w-4 sm:h-4 text-[#4977E5]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
       </div>
     </div>
-    </div>
-  );
+  );
 };
 
 export default function BookingForm() {
