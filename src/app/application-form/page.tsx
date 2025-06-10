@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import Banner from '@/components/about/Banner'
+import Banner from '@/components/shared/Banner'
 import ApplicationForm from '@/components/application/ApplicationForm'
 const About = () => {
   return (

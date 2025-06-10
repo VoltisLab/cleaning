@@ -1,8 +1,8 @@
 import React from 'react'
-import Banner from '@/components/about/Banner'
+import Banner from '@/components/shared/Banner'
 import AboutSection from '@/components/about/AboutSection'
-import ServicesSection from '@/components/landing/ServicesSection'
-import TestimonialsSection from '@/components/landing/TestimonialSection'
+import ServicesSection from '@/components/shared/ServicesSection'
+import TestimonialsSection from '@/components/shared/TestimonialSection'
 const About = () => {
   return (
     <div className='min-h-screen bg-white '>

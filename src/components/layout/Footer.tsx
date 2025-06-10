@@ -2,12 +2,13 @@
 import { motion, useInView } from "framer-motion";
 import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
 import Image from 'next/image'
+import Link from "next/link";
 import { useRef } from "react";
 const Footer: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const companyLinks = ['About Us', 'Services', 'Team', 'Testimonial'];
+  const companyLinks = [{title: 'About Us', href: '/about' }, {title: 'Services', href: '/services'}, {title: 'Team', href: '/team'}, {title: 'Testimonial', href: '/team'}];
   const supportLinks = ['Help Center', 'Tweet @ Us', 'Webinars', 'Feedback'];
   const resourceLinks = ['Courses', 'Become Teacher', 'Service', 'All in One'];
 
@@ -56,7 +57,7 @@ const Footer: React.FC = () => {
             <p className="text-white mb-6 leading-relaxed max-w-xs">
               Pebble Cleaning is your trusted partner for reliable, affordable, and spotless cleaning across the UK. We treat every home and business like our own. 
             </p>
-            <div className="flex space-x-4">
+            <div className="flex gap-4">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
                 <motion.div
                   key={index}
@@ -73,15 +74,15 @@ const Footer: React.FC = () => {
             <h3 className="font-bold text-lg mb-6">Company</h3>
             <ul className="space-y-3">
               {companyLinks.map((link, index) => (
+                <Link href={link.href} key={index} className="text-white hover:text-white transition-colors">
                 <motion.li 
                   key={index}
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="#" className="text-white hover:text-white transition-colors">
-                    {link}
-                  </a>
+                  {link.title}
                 </motion.li>
+                </Link>
               ))}
             </ul>
           </motion.div>

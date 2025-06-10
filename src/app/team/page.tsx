@@ -1,6 +1,6 @@
 import React from 'react'
-import Banner from '@/components/about/Banner'
-import TestimonialsSection from '@/components/landing/TestimonialSection'
+import Banner from '@/components/shared/Banner'
+import TestimonialsSection from '@/components/shared/TestimonialSection'
 import TeamSection from '@/components/landing/TeamSection'
 const Team = () => {
   return (
