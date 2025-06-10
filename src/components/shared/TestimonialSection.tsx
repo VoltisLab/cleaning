@@ -76,9 +76,9 @@ const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className="pb-32 pt-16 relative" ref={ref}>
+    <section className=" pt-16 relative" ref={ref}>
       {/* Approach 1: Desktop arrows outside, mobile arrows above/below */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-4 relative">
+      <div className="max-w-[1139px] mx-auto px-4 xl:px-0 relative">
         
         {/* Desktop Navigation Buttons - Outside content area */}
         <motion.button
@@ -111,7 +111,7 @@ const TestimonialsSection: React.FC = () => {
           className="text-center"
         >
           {/* Mobile & Tablet Navigation - Above avatars */}
-          <div className="lg:hidden flex justify-center items-center gap-4 mb-4">
+          <div className="xl:hidden flex justify-center items-center gap-4 mb-4">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

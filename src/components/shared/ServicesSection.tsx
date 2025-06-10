@@ -20,39 +20,7 @@ interface ServiceProps {
 const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const services = [
-    {
-      title: 'Commercial Cleaning',
-      description: 'We offer office cleaning to the highest standards, making sure your workspace is always fresh and welcoming.',
-      color: 'bg-[#4977E5]',
-      icon: '/landing/serviceSection/brush.png',
-      href: '/services/commercial'
-    },
-    {
-      title: 'Residential Cleaning',
-      description: `We provide laundry cleaning that's thorough and gentle, making sure your clothes come back fresh and spotless every time.`,
-      color: 'bg-white',
-      icon: '/landing/serviceSection/tissue.png',
-      href: '/services/residential'
-    },
-    {
-      title: 'Laundry Service',
-      description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
-      color: 'bg-white',
-      icon: '/landing/serviceSection/image.png',
-      href: '/services/laundry'
-    },
-    {
-      title: 'Airbnb Cleaning',
-      description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
-      color: 'bg-white',
-      icon: '/landing/serviceSection/image.png',
-      href: '/services/airbnb'
-    }
-  ];
-
-  const servicesData = data ? data : services
+  const servicesData = data 
 
   // Services that should NOT display buttons
   const excludedServices = ['Commercial Cleaning', 'Residential Cleaning', 'Laundry Service', 'Airbnb Cleaning'];

@@ -157,7 +157,6 @@ const Header = () => {
 
   const socials: Social[] = [
     { name: 'Facebook', path: "/landing/header/facebook.svg" },
-    { name: 'Twitter', path: "/landing/header/twitter.svg" },
     { name: 'Instagram', path: "/landing/header/instagram.svg" },
   ];
 

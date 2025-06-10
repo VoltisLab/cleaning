@@ -2,13 +2,15 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+
 const ContactSection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    residence: ''
+    service: '',
+    date: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -96,7 +98,7 @@ const ContactSection: React.FC = () => {
                   alt={"Decoration"}
                   height={100.28}
                   width={100.28}
-                  className="object-contain absolute -left-15 -top-16 xl:-left-18 xl:-top-20"
+                  className="object-contain absolute -left-13 -top-16 xl:-left-18 xl:-top-20"
                 />
               </motion.div>
             </div>
@@ -130,19 +132,33 @@ const ContactSection: React.FC = () => {
               ))}
               
               <motion.div variants={itemVariants}>
-                <label className="block text-gray-700 font-medium mb-2">Residence</label>
+                <label className="block text-gray-700 font-medium mb-2">Service</label>
                 <motion.select
                   whileFocus={{ scale: 1.02, borderColor: "#5B7AFF" }}
-                  name="residence"
-                  value={formData.residence}
+                  name="service"
+                  value={formData.service}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-[#5B7AFF] appearance-none transition-colors"
                 >
-                  <option value="">Select your residence</option>
-                  <option value="usa">United States</option>
-                  <option value="canada">Canada</option>
-                  <option value="uk">United Kingdom</option>
+                  <option value="">Select a service</option>
+                  <option value="web-development">Residential Cleaning</option>
+                  <option value="mobile-app">Commercial Cleaning</option>
+                  <option value="ui-ux-design">Laundry Services</option>
+                  <option value="consulting">Airbnb Cleaning</option>
                 </motion.select>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <label className="block text-gray-700 font-medium mb-2">Preferred Date</label>
+                <motion.input
+                  whileFocus={{ scale: 1.02, borderColor: "#5B7AFF" }}
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-[#5B7AFF] transition-colors"
+                  min={new Date().toISOString().split('T')[0]} // Prevent past dates
+                />
               </motion.div>
               
               <motion.button

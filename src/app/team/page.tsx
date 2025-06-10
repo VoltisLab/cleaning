@@ -4,7 +4,7 @@ import TestimonialsSection from '@/components/shared/TestimonialSection'
 import TeamSection from '@/components/landing/TeamSection'
 const Team = () => {
   return (
-    <div className='min-h-screen bg-white '>
+    <div className='min-h-screen bg-white pb-36 '>
         <Banner page='Team' />
         <TeamSection />
         <TestimonialsSection />
