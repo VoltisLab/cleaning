@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <Header />
       <body
         className={`${dmSans.variable} ${lato.variable} antialiased overflow-x-hidden`}

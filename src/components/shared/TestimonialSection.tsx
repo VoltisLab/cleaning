@@ -77,15 +77,16 @@ const TestimonialsSection: React.FC = () => {
 
   return (
     <section className="pb-32 pt-16 relative" ref={ref}>
-      <div className="max-w-6xl mx-auto px-4 relative">
+      {/* Approach 1: Desktop arrows outside, mobile arrows above/below */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-4 relative">
         
-        {/* Navigation Buttons */}
+        {/* Desktop Navigation Buttons - Outside content area */}
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={prevTestimonial}
           disabled={currentIndex === 0}
-          className={`absolute left-4 top-2/4 cursor-pointer -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors shadow-lg ${
+          className={`hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full items-center justify-center transition-colors shadow-lg ${
             currentIndex === 0 
               ? 'bg-[#93949E] opacity-35 text-gray-600 cursor-not-allowed' 
               : 'bg-[#5B7AFF] text-white hover:bg-[#4A6AEE]'
@@ -98,7 +99,7 @@ const TestimonialsSection: React.FC = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={nextTestimonial}
-          className="absolute right-4 top-1/2 cursor-pointer -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 bg-[#5B7AFF] text-white rounded-full flex items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-lg"
+          className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#5B7AFF] text-white rounded-full items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-lg"
         >
           <ChevronRight className="w-6 h-6" />
         </motion.button>
@@ -109,6 +110,36 @@ const TestimonialsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
+          {/* Mobile & Tablet Navigation - Above avatars */}
+          <div className="lg:hidden flex justify-center items-center gap-4 mb-4">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={prevTestimonial}
+              disabled={currentIndex === 0}
+              className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-colors shadow-md ${
+                currentIndex === 0 
+                  ? 'bg-[#93949E] opacity-35 text-gray-600 cursor-not-allowed' 
+                  : 'bg-[#5B7AFF] text-white hover:bg-[#4A6AEE]'
+              }`}
+            >
+              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+            </motion.button>
+            
+            <span className="text-sm md:text-base text-gray-500 font-medium min-w-[60px] md:min-w-[80px]">
+              {currentIndex + 1} of {testimonials.length}
+            </span>
+            
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={nextTestimonial}
+              className="w-8 h-8 md:w-10 md:h-10 bg-[#5B7AFF] text-white rounded-full flex items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-md"
+            >
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+            </motion.button>
+          </div>
+
           {/* Avatar Row */}
           <div className="flex justify-center items-center mb-6 relative h-20">
             {testimonials.map((testimonial, index) => {
@@ -141,7 +172,7 @@ const TestimonialsSection: React.FC = () => {
                       src={testimonial.avatar}
                       alt={testimonial.name}
                       fill
-                      className="object-cover "
+                      className="object-cover"
                       sizes="(max-width: 768px) 48px, 64px"
                     />
                   </div>
@@ -188,7 +219,7 @@ const TestimonialsSection: React.FC = () => {
               </div>
 
               {/* Testimonial Content */}
-              <p className="text-[#838B95] text-xs md:text-[15px] font-lato leading-relaxed max-w-3xl mx-auto px-4">
+              <p className="text-[#838B95] text-xs md:text-[15px] font-lato leading-relaxed max-w-3xl mx-auto px-4 sm:px-6 md:px-4">
                 {testimonials[currentIndex].content}
               </p>
 

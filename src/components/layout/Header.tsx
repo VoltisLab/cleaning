@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, ShoppingCart, User, Menu, X, Phone, Mail } from 'lucide-react';
+import { ChevronDown, ChevronRight, ShoppingCart, User, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
 // Define types for better type safety
@@ -159,7 +159,6 @@ const Header = () => {
     { name: 'Facebook', path: "/landing/header/facebook.svg" },
     { name: 'Twitter', path: "/landing/header/twitter.svg" },
     { name: 'Instagram', path: "/landing/header/instagram.svg" },
-    { name: 'Be', path: "/landing/header/Be.svg" },
   ];
 
   // Type the label parameter as string
@@ -261,15 +260,6 @@ const Header = () => {
               ))}
             </div>
             <div className="flex items-center text-xs space-x-6">
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/landing/header/call.svg"
-                  alt="Phone"
-                  width={14}
-                  height={14}
-                />
-                <span className="font-semibold">(91) 98765 43321 54</span>
-              </div>
               <div className="w-px h-4 bg-white/50"></div>
               <div className="flex items-center space-x-2">
                 <Image
@@ -279,32 +269,8 @@ const Header = () => {
                   height={15}
                 />
                 <span className="font-semibold">contact@pebblecleaning.com</span>
-              </div>
-              <div className="w-px h-4 bg-white/50"></div>
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/landing/header/location.svg"
-                  alt="Location"
-                  width={15}
-                  height={15}
-                />
-                <span className="font-semibold">88 dukes brow Blackburn BB26DH</span>
-              </div>
-             
+              </div>         
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="md:hidden bg-[#4977E5] text-white py-2">
-        <div className="px-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Phone size={14} />
-            <span className="text-xs font-semibold">(91) 98765 43321</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Mail size={14} />
-            <span className="text-xs font-semibold">contact@pebblecleaning.com</span>
           </div>
         </div>
       </div>
@@ -648,16 +614,7 @@ const Header = () => {
           
           {/* Mobile Contact Info */}
           <div className="px-4 py-4 bg-gray-50 border-t space-y-3">
-            <div className="flex items-center space-x-3 text-sm">
-               <Image
-                src="/landing/header/call.svg"
-                alt="Phone"
-                width={17}
-                height={17}
-                className='bg-[#4977E5] p-2 h-8 w-8 rounded-full'
-              />
-              <span className="font-medium text-[#4977E5]">(91) 98765 43321 54</span>
-            </div>
+            
             <div className="flex items-center space-x-3 text-sm">
                <Image
                 src="/landing/header/message.svg"
@@ -668,16 +625,7 @@ const Header = () => {
               />
               <span className="font-medium text-[#4977E5]">contact@pebblecleaning.com</span>
             </div>
-            <div className="flex items-center space-x-3 text-sm">
-              <Image
-                src="/landing/header/location.svg"
-                alt="Location"
-                width={17}
-                height={17}
-                className='bg-[#4977E5] p-2 h-8 w-8 rounded-full'
-              />
-              <span className="font-medium text-[#4977E5]">88 dukes brow Blackburn BB26DH</span>
-            </div>
+
             <div className="flex items-center justify-center space-x-4 pt-3">
               {socials.map((social, index) => (
                 <div

@@ -1,6 +1,6 @@
 'use client';
 import { motion, useInView } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Twitter } from "lucide-react";
 import Image from 'next/image'
 import Link from "next/link";
 import { useRef } from "react";
@@ -9,8 +9,7 @@ const Footer: React.FC = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const companyLinks = [{title: 'About Us', href: '/about' }, {title: 'Services', href: '/services'}, {title: 'Team', href: '/team'}, {title: 'Testimonial', href: '/team'}];
-  const supportLinks = ['Help Center', 'Tweet @ Us', 'Webinars', 'Feedback'];
-  const resourceLinks = ['Courses', 'Become Teacher', 'Service', 'All in One'];
+  const supportLinks = ['Help Center', 'Tweet @ Us', 'Feedback'];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -57,17 +56,6 @@ const Footer: React.FC = () => {
             <p className="text-white mb-6 leading-relaxed max-w-xs">
               Pebble Cleaning is your trusted partner for reliable, affordable, and spotless cleaning across the UK. We treat every home and business like our own. 
             </p>
-            <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.2, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Icon className="w-6 h-6 text-white hover:text-white cursor-pointer" />
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           <motion.div variants={itemVariants}>
@@ -104,40 +92,25 @@ const Footer: React.FC = () => {
             </ul>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-             <h3 className="font-bold text-lg mb-6">Links</h3>
-            <ul className="space-y-3 mb-6">
-              {resourceLinks.map((link, index) => (
-                <motion.li 
-                  key={index}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <a href="#" className="text-white hover:text-white transition-colors">
-                    {link}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="pt-6 min-w-sm">
-            <h4 className="font-bold mb-4">Contact Us</h4>
-            <div className="space-y-2">
-              <motion.div 
-                whileHover={{ x: 5 }}
-                className="flex items-center space-x-1"
-              >
-                <Phone className="w-4 h-4 text-white" />
-                <span className="text-white text-sm">(91) 98765 43321 54</span>
-              </motion.div>
+          <motion.div variants={itemVariants} className="min-w-sm">
+            <h4 className="font-bold mb-7">Contact Us</h4>        
               <motion.div 
                 whileHover={{ x: 5 }}
                 className="flex items-center "
               >
                 <Mail className="w-4 h-4 text-white" color="white" />
-                <span className="text-white text-sm ml-1">hello@pebblecleaning.com</span>
+                <span className="text-white text-sm ml-1 ">hello@pebblecleaning.com</span>
               </motion.div>
+              <div className="flex gap-4 mt-3">
+              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.2, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Icon className="w-6 h-6 text-white hover:text-white cursor-pointer" />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </motion.div>

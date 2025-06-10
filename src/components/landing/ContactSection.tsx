@@ -62,7 +62,7 @@ const ContactSection: React.FC = () => {
 
   return (
     <section className="pt-20 pb-36" ref={ref}>
-      <div className="max-w-[1139px] mx-auto px-4">
+      <div className="max-w-[1139px] mx-auto xl:px-0 px-5">
         <div className="grid xl:grid-cols-2 gap-16 items-center">
           <motion.div 
             variants={imageVariants}
@@ -74,7 +74,7 @@ const ContactSection: React.FC = () => {
               src={"/landing/contact/image.png"}
               alt={"Contact us"}
               fill
-              className="object-cover w-full h-full rounded-xl"
+              className="object-contain w-full h-full rounded-xl"
               priority
             />
           </motion.div>
@@ -96,7 +96,7 @@ const ContactSection: React.FC = () => {
                   alt={"Decoration"}
                   height={100.28}
                   width={100.28}
-                  className="object-fit-contain absolute -left-18 -top-20"
+                  className="object-contain absolute -left-15 -top-16 xl:-left-18 xl:-top-20"
                 />
               </motion.div>
             </div>
