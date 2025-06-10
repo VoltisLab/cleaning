@@ -147,7 +147,7 @@ const TeamSection: React.FC = () => {
         
         <motion.div 
           variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12"
         >
           {teamMembers.map((member, index) => (
             <motion.div 

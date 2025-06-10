@@ -107,7 +107,7 @@ const HeroSection: React.FC = () => {
             {/* Responsive button layout */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
+              className="flex xl:flex-col md:flex-row flex-row gap-3 md:gap-4 justify-center lg:justify-start"
             >
               <Link href={"/about"}>
               <motion.button

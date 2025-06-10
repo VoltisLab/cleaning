@@ -1,6 +1,6 @@
 'use client';
 import { motion, useInView } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin} from "lucide-react";
 import Image from 'next/image'
 import Link from "next/link";
 import { useRef } from "react";
@@ -9,8 +9,7 @@ const Footer: React.FC = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const companyLinks = [{title: 'About Us', href: '/about' }, {title: 'Services', href: '/services'}, {title: 'Team', href: '/team'}, {title: 'Testimonial', href: '/team'}];
-  const supportLinks = ['Help Center', 'Tweet @ Us', 'Webinars', 'Feedback'];
-  const resourceLinks = ['Courses', 'Become Teacher', 'Service', 'All in One'];
+  const supportLinks = ['Help Center', 'Contact Us', 'Feedback'];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,10 +41,10 @@ const Footer: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 items-start"
+          className="flex flex-wrap justify-between items-start"
         >
           
-          <motion.div variants={itemVariants} className="lg:col-span-2">
+          <motion.div variants={itemVariants} className="xl:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
                <Image
                 src={"/landing/logoWhite.png"}
@@ -54,31 +53,21 @@ const Footer: React.FC = () => {
                 height={50}
                 />
             </div>
-            <p className="text-white mb-6 leading-relaxed max-w-xs">
+            <p className="text-white mb-6 leading-relaxed max-w-xs md:text-[16px] text-sm">
               Pebble Cleaning is your trusted partner for reliable, affordable, and spotless cleaning across the UK. We treat every home and business like our own. 
             </p>
-            <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.2, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Icon className="w-6 h-6 text-white hover:text-white cursor-pointer" />
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h3 className="font-bold text-lg mb-6">Company</h3>
+            <h3 className="font-bold text-sm md:text-lg mb-6">Company</h3>
             <ul className="space-y-3">
               {companyLinks.map((link, index) => (
-                <Link href={link.href} key={index} className="text-white hover:text-white transition-colors">
+                <Link href={link.href} key={index} className="text-white hover:text-white transition-colors md:text-[16px] text-xs">
                 <motion.li 
                   key={index}
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
+                  className="mt-5"
                 >
                   {link.title}
                 </motion.li>
@@ -88,7 +77,7 @@ const Footer: React.FC = () => {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h3 className="font-bold text-lg mb-6">Support</h3>
+            <h3 className="font-bold text-sm md:text-lg mb-6">Support</h3>
             <ul className="space-y-3">
               {supportLinks.map((link, index) => (
                 <motion.li 
@@ -96,7 +85,7 @@ const Footer: React.FC = () => {
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="#" className="text-white hover:text-white transition-colors">
+                  <a href="#" className="text-white hover:text-white transition-colors md:text-[16px] text-xs">
                     {link}
                   </a>
                 </motion.li>
@@ -104,40 +93,25 @@ const Footer: React.FC = () => {
             </ul>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-             <h3 className="font-bold text-lg mb-6">Links</h3>
-            <ul className="space-y-3 mb-6">
-              {resourceLinks.map((link, index) => (
-                <motion.li 
-                  key={index}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <a href="#" className="text-white hover:text-white transition-colors">
-                    {link}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="pt-6 min-w-sm">
-            <h4 className="font-bold mb-4">Contact Us</h4>
-            <div className="space-y-2">
-              <motion.div 
-                whileHover={{ x: 5 }}
-                className="flex items-center space-x-1"
-              >
-                <Phone className="w-4 h-4 text-white" />
-                <span className="text-white text-sm">(91) 98765 43321 54</span>
-              </motion.div>
+          <motion.div variants={itemVariants} >
+            <h4 className="font-bold mb-7  text-sm md:text-lg ">Contact Us</h4>        
               <motion.div 
                 whileHover={{ x: 5 }}
                 className="flex items-center "
               >
-                <Mail className="w-4 h-4 text-white" color="white" />
-                <span className="text-white text-sm ml-1">hello@pebblecleaning.com</span>
+                <span className="text-white text-xs mb-3 xl:text-[16px] ">hello@pebblecleaning.com</span>
               </motion.div>
+              <div className="flex gap-4 mt-3">
+              {[{icon: Facebook, href: '' }, {icon: Instagram, href: 'https://instagram.com/pebblecleaning' }, {icon: Linkedin, href: '' }].map((Icon, index) => (
+                <motion.a
+                key={index}
+                href={Icon.href}
+                  whileHover={{ scale: 1.2, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Icon.icon className="w-6 h-6 text-white hover:text-white cursor-pointer" />
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         </motion.div>
@@ -153,14 +127,14 @@ const Footer: React.FC = () => {
              © Copyright Voltis Labs {new Date().getFullYear()}. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 lg:mt-0">
-              {['Privacy Policy', 'Terms of Use', 'Legal', 'Site Map'].map((link, index) => (
+              {[{link: 'Privacy Policy', href: '/privacy'}, {link: 'Terms of Use', href: '/privacy'}, {link: 'Legal', href: '/privacy'}, {link: 'Site Map', href: '/privacy' }].map((link, index) => (
                 <motion.a
                   key={index}
                   whileHover={{ y: -2 }}
-                  href="#" 
+                  href={link.href} 
                   className="text-white hover:text-white text-sm transition-colors"
                 >
-                  {link}
+                  {link.link}
                 </motion.a>
               ))}
             </div>
