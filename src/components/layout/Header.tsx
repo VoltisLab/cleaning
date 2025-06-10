@@ -92,7 +92,7 @@ const Header = () => {
 
   const navItems: NavItem[] = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '/cleaning-service', hasDropdown: true },
+    { label: 'Services', href: 'services', hasDropdown: true },
     { label: 'Pricing', href: '#' },
     { label: 'Work With Us', href: '/work-with-us' },
     { label: 'Team', href: '/team' },
@@ -103,42 +103,54 @@ const Header = () => {
   const serviceCategories: ServiceCategory[] = [
     {
       label: 'Residential Cleaning',
-      href: '/cleaning-service/residential',
+      href: 'services/residential',
       subServices: [
-        { label: 'Standard Home Cleaning', href: '/cleaning-services/residential/standard' },
-        { label: 'Deep Cleaning', href: '/cleaning-services/residential/deep' },
-        { label: 'Move-In / Move-Out Cleaning', href: '/cleaning-services/residential/move-in-out' },
-        { label: 'End of Tenancy Cleaning', href: '/cleaning-services/residential/tenancy' },
-        { label: 'Spring Cleaning', href: '/cleaning-services/residential/spring' },
-        { label: 'After-Party Cleaning', href: '/cleaning-services/residential/party' },
-        { label: 'Appliance Cleaning', href: '/cleaning-services/residential/appliance' },
-        { label: 'Carpet & Upholstery Cleaning', href: '/cleaning-services/residential/carpet' }
+        { label: 'Standard Home Cleaning', href: 'services/residential/standard' },
+        { label: 'Deep Cleaning', href: 'services/residential/deep' },
+        { label: 'Move-In / Move-Out Cleaning', href: 'services/residential/move-in-out' },
+        { label: 'End of Tenancy Cleaning', href: 'services/residential/tenancy' },
+        { label: 'Spring Cleaning', href: 'services/residential/spring' },
+        { label: 'After-Party Cleaning', href: 'services/residential/party' },
+        { label: 'Appliance Cleaning', href: 'services/residential/appliance' },
+        { label: 'Carpet & Upholstery Cleaning', href: 'services/residential/carpet' }
       ]
     },
     {
       label: 'Commercial Cleaning',
-      href: '/cleaning-service/commercial',
+      href: 'services/commercial',
       subServices: [
-        { label: 'Office Cleaning', href: '/cleaning-services/commercial/office' },
-        { label: 'Retail Store Cleaning', href: '/cleaning-services/commercial/retail' },
-        { label: 'Restaurant & Café Cleaning', href: '/cleaning-services/commercial/restaurant' },
-        { label: 'Parking Lot Cleaning', href: '/cleaning-services/commercial/parking' },
-        { label: 'Gym Cleaning', href: '/cleaning-services/commercial/gym' },
-        { label: 'Salon & Spa Cleaning', href: '/cleaning-services/commercial/salon' },
-        { label: 'Medical Clinic Cleaning', href: '/cleaning-services/commercial/medical' },
-        { label: 'Industrial/Warehouse Cleaning', href: '/cleaning-services/commercial/industrial' }
+        { label: 'Office Cleaning', href: '/services/commercial/office' },
+        { label: 'Retail Store Cleaning', href: '/services/commercial/retail' },
+        { label: 'Restaurant & Café Cleaning', href: '/services/commercial/restaurant' },
+        { label: 'Parking Lot Cleaning', href: '/services/commercial/parking' },
+        { label: 'Gym Cleaning', href: '/services/commercial/gym' },
+        { label: 'Salon & Spa Cleaning', href: '/services/commercial/salon' },
+        { label: 'Medical Clinic Cleaning', href: '/services/commercial/medical' },
+        { label: 'Industrial/Warehouse Cleaning', href: '/services/commercial/industrial' }
       ]
     },
     {
       label: 'Laundry Services',
-      href: '/cleaning-service/laundry',
+      href: '/services/laundry',
       subServices: [
-        { label: 'Wash & Fold Service', href: '/cleaning-services/laundry/wash-fold' },
-        { label: 'Ironing Service', href: '/cleaning-services/laundry/ironing' },
-        { label: 'Pickup & Delivery', href: '/cleaning-services/laundry/pickup-delivery' },
-        { label: 'Dry Cleaning Coordination', href: '/cleaning-services/laundry/dry-cleaning' },
-        { label: 'Delicates Care', href: '/cleaning-services/laundry/delicates' },
-        { label: 'Bedding & Towels Only', href: '/cleaning-services/laundry/bedding' }
+        { label: 'Wash & Fold Service', href: '/services/laundry/wash-fold' },
+        { label: 'Ironing Service', href: '/services/laundry/ironing' },
+        { label: 'Pickup & Delivery', href: '/services/laundry/pickup-delivery' },
+        { label: 'Dry Cleaning Coordination', href: '/services/laundry/dry-cleaning' },
+        { label: 'Delicates Care', href: '/services/laundry/delicates' },
+        { label: 'Bedding & Towels Only', href: '/services/laundry/bedding' }
+      ]
+    },
+    {
+      label: 'Airbnb Cleaning',
+      href: '/services/airbnb',
+      subServices: [
+        { label: 'Wash & Fold Service', href: '/services/laundry/wash-fold' },
+        { label: 'Ironing Service', href: '/services/laundry/ironing' },
+        { label: 'Pickup & Delivery', href: '/services/laundry/pickup-delivery' },
+        { label: 'Dry Cleaning Coordination', href: '/services/laundry/dry-cleaning' },
+        { label: 'Delicates Care', href: '/services/laundry/delicates' },
+        { label: 'Bedding & Towels Only', href: '/services/laundry/bedding' }
       ]
     }
   ];
@@ -231,7 +243,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <div>
       {/* Top Bar - Hidden on mobile */}
       <div className="bg-[#4977E5] text-white py-3 text-sm hidden lg:block">
         <div className="max-w-[1139px] mx-auto px-4">
@@ -685,7 +697,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-    </>
+    </div>
   );
 };
 

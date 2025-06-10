@@ -1,5 +1,5 @@
 import Banner from '@/components/about/Banner'
-import FAQ from '@/components/CleaningServices/FAQ'
+import FAQ from '@/components/shared/FAQ'
 import Availablerole from '@/components/work-with-us/Availablerole'
 import BeforeApply from '@/components/work-with-us/BeforeApply'
 import JoinUs from '@/components/work-with-us/JoinUs'

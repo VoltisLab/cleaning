@@ -61,7 +61,7 @@ export default function Services() {
       </div>
 
       <p className="text-[15px]">
-        Hether you’re on the hunt for a remote job or are already working
+        Whether you’re on the hunt for a remote job or are already working
         virtually, check out this list of the advantages of working from home,
         along with some of the top companies that hire for remote jobs.
       </p>

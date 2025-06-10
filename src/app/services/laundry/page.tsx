@@ -1,4 +1,4 @@
-import ServicesSection from "@/components/landing/ServicesSection";
+import ServicesSection from "@/components/shared/ServicesSection";
 const services = [
   {
     title: 'Wash & Fold Service',

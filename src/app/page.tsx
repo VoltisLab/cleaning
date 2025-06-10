@@ -2,9 +2,9 @@ import ContactSection from "@/components/landing/ContactSection";
 import FeatureCards from "@/components/landing/FeautureCard";
 import HeroSection from "@/components/landing/Hero";
 import PricingSection from "@/components/landing/PricingSection";
-import ServicesSection from "@/components/landing/ServicesSection";
+import ServicesSection from "@/components/shared/ServicesSection";
 import StatsSection from "@/components/landing/StatsSection";
-import TestimonialsSection from "@/components/landing/TestimonialSection";
+import TestimonialsSection from "@/components/shared/TestimonialSection";
 
 const Home: React.FC = () => {
   return (

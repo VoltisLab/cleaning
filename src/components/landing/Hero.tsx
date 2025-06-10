@@ -119,7 +119,7 @@ const HeroSection: React.FC = () => {
               </motion.button>
               </Link>
 
-                <Link href={"/cleaning-service'"}>
+              <Link href={"/services"}>
                   <motion.button
                 whileHover={{ scale: 1.05, borderColor: "#5977E5", backgroundColor: "#f8faff" }}
                 whileTap={{ scale: 0.95 }}
