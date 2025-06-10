@@ -1,4 +1,4 @@
-import Banner from "@/components/about/Banner";
+import Banner from "@/components/shared/Banner";
 import FAQ from "@/components/CleaningServices/FAQ";
 import PricingSection from "@/components/landing/PricingSection";
 import ServicesSection from "@/components/landing/ServicesSection";

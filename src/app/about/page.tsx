@@ -1,5 +1,5 @@
 import React from 'react'
-import Banner from '@/components/about/Banner'
+import Banner from '@/components/shared/Banner'
 import AboutSection from '@/components/about/AboutSection'
 import ServicesSection from '@/components/landing/ServicesSection'
 import TestimonialsSection from '@/components/landing/TestimonialSection'
