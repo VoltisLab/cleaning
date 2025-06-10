@@ -121,7 +121,7 @@ const AboutSection: React.FC = () => {
               src={"/about/cleaner.png"}
               alt={"Hero cleaning equipment"}
               fill
-              className="object-cover w-full h-full rounded-xl"
+              className="object-contain w-full h-full rounded-xl"
               priority
             />   
           </motion.div>
