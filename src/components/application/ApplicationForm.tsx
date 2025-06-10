@@ -617,30 +617,30 @@ const ApplicationForm = () => {
                     <div className="px-2 md:px-4 py-4 text-xs md:text-sm text-gray-900">
                       Monday
                     </div>
-                    <div className="px-2 md:px-4 py-4 relative">
-                      <RadioCell
-                        checked={formData.availability[day] === 'mornings'}
-                        onChange={() => handleAvailabilityChange(day, 'mornings')}
-                        name={day}
-                        value="mornings"
-                      />
-                    </div>
-                    <div className="px-2 md:px-4 py-4 relative">
-                      <RadioCell
-                        checked={formData.availability[day] === 'afternoons'}
-                        onChange={() => handleAvailabilityChange(day, 'afternoons')}
-                        name={day}
-                        value="afternoons"
-                      />
-                    </div>
-                    <div className="px-2 md:px-4 py-4 relative">
-                      <RadioCell
-                        checked={formData.availability[day] === 'evenings'}
-                        onChange={() => handleAvailabilityChange(day, 'evenings')}
-                        name={day}
-                        value="evenings"
-                      />
-                    </div>
+                    <div className="px-2 md:px-4 py-4 relative" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <RadioCell
+    checked={formData.availability[day] === 'mornings'}
+    onChange={() => handleAvailabilityChange(day, 'mornings')}
+    name={day}
+    value="mornings"
+  />
+</div>
+<div className="px-2 md:px-4 py-4 relative" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <RadioCell
+    checked={formData.availability[day] === 'afternoons'}
+    onChange={() => handleAvailabilityChange(day, 'afternoons')}
+    name={day}
+    value="afternoons"
+  />
+</div>
+<div className="px-2 md:px-4 py-4 relative" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <RadioCell
+    checked={formData.availability[day] === 'evenings'}
+    onChange={() => handleAvailabilityChange(day, 'evenings')}
+    name={day}
+    value="evenings"
+  />
+</div>
                   </div>
                 ))}
               </div>
