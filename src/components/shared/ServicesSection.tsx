@@ -83,10 +83,10 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 justify-items-center"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 justify-items-center"
         >
           {servicesData?.map((service, index) => (
-            <Link key={index} href={service.href} className="w-full md:w-[280px]">
+            <Link key={index} href={service.href} className="w-full md:w-[270px]">
               <motion.div
                 key={index}
                 variants={cardVariants}
