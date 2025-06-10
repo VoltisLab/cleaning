@@ -84,8 +84,8 @@ const StatsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 px-5 xl:px-0" ref={ref}>
-      <div className="max-w-[1139px] mx-auto ">
+    <section className="py-20 px-5 xl:px-0 overflow-hidden" ref={ref}>
+      <div className="max-w-[1139px] mx-auto">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content Section - Now fully responsive */}
           <motion.div
@@ -102,20 +102,12 @@ const StatsSection: React.FC = () => {
             </motion.h2>
             <motion.p 
               variants={itemVariants}
-              className="text-gray-600 mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base"
+              className="text-gray-600 mb-6 lg:mb-8 leading-relaxed text-[15px] font-lato"
             >
               Training programs can bring you a super exciting experience of learning through
               online! You never face any negative experience while enjoying your classes Awesome
               site on the top advertising a Courses available business having.
             </motion.p>
-            <motion.p 
-              variants={itemVariants}
-              className="text-gray-600 mb-6 lg:mb-8 text-sm sm:text-base"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate ad litora
-              torquent.
-            </motion.p>
-            
             <motion.div 
               variants={itemVariants}
               className="space-y-3 mb-6 lg:mb-8"
@@ -144,26 +136,28 @@ const StatsSection: React.FC = () => {
                 boxShadow: "0 10px 25px rgba(73, 119, 229, 0.3)" 
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#4977E5] text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors text-sm sm:text-base"
+              className="bg-[#4977E5] cursor-pointer text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors text-sm sm:text-base"
             >
               Learn More
             </motion.button>
           </motion.div>
 
-          {/* Image Section */}
+          {/* Image Section - Fixed overflow and sizing issues */}
           <motion.div 
             variants={imageVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="relative h-[300px] sm:h-[400px] lg:h-[500px] w-full order-1 xl:order-2"
+            className="relative h-[300px] sm:h-[400px] lg:h-[500px] w-full order-1 xl:order-2 overflow-hidden"
           >
-            <Image
-              src={"/landing/statsSection/statsImage.png"}
-              alt={"Hero cleaning equipment"}
-              fill
-              className="object-cover w-full h-full rounded-xl"
-              priority
-            />   
+            <div className="relative w-full h-full rounded-xl overflow-hidden">
+              <Image
+                src={"/landing/statsSection/imagecut.png"}
+                alt={"Hero cleaning equipment"}
+                fill
+                className="object-contain w-full h-full"
+                priority
+              />   
+            </div>
           </motion.div>
         </div>
 
@@ -172,7 +166,7 @@ const StatsSection: React.FC = () => {
           variants={statsContainerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="relative rounded-2xl lg:rounded-3xl px-4 sm:px-6 lg:px-8 py-12 lg:py-20 mt-16 overflow-hidden"
+          className="relative rounded-2xl lg:rounded-3xl px-4 sm:px-6 lg:px-8 py-12 xl:py-24 mt-24 overflow-hidden"
         >
           {/* Background image */}
           <div 

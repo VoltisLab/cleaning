@@ -161,7 +161,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
                   {shouldShowButtons(service.title) && (
                     <>
                       {/* Book Now button - top right */}
-                      <button className={`absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                      <button className={`absolute top-4 cursor-pointer right-4 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                         service.color === "bg-[#4977E5]" 
                           ? 'bg-white text-[#4977E5] hover:bg-gray-100' 
                           : 'bg-transparent border border-[#4977E5] text-[#4977E5] hover:bg-[#4977E5] hover:text-white'
@@ -170,7 +170,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
                       </button>
                       
                       {/* Learn More button - bottom right */}
-                      <button className={`absolute bottom-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
+                      <button className={`absolute bottom-4 cursor-pointer right-4 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
                         service.color === "bg-[#4977E5]" 
                           ? 'border-white text-white hover:bg-white hover:text-[#4977E5]' 
                           : 'border-[#4977E5] text-[#4977E5] hover:bg-[#4977E5] hover:text-white'

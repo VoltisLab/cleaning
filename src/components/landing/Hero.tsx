@@ -60,12 +60,12 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br relative overflow-hidden px-5 xl:px-0" ref={ref}>
+    <section className="bg-gradient-to-br relative overflow-hidden px-5 xl:px-0 " ref={ref}>
       <div className="max-w-[1139px] mx-auto">
         <div className="grid lg:grid-cols-[40%_60%] gap-6 md:gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            className="relative z-10 py-6 md:py-8 lg:py-12 order-2 lg:order-1"
+            className="relative z-10 pb-6 md:pb-8 lg:pb-12 order-2 lg:order-1"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -85,7 +85,7 @@ const HeroSection: React.FC = () => {
               {/* Star positioned responsively */}
               <motion.div
                 variants={starVariants}
-                className="absolute -top-2 md:-top-3 lg:-top-4 -left-2 md:-left-3 lg:-left-4"
+                className="absolute top-20 md:top-20 -left-3 md:-left-3 lg:-left-5"
               >
                 <Image
                   src={"/landing/hero/star.svg"}
@@ -113,7 +113,7 @@ const HeroSection: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(73, 119, 229, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#4977E5] text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg text-sm md:text-base"
+                className="bg-[#4977E5] cursor-pointer text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg text-sm md:text-base"
               >
                 About Us
               </motion.button>
@@ -123,7 +123,7 @@ const HeroSection: React.FC = () => {
                   <motion.button
                 whileHover={{ scale: 1.05, borderColor: "#5977E5", backgroundColor: "#f8faff" }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-[#4977E5] text-[#4977E5] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-[#5977E5] transition-colors bg-white text-sm md:text-base"
+                className="border-2 cursor-pointer border-[#4977E5] text-[#4977E5] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-[#5977E5] transition-colors bg-white text-sm md:text-base"
               >
                 Book a Service
               </motion.button>
@@ -137,7 +137,7 @@ const HeroSection: React.FC = () => {
             variants={imageVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] order-1 lg:order-2"
+            className="relative w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] xl:h-[480px] order-1 lg:order-2"
           >
             <Image
               src={"/landing/hero/heroImage.png"}

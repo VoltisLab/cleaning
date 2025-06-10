@@ -18,7 +18,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "CLeaning Services",
+  title: "Cleaning Services",
   description: "We've got all your cleaning and home services covered! Our fully vetted and highly experienced team are committed to delivering top-quality services. We know how important trust and reliability are to our customers, which is why we carefully choose only the best professionals to join our team.",
 };
 
@@ -28,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" >
+    <html lang="en">
       <Header />
       <body
-        className={`${dmSans.variable} ${lato.variable} antialiased`}
+        className={`${dmSans.variable} ${lato.variable} antialiased overflow-x-hidden`}
       >
         {children}
       </body>
