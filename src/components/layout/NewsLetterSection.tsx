@@ -86,8 +86,7 @@ const NewsletterSection: React.FC = () => {
               <div className="text-white text-center xl:text-left">
                 <motion.h2 
                   variants={itemVariants}
-                  className="text-[24px] xl:text-[28px] font-bold mb-3 md:mb-4 font-dm-sans leading-tight "
-                >
+                  className="text-[20px] md:text-[24px] xl:text-[28px] font-bold mb-3 md:mb-4 font-dm-sans leading-tight "
                   Subscribe to our newsletter to get updates to our latest collections
                 </motion.h2>
                 <motion.p 
