@@ -33,6 +33,7 @@ const Footer: React.FC = () => {
       }
     }
   };
+  
 
   return (
     <footer className="bg-[#051625] text-white md:pt-48 pt-100 pb-16 xl:px-0 px-5" ref={ref}>
