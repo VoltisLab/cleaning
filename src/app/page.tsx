@@ -9,21 +9,21 @@ import TestimonialsSection from "@/components/shared/TestimonialSection";
     {
       title: 'Residential Cleaning',
       description: `We provide laundry cleaning that's thorough and gentle, making sure your clothes come back fresh and spotless every time.`,
-      color: 'bg-white',
+      color: 'bg-[#4977E5]',
       icon: '/landing/serviceSection/tissue.png',
       href: '/services/residential'
     },
     {
       title: 'Commercial Cleaning',
       description: 'We offer office cleaning to the highest standards, making sure your workspace is always fresh and welcoming.',
-      color: 'bg-[#4977E5]',
+      color: 'bg-white',
       icon: '/landing/serviceSection/brush.png',
       href: '/services/commercial'
     },
     {
       title: 'Laundry Service',
       description: 'We specialise in Airbnb cleaning that meets the highest standards, so your guests always walk into a fresh, spotless space.',
-      color: 'bg-white',
+      color: 'bg-[#4977E5]',
       icon: '/landing/serviceSection/image.png',
       href: '/services/laundry'
     },
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-white overflow-x-hidden">
       <HeroSection />
       <FeatureCards />
-      <ServicesSection  data={services}/>
+      <ServicesSection  data={services} title="Our Services"/>
       <StatsSection />
       <PricingSection />
       <TestimonialsSection />

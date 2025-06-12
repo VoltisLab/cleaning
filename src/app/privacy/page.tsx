@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { Shield, Cookie, Eye, Lock, Users, Globe, Calendar, Clock, AlertTriangle, CheckCircle } from 'lucide-react';
+import Banner from '@/components/shared/Banner';
 
 interface PolicySection {
   id: string;
@@ -17,14 +18,14 @@ const PoliciesPage = () => {
   ];
 
   const PrivacyPolicy = () => (
-    <div className="space-y-8">
+    <div className=" flex flex-col gap-8 pb-32">
       {/* Introduction */}
       <section className="bg-gradient-to-br from-[#4977E5]/5 to-blue-50 p-6 rounded-xl border-l-4 border-[#4977E5]">
         <div className="flex items-start gap-4">
           <Shield className="w-8 h-8 text-[#4977E5] mt-1 flex-shrink-0" />
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">Privacy Policy</h2>
-            <p className="text-gray-700 text-lg">
+            <h2 className="text-xl xl:text-2xl font-bold text-gray-900 mb-3">Privacy Policy</h2>
+            <p className="text-gray-700 xl:text-lg">
               At Pebble Cleaning Services, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our cleaning and laundry services.
             </p>
             <div className="mt-4 flex items-center gap-2 text-sm text-gray-600">
@@ -94,7 +95,7 @@ const PoliciesPage = () => {
       <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
         <div className="flex items-center gap-3 mb-6">
           <Lock className="w-6 h-6 text-[#4977E5]" />
-          <h3 className="text-xl font-semibold text-gray-900">How We Use Your Information</h3>
+          <h3 className="xl:text-xl font-semibold text-gray-900">How We Use Your Information</h3>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -222,14 +223,14 @@ const PoliciesPage = () => {
   );
 
   const CookiesPolicy = () => (
-    <div className="space-y-8">
+    <div className="flex flex-col gap-8 pb-32">
       {/* Introduction */}
       <section className="bg-gradient-to-br from-[#4977E5]/5 to-blue-50 p-6 rounded-xl border-l-4 border-[#4977E5]">
         <div className="flex items-start gap-4">
           <Cookie className="w-8 h-8 text-[#4977E5] mt-1 flex-shrink-0" />
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">Cookies Policy</h2>
-            <p className="text-gray-700 text-lg">
+            <h2 className="xl:text-2xl text-xl font-bold text-gray-900 mb-3">Cookies Policy</h2>
+            <p className="text-gray-700 xl:text-lg">
               This Cookies Policy explains how Pebble Cleaning Services uses cookies and similar technologies on our website to provide you with a better, faster, and safer experience.
             </p>
             <div className="mt-4 flex items-center gap-2 text-sm text-gray-600">
@@ -448,19 +449,9 @@ const PoliciesPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white ">
       {/* Header */}
-      <div className="bg-gradient-to-br from-[#4977E5] to-blue-600 text-white">
-        <div className="max-w-6xl mx-auto px-4 py-16 text-center">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <Shield className="w-12 h-12" />
-            <h1 className="text-4xl md:text-5xl font-bold">Privacy & Cookies</h1>
-          </div>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Your privacy matters to us. Learn how we protect and use your information to provide better cleaning and laundry services.
-          </p>
-        </div>
-      </div>
+      <Banner page='Privacy & Cookies' />
 
       {/* Navigation */}
       <div className="bg-white shadow-sm sticky top-0 z-40">
@@ -470,7 +461,7 @@ const PoliciesPage = () => {
               <button
                 key={section.id}
                 onClick={() => setActivePolicy(section.id as 'privacy' | 'cookies')}
-                className={`flex items-center gap-2 px-6 py-4 font-medium transition-all duration-200 border-b-2 ${
+                className={`flex items-center gap-2 xl:px-6 px-2 py-4 font-medium transition-all duration-200 border-b-2 ${
                   activePolicy === section.id
                     ? 'text-[#4977E5] border-[#4977E5] bg-[#4977E5]/5'
                     : 'text-gray-600 border-transparent hover:text-[#4977E5] hover:bg-gray-50'
@@ -485,7 +476,7 @@ const PoliciesPage = () => {
       </div>
 
       {/* Content */}
-      <div className=" px-4 py-12 mx-auto max-w-[1139px] bg-white">
+      <div className=" lg:px-0 px-4 py-12 mx-auto max-w-[1139px] bg-white">
         {activePolicy === 'privacy' ? <PrivacyPolicy /> : <CookiesPolicy />}
       </div>
     </div>

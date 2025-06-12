@@ -31,6 +31,7 @@ interface ServiceCategory {
 interface Social {
   name: string;
   path: string;
+  href: string
 }
 
 const Header = () => {
@@ -156,9 +157,8 @@ const Header = () => {
   ];
 
   const socials: Social[] = [
-    { name: 'Facebook', path: "/landing/header/facebook.svg" },
-    { name: 'Twitter', path: "/landing/header/twitter.svg" },
-    { name: 'Instagram', path: "/landing/header/instagram.svg" },
+    { name: 'Facebook', path: "/landing/header/facebook.svg", href:"" },
+    { name: 'Instagram', path: "/landing/header/instagram.svg", href: "https://instagram.com/pebblecleaning" },
   ];
 
   // Type the label parameter as string
@@ -628,9 +628,10 @@ const Header = () => {
 
             <div className="flex items-center justify-center space-x-4 pt-3">
               {socials.map((social, index) => (
-                <div
-                  key={index}
-                  className="w-8 h-8 bg-[#4977E5] rounded-full flex items-center justify-center hover:bg-[#4977E5]/80 transition-colors cursor-pointer"
+                <Link
+                href={social.href}
+                key={index}
+                className="w-8 h-8 bg-[#4977E5] rounded-full flex items-center justify-center hover:bg-[#4977E5]/80 transition-colors cursor-pointer"
                 >
                   <Image
                     src={social.path}
@@ -639,7 +640,7 @@ const Header = () => {
                     height={15}
                     className="filter brightness-0 invert"
                   />
-                </div>
+                </Link>
               ))}
             </div>
           </div>

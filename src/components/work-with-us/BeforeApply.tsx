@@ -26,7 +26,7 @@ const BeforeApply = () => {
         <div className='flex flex-col gap-3 pb-4 lg:pb-0 text-center'>
           <p className='font-[700] text-3xl lg:text-4xl text-white'>Before you apply</p>
           <p className='text-sm'>
-            To boos your chances for a successful application, you must have all the following:
+            To boost your chances for a successful application, you must have all the following:
           </p>
         </div>
 
