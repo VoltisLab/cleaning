@@ -9,6 +9,7 @@ export interface FeatureCard {
   title: string;
   description: string;
   color: string;
+  iconBg: string;
 }
 
 export interface ServiceCard {
@@ -22,7 +23,6 @@ export interface TeamMember {
   name: string;
   role: string;
   image: string;
-  bgColor: string;
 }
 
 export interface PricingPlan {

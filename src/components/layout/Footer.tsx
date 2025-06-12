@@ -1,104 +1,146 @@
-import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
-
+'use client';
+import { motion, useInView } from "framer-motion";
+import { Facebook, Instagram, Linkedin} from "lucide-react";
+import Image from 'next/image'
+import Link from "next/link";
+import { useRef } from "react";
 const Footer: React.FC = () => {
-  const companyLinks = ['About Us', 'Services', 'Team', 'Testimonial'];
-  const supportLinks = ['Help Center', 'Tweet @ Us', 'Webinars', 'Feedback'];
-  const resourceLinks = ['Courses', 'Become Teacher', 'Service', 'All in One'];
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const companyLinks = [{title: 'About Us', href: '/about' }, {title: 'Services', href: '/services'}, {title: 'Team', href: '/team'}, {title: 'Testimonial', href: '/team'}];
+  const supportLinks = ['Help Center', 'Contact Us', 'Feedback'];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+  
 
   return (
-    <footer className="bg-[#1a2332] text-white py-16">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-2">
+    <footer className="bg-[#051625] text-white md:pt-48 pt-100 pb-16 xl:px-0 px-5" ref={ref}>
+      <div className="max-w-[1139px] mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="flex flex-wrap justify-between items-start"
+        >
+          
+          <motion.div variants={itemVariants} className="xl:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-[#5B7AFF] rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">C</span>
-              </div>
-              <span className="text-xl font-bold">Cleaning</span>
+               <Image
+                src={"/landing/logoWhite.png"}
+                alt={"Logo"}
+                width={138}
+                height={50}
+                />
             </div>
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
-              Aliquam in hendrerit ante, at volutpat massa. Pellentesque iaculis
-              congue luctus.
+            <p className="text-white mb-6 leading-relaxed max-w-xs md:text-[16px] text-sm">
+              Pebble Cleaning is your trusted partner for reliable, affordable, and spotless cleaning across the UK. We treat every home and business like our own. 
             </p>
-            <div className="flex space-x-4">
-              <Facebook className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
-              <Twitter className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
-              <Instagram className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
-              <Linkedin className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
-            </div>
-          </div>
-          <div>
-            <h3 className="font-bold text-lg mb-6">Company</h3>
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <h3 className="font-bold text-sm md:text-lg mb-6">Company</h3>
             <ul className="space-y-3">
               {companyLinks.map((link, index) => (
-                <li key={index}>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                    {link}
-                  </a>
-                </li>
+                <Link href={link.href} key={index} className="text-white hover:text-white transition-colors md:text-[16px] text-xs">
+                <motion.li 
+                  key={index}
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                  className="mt-5"
+                >
+                  {link.title}
+                </motion.li>
+                </Link>
               ))}
             </ul>
-          </div>
-          <div>
-            <h3 className="font-bold text-lg mb-6">Support</h3>
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <h3 className="font-bold text-sm md:text-lg mb-6">Support</h3>
             <ul className="space-y-3">
               {supportLinks.map((link, index) => (
-                <li key={index}>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <motion.li 
+                  key={index}
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <a href="#" className="text-white hover:text-white transition-colors md:text-[16px] text-xs">
                     {link}
                   </a>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
-          <div>
-            <h3 className="font-bold text-lg mb-6">Links</h3>
-            <ul className="space-y-3 mb-6">
-              {resourceLinks.map((link, index) => (
-                <li key={index}>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                    {link}
-                  </a>
-                </li>
+          </motion.div>
+
+          <motion.div variants={itemVariants} >
+            <h4 className="font-bold mb-7  text-sm md:text-lg ">Contact Us</h4>        
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="flex items-center "
+              >
+                <span className="text-white text-xs mb-3 xl:text-[16px] ">hello@pebblecleaning.com</span>
+              </motion.div>
+              <div className="flex gap-4 mt-3">
+              {[{icon: Facebook, href: '' }, {icon: Instagram, href: 'https://instagram.com/pebblecleaning' }, {icon: Linkedin, href: '' }].map((Icon, index) => (
+                <motion.a
+                key={index}
+                href={Icon.href}
+                  whileHover={{ scale: 1.2, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Icon.icon className="w-6 h-6 text-white hover:text-white cursor-pointer" />
+                </motion.a>
               ))}
-            </ul>
-            <div className="border-t border-gray-600 pt-6">
-              <h4 className="font-bold mb-4">Contact Us</h4>
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-4 h-4 text-gray-400" />
-                  <span className="text-gray-400 text-sm">(91) 98765 43321 54</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="w-4 h-4 text-gray-400" />
-                  <span className="text-gray-400 text-sm">support@mail.com</span>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <div className="border-t border-gray-600 mt-12 pt-8">
+          </motion.div>
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="border-t border-gray-600 mt-12 pt-8"
+        >
           <div className="flex flex-col lg:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © Copyright White Labs 2025. All rights reserved.
+            <p className="text-white text-sm">
+             © Copyright Voltis Labs {new Date().getFullYear()}. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 lg:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Terms of Use
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Legal
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Site Map
-              </a>
+              {[{link: 'Privacy Policy', href: '/privacy'}, {link: 'Terms of Use', href: '/privacy'}, {link: 'Legal', href: '/privacy'}, {link: 'Site Map', href: '/privacy' }].map((link, index) => (
+                <motion.a
+                  key={index}
+                  whileHover={{ y: -2 }}
+                  href={link.href} 
+                  className="text-white hover:text-white text-sm transition-colors"
+                >
+                  {link.link}
+                </motion.a>
+              ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
