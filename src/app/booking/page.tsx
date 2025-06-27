@@ -1,5 +1,5 @@
 import Banner from '@/components/shared/Banner'
-import BookingForm from '@/components/booking/BookinForm'
+import BookingForm from '@/components/booking/BookingForm'
 import React from 'react'
 
 const page = () => {
@@ -11,6 +11,7 @@ const page = () => {
 
             <div className='
             w-full flex justify-center '>
+                {/* <BookingForm/> */}
                 <BookingForm/>
             </div>
         </div>
