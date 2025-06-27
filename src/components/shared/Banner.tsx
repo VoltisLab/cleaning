@@ -6,7 +6,7 @@ import { Home, ChevronRight } from 'lucide-react'
 
 const Banner = ({page} : { page: string}) => {
   return (
-    <div className='relative h-80 w-full overflow-hidden'>
+    <div className='relative h-60 w-full overflow-hidden'>
       {/* Blue overlay */}
       <div className="bg-[#406ACFC2] size-full absolute inset-0 z-10"></div>
       
