@@ -1,17 +1,16 @@
 "use client";
 
-import { UseFormRegister, UseFormWatch } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 import { FormData } from "./BookingForm";
 
 type Props = {
   register: UseFormRegister<FormData>;
-  watch: UseFormWatch<FormData>;
 };
 
 const frequencyOptions = ["One Time", "Weekly", "Bi-Weekly", "Monthly"];
 
-export default function FrequencySection({ register, watch }: Props) {
-  const selected = watch("frequency");
+export default function FrequencySection({ register }: Props) {
+  // const selected = watch("frequency");
 
   return (
     <section className="space-y-4">

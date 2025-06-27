@@ -21,7 +21,12 @@ export const formSchema = z.object({
   position: z.string(),
   subCategory: z.string(),
   agreeToTerms: z
-  .boolean()
-  .refine((val) => val === true, { message: "You must agree to the terms" }),
-
+    .boolean()
+    .refine((val) => val === true, { message: "You must agree to the terms" }),
+  propertyType: z.string().optional(), // 👈 add this to fix the component
+  propertyTypeNote: z.string().optional(), // 👈 also required
+  additionalRoom: z.string().optional(), // 👈 also required
+  additionalRoomNote: z.string().optional(), // 👈 also required
 });
+
+export type FormData = z.infer<typeof formSchema>;

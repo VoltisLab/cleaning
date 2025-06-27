@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import ContactInformationSection from "./ContactInformationSection";
 import ServiceAddressSection from "./ServiceAddressSection";
  import PropertyInformationSection from "./PropertyInformationSection";
@@ -13,13 +12,12 @@ import SpecialInstructionsSection from "./SpecialInstructionsSection";
 import TermsAgreementSection from "./TermsAgreementSection";
 import SubmitButton from "./SubmitButton";
 import { formSchema } from "./schema";
-import { useSearchParams } from "next/navigation";
 
 export type FormData = z.infer<typeof formSchema>;
 
 export default function BookingForm() {
-      const searchParams = useSearchParams();
-      const serviceType = searchParams.get("servicetype") ?? "Airbnb"
+      // const searchParams = useSearchParams();
+      const serviceType =  "Airbnb"
 
   const {
     register,
@@ -46,12 +44,17 @@ export default function BookingForm() {
       <ServiceAddressSection register={register} errors={errors} />
      <PropertyInformationSection
         register={register}
-        errors={errors}
+        // errors={errors}
         setValue={setValue}
         watch={watch}
       />
-       <PreferredDateTimeSection setValue={setValue} watch={watch} errors={errors} />
-      <FrequencySection register={register} watch={watch} />
+    <PreferredDateTimeSection
+    register={register}
+    setValue={setValue}
+    watch={watch}
+    errors={errors}
+    />      
+    <FrequencySection register={register}  />
       <SpecialInstructionsSection register={register} />
       <TermsAgreementSection register={register} errors={errors} />
       <SubmitButton />

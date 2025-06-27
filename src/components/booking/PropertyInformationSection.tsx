@@ -2,7 +2,6 @@
 
 import {
   UseFormRegister,
-  FieldErrors,
   UseFormSetValue,
   UseFormWatch,
 } from "react-hook-form";
@@ -10,7 +9,6 @@ import { FormData } from "./BookingForm";
 
 type Props = {
   register: UseFormRegister<FormData>;
-  errors: FieldErrors<FormData>;
   setValue: UseFormSetValue<FormData>;
   watch: UseFormWatch<FormData>;
 };
@@ -21,7 +19,6 @@ const bedroomOptions = ["0", "1", "2", "3", "4", "5+"];
 
 export default function PropertyInformationSection({
   register,
-  errors,
   setValue,
   watch,
 }: Props) {
