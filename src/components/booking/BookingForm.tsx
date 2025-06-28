@@ -12,13 +12,21 @@ import SpecialInstructionsSection from "./SpecialInstructionsSection";
 import TermsAgreementSection from "./TermsAgreementSection";
 import SubmitButton from "./SubmitButton";
 import { formSchema } from "./schema";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export type FormData = z.infer<typeof formSchema>;
 
 export default function BookingForm() {
-      // const searchParams = useSearchParams();
-      const serviceType =  "Airbnb"
 
+      const searchParams = useSearchParams();
+       const [serviceType, setServiceType] = useState("Airbnb");
+
+  // ✅ Safely extract query param only on client
+  useEffect(() => {
+    const param = searchParams.get("servicetype");
+    if (param) setServiceType(param);
+  }, [searchParams]);
   const {
     register,
     handleSubmit,
@@ -39,7 +47,12 @@ export default function BookingForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full max-w-3xl mx-auto px-4 py-10 space-y-8"
     >
-      <h2 className="text-2xl font-semibold">{serviceType} booking</h2>
+      <h2 className="text-2xl font-semibold">
+        {serviceType
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ")}{" "}
+         Booking</h2>
        <ContactInformationSection register={register} errors={errors} />
       <ServiceAddressSection register={register} errors={errors} />
      <PropertyInformationSection
