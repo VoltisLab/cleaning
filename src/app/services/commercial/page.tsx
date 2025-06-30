@@ -60,7 +60,7 @@ const services = [
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="bg-white py-10">
       <ServicesSection data={services} title="Commercial Services"/>
     </div>
   );

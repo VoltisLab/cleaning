@@ -46,7 +46,7 @@ const services = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white py-10">
       <ServicesSection data={services} title="Laundry Services"/>
     </div>
   );

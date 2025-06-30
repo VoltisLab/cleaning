@@ -91,6 +91,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
               <motion.div
                   key={index}
                   variants={cardVariants}
+                  onClick={() => !shouldShowButtons(service.title) && router.push(service?.href)}
                   whileHover={{
                     y: -15,
                     scale: 1.03,
@@ -131,15 +132,18 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
   <>
     {/* Book Now - only on hover */}
     <button
-      className={`absolute cursor-pointer top-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium transition-all opacity-0 group-hover:opacity-100 ${
-        service.color === "bg-[#4977E5]"
-          ? 'bg-white text-[#4977E5] hover:bg-gray-100'
-          : 'bg-transparent border border-[#4977E5] text-[#4977E5] hover:bg-[#4977E5] hover:text-white'
-      }`}
-      onClick={() => router.push(`/booking?servicetype=${service?.title}`)}
-    >
-      {service.color === "bg-[#4977E5]" ? 'Book now' : 'Book Now'}
-    </button>
+  className={`absolute cursor-pointer top-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium transition-all
+    opacity-100
+    lg:opacity-0 lg:group-hover:opacity-100
+    ${
+      service.color === "bg-[#4977E5]"
+        ? 'bg-white text-[#4977E5] hover:bg-gray-100'
+        : 'bg-transparent border border-[#4977E5] text-[#4977E5] hover:bg-[#4977E5] hover:text-white'
+    }`}
+  onClick={() => router.push(`/booking?servicetype=${service?.title}`)}
+>
+  {service.color === "bg-[#4977E5]" ? 'Book now' : 'Book Now'}
+</button>
 
     {/* Learn More - always visible or also hide on hover if desired */}
     <button className={`absolute bottom-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
