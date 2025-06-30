@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ControlledInputField from '../ui/ControlledInputField'
 import DropdownField from '../ui/DropdownField'
@@ -21,7 +20,6 @@ const ContactForm = () => {
     message: ''
   })
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const serviceOptions = [
     'Cleaning Service',
@@ -37,13 +35,7 @@ const ContactForm = () => {
     }))
   }
 
-  const handleServiceSelect = (service: string) => {
-    setFormData(prev => ({
-      ...prev,
-      service
-    }))
-    setIsDropdownOpen(false)
-  }
+ 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

@@ -10,9 +10,7 @@ type Props = {
 };
 
 export default function ContactInformationSection({ register, errors }: Props) {
-  const baseStyle =
-    "w-full border-2 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:border-[#4977E5] focus:ring-[#4977E5] transition";
-
+  
   return (
     <section className="space-y-4">
       <h3 className="text-lg font-semibold">Contact Information</h3>
