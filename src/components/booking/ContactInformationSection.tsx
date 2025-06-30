@@ -2,6 +2,7 @@
 
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { FormData } from "./BookingForm";
+import InputField from "../ui/InputField";
 
 type Props = {
   register: UseFormRegister<FormData>;
@@ -17,43 +18,32 @@ export default function ContactInformationSection({ register, errors }: Props) {
       <h3 className="text-lg font-semibold">Contact Information</h3>
 
       {/* Full Name */}
-      <div>
-        <input
-          type="text"
-          placeholder="Full name"
-          className={`${baseStyle} ${
-            errors.name ? "border-red-500" : "border-gray-300"
-          }`}
-          {...register("name")}
-        />
-        {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
-      </div>
+      <InputField
+        name="name"
+        placeholder="Full name"
+        register={register("name")}
+        error={errors.name?.message}
+      />
 
       {/* Email */}
-      <div>
-        <input
-          type="email"
-          placeholder="Email Address"
-          className={`${baseStyle} ${
-            errors.email ? "border-red-500" : "border-gray-300"
-          }`}
-          {...register("email")}
-        />
-        {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
-      </div>
+      
+      <InputField
+        name="email"
+        type="email"
+        placeholder="Email Address"
+        register={register("email")}
+        error={errors.email?.message}
+      />
 
       {/* Phone */}
-      <div>
-        <input
-          type="tel"
-          placeholder="Mobile number"
-          className={`${baseStyle} ${
-            errors.phone ? "border-red-500" : "border-gray-300"
-          }`}
-          {...register("phone")}
-        />
-        {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
-      </div>
+      
+      <InputField
+        type="tel"
+        name="phone"
+        placeholder="Mobile number"
+        register={register("phone")}
+        error={errors.phone?.message}
+      />
     </section>
   );
 }

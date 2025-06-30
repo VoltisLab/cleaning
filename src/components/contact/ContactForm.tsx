@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import ControlledInputField from '../ui/ControlledInputField'
+import DropdownField from '../ui/DropdownField'
 
 interface FormData {
   name: string
@@ -130,17 +132,12 @@ const ContactForm = () => {
                 <label htmlFor="name" className="block text-sm font-semibold text-[#051625] mb-3 sm:mb-5">
                   Your name
                 </label>
-                <motion.input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Enter your full name"
-                  className="w-full px-3 sm:px-4 py-3 sm:py-4 rounded-full border placeholder:text-[#838B95] border-[#838B9566] focus:border-[#4977E5] focus:outline-none transition-colors text-sm sm:text-base"
-                  whileFocus={{ scale: 1.02, borderColor: "#3B82F6" }}
-                  transition={{ duration: 0.2 }}
-                />
+                <ControlledInputField
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Enter your full name"
+            />
               </motion.div>
               <motion.div 
                 className="space-y-2"
@@ -150,76 +147,36 @@ const ContactForm = () => {
                 <label htmlFor="email" className="block text-sm font-semibold text-[#051625] mb-3 sm:mb-5">
                   Your email
                 </label>
-                <motion.input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="Enter your email address"
-                  className="w-full px-3 sm:px-4 py-3 sm:py-4 rounded-full placeholder:text-[#838B95] border border-[#838B9566] focus:border-[#4977E5] focus:outline-none transition-colors text-sm sm:text-base"
-                  whileFocus={{ scale: 1.02, borderColor: "#3B82F6" }}
-                  transition={{ duration: 0.2 }}
-                />
+               <ControlledInputField
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Enter your email address"
+              />
               </motion.div>
             </motion.div>
 
             {/* Service Dropdown */}
-            <motion.div 
-              className="space-y-2"
-              variants={itemVariants}
-            >
-              <label className="block text-sm font-semibold text-[#051625] mb-3 sm:mb-5">
-                What kind of service are you looking for?
-              </label>
-              <div className="relative">
-                <motion.button
-                  type="button"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full px-3 sm:px-4 py-3 sm:py-4 rounded-full border border-[#838B9566] focus:border-[#4977E5] focus:outline-none transition-colors text-left flex items-center justify-between text-sm sm:text-base"
-                  whileHover={{ scale: 1.02 }}
-                  whileFocus={{ scale: 1.02, borderColor: "#3B82F6" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className={formData.service ? 'text-[#051625]' : 'text-gray-500'}>
-                    {formData.service || 'Select a subject'}
-                  </span>
-                  <motion.div
-                    animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-                  </motion.div>
-                </motion.button>
-                
-                <AnimatePresence>
-                  {isDropdownOpen && (
-                    <motion.div 
-                      className="absolute top-full left-0 right-0 mt-1 bg-white border border-[#838B9566] rounded-2xl shadow-lg z-10"
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {serviceOptions.map((option, index) => (
-                        <motion.button
-                          key={index}
-                          type="button"
-                          onClick={() => handleServiceSelect(option)}
-                          className="w-full px-3 sm:px-4 py-3 text-left hover:bg-gray-50 text-[#838B95] first:rounded-t-2xl last:rounded-b-2xl transition-colors text-sm sm:text-base"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.1, delay: index * 0.05 }}
-                          whileHover={{ backgroundColor: "#F9FAFB", x: 5 }}
-                        >
-                          {option}
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
+           {/* Service Dropdown using DropdownField */}
+        <motion.div className="space-y-2" variants={itemVariants}>
+          <label className="block text-sm font-semibold text-[#051625] mb-3 sm:mb-5">
+            What kind of service are you looking for?
+          </label>
+          <DropdownField
+            name="service"
+            value={formData.service}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                service: value,
+              }))
+            }
+            options={serviceOptions}
+            placeholder="Select a service"
+          />
+        </motion.div>
+
 
             {/* Message */}
             <motion.div 
@@ -236,7 +193,7 @@ const ContactForm = () => {
                 onChange={handleInputChange}
                 placeholder="Write your message"
                 rows={5}
-                className="w-full px-3 sm:px-4 py-3 rounded-2xl border placeholder:text-[#838B95] border-[#838B9566] focus:border-[#4977E5] focus:outline-none transition-colors resize-none text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-3 rounded-2xl border-2 placeholder:text-[#838B95] border-[#838B9566] focus:border-[#4977E5] focus:outline-none transition-colors resize-none text-sm sm:text-base"
                 whileHover={{ scale: 1.01 }}
                 whileFocus={{ scale: 1.01, borderColor: "#3B82F6" }}
                 transition={{ duration: 0.2 }}
