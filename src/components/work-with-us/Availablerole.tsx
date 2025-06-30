@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import DropdownField from "../ui/DropdownField";
 
 // Define allowed positions as a union type
 type Position =
@@ -29,46 +30,6 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-// DropdownField component
-const DropdownField = ({
-  placeholder,
-  value,
-  onChange,
-}: {
-  placeholder: string;
-  value: string;
-  onChange: (value: string) => void;
-}) => (
-  <div className="relative">
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full px-4 py-3 pr-16 border-2 border-[#C7C7C7] rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-[#4977E5] transition-colors appearance-none bg-white cursor-pointer"
-    >
-      <option value="" disabled className="text-gray-400">
-        {placeholder}
-      </option>
-      <option value="Domestic Cleaner">Domestic Cleaner</option>
-      <option value="Commercial Cleaner">Commercial Cleaner</option>
-      <option value="Team Supervisor">Team Supervisor</option>
-      <option value="Laundry Assistant">Laundry Assistant</option>
-      <option value="On-call Cleaner / Floater">On-call Cleaner / Floater</option>
-      <option value="Admin Support">Admin Support</option>
-    </select>
-    <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white border border-[#4977E5] rounded-full flex items-center justify-center">
-        <svg
-          className="w-3 h-3 sm:w-4 sm:h-4 text-[#4977E5]"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
-    </div>
-  </div>
-);
 
 export default function BookingForm() {
     const router = useRouter()
@@ -107,9 +68,18 @@ export default function BookingForm() {
           </p>
 
           <DropdownField
+            name="position"
             placeholder="Select an available role"
             value={watch("position") || ""}
-            onChange={(value) => setValue("position", value as Position, { shouldValidate: true })}
+            onChange={(val) => setValue("position", val as Position, { shouldValidate: true })}
+            options={[
+              "Domestic Cleaner",
+              "Commercial Cleaner",
+              "Team Supervisor",
+              "Laundry Assistant",
+              "On-call Cleaner / Floater",
+              "Admin Support",
+            ]}
           />
           {errors.position && <p className="text-red-500 text-sm">{errors.position.message}</p>}
         </div>
