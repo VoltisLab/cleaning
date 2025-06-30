@@ -91,6 +91,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
               <motion.div
                   key={index}
                   variants={cardVariants}
+                  onClick={() => !shouldShowButtons(service.title) && router.push(service?.href)}
                   whileHover={{
                     y: -15,
                     scale: 1.03,

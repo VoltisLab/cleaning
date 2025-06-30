@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Home, ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 const Banner = ({page} : { page: string}) => {
   return (
@@ -45,6 +46,7 @@ const Banner = ({page} : { page: string}) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
         >
+          <Link href="/">
           <motion.div 
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer"
             whileHover={{ scale: 1.05 }}
@@ -53,6 +55,7 @@ const Banner = ({page} : { page: string}) => {
             <Home size={20} className="text-white" />
             <span className="text-white font-medium font-lato">Home</span>
           </motion.div>
+          </Link>
           
           <motion.div
             initial={{ opacity: 0, x: -10 }}

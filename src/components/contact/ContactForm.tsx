@@ -22,8 +22,9 @@ const ContactForm = () => {
 
 
   const serviceOptions = [
-    'Cleaning Service',
-    'Laundry Service',
+    'Residential Cleaning',
+    "Commercial Cleaning",
+    'Laundry Services',
     'Airbnb Cleaning',
   ]
 
