@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ControlledInputField from '../ui/ControlledInputField'
 import DropdownField from '../ui/DropdownField'
+import { createContactEnquiry } from '@/graphql/services/useEnquiryService'
+import { toast } from 'react-toastify'
 
 interface FormData {
   name: string
@@ -19,6 +21,8 @@ const ContactForm = () => {
     service: '',
     message: ''
   })
+    const [loading, setLoading] = useState(false)
+
 
 
   const serviceOptions = [
@@ -38,11 +42,66 @@ const ContactForm = () => {
 
  
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+
+  // Basic Validation
+  if (!formData.name.trim()) {
+    toast.error("Please enter your name.");
+    setLoading(false);
+    return;
   }
+
+  if (!formData.email.trim()) {
+    toast.error("Please enter your email.");
+    setLoading(false);
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(formData.email)) {
+    toast.error("Please enter a valid email address.");
+    setLoading(false);
+    return;
+  }
+
+  if (!formData.service.trim()) {
+    toast.error("Please select a service.");
+    setLoading(false);
+    return;
+  }
+
+  if (!formData.message.trim()) {
+    toast.error("Please enter a message.");
+    setLoading(false);
+    return;
+  }
+
+  // Transform service string to enum format
+  const enumServiceType = formData.service
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, "_");
+
+  // Send mutation
+  const res = await createContactEnquiry({
+    name: formData.name,
+    email: formData.email,
+    message: formData.message,
+    serviceType: enumServiceType,
+  });
+
+  if (res.createContactEnquiry.success) {
+    toast.success(res.createContactEnquiry.message || "Enquiry submitted!");
+    setFormData({ name: "", email: "", service: "", message: "" });
+  } else {
+    toast.error(res.createContactEnquiry.message || "Failed to submit enquiry.");
+  }
+
+  setLoading(false);
+};
+
 
   // Animation variants
   const containerVariants = {
@@ -205,7 +264,7 @@ const ContactForm = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
-              Get In Touch
+              {loading ? "Submiting": "Get In Touch"}
             </motion.button>
           </motion.form>
         </motion.div>
