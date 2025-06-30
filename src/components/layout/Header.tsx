@@ -104,21 +104,21 @@ const Header = () => {
   const serviceCategories: ServiceCategory[] = [
     {
       label: 'Residential Cleaning',
-      href: 'services/residential',
+      href: '/services/residential',
       subServices: [
-        { label: 'Standard Home Cleaning', href: 'services/residential/standard' },
-        { label: 'Deep Cleaning', href: 'services/residential/deep' },
-        { label: 'Move-In / Move-Out Cleaning', href: 'services/residential/move-in-out' },
-        { label: 'End of Tenancy Cleaning', href: 'services/residential/tenancy' },
-        { label: 'Spring Cleaning', href: 'services/residential/spring' },
+        { label: 'Standard Home Cleaning', href: '/services/residential/standard' },
+        { label: 'Deep Cleaning', href: '/services/residential/deep' },
+        { label: 'Move-In / Move-Out Cleaning', href: '/services/residential/move-in-out' },
+        { label: 'End of Tenancy Cleaning', href: '/services/residential/tenancy' },
+        { label: 'Spring Cleaning', href: '/services/residential/spring' },
         { label: 'After-Party Cleaning', href: 'services/residential/party' },
-        { label: 'Appliance Cleaning', href: 'services/residential/appliance' },
-        { label: 'Carpet & Upholstery Cleaning', href: 'services/residential/carpet' }
+        { label: 'Appliance Cleaning', href: '/services/residential/appliance' },
+        { label: 'Carpet & Upholstery Cleaning', href: '/services/residential/carpet' }
       ]
     },
     {
       label: 'Commercial Cleaning',
-      href: 'services/commercial',
+      href: '/services/commercial',
       subServices: [
         { label: 'Office Cleaning', href: '/services/commercial/office' },
         { label: 'Retail Store Cleaning', href: '/services/commercial/retail' },
