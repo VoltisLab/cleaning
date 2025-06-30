@@ -1,5 +1,6 @@
 import { client } from "@/lib/apollo-client";
 import { SUBSCRIBE_TO_NEWSLETTER } from "../mutations/NewsLetter";
+import { ApolloError } from "@apollo/client";
 
 type SubscribeResponse = {
   subscribeToNewsletter: {
@@ -20,13 +21,14 @@ export const subscribeToNewsletter = async (
       variables: { email },
     });
 
-    // Always return the expected shape
     return data!;
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as ApolloError;
+
     return {
       subscribeToNewsletter: {
         success: false,
-        message: error.message || "An error occurred while subscribing.",
+        message: err?.message || "An error occurred while subscribing.",
         subscription: { email },
       },
     };

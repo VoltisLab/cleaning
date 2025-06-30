@@ -1,5 +1,6 @@
 import { client } from "@/lib/apollo-client";
 import { CREATE_CONTACT_ENQUIRY } from "../mutations/Enquiry";
+import { ApolloError } from "@apollo/client";
 
 type CreateEnquiryResponse = {
   createContactEnquiry: {
@@ -17,7 +18,7 @@ export const createContactEnquiry = async ({
   name: string;
   email: string;
   message: string;
-  serviceType:string; // adjust enum types
+  serviceType: string;
 }): Promise<CreateEnquiryResponse> => {
   try {
     const { data } = await client.mutate<CreateEnquiryResponse>({
@@ -26,11 +27,13 @@ export const createContactEnquiry = async ({
     });
 
     return data!;
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as ApolloError;
+
     return {
       createContactEnquiry: {
         success: false,
-        message: error?.message || "Something went wrong",
+        message: err?.message || "Something went wrong",
       },
     };
   }
