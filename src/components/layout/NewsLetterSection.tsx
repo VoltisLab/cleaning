@@ -4,15 +4,27 @@ import Image from 'next/image'
 import { motion, useInView } from "framer-motion";
 import { Mail } from "lucide-react";
 import Link from "next/link";
+import { subscribeToNewsletter } from "@/graphql/services/NewsLetter";
+import { toast } from "react-toastify";
 
 const NewsletterSection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = () => {
-    console.log('Newsletter signup:', email);
+  const handleSubmit = async() => {
+  setLoading(true)
+     const res = await subscribeToNewsletter(email)
+     console.log("res", res)
+     if (res?.subscribeToNewsletter?.success) {
+      toast.success(res.subscribeToNewsletter.message || "Subscribed successfully!");
+      setEmail(""); // optional: reset form
+    } else {
+      toast.error(res.subscribeToNewsletter.message || "Something went wrong.");
+    }
     setEmail('');
+    setLoading(false)
   };
 
   const containerVariants = {
@@ -117,7 +129,7 @@ const NewsletterSection: React.FC = () => {
                       onClick={handleSubmit}
                       className="bg-white cursor-pointer text-[#1D242D] xl:px-4 px-2 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap text-sm sm:text-base"
                     >
-                      Subscribe
+                      {loading? "loading" : "Subscribe"}
                     </motion.button>
                   </div>
                 </motion.div>

@@ -5,6 +5,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import NewsletterSection from "@/components/layout/NewsLetterSection";
 
+import { ApolloProviderWrapper } from "@/lib/ApolloProviderWrapper";
+import { ToastContainer } from "react-toastify";
+
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
@@ -29,6 +32,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overflow-x-hidden">
+      <ApolloProviderWrapper>
+        <ToastContainer position="top-right" autoClose={3000} />
       <Header />
       <body
         className={`${dmSans.variable} ${lato.variable} antialiased overflow-x-hidden`}
@@ -37,6 +42,8 @@ export default function RootLayout({
       </body>
       <NewsletterSection />
       <Footer />
+      </ApolloProviderWrapper>
+
     </html>
   );
 }
