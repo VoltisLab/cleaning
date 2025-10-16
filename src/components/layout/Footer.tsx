@@ -86,15 +86,16 @@ const Footer: React.FC = () => {
             <h3 className="font-bold text-sm md:text-lg mb-6">Support</h3>
             <ul className="space-y-3">
               {supportLinks.map((link, index) => (
-                <motion.li 
-                  key={index}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <a href="#" className="text-white hover:text-white transition-colors md:text-[16px] text-xs">
-                    {link}
-                  </a>
-                </motion.li>
+                <Link href={link.href} key={index}>
+                  <motion.li 
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <span className="text-white hover:text-white transition-colors md:text-[16px] text-xs">
+                      {link.title}
+                    </span>
+                  </motion.li>
+                </Link>
               ))}
             </ul>
           </motion.div>
