@@ -35,18 +35,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${dmSans.variable} ${lato.variable} antialiased`}
+        className={`${dmSans.variable} ${lato.variable} antialiased h-full`}
       >
         <ApolloProviderWrapper>
           <ToastContainer position="top-right" autoClose={3000} />
-          <Header />
-          <main>
-            {children}
-          </main>
-          <Newsletter />
-          <Footer />
+          <div className="relative min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Newsletter />
+            <Footer />
+          </div>
         </ApolloProviderWrapper>
       </body>
     </html>
