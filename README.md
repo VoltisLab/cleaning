@@ -1,8 +1,37 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# Pebble Cleaning - Frontend
+
+The official website for Pebble Cleaning services.
+
+## Prerequisites
+
+- Node.js 18+ and npm
+- Backend server running (see [cleaning-server](https://github.com/VoltisLab/cleaning-server))
+
 ## Getting Started
 
-First, run the development server
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Create a `.env.local` file in the root directory:
+
+```bash
+NEXT_PUBLIC_GRAPHQL_URI=http://localhost:4000/pebble/web/graphql
+```
+
+See [ENV_SETUP.md](./ENV_SETUP.md) for more details.
+
+### 3. Start the backend server
+
+Make sure your backend is running at the configured URL. If you haven't set it up yet, follow the instructions at [cleaning-server](https://github.com/VoltisLab/cleaning-server).
+
+### 4. Run the development server
 
 ```bash
 npm run dev

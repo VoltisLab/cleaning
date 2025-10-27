@@ -1,8 +1,11 @@
 // lib/apolloClient.ts
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
 
+// Use environment variable or fallback to local development endpoint
+const GRAPHQL_URI = process.env.NEXT_PUBLIC_GRAPHQL_URI || "http://localhost:4000/pebble/web/graphql";
+
 const httpLink = new HttpLink({
-  uri: "https://uat-api.vmodel.app/pebbles/graphql/"
+  uri: GRAPHQL_URI
 });
 
 const authLink = new ApolloLink((operation, forward) => {
