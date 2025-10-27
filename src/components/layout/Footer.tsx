@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
   
 
   return (
-    <footer className="bg-[#051625] text-white md:pt-48 pt-100 pb-16 xl:px-0 px-5" ref={ref}>
+    <footer className="bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] text-white md:pt-48 pt-100 pb-16 xl:px-0 px-5" ref={ref}>
       <div className="max-w-[1139px] mx-auto">
         <motion.div
           variants={containerVariants}
@@ -57,6 +57,7 @@ const Footer: React.FC = () => {
                 alt={"Logo"}
                 width={97}
                 height={35}
+                className="brightness-0 invert"
                 />
             </div>
             <p className="text-white mb-6 leading-relaxed max-w-xs md:text-[16px] text-sm">
