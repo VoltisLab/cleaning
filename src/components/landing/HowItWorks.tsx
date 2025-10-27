@@ -103,7 +103,7 @@ const HowItWorks: React.FC = () => {
           className="text-center mt-12"
         >
           <p className="text-xl font-semibold text-[#4977E5]">
-            🧽 That's cleaning made simple.
+            🧽 That&apos;s cleaning made simple.
           </p>
         </motion.div>
       </div>

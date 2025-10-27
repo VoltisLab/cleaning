@@ -28,11 +28,11 @@ const Newsletter: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] relative overflow-hidden" ref={ref}>
+    <section className="py-20 bg-white relative overflow-hidden" ref={ref}>
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-overlay filter blur-3xl"></div>
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl"></div>
       </div>
 
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
@@ -47,16 +47,16 @@ const Newsletter: React.FC = () => {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6"
+            className="w-16 h-16 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-2xl flex items-center justify-center mx-auto mb-6"
           >
             <Mail className="w-8 h-8 text-white" />
           </motion.div>
 
           {/* Heading */}
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Stay in the loop
           </h2>
-          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
             Get the latest updates, exclusive offers, and cleaning tips delivered straight to your inbox
           </p>
 
@@ -76,7 +76,7 @@ const Newsletter: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full pl-12 pr-4 py-4 rounded-xl bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+                  className="w-full pl-12 pr-4 py-4 rounded-xl bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4977E5]/50 focus:border-[#4977E5] transition-all"
                   required
                 />
               </div>
@@ -85,7 +85,7 @@ const Newsletter: React.FC = () => {
                 disabled={loading}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-900 text-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   'Subscribing...'
@@ -104,7 +104,7 @@ const Newsletter: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-sm text-blue-100 mt-4"
+            className="text-sm text-gray-500 mt-4"
           >
             We respect your privacy. Unsubscribe at any time.
           </motion.p>

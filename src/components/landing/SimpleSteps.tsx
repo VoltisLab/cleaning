@@ -25,7 +25,7 @@ const SimpleSteps: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-white via-blue-100 to-[#4977E5] relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-blob"></div>
@@ -40,10 +40,10 @@ const SimpleSteps: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             So simple, anyone can do it
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
             Get started in three easy steps
           </p>
         </motion.div>

@@ -24,7 +24,7 @@ const CommunitySection: React.FC = () => {
             Learn, share, and stay inspired 💬
           </h2>
           <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-            Join the Pebble Community — where customers and cleaners post their best tips, tricks, and transformations. From eco-friendly hacks to professional advice, there's always something new to discover.
+            Join the Pebble Community — where customers and cleaners post their best tips, tricks, and transformations. From eco-friendly hacks to professional advice, there&apos;s always something new to discover.
           </p>
 
           <Link href="/community">

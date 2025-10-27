@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { 
   Users, 
   Calendar, 
   DollarSign, 
-  TrendingUp, 
   ClipboardList,
   Mail,
   Settings,
@@ -82,9 +82,9 @@ const AdminDashboard = () => {
               <button className="p-2 hover:bg-gray-100 rounded-full">
                 <Settings className="w-6 h-6 text-gray-600" />
               </button>
-              <a href="/" className="px-4 py-2 bg-[#4977E5] text-white rounded-full hover:bg-blue-600 transition-colors">
+              <Link href="/" className="px-4 py-2 bg-[#4977E5] text-white rounded-full hover:bg-blue-600 transition-colors">
                 Back to Site
-              </a>
+              </Link>
             </div>
           </div>
         </div>

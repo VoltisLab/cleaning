@@ -6,15 +6,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Sparkles, Shield, Clock, Star } from 'lucide-react';
 
+const phoneImages = [
+  '/landing/hero/phone-app.png',
+  '/landing/hero/phone-app-2.png'
+];
+
 const HeroSection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  const phoneImages = [
-    '/landing/hero/phone-app.png',
-    '/landing/hero/phone-app-2.png'
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
