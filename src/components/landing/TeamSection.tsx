@@ -82,7 +82,6 @@ const TeamSection: React.FC = () => {
     hover: {
       y: -5,
       scale: 1.02,
-      boxShadow: "0 20px 40px rgba(73, 119, 229, 0.15)",
       transition: {
         duration: 0.3,
         ease: "easeInOut"
@@ -174,7 +173,7 @@ const TeamSection: React.FC = () => {
                 {/* Card positioned absolutely relative to the image */}
                 <motion.div 
                   variants={cardOverlayVariants}
-                  className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 shadow-lg border-t-4 border-t-[#4977E5] w-[85%] max-w-[212px] min-w-[180px] rounded-b-[12px] pb-3 bg-white"
+                  className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 border border-gray-200 border-t-4 border-t-[#4977E5] w-[85%] max-w-[212px] min-w-[180px] rounded-b-[12px] pb-3 bg-white"
                 >
                   <motion.h3 
                     className="font-bold text-gray-900 mb-1 mt-4 text-[18px] md:text-[20px] px-2"

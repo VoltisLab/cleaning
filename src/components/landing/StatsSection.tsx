@@ -132,8 +132,7 @@ const StatsSection: React.FC = () => {
             <motion.button
               variants={itemVariants}
               whileHover={{ 
-                scale: 1.05, 
-                boxShadow: "0 10px 25px rgba(73, 119, 229, 0.3)" 
+                scale: 1.05
               }}
               whileTap={{ scale: 0.95 }}
               className="bg-[#4977E5] cursor-pointer text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors text-sm sm:text-base"
@@ -191,10 +190,10 @@ const StatsSection: React.FC = () => {
                 whileHover={{ scale: 1.1 }}
                 className="text-center text-white"
               >
-                <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 drop-shadow-lg">
+                <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2">
                   <StaticNumber target={stat.number} suffix={stat.suffix} />
                 </div>
-                <div className="text-xs sm:text-sm lg:text-base font-medium opacity-90 drop-shadow-md">
+                <div className="text-xs sm:text-sm lg:text-base font-medium opacity-90">
                   {stat.label}
                 </div>
                 {/* Separator line - hidden on mobile for last item */}

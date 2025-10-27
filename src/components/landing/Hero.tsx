@@ -2,151 +2,163 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView} from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
+import { Sparkles, Shield, Clock, Star } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 0.6
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8, x: 50 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const starVariants = {
-    hidden: { opacity: 0, rotate: -180, scale: 0 },
-    visible: {
-      opacity: 1,
-      rotate: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        delay: 0.8,
-        ease: "backOut"
-      }
-    }
-  };
-
   return (
-    <section className="bg-gradient-to-br relative overflow-hidden px-5 xl:px-0 " ref={ref}>
-      <div className="max-w-[1139px] mx-auto">
-        <div className="grid lg:grid-cols-[40%_60%] gap-6 md:gap-8 lg:gap-12 items-center">
+    <section className="relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-white via-blue-50 to-purple-50" ref={ref}>
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute top-40 -right-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob-slow"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            className="relative z-10 pb-6 md:pb-8 lg:pb-12 order-2 lg:order-1"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col justify-center"
           >
-            {/* <motion.div variants={itemVariants} className="mb-3 md:mb-4 text-center lg:text-left">
-              <span className="text-[#4977E5] font-medium text-xs md:text-sm tracking-wider uppercase">
-                CLEAN HOME, HAPPY LIFE.
-              </span>
-            </motion.div> */}
-            
-            {/* Title with responsive star positioning */}
-            <motion.div variants={itemVariants} className="relative mb-4 md:mb-6">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-[52px] font-dm-sans font-bold text-gray-900 leading-tight text-center lg:text-left">
-                Reliable Cleaning. {' '}
-                <span className="text-[#4977E5]">Real Results.</span> 
-              </h1>
-              {/* Star positioned responsively */}
-              <motion.div
-                variants={starVariants}
-                className="absolute top-20 md:top-20 -left-3 md:-left-3 lg:-left-5"
-              >
-                <Image
-                  src={"/landing/hero/star.svg"}
-                  alt={"Star"}
-                  width={16}
-                  height={16}
-                  className="object-contain w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
-                />
-              </motion.div>
+            {/* Badge */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-8 border border-blue-100 w-fit"
+            >
+              <Sparkles className="w-4 h-4 text-[#4977E5]" />
+              <span className="text-sm font-semibold text-[#4977E5]">Trusted by 1,000+ UK customers</span>
             </motion.div>
-            
-            <motion.p
-              variants={itemVariants}
-              className="text-[#838B95] text-sm md:text-base lg:text-[15px] mb-6 md:mb-8 leading-relaxed max-w-lg font-lato text-center lg:text-left mx-auto lg:mx-0"
-            >
-              Pebble Cleaning offers fast, affordable, and flexible cleaning services across homes , offices and multiple property types in the UK
-            </motion.p>
-            
-            {/* Responsive button layout */}
-            <motion.div
-              variants={itemVariants}
-              className="flex xl:flex-col md:flex-row flex-row gap-3 md:gap-4 justify-center lg:justify-start"
-            >
-              <Link href={"/about"}>
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(73, 119, 229, 0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#4977E5] cursor-pointer text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg text-sm md:text-base"
-              >
-                About Us
-              </motion.button>
+
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+              Cleaning Made
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
+                Simple & Smart
+              </span>
+            </h1>
+
+            {/* Subheading */}
+            <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed">
+              Book professional cleaners in seconds. Track in real-time. Pay securely. All from your phone.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <Link href="/booking">
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all w-full sm:w-auto"
+                >
+                  Get Started Free
+                </motion.button>
               </Link>
 
-              <Link href={"/services"}>
-                  <motion.button
-                whileHover={{ scale: 1.05, borderColor: "#5977E5", backgroundColor: "#f8faff" }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 cursor-pointer border-[#4977E5] text-[#4977E5] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-[#5977E5] transition-colors bg-white text-sm md:text-base"
-              >
-                Book a Service
-              </motion.button>
+              <Link href="#features">
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-gray-200 text-gray-700 px-10 py-5 rounded-2xl font-semibold text-lg hover:border-[#4977E5] hover:text-[#4977E5] transition-all w-full sm:w-auto"
+                >
+                  See How It Works
+                </motion.button>
               </Link>
-          
+            </div>
+
+            {/* Trust Indicators */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex flex-wrap gap-8 text-sm text-gray-600"
+            >
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-[#4977E5]" />
+                <span>Vetted Professionals</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-5 h-5 text-[#4977E5]" />
+                <span>Same-Day Booking</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Star className="w-5 h-5 text-[#4977E5]" />
+                <span>5-Star Rated</span>
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Image - Responsive sizing */}
+          {/* Right - App Mockup */}
           <motion.div
-            variants={imageVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="relative w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] xl:h-[480px] order-1 lg:order-2"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="relative flex items-center justify-center lg:justify-end h-full"
           >
-            <Image
-              src={"/landing/hero/heroImage.png"}
-              alt={"Hero cleaning equipment"}
-              fill
-              className="object-cover rounded-xl md:rounded-2xl"
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 60vw"
-            />
+            {/* Phone Frame */}
+            <div className="relative w-full max-w-xs">
+              <div className="bg-gray-900 rounded-[3rem] p-3 shadow-2xl">
+                <div className="bg-white rounded-[2.5rem] overflow-hidden" style={{ height: '600px' }}>
+                  {/* Status Bar */}
+                  <div className="bg-white px-6 py-3 flex justify-between items-center">
+                    <span className="text-sm font-semibold">9:41</span>
+                    <div className="flex gap-1">
+                      <div className="w-4 h-4 bg-gray-800 rounded-full"></div>
+                      <div className="w-4 h-4 bg-gray-800 rounded-full"></div>
+                      <div className="w-4 h-4 bg-gray-800 rounded-full"></div>
+                    </div>
+                  </div>
+                  
+                  {/* App Content */}
+                  <div className="p-6 bg-gradient-to-b from-blue-50 to-white h-full">
+                    <div className="space-y-4">
+                      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full"></div>
+                          <div className="flex-1">
+                            <div className="h-3 bg-gray-200 rounded w-24 mb-2"></div>
+                            <div className="h-2 bg-gray-100 rounded w-16"></div>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="h-2 bg-gray-100 rounded"></div>
+                          <div className="h-2 bg-gray-100 rounded w-3/4"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                        <div className="h-3 bg-gray-200 rounded w-32 mb-3"></div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl"></div>
+                          <div className="h-20 bg-gradient-to-br from-blue-200 to-blue-300 rounded-xl"></div>
+                        </div>
+                      </div>
+
+                      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                        <div className="h-3 bg-gray-200 rounded w-28 mb-3"></div>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <div className="h-2 bg-gray-100 rounded w-20"></div>
+                            <div className="h-2 bg-gray-200 rounded w-12"></div>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <div className="h-2 bg-gray-100 rounded w-24"></div>
+                            <div className="h-2 bg-gray-200 rounded w-16"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -18,34 +18,22 @@ const TestimonialsSection: React.FC = () => {
   
   const testimonials: TestimonialData[] = [
     {
-      name: 'Alex Russel',
-      rating: 4,
-      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
+      name: 'Amelia R.',
+      rating: 5,
+      content: `"I booked a deep clean on Pebble and got matched within an hour. The cleaner was amazing and super professional." — London`,
       avatar: '/landing/test/image.png'
     },
     {
-      name: 'John Smith',
+      name: 'Alex K.',
       rating: 5,
-      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
+      content: `"We use Pebble for our Airbnb turnovers — fast, reliable, and easy to manage." — Manchester`,
       avatar: '/landing/test/image1.jpg'
     },
     {
-      name: 'Sarah Johnson',
+      name: 'Tom B.',
       rating: 5,
-      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
+      content: `"Finally, a cleaning app that just works. Payments, bookings, and photos — all in one place." — Birmingham`,
       avatar: '/landing/test/image3.png'
-    },
-    {
-      name: 'Mike Wilson',
-      rating: 4,
-      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
-      avatar: '/landing/test/image.png'
-    },
-    {
-      name: 'Emma Davis',
-      rating: 5,
-      content: `"I booked a deep clean with Cleaning Solutions, and I couldn't be happier! They tackled all the tricky spots I'd been avoiding for months, from behind appliances to dusty corners and my home has never looked better. The team was professional, thorough, and really cared about getting every detail right. Highly recommend!"`,
-      avatar: '/landing/test/image2.png'
     }
   ];
 
@@ -86,7 +74,7 @@ const TestimonialsSection: React.FC = () => {
           whileTap={{ scale: 0.9 }}
           onClick={prevTestimonial}
           disabled={currentIndex === 0}
-          className={`hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full items-center justify-center transition-colors shadow-lg ${
+          className={`hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full items-center justify-center transition-colors border border-gray-200 ${
             currentIndex === 0 
               ? 'bg-[#93949E] opacity-35 text-gray-600 cursor-not-allowed' 
               : 'bg-[#5B7AFF] text-white hover:bg-[#4A6AEE]'
@@ -99,7 +87,7 @@ const TestimonialsSection: React.FC = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={nextTestimonial}
-          className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#5B7AFF] text-white rounded-full items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-lg"
+          className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#5B7AFF] text-white rounded-full items-center justify-center hover:bg-[#4A6AEE] transition-colors border border-gray-200"
         >
           <ChevronRight className="w-6 h-6" />
         </motion.button>
@@ -117,7 +105,7 @@ const TestimonialsSection: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               onClick={prevTestimonial}
               disabled={currentIndex === 0}
-              className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-colors shadow-md ${
+              className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-colors border border-gray-200 ${
                 currentIndex === 0 
                   ? 'bg-[#93949E] opacity-35 text-gray-600 cursor-not-allowed' 
                   : 'bg-[#5B7AFF] text-white hover:bg-[#4A6AEE]'
@@ -134,7 +122,7 @@ const TestimonialsSection: React.FC = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={nextTestimonial}
-              className="w-8 h-8 md:w-10 md:h-10 bg-[#5B7AFF] text-white rounded-full flex items-center justify-center hover:bg-[#4A6AEE] transition-colors shadow-md"
+              className="w-8 h-8 md:w-10 md:h-10 bg-[#5B7AFF] text-white rounded-full flex items-center justify-center hover:bg-[#4A6AEE] transition-colors border border-gray-200"
             >
               <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
             </motion.button>
@@ -167,7 +155,7 @@ const TestimonialsSection: React.FC = () => {
                 >
                   <div className={`relative ${
                     isActive ? 'w-12 h-12' : 'w-11 h-11'
-                  } rounded-full overflow-hidden shadow-lg`}>
+                  } rounded-full overflow-hidden border border-gray-200`}>
                     <Image
                       src={testimonial.avatar}
                       alt={testimonial.name}

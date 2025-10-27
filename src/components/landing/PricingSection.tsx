@@ -98,10 +98,9 @@ const PricingSection: React.FC = () => {
   variants={cardVariants}
   whileHover={{ 
     y: -10, 
-    scale: 1.02,
-    boxShadow: "0 20px 40px rgba(73, 119, 229, 0.15)"
+    scale: 1.02
   }}
-  className="bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:border-[#4977E5] transition-colors cursor-pointer flex flex-col h-full"
+  className="bg-white rounded-3xl p-6 border-2 border-gray-100 hover:border-[#4977E5] transition-colors cursor-pointer flex flex-col h-full"
 >
   <div className="text-center mb-8 border-b border-b-gray-300 pb-6">
     <h3 className="text-xl font-bold text-[#4977E5] mb-2">{plan.type}</h3>

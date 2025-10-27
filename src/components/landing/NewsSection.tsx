@@ -40,7 +40,7 @@ const NewsSection: React.FC = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:p-0 p-5">
           {articles.map((article, index) => (
-            <div key={index} className="bg-white p-2 gap-4 flex xl:flex-row flex-col xl:max-w-[600px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl ">
+            <div key={index} className="bg-white p-2 gap-4 flex xl:flex-row flex-col xl:max-w-[600px] rounded-2xl overflow-hidden border border-gray-200">
                  <div className="relative sm:w-full h-full">
                     <Image
                       src={article.image}

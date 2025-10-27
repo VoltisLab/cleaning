@@ -8,12 +8,12 @@ const Footer: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const companyLinks = [{title: 'About Us', href: '/about' }, {title: 'Services', href: '/services'}, {title: 'Team', href: '/team'}, {title: 'Testimonial', href: '/team'}];
+  const companyLinks = [{title: 'About', href: '/about' }, {title: 'Business', href: '/business'}, {title: 'Community', href: '/community'}, {title: 'Careers', href: '/careers'}];
   const supportLinks = [
-    { title: 'Help Center', href: '#' },
-    { title: 'Contact Us', href: '#' },
-    { title: 'Feedback', href: '#' },
-    { title: 'Admin', href: '/admin' }
+    { title: 'Contact', href: '/contact' },
+    { title: 'Terms', href: '/terms' },
+    { title: 'Privacy', href: '/privacy' },
+    { title: 'Site Map', href: '/sitemap' }
   ];
 
   const containerVariants = {
@@ -53,10 +53,10 @@ const Footer: React.FC = () => {
           <motion.div variants={itemVariants} className="xl:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
                <Image
-                src={"/landing/logoWhite.png"}
+                src={"/Pebble2.svg"}
                 alt={"Logo"}
-                width={138}
-                height={50}
+                width={97}
+                height={35}
                 />
             </div>
             <p className="text-white mb-6 leading-relaxed max-w-xs md:text-[16px] text-sm">
@@ -130,20 +130,9 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col lg:flex-row justify-between items-center">
             <p className="text-white text-sm">
-             © Copyright Voltis Labs {new Date().getFullYear()}. All rights reserved.
+             © {new Date().getFullYear()} Pebble Cleaning — A Voltis Labs Product 💙<br/>
+             <span className="text-blue-200">Made with care in the UK 🇬🇧</span>
             </p>
-            <div className="flex space-x-6 mt-4 lg:mt-0">
-              {[{link: 'Privacy Policy', href: '/privacy'}, {link: 'Terms of Use', href: '/privacy'}, {link: 'Legal', href: '/privacy'}, {link: 'Site Map', href: '/privacy' }].map((link, index) => (
-                <motion.a
-                  key={index}
-                  whileHover={{ y: -2 }}
-                  href={link.href} 
-                  className="text-white hover:text-white text-sm transition-colors"
-                >
-                  {link.link}
-                </motion.a>
-              ))}
-            </div>
           </div>
         </motion.div>
       </div>

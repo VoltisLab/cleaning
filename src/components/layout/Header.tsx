@@ -93,12 +93,12 @@ const Header = () => {
 
   const navItems: NavItem[] = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '/services', hasDropdown: true },
-    { label: 'Pricing', href: '#' },
-    { label: 'Work With Us', href: '/work-with-us' },
-    { label: 'Team', href: '/team' },
+    // { label: 'Services', href: '/services', hasDropdown: true },
+    // { label: 'Pricing', href: '#' },
+    // { label: 'Work With Us', href: '/work-with-us' },
+    // { label: 'Team', href: '/team' },
     { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' }
+    // { label: 'Contact', href: '/contact' }
   ];
 
   const serviceCategories: ServiceCategory[] = [
@@ -276,17 +276,17 @@ const Header = () => {
       </div>
 
       {/* Main Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-[1139px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href={"/"} className="flex items-center">
               <Image
-                src="/landing/header/logo.png"
+                src="/Pebble2.svg"
                 alt="Logo"
-                width={138}
-                height={50}
-                className="md:w-36 md:h-14 cursor-pointer"
+                width={97}
+                height={35}
+                className="cursor-pointer"
               />
             </Link>
 
@@ -330,7 +330,7 @@ const Header = () => {
                             setHoveredCategory(null);
                           }}
                         >
-                          <div className="w-80 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden max-h-96 overflow-y-auto custom-scrollbar">
+                          <div className="w-80 bg-white rounded-xl border border-gray-200 overflow-hidden max-h-96 overflow-y-auto custom-scrollbar">
                             <style jsx>{`
                               .custom-scrollbar::-webkit-scrollbar {
                                 width: 3px;
@@ -389,7 +389,7 @@ const Header = () => {
                                           <a
                                             key={subIdx}
                                             href={subService.href}
-                                            className="block px-3 py-2 text-sm text-gray-600 hover:bg-white hover:text-[#4977E5] transition-all duration-200 rounded-lg border-l-3 border-transparent hover:border-[#4977E5] hover:pl-4 hover:shadow-sm group"
+                                            className="block px-3 py-2 text-sm text-gray-600 hover:bg-white hover:text-[#4977E5] transition-all duration-200 rounded-lg border-l-3 border-transparent hover:border-[#4977E5] hover:pl-4 group"
                                           >
                                             <div className="flex items-center justify-between">
                                               <span className="font-medium">{subService.label}</span>
@@ -530,7 +530,7 @@ const Header = () => {
                             scrollbar-color: #4977E5 #f8fafc;
                           }
                         `}</style>
-                        <div className="mt-2 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden max-h-80 overflow-y-auto mobile-custom-scrollbar animate-in slide-in-from-top-2 duration-200">
+                        <div className="mt-2 bg-white rounded-xl border border-gray-200 overflow-hidden max-h-80 overflow-y-auto mobile-custom-scrollbar animate-in slide-in-from-top-2 duration-200">
                           <div className="space-y-1">
                             {serviceCategories.map((category, idx) => (
                               <div key={idx} className="border-b border-gray-100 last:border-b-0">
@@ -572,7 +572,7 @@ const Header = () => {
                                             setIsMobileServicesOpen(false);
                                             setOpenMobileCategory(null);
                                           }}
-                                          className="block px-3 py-2 text-sm text-gray-600 hover:bg-white hover:text-[#4977E5] transition-all duration-200 rounded-lg border-l-3 border-transparent hover:border-[#4977E5] hover:pl-4 hover:shadow-sm group"
+                                          className="block px-3 py-2 text-sm text-gray-600 hover:bg-white hover:text-[#4977E5] transition-all duration-200 rounded-lg border-l-3 border-transparent hover:border-[#4977E5] hover:pl-4 group"
                                         >
                                           <div className="flex items-center justify-between">
                                             <span className="font-medium">{subService.label}</span>

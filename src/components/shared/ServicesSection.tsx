@@ -95,10 +95,9 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
                   whileHover={{
                     y: -15,
                     scale: 1.03,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                     transition: { duration: 0.3 }
                   }}
-                  className={`group ${service.color} rounded-3xl p-4 text-left shadow-xl cursor-pointer w-full h-[320px] flex flex-col relative ${
+                  className={`group ${service.color} rounded-3xl p-4 text-left border border-gray-200 cursor-pointer w-full h-[320px] flex flex-col relative ${
                     index === 0 ? 'text-white' : 'text-gray-800'
                   }`}
                 >
