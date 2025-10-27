@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="border-t border-gray-600 mt-12 pt-8"
+          className="border-t border-white/50 mt-12 pt-8"
         >
           <div className="flex justify-center items-center w-full">
             <p className="text-white/70 text-sm text-center">
