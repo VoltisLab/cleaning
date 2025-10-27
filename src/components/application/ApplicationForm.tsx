@@ -428,7 +428,7 @@ const ApplicationForm = () => {
   );
 
   return (
-    <div className='max-w-[1139px] mx-auto pt-16 pb-40 md:pb-32 xl:py-16 px-4 sm:px-6 lg:px-8 overflow-x-hidden'>
+    <div className='max-w-[1139px] mx-auto pt-16 pb-40 md:pb-32 xl:py-16 px-4 sm:px-6 lg:px-8'>
     <div className='w-full xl:w-2/3 xl:px-0'>
       <div className="bg-white py-4 md:py-8">
         {/* Header */}

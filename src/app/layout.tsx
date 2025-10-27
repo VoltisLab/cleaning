@@ -3,7 +3,8 @@ import { DM_Sans, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import NewsletterSection from "@/components/layout/NewsLetterSection";
+// import NewsletterSection from "@/components/layout/NewsLetterSection";
+import Newsletter from "@/components/layout/Newsletter";
 
 import { ApolloProviderWrapper } from "@/lib/ApolloProviderWrapper";
 import { ToastContainer } from "react-toastify";
@@ -31,19 +32,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-x-hidden">
-      <ApolloProviderWrapper>
-        <ToastContainer position="top-right" autoClose={3000} />
-      <Header />
+    <html lang="en">
       <body
-        className={`${dmSans.variable} ${lato.variable} antialiased overflow-x-hidden`}
+        className={`${dmSans.variable} ${lato.variable} antialiased`}
       >
-        {children}
+        <ApolloProviderWrapper>
+          <ToastContainer position="top-right" autoClose={3000} />
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Newsletter />
+          <Footer />
+        </ApolloProviderWrapper>
       </body>
-      <NewsletterSection />
-      <Footer />
-      </ApolloProviderWrapper>
-
     </html>
   );
 }

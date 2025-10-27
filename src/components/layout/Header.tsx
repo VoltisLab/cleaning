@@ -81,7 +81,7 @@ const Header = () => {
       // Reset animation state after it completes so it can replay on refresh
       const timer = setTimeout(() => {
         setHasAnimated(false);
-      }, 3000);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -113,7 +113,6 @@ const Header = () => {
     // { label: 'Work With Us', href: '/work-with-us' },
     // { label: 'Team', href: '/team' },
     { label: 'About', href: '/about' },
-    { label: 'Us', href: '/us' },
     // { label: 'Contact', href: '/contact' }
   ];
 
@@ -258,144 +257,43 @@ const Header = () => {
   };
 
   return (
-    <div>
-      {/* Top Bar - Hidden on mobile */}
-      <div className="bg-[#4977E5] text-white py-3 text-sm hidden lg:block">
-        <div className="max-w-[1139px] mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              {socials.map((social, index) => (
-                <Image
-                  key={index}
-                  src={social.path}
-                  alt={social.name}
-                  width={social.name === "Facebook"? 8 : 15}
-                  height={social.name === "Facebook"? 8 : 15}
-                  className="hover:opacity-80 transition-opacity cursor-pointer"
-                />
-              ))}
-            </div>
-            <div className="flex items-center text-xs space-x-6">
-              <div className="w-px h-4 bg-white/50"></div>
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/landing/header/message.svg"
-                  alt="Email"
-                  width={15}
-                  height={15}
-                />
-                <span className="font-semibold">contact@pebblecleaning.com</span>
-              </div>         
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <>
       {/* Main Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-[1139px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href={"/"} className="flex items-center relative">
               <motion.div
-                initial={false}
+                initial={{ y: -100 }}
                 animate={hasAnimated ? {
-                  scale: [1, 1.3, 0.8, 1.5, 0.9, 1.2, 1],
-                  rotate: [0, -10, 10, -15, 15, -5, 0],
-                  y: [0, -20, 10, -30, 0],
+                  y: [0, 10, 0, 5, 0],
                 } : {
-                  scale: 1,
-                  rotate: 0,
                   y: 0
                 }}
                 transition={{
-                  duration: 2,
-                  ease: "easeInOut",
-                  times: [0, 0.2, 0.4, 0.6, 0.75, 0.9, 1]
+                  duration: 0.8,
+                  ease: "easeOut",
+                  times: [0, 0.4, 0.6, 0.8, 1]
                 }}
                 whileHover={{ 
-                  scale: 1.1,
-                  rotate: [0, -5, 5, 0],
-                  transition: { duration: 0.5 }
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
                 }}
                 className="relative"
               >
-                {/* Glow effect */}
-                {hasAnimated && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: [0, 1, 0.5, 1, 0],
-                      scale: [0.8, 1.5, 1.3, 2, 2.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      ease: "easeOut"
-                    }}
-                    className="absolute inset-0 bg-gradient-to-r from-[#4977E5] via-purple-500 to-pink-500 blur-xl rounded-full -z-10"
-                  />
-                )}
-                
-                {/* Sparkle effects */}
-                {hasAnimated && (
-                  <>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{
-                        opacity: [0, 1, 1, 0],
-                        scale: [0, 1, 1.5, 0],
-                        x: [0, 30, 50],
-                        y: [0, -30, -50],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        delay: 0.3,
-                      }}
-                      className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full"
-                    />
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{
-                        opacity: [0, 1, 1, 0],
-                        scale: [0, 1, 1.5, 0],
-                        x: [0, -30, -50],
-                        y: [0, -20, -40],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        delay: 0.5,
-                      }}
-                      className="absolute top-0 -left-2 w-2 h-2 bg-blue-400 rounded-full"
-                    />
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{
-                        opacity: [0, 1, 1, 0],
-                        scale: [0, 1, 1.5, 0],
-                        x: [0, 20, 40],
-                        y: [0, 30, 50],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        delay: 0.7,
-                      }}
-                      className="absolute -bottom-2 right-2 w-2.5 h-2.5 bg-pink-400 rounded-full"
-                    />
-                  </>
-                )}
-                
                 <Image
                   src="/Pebble2.svg"
                   alt="Logo"
                   width={97}
                   height={35}
-                  className="cursor-pointer relative z-10"
+                  className="cursor-pointer"
                 />
               </motion.div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8 relative">
+            <nav className="hidden lg:flex items-center space-x-8 relative ml-auto mr-8">
               {navItems.map((item, index) => (
                 <Link href={item.href} key={index}  >
                 <div 
@@ -829,9 +727,9 @@ const Header = () => {
               </div>
             </div>
           </div>
-        </div>
-      )}
     </div>
+      )}
+    </>
   );
 };
 

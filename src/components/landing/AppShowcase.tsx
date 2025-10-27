@@ -1,6 +1,7 @@
 'use client';
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const AppShowcase: React.FC = () => {
   const ref = useRef(null);
@@ -91,24 +92,14 @@ const AppShowcase: React.FC = () => {
               </motion.div>
 
               {/* Phone */}
-              <div className="bg-gray-900 rounded-[3rem] p-3 shadow-2xl">
-                <div className="bg-white rounded-[2.5rem] overflow-hidden aspect-[9/19]">
-                  <div className="bg-gradient-to-b from-blue-50 via-white to-blue-50 h-full p-6">
-                    <div className="space-y-4">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="w-12 h-12 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full"></div>
-                            <div className="flex-1">
-                              <div className="h-3 bg-gray-200 rounded w-24 mb-2"></div>
-                              <div className="h-2 bg-gray-100 rounded w-16"></div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/landing/showcase-phone.png"
+                  alt="Pebble Cleaning App Showcase"
+                  width={280}
+                  height={560}
+                  className="w-full max-w-xs"
+                />
               </div>
             </div>
           </motion.div>

@@ -1,7 +1,7 @@
 'use client';
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Apple, Smartphone } from "lucide-react";
+import Image from "next/image";
 
 const DownloadCTA: React.FC = () => {
   const ref = useRef(null);
@@ -35,35 +35,35 @@ const DownloadCTA: React.FC = () => {
           </p>
 
           {/* Download Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
             <motion.a
               href="#"
-              whileHover={{ scale: 1.05, y: -3 }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-gray-900 px-8 py-5 rounded-2xl font-bold inline-flex items-center justify-center gap-4 hover:shadow-2xl transition-all w-full sm:w-auto group"
+              className="transition-all"
             >
-              <div className="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center group-hover:bg-[#4977E5] transition-colors">
-                <Apple className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-left">
-                <div className="text-xs text-gray-600">Download on the</div>
-                <div className="text-lg font-bold">App Store</div>
-              </div>
+              <Image
+                src="/app-store/app-store-en.png"
+                alt="Download on the App Store"
+                width={200}
+                height={60}
+                className="w-auto h-[60px]"
+              />
             </motion.a>
 
             <motion.a
               href="#"
-              whileHover={{ scale: 1.05, y: -3 }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-gray-900 px-8 py-5 rounded-2xl font-bold inline-flex items-center justify-center gap-4 hover:shadow-2xl transition-all w-full sm:w-auto group"
+              className="transition-all"
             >
-              <div className="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center group-hover:bg-[#4977E5] transition-colors">
-                <Smartphone className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-left">
-                <div className="text-xs text-gray-600">GET IT ON</div>
-                <div className="text-lg font-bold">Google Play</div>
-              </div>
+              <Image
+                src="/app-store/google-play-en.png"
+                alt="Get it on Google Play"
+                width={200}
+                height={60}
+                className="w-auto h-[60px]"
+              />
             </motion.a>
           </div>
 

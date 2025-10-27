@@ -50,9 +50,9 @@ const FeaturesSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             Everything you need,
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] pb-1">
               right in your pocket
             </span>
           </h2>
@@ -72,14 +72,14 @@ const FeaturesSection: React.FC = () => {
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
               className="group"
             >
-              <div className="bg-gradient-to-br from-blue-50 to-white rounded-3xl p-8 h-full border-2 border-transparent hover:border-[#4977E5] transition-all duration-300">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-7 h-7 text-white" />
+              <div className="bg-white rounded-3xl p-8 h-full border border-gray-200 hover:border-[#4977E5] hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12 bg-[#4977E5]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#4977E5]/20 transition-all duration-300">
+                  <feature.icon className="w-6 h-6 text-[#4977E5]" strokeWidth={2} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-sm">
                   {feature.description}
                 </p>
               </div>

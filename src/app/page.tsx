@@ -8,10 +8,10 @@ import DownloadCTA from "@/components/landing/DownloadCTA";
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
-      <HeroWithSlider />
-      <FeaturesSection />
+    <div className="min-h-screen bg-white">
       <HeroSection />
+      <FeaturesSection />
+      <HeroWithSlider />
       <SimpleSteps />
       <AppShowcase />
       <TestimonialsSection />

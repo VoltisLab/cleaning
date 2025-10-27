@@ -3,7 +3,7 @@ import Banner from '@/components/shared/Banner'
 import ApplicationForm from '@/components/application/ApplicationForm'
 const About = () => {
   return (
-    <div className='min-h-screen bg-white overflow-x-hidden'>
+    <div className='min-h-screen bg-white'>
         <Banner page='Application Form' />
         <Suspense fallback={<div>Loading...</div>}>
         <ApplicationForm />

@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Sparkles, Shield, Clock, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const HeroWithSlider: React.FC = () => {
@@ -78,23 +79,35 @@ const HeroWithSlider: React.FC = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link href="/booking">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
+                <motion.div
+                  whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all w-full sm:w-auto"
+                  className="transition-all"
                 >
-                  Get Started Free
-                </motion.button>
+                  <Image
+                    src="/app-store/app-store-en.png"
+                    alt="Download on the App Store"
+                    width={200}
+                    height={60}
+                    className="w-auto h-[60px]"
+                  />
+                </motion.div>
               </Link>
 
               <Link href="#features">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
+                <motion.div
+                  whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-gray-200 text-gray-700 px-10 py-5 rounded-2xl font-semibold text-lg hover:border-[#4977E5] hover:text-[#4977E5] transition-all w-full sm:w-auto"
+                  className="transition-all"
                 >
-                  See How It Works
-                </motion.button>
+                  <Image
+                    src="/app-store/google-play-en.png"
+                    alt="Get it on Google Play"
+                    width={200}
+                    height={60}
+                    className="w-auto h-[60px]"
+                  />
+                </motion.div>
               </Link>
             </div>
 

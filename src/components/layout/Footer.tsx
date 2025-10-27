@@ -128,10 +128,9 @@ const Footer: React.FC = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="border-t border-gray-600 mt-12 pt-8"
         >
-          <div className="flex flex-col lg:flex-row justify-between items-center">
-            <p className="text-white text-sm">
-             © {new Date().getFullYear()} Pebble Cleaning — A Voltis Labs Product 💙<br/>
-             <span className="text-blue-200">Made with care in the UK 🇬🇧</span>
+          <div className="flex justify-center items-center w-full">
+            <p className="text-white/70 text-sm text-center">
+             © {new Date().getFullYear()} Voltis Labs. All rights reserved.
             </p>
           </div>
         </motion.div>
