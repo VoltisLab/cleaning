@@ -1,8 +1,9 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, ShoppingCart, User, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, Menu, X, Download } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 // Define types for better type safety
 interface NavItem {
@@ -45,6 +46,8 @@ const Header = () => {
   const [openMobileCategory, setOpenMobileCategory] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isDownloadPopupOpen, setIsDownloadPopupOpen] = useState<boolean>(false);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
 
   // Properly type the ref for HTMLDivElement
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -69,6 +72,18 @@ const Header = () => {
     window.addEventListener('resize', checkScreenSize);
     
     return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Trigger animation on homepage load
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      setHasAnimated(true);
+      // Reset animation state after it completes so it can replay on refresh
+      const timer = setTimeout(() => {
+        setHasAnimated(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {
@@ -98,6 +113,7 @@ const Header = () => {
     // { label: 'Work With Us', href: '/work-with-us' },
     // { label: 'Team', href: '/team' },
     { label: 'About', href: '/about' },
+    { label: 'Us', href: '/us' },
     // { label: 'Contact', href: '/contact' }
   ];
 
@@ -280,14 +296,102 @@ const Header = () => {
         <div className="max-w-[1139px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href={"/"} className="flex items-center">
-              <Image
-                src="/Pebble2.svg"
-                alt="Logo"
-                width={97}
-                height={35}
-                className="cursor-pointer"
-              />
+            <Link href={"/"} className="flex items-center relative">
+              <motion.div
+                initial={false}
+                animate={hasAnimated ? {
+                  scale: [1, 1.3, 0.8, 1.5, 0.9, 1.2, 1],
+                  rotate: [0, -10, 10, -15, 15, -5, 0],
+                  y: [0, -20, 10, -30, 0],
+                } : {
+                  scale: 1,
+                  rotate: 0,
+                  y: 0
+                }}
+                transition={{
+                  duration: 2,
+                  ease: "easeInOut",
+                  times: [0, 0.2, 0.4, 0.6, 0.75, 0.9, 1]
+                }}
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: [0, -5, 5, 0],
+                  transition: { duration: 0.5 }
+                }}
+                className="relative"
+              >
+                {/* Glow effect */}
+                {hasAnimated && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: [0, 1, 0.5, 1, 0],
+                      scale: [0.8, 1.5, 1.3, 2, 2.5],
+                    }}
+                    transition={{
+                      duration: 2,
+                      ease: "easeOut"
+                    }}
+                    className="absolute inset-0 bg-gradient-to-r from-[#4977E5] via-purple-500 to-pink-500 blur-xl rounded-full -z-10"
+                  />
+                )}
+                
+                {/* Sparkle effects */}
+                {hasAnimated && (
+                  <>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{
+                        opacity: [0, 1, 1, 0],
+                        scale: [0, 1, 1.5, 0],
+                        x: [0, 30, 50],
+                        y: [0, -30, -50],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        delay: 0.3,
+                      }}
+                      className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full"
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{
+                        opacity: [0, 1, 1, 0],
+                        scale: [0, 1, 1.5, 0],
+                        x: [0, -30, -50],
+                        y: [0, -20, -40],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        delay: 0.5,
+                      }}
+                      className="absolute top-0 -left-2 w-2 h-2 bg-blue-400 rounded-full"
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{
+                        opacity: [0, 1, 1, 0],
+                        scale: [0, 1, 1.5, 0],
+                        x: [0, 20, 40],
+                        y: [0, 30, 50],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        delay: 0.7,
+                      }}
+                      className="absolute -bottom-2 right-2 w-2.5 h-2.5 bg-pink-400 rounded-full"
+                    />
+                  </>
+                )}
+                
+                <Image
+                  src="/Pebble2.svg"
+                  alt="Logo"
+                  width={97}
+                  height={35}
+                  className="cursor-pointer relative z-10"
+                />
+              </motion.div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -424,19 +528,22 @@ const Header = () => {
             </nav>
 
             {/* Desktop Action Buttons */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
-                <ShoppingCart size={20} className="text-gray-600" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                <User size={20} className="text-gray-600" />
+            <div className="hidden lg:flex items-center">
+              <button 
+                onClick={() => setIsDownloadPopupOpen(true)}
+                className="px-4 py-2 bg-[#4977E5] text-white rounded-lg hover:bg-[#4977E5]/90 transition-colors font-medium text-sm"
+              >
+                Download App
               </button>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="lg:hidden flex items-center space-x-3">
-              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
-                <ShoppingCart size={20} className="text-gray-600" />
+            <div className="lg:hidden flex items-center space-x-2">
+              <button 
+                onClick={() => setIsDownloadPopupOpen(true)}
+                className="px-3 py-2 bg-[#4977E5] hover:bg-[#4977E5]/90 rounded-lg transition-colors text-white text-xs font-medium"
+              >
+                Download App
               </button>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -646,6 +753,84 @@ const Header = () => {
           </div>
         </div>
       </header>
+
+      {/* Download App Popup Modal */}
+      {isDownloadPopupOpen && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setIsDownloadPopupOpen(false)}
+        >
+          <div 
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="relative bg-gradient-to-r from-[#4977E5] to-[#5b8aef] text-white p-6 rounded-t-2xl">
+              <button
+                onClick={() => setIsDownloadPopupOpen(false)}
+                className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition-colors"
+              >
+                <X size={20} />
+              </button>
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/20 p-3 rounded-full">
+                  <Download size={24} />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold">Download Our App</h2>
+                  <p className="text-sm text-white/90 mt-1">Choose your platform</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-8 space-y-5">
+              {/* Google Play Store */}
+              <button
+                onClick={() => {
+                  // Add your Android app link here
+                  window.open('https://play.google.com/store', '_blank');
+                  setIsDownloadPopupOpen(false);
+                }}
+                className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
+              >
+                <Image
+                  src="/app-store/google-play-badge.svg"
+                  alt="Get it on Google Play"
+                  width={180}
+                  height={53}
+                  className="w-full max-w-[180px] mx-auto drop-shadow-lg hover:drop-shadow-2xl transition-all"
+                />
+              </button>
+
+              {/* Apple App Store */}
+              <button
+                onClick={() => {
+                  // Add your iOS app link here
+                  window.open('https://apps.apple.com', '_blank');
+                  setIsDownloadPopupOpen(false);
+                }}
+                className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
+              >
+                <Image
+                  src="/app-store/apple-store-badge.svg"
+                  alt="Download on the App Store"
+                  width={160}
+                  height={53}
+                  className="w-full max-w-[160px] mx-auto drop-shadow-lg hover:drop-shadow-2xl transition-all"
+                />
+              </button>
+
+              {/* Info Text */}
+              <div className="pt-4 border-t border-gray-200">
+                <p className="text-sm text-gray-500 text-center">
+                  Get exclusive app-only features and book services on the go!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

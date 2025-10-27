@@ -61,20 +61,19 @@ const AboutSection: React.FC = () => {
               variants={itemVariants}
               className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6"
             >
-              About Us
+              About Pebble Cleaning
             </motion.h2>
             <motion.p 
               variants={itemVariants}
               className="text-gray-600 mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base"
             >
-              Cleaning Solutions is a friendly and reliable cleaning company offering both domestic and commercial services. Our carefully vetted team of cleaners bring over 30 years of experience, ensuring your space is treated with the utmost care and professionalism. We tailor our services to fit your needs, delivering consistent, high-quality results every time.
+              Pebble Cleaning is a trusted and professional cleaning company offering comprehensive domestic and commercial services. Our carefully vetted team of cleaners brings over 30 years of combined experience, ensuring your space is treated with the utmost care and professionalism. We take pride in delivering exceptional results that exceed expectations.
             </motion.p>
             <motion.p 
               variants={itemVariants}
               className="text-gray-600 mb-6 lg:mb-8 text-sm sm:text-base"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate ad litora
-              torquent.
+              We understand that every space is unique, which is why we tailor our services to fit your specific needs. From regular home maintenance to deep commercial cleans, our dedicated team uses eco-friendly products and proven techniques to create spotless, healthy environments for you to enjoy.
             </motion.p>
             
             <motion.div 
@@ -82,8 +81,9 @@ const AboutSection: React.FC = () => {
               className="space-y-3 mb-6 lg:mb-8"
             >
               {[
-                "Residential Cleaning Services Near You!",
-                "Commercial Cleaning Service in Australia.",
+                "Trusted Residential & Commercial Cleaning Services",
+                "Eco-Friendly Products for Your Health & Safety",
+                "Flexible Scheduling to Fit Your Busy Life",
               ].map((text, index) => (
                 <motion.div
                   key={index}
