@@ -64,7 +64,7 @@ const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className=" pt-16 relative" ref={ref}>
+    <section className="pt-16 pb-20 relative" ref={ref}>
       {/* Approach 1: Desktop arrows outside, mobile arrows above/below */}
       <div className="max-w-[1139px] mx-auto px-4 xl:px-0 relative">
         

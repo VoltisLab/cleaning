@@ -60,7 +60,7 @@ const HeroWithSlider: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-8 border border-blue-100 w-fit"
             >
               <Sparkles className="w-4 h-4 text-[#4977E5]" />
-              <span className="text-sm font-semibold text-[#4977E5]">Trusted by 1,000+ UK customers</span>
+              <span className="text-sm font-semibold text-[#4977E5]">Trusted by over 500 businesses</span>
             </motion.div>
 
             {/* Main Heading */}
@@ -73,7 +73,7 @@ const HeroWithSlider: React.FC = () => {
 
             {/* Subheading */}
             <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed">
-              Book professional cleaners in seconds. Track in real-time. Pay securely. All from your phone.
+              From offices to Airbnbs, manage multiple properties, recurring bookings, and team invoicing - all from your Pebble Business Dashboard.
             </p>
 
             {/* CTA Buttons */}

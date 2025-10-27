@@ -54,9 +54,9 @@ const HeroSection: React.FC = () => {
 
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 leading-tight">
-              Cleaning Made
+              Clean Spaces,
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
-                Simple & Smart
+                Clear Minds
               </span>
             </h1>
 
