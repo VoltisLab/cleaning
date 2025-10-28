@@ -113,6 +113,8 @@ const Header = () => {
     // { label: 'Work With Us', href: '/work-with-us' },
     // { label: 'Team', href: '/team' },
     { label: 'About', href: '/about' },
+    { label: 'How It Works', href: '/how-it-works' },
+    { label: 'Community', href: '/community' },
     // { label: 'Contact', href: '/contact' }
   ];
 
