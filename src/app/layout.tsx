@@ -22,7 +22,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Cleaning Services",
+  title: "Pebble Cleaning",
   description: "We've got all your cleaning and home services covered! Our fully vetted and highly experienced team are committed to delivering top-quality services. We know how important trust and reliability are to our customers, which is why we carefully choose only the best professionals to join our team.",
   icons: {
     icon: '/favicon.svg',
