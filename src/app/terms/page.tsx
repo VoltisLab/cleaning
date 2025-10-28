@@ -544,33 +544,11 @@ const TermsPage = () => {
             </div>
           </section>
 
-          {/* 19. Special Terms for Specific Jurisdictions */}
-          <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div className="flex items-center gap-3 mb-6">
-              <Scale className="w-6 h-6 text-[#4977E5]" />
-              <h2 className="text-xl font-semibold text-gray-900">19. Special Terms for Specific Jurisdictions</h2>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-2">19.1 California Users</h3>
-                <p className="text-gray-700">If you are a California resident, you may have additional rights under California law, including the California Consumer Privacy Act (CCPA). Please refer to our Privacy Policy for more information.</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-2">19.2 European Union Users</h3>
-                <p className="text-gray-700">If you are located in the European Union, you have certain rights under the General Data Protection Regulation (GDPR), including the right to access, correct, delete, and port your data. Please refer to our Privacy Policy for more information.</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800 mb-2">19.3 International Users</h3>
-                <p className="text-gray-700">The Services are controlled and operated from our facilities. We make no representations that the Services are appropriate or available for use in other locations. If you access the Services from outside your jurisdiction, you do so at your own risk and are responsible for compliance with local laws.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* 20. Acknowledgment */}
+          {/* 19. Acknowledgment */}
           <section className="bg-gradient-to-br from-[#4977E5]/10 to-blue-100 p-6 rounded-xl border-2 border-[#4977E5]">
             <div className="flex items-center gap-3 mb-4">
               <CheckCircle className="w-8 h-8 text-[#4977E5]" />
-              <h2 className="text-xl font-semibold text-gray-900">20. Acknowledgment</h2>
+              <h2 className="text-xl font-semibold text-gray-900">19. Acknowledgment</h2>
             </div>
             <p className="text-gray-800 font-medium">
               BY USING THE PEBBLE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS.
