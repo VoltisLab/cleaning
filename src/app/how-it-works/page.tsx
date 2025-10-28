@@ -122,9 +122,9 @@ const HowItWorksPage = () => {
                         </p>
                       </div>
 
-                      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                         <div className="flex items-center gap-3 mb-3">
-                          <MapPin className="w-6 h-6 text-purple-600" />
+                          <MapPin className="w-6 h-6 text-[#4977E5]" />
                           <h4 className="font-semibold text-gray-800">Browse Nearby Services</h4>
                         </div>
                         <p className="text-gray-700 text-sm">
@@ -211,9 +211,9 @@ const HowItWorksPage = () => {
                       </ul>
                     </div>
 
-                    <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-5 border border-purple-200">
+                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
                       <div className="flex items-start gap-3">
-                        <AlertCircle className="w-6 h-6 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <AlertCircle className="w-6 h-6 text-[#4977E5] mt-0.5 flex-shrink-0" />
                         <div>
                           <h4 className="font-semibold text-gray-800 mb-2">Pro Tip</h4>
                           <p className="text-gray-700 text-sm">
@@ -244,8 +244,8 @@ const HowItWorksPage = () => {
                     </p>
                     
                     <div className="grid md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-5 text-center">
-                        <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 text-center">
+                        <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
                           <CheckCircle className="w-7 h-7 text-white" />
                         </div>
                         <h4 className="font-semibold text-gray-800 mb-2">Accept</h4>
@@ -323,9 +323,9 @@ const HowItWorksPage = () => {
                       Once you've agreed on the terms, book the service provider by making a secure payment through the Pebble platform.
                     </p>
                     
-                    <div className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-300 rounded-lg p-6 mb-6">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-lg p-6 mb-6">
                       <div className="flex items-start gap-4">
-                        <Shield className="w-10 h-10 text-green-600 flex-shrink-0" />
+                        <Shield className="w-10 h-10 text-[#4977E5] flex-shrink-0" />
                         <div>
                           <h4 className="font-bold text-gray-900 mb-3 text-lg">🔒 Your Payment is Protected with Escrow</h4>
                           <p className="text-gray-700 mb-4">
@@ -334,7 +334,7 @@ const HowItWorksPage = () => {
                           <div className="grid md:grid-cols-2 gap-4">
                             <div className="bg-white rounded-lg p-4">
                               <h5 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
-                                <Shield className="w-5 h-5 text-green-600" />
+                                <Shield className="w-5 h-5 text-[#4977E5]" />
                                 How Escrow Works:
                               </h5>
                               <ol className="space-y-2 text-gray-700 text-sm list-decimal list-inside">
@@ -346,7 +346,7 @@ const HowItWorksPage = () => {
                             </div>
                             <div className="bg-white rounded-lg p-4">
                               <h5 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
-                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                <CheckCircle className="w-5 h-5 text-[#4977E5]" />
                                 Your Protection:
                               </h5>
                               <ul className="space-y-2 text-gray-700 text-sm">
@@ -392,9 +392,9 @@ const HowItWorksPage = () => {
                         </p>
                       </div>
 
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-5">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
                         <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-600" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5]" />
                           Instant Release (Your Choice)
                         </h4>
                         <p className="text-gray-700 mb-3">
@@ -419,9 +419,9 @@ const HowItWorksPage = () => {
                         </div>
                       </div>
 
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
                         <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <AlertCircle className="w-5 h-5 text-yellow-600" />
+                          <AlertCircle className="w-5 h-5 text-[#4977E5]" />
                           Report an Issue
                         </h4>
                         <p className="text-gray-700">
@@ -439,9 +439,9 @@ const HowItWorksPage = () => {
           {activeMethod === 'posting' && (
             <div className="space-y-8 animate-in fade-in duration-500">
               {/* Header */}
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl border-l-4 border-purple-600">
+              <div className="bg-gradient-to-br from-[#4977E5]/5 to-blue-50 p-6 rounded-xl border-l-4 border-[#4977E5]">
                 <div className="flex items-start gap-4">
-                  <Briefcase className="w-8 h-8 text-purple-600 mt-1 flex-shrink-0" />
+                  <Briefcase className="w-8 h-8 text-[#4977E5] mt-1 flex-shrink-0" />
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-3">Post a Job</h2>
                     <p className="text-gray-700 text-lg">
@@ -455,60 +455,60 @@ const HowItWorksPage = () => {
               <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-400 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                       1
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                      <FileText className="w-7 h-7 text-purple-600" />
+                      <FileText className="w-7 h-7 text-[#4977E5]" />
                       Create Your Job Posting
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
                       Post your cleaning job on the Pebble marketplace with detailed requirements. This gives you access to multiple qualified service providers who can bid for your job.
                     </p>
                     
-                    <div className="bg-purple-50 border-l-4 border-purple-600 p-5 rounded-r-lg mb-6">
+                    <div className="bg-blue-50 border-l-4 border-[#4977E5] p-5 rounded-r-lg mb-6">
                       <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                        <Briefcase className="w-5 h-5 text-purple-600" />
+                        <Briefcase className="w-5 h-5 text-[#4977E5]" />
                         Include in Your Job Post:
                       </h4>
                       <ul className="space-y-2 text-gray-700">
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                           <span><strong>Job Title:</strong> Clear, descriptive title (e.g., "Deep Clean 3-Bedroom House")</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                           <span><strong>Detailed Description:</strong> Specific tasks, rooms, and areas to be cleaned</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                           <span><strong>Property Information:</strong> Size, type, current condition, and access details</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                           <span><strong>Schedule Preferences:</strong> Preferred date, time, and estimated duration</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                           <span><strong>Budget Range:</strong> Your expected price range (optional but recommended)</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                           <span><strong>Photos:</strong> Upload images to give cleaners a clear view of the space</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                           <span><strong>Special Requirements:</strong> Eco-friendly products, pet considerations, allergies, etc.</span>
                         </li>
                       </ul>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div className="bg-white border border-purple-200 rounded-lg p-4">
+                      <div className="bg-white border border-blue-200 rounded-lg p-4">
                         <h5 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
-                          <Users className="w-5 h-5 text-purple-600" />
+                          <Users className="w-5 h-5 text-[#4977E5]" />
                           Who Will See It:
                         </h5>
                         <ul className="space-y-1 text-gray-700 text-sm">
@@ -518,9 +518,9 @@ const HowItWorksPage = () => {
                         </ul>
                       </div>
 
-                      <div className="bg-white border border-purple-200 rounded-lg p-4">
+                      <div className="bg-white border border-blue-200 rounded-lg p-4">
                         <h5 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
-                          <Clock className="w-5 h-5 text-purple-600" />
+                          <Clock className="w-5 h-5 text-[#4977E5]" />
                           Timeline:
                         </h5>
                         <ul className="space-y-1 text-gray-700 text-sm">
@@ -538,57 +538,57 @@ const HowItWorksPage = () => {
               <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-400 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                       2
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                      <Send className="w-7 h-7 text-purple-600" />
+                      <Send className="w-7 h-7 text-[#4977E5]" />
                       Receive Multiple Offers
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
                       Qualified service providers will review your job posting and send you competitive offers. Each offer includes their proposed pricing, availability, and approach to your cleaning needs.
                     </p>
                     
-                    <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-5 mb-6">
+                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-5 mb-6">
                       <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                        <FileText className="w-5 h-5 text-purple-600" />
+                        <FileText className="w-5 h-5 text-[#4977E5]" />
                         What Each Offer Contains:
                       </h4>
                       <div className="grid md:grid-cols-2 gap-4">
                         <ul className="space-y-2 text-gray-700">
                           <li className="flex items-start gap-2">
-                            <TrendingUp className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                             <span><strong>Proposed Price:</strong> Total cost breakdown</span>
                           </li>
                           <li className="flex items-start gap-2">
-                            <TrendingUp className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                             <span><strong>Timeline:</strong> When they can start</span>
                           </li>
                           <li className="flex items-start gap-2">
-                            <TrendingUp className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                             <span><strong>Duration:</strong> Estimated time needed</span>
                           </li>
                         </ul>
                         <ul className="space-y-2 text-gray-700">
                           <li className="flex items-start gap-2">
-                            <TrendingUp className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                             <span><strong>Approach:</strong> Their cleaning plan</span>
                           </li>
                           <li className="flex items-start gap-2">
-                            <TrendingUp className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                             <span><strong>Supplies:</strong> What's included</span>
                           </li>
                           <li className="flex items-start gap-2">
-                            <TrendingUp className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
                             <span><strong>Profile Info:</strong> Ratings & reviews</span>
                           </li>
                         </ul>
                       </div>
                     </div>
 
-                    <div className="bg-white border-2 border-purple-600 rounded-lg p-5">
+                    <div className="bg-white border-2 border-[#4977E5] rounded-lg p-5">
                       <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
                         <Star className="w-5 h-5 text-yellow-500" />
                         Compare Offers Easily:
@@ -597,15 +597,15 @@ const HowItWorksPage = () => {
                         Our platform makes it simple to compare multiple offers side-by-side. Review each service provider's:
                       </p>
                       <div className="grid md:grid-cols-3 gap-3">
-                        <div className="bg-purple-50 rounded-lg p-3 text-center">
+                        <div className="bg-blue-50 rounded-lg p-3 text-center">
                           <Star className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                           <p className="text-sm font-semibold text-gray-800">Ratings & Reviews</p>
                         </div>
-                        <div className="bg-purple-50 rounded-lg p-3 text-center">
+                        <div className="bg-blue-50 rounded-lg p-3 text-center">
                           <CheckCircle className="w-6 h-6 text-green-500 mx-auto mb-2" />
                           <p className="text-sm font-semibold text-gray-800">Completion Rate</p>
                         </div>
-                        <div className="bg-purple-50 rounded-lg p-3 text-center">
+                        <div className="bg-blue-50 rounded-lg p-3 text-center">
                           <Clock className="w-6 h-6 text-[#4977E5] mx-auto mb-2" />
                           <p className="text-sm font-semibold text-gray-800">Response Time</p>
                         </div>
@@ -619,13 +619,13 @@ const HowItWorksPage = () => {
               <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-400 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                       3
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                      <Repeat className="w-7 h-7 text-purple-600" />
+                      <Repeat className="w-7 h-7 text-[#4977E5]" />
                       Negotiate & Find the Perfect Match
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
@@ -663,7 +663,7 @@ const HowItWorksPage = () => {
                           </p>
                         </div>
                         <div className="flex items-start gap-3">
-                          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white flex-shrink-0">
+                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white flex-shrink-0">
                             <CheckCircle className="w-5 h-5" />
                           </div>
                           <p className="text-gray-700 pt-1">
@@ -674,33 +674,33 @@ const HowItWorksPage = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div className="bg-purple-50 border border-purple-200 rounded-lg p-5">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
                         <h5 className="font-semibold text-gray-800 mb-3">What You Can Negotiate:</h5>
                         <ul className="space-y-2 text-gray-700 text-sm">
                           <li className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-purple-600" />
+                            <CheckCircle className="w-4 h-4 text-[#4977E5]" />
                             <span>Total price and payment terms</span>
                           </li>
                           <li className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-purple-600" />
+                            <CheckCircle className="w-4 h-4 text-[#4977E5]" />
                             <span>Scope of work and specific tasks</span>
                           </li>
                           <li className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-purple-600" />
+                            <CheckCircle className="w-4 h-4 text-[#4977E5]" />
                             <span>Start date and completion timeline</span>
                           </li>
                           <li className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-purple-600" />
+                            <CheckCircle className="w-4 h-4 text-[#4977E5]" />
                             <span>Cleaning products and supplies</span>
                           </li>
                           <li className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-purple-600" />
+                            <CheckCircle className="w-4 h-4 text-[#4977E5]" />
                             <span>Additional services or add-ons</span>
                           </li>
                         </ul>
                       </div>
 
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-5">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
                         <h5 className="font-semibold text-gray-800 mb-3">Negotiation Tips:</h5>
                         <ul className="space-y-2 text-gray-700 text-sm">
                           <li className="flex items-center gap-2">
@@ -734,22 +734,22 @@ const HowItWorksPage = () => {
               <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-400 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                       4
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                      <CreditCard className="w-7 h-7 text-purple-600" />
+                      <CreditCard className="w-7 h-7 text-[#4977E5]" />
                       Book & Pay Securely
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
                       Once you've selected the best offer and reached an agreement, book the service provider by making a secure payment through Pebble.
                     </p>
                     
-                    <div className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-300 rounded-lg p-6">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-lg p-6">
                       <div className="flex items-start gap-4">
-                        <Shield className="w-10 h-10 text-green-600 flex-shrink-0" />
+                        <Shield className="w-10 h-10 text-[#4977E5] flex-shrink-0" />
                         <div>
                           <h4 className="font-bold text-gray-900 mb-3 text-lg">🔒 Protected by Escrow Payment System</h4>
                           <p className="text-gray-700 mb-4">
@@ -783,7 +783,7 @@ const HowItWorksPage = () => {
                                 </p>
                               </div>
                               <div className="flex items-start gap-3">
-                                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white flex-shrink-0">
+                                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white flex-shrink-0">
                                   <CheckCircle className="w-5 h-5" />
                                 </div>
                                 <p className="text-gray-700 pt-1">
@@ -803,13 +803,13 @@ const HowItWorksPage = () => {
               <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-400 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                       5
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                      <ThumbsUp className="w-7 h-7 text-purple-600" />
+                      <ThumbsUp className="w-7 h-7 text-[#4977E5]" />
                       Job Completion & Payment Release
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
@@ -827,15 +827,15 @@ const HowItWorksPage = () => {
                         </p>
                       </div>
 
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-5">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
                         <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-600" />
+                          <CheckCircle className="w-5 h-5 text-[#4977E5]" />
                           Instant Release (Immediate Approval)
                         </h4>
                         <p className="text-gray-700 mb-4">
                           Thrilled with the results? Release the payment right away! This helps service providers get paid faster and encourages excellent service quality.
                         </p>
-                        <div className="bg-white rounded-lg p-4 border border-green-300">
+                        <div className="bg-white rounded-lg p-4 border border-blue-300">
                           <p className="text-gray-700 text-sm font-semibold mb-3">Complete Your Experience:</p>
                           <div className="grid md:grid-cols-3 gap-3">
                             <div className="flex items-center gap-2">
@@ -847,22 +847,22 @@ const HowItWorksPage = () => {
                               <span className="text-sm text-gray-700">Leave review</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Repeat className="w-5 h-5 text-purple-600" />
+                              <Repeat className="w-5 h-5 text-[#4977E5]" />
                               <span className="text-sm text-gray-700">Rebook easily</span>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
                         <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <AlertCircle className="w-5 h-5 text-yellow-600" />
+                          <AlertCircle className="w-5 h-5 text-[#4977E5]" />
                           Issue Resolution Support
                         </h4>
                         <p className="text-gray-700 mb-3">
                           Not completely satisfied? Report any issues within 24 hours and our support team will step in to help resolve the situation fairly.
                         </p>
-                        <div className="bg-white rounded-lg p-3 border border-yellow-300">
+                        <div className="bg-white rounded-lg p-3 border border-blue-300">
                           <p className="text-gray-700 text-sm">
                             <strong>We've got your back:</strong> Our team reviews disputes, facilitates communication, and ensures fair outcomes for both customers and service providers.
                           </p>
@@ -904,7 +904,7 @@ const HowItWorksPage = () => {
           </section>
 
           {/* CTA Section */}
-          <section className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
+          <section className="text-center bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
             <p className="text-xl text-gray-600 mb-6">
               Download the Pebble app today and experience hassle-free cleaning services
