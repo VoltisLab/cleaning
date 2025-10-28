@@ -7,8 +7,8 @@ import Image from 'next/image';
 import { Sparkles, Shield, Clock, Star } from 'lucide-react';
 
 const phoneImages = [
-  '/landing/hero/phone-app.png',
-  '/landing/hero/phone-app-2.png'
+  '/landing/hero/iPhone 20.png',
+  '/landing/hero/iPhone 21.png'
 ];
 
 const HeroSection: React.FC = () => {
