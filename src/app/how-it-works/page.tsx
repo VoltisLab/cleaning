@@ -525,7 +525,7 @@ const HowItWorksPage = () => {
                         </h5>
                         <ul className="space-y-1 text-gray-700 text-sm">
                           <li>• Job goes live immediately</li>
-                          <li>• Receive offers within hours</li>
+                          <li>• Receive offers within minutes</li>
                           <li>• Compare and choose at your pace</li>
                         </ul>
                       </div>
