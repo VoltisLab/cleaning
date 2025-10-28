@@ -20,7 +20,7 @@ const TermsPage = () => {
               <div>
                 <h1 className="text-2xl xl:text-3xl font-bold text-gray-900 mb-3">Terms and Conditions</h1>
                 <p className="text-gray-700 xl:text-lg mb-4">
-                  Welcome to Pebble ("we," "our," or "us"). These Terms and Conditions ("Terms") govern your access to and use of the Pebble mobile application, website, and related services (collectively, the "Services"). By accessing or using our Services, you agree to be bound by these Terms.
+                  Welcome to Pebble (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of the Pebble mobile application, website, and related services (collectively, the &quot;Services&quot;). By accessing or using our Services, you agree to be bound by these Terms.
                 </p>
                 <p className="text-gray-700 xl:text-lg">
                   If you do not agree to these Terms, please do not use our Services.
@@ -40,11 +40,11 @@ const TermsPage = () => {
               <h2 className="text-xl font-semibold text-gray-900">2. Definitions</h2>
             </div>
             <ul className="space-y-3 text-gray-700">
-              <li><strong>"Customer"</strong> refers to individuals who book cleaning services through the Pebble platform.</li>
-              <li><strong>"Cleaner"</strong> refers to independent service providers who offer cleaning services through the Pebble platform.</li>
-              <li><strong>"User"</strong> refers to both Customers and Cleaners.</li>
-              <li><strong>"Booking"</strong> refers to a scheduled cleaning service arranged through the Pebble platform.</li>
-              <li><strong>"Platform"</strong> refers to the Pebble mobile application and website.</li>
+              <li><strong>&quot;Customer&quot;</strong> refers to individuals who book cleaning services through the Pebble platform.</li>
+              <li><strong>&quot;Cleaner&quot;</strong> refers to independent service providers who offer cleaning services through the Pebble platform.</li>
+              <li><strong>&quot;User&quot;</strong> refers to both Customers and Cleaners.</li>
+              <li><strong>&quot;Booking&quot;</strong> refers to a scheduled cleaning service arranged through the Pebble platform.</li>
+              <li><strong>&quot;Platform&quot;</strong> refers to the Pebble mobile application and website.</li>
             </ul>
           </section>
 
@@ -256,7 +256,7 @@ const TermsPage = () => {
                   <li>• Provide cleaning services professionally and competently</li>
                   <li>• Arrive on time for scheduled bookings</li>
                   <li>• Bring necessary cleaning supplies and equipment (unless otherwise specified)</li>
-                  <li>• Respect the Customer's property and privacy</li>
+                  <li>• Respect the Customer&apos;s property and privacy</li>
                   <li>• Maintain appropriate licenses, permits, and insurance</li>
                   <li>• Comply with all applicable health and safety regulations</li>
                   <li>• Report any damages or issues immediately</li>
@@ -374,7 +374,7 @@ const TermsPage = () => {
             <div className="space-y-4">
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <h3 className="font-semibold text-gray-800 mb-2">12.1 Service Disclaimer</h3>
-                <p className="text-gray-700 text-sm">THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+                <p className="text-gray-700 text-sm">THE SERVICES ARE PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
               </div>
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <h3 className="font-semibold text-gray-800 mb-2">12.2 Cleaner Services Disclaimer</h3>
@@ -386,7 +386,7 @@ const TermsPage = () => {
               </div>
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <h3 className="font-semibold text-gray-800 mb-2">12.4 Maximum Liability</h3>
-                <p className="text-gray-700 text-sm">IN NO EVENT SHALL PEBBLE'S TOTAL LIABILITY TO YOU FOR ALL DAMAGES EXCEED THE AMOUNT PAID BY YOU TO PEBBLE IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY, OR ONE HUNDRED DOLLARS ($100), WHICHEVER IS GREATER.</p>
+                <p className="text-gray-700 text-sm">IN NO EVENT SHALL PEBBLE&apos;S TOTAL LIABILITY TO YOU FOR ALL DAMAGES EXCEED THE AMOUNT PAID BY YOU TO PEBBLE IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY, OR ONE HUNDRED DOLLARS ($100), WHICHEVER IS GREATER.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-gray-800 mb-2">12.5 Jurisdictional Limitations</h3>
@@ -402,7 +402,7 @@ const TermsPage = () => {
               <h2 className="text-xl font-semibold text-gray-900">13. Indemnification</h2>
             </div>
             <p className="text-gray-700">
-              You agree to indemnify, defend, and hold harmless Pebble, its affiliates, officers, directors, employees, agents, and licensors from and against any claims, liabilities, damages, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising from:
+              You agree to indemnify, defend, and hold harmless Pebble, its affiliates, officers, directors, employees, agents, and licensors from and against any claims, liabilities, damages, losses, costs, expenses, or fees (including reasonable attorneys&apos; fees) arising from:
             </p>
             <ul className="space-y-2 ml-4 text-gray-700 mt-3">
               <li>• Your use of the Services</li>

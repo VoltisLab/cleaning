@@ -136,7 +136,7 @@ const HowItWorksPage = () => {
                     <div className="bg-gray-50 rounded-lg p-4">
                       <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
                         <Star className="w-5 h-5 text-yellow-500" />
-                        What You'll See:
+                        What You&apos;ll See:
                       </h4>
                       <ul className="space-y-2 text-gray-700">
                         <li className="flex items-start gap-2">
@@ -179,7 +179,7 @@ const HowItWorksPage = () => {
                       Send a Booking Request
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
-                      Once you've found a service provider you like, send them a detailed booking request with your specific requirements.
+                      Once you&apos;ve found a service provider you like, send them a detailed booking request with your specific requirements.
                     </p>
                     
                     <div className="bg-blue-50 border-l-4 border-[#4977E5] p-5 rounded-r-lg mb-6">
@@ -217,7 +217,7 @@ const HowItWorksPage = () => {
                         <div>
                           <h4 className="font-semibold text-gray-800 mb-2">Pro Tip</h4>
                           <p className="text-gray-700 text-sm">
-                            The more details you provide in your booking request, the more accurate the cleaner's response will be. Include photos if possible to help them understand the scope of work.
+                            The more details you provide in your booking request, the more accurate the cleaner&apos;s response will be. Include photos if possible to help them understand the scope of work.
                           </p>
                         </div>
                       </div>
@@ -237,7 +237,7 @@ const HowItWorksPage = () => {
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                       <MessageSquare className="w-7 h-7 text-[#4977E5]" />
-                      Receive Cleaner's Response
+                      Receive Cleaner&apos;s Response
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
                       The service provider will review your request and respond with one of three options:
@@ -270,7 +270,7 @@ const HowItWorksPage = () => {
                         </div>
                         <h4 className="font-semibold text-gray-800 mb-2">Decline</h4>
                         <p className="text-gray-700 text-sm">
-                          They're unable to accommodate your request. You can contact other cleaners.
+                          They&apos;re unable to accommodate your request. You can contact other cleaners.
                         </p>
                       </div>
                     </div>
@@ -281,7 +281,7 @@ const HowItWorksPage = () => {
                         Negotiate with Counter Offers
                       </h4>
                       <p className="text-gray-700 mb-4">
-                        If you receive a custom offer that doesn't quite match your budget or requirements, you can send a counter offer. This negotiation process continues until both parties reach an agreement on:
+                        If you receive a custom offer that doesn&apos;t quite match your budget or requirements, you can send a counter offer. This negotiation process continues until both parties reach an agreement on:
                       </p>
                       <ul className="space-y-2 text-gray-700">
                         <li className="flex items-start gap-2">
@@ -320,7 +320,7 @@ const HowItWorksPage = () => {
                       Make Secure Payment
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
-                      Once you've agreed on the terms, book the service provider by making a secure payment through the Pebble platform.
+                      Once you&apos;ve agreed on the terms, book the service provider by making a secure payment through the Pebble platform.
                     </p>
                     
                     <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-lg p-6 mb-6">
@@ -425,7 +425,7 @@ const HowItWorksPage = () => {
                           Report an Issue
                         </h4>
                         <p className="text-gray-700">
-                          If you're not satisfied with the service, you can report an issue within the 24-hour window. Our support team will help mediate and find a fair resolution before any payment is released.
+                          If you&apos;re not satisfied with the service, you can report an issue within the 24-hour window. Our support team will help mediate and find a fair resolution before any payment is released.
                         </p>
                       </div>
                     </div>
@@ -476,7 +476,7 @@ const HowItWorksPage = () => {
                       <ul className="space-y-2 text-gray-700">
                         <li className="flex items-start gap-2">
                           <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
-                          <span><strong>Job Title:</strong> Clear, descriptive title (e.g., "Deep Clean 3-Bedroom House")</span>
+                          <span><strong>Job Title:</strong> Clear, descriptive title (e.g., &quot;Deep Clean 3-Bedroom House&quot;)</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <CheckCircle className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
@@ -578,7 +578,7 @@ const HowItWorksPage = () => {
                           </li>
                           <li className="flex items-start gap-2">
                             <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
-                            <span><strong>Supplies:</strong> What's included</span>
+                            <span><strong>Supplies:</strong> What&apos;s included</span>
                           </li>
                           <li className="flex items-start gap-2">
                             <TrendingUp className="w-5 h-5 text-[#4977E5] mt-0.5 flex-shrink-0" />
@@ -594,7 +594,7 @@ const HowItWorksPage = () => {
                         Compare Offers Easily:
                       </h4>
                       <p className="text-gray-700 mb-3">
-                        Our platform makes it simple to compare multiple offers side-by-side. Review each service provider's:
+                        Our platform makes it simple to compare multiple offers side-by-side. Review each service provider&apos;s:
                       </p>
                       <div className="grid md:grid-cols-3 gap-3">
                         <div className="bg-blue-50 rounded-lg p-3 text-center">
@@ -629,7 +629,7 @@ const HowItWorksPage = () => {
                       Negotiate & Find the Perfect Match
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
-                      Don't just accept the first offer! Use our built-in negotiation feature to exchange counter offers with service providers until you reach the perfect agreement.
+                      Don&apos;t just accept the first offer! Use our built-in negotiation feature to exchange counter offers with service providers until you reach the perfect agreement.
                     </p>
                     
                     <div className="bg-blue-50 border-l-4 border-[#4977E5] p-5 rounded-r-lg mb-6">
@@ -744,7 +744,7 @@ const HowItWorksPage = () => {
                       Book & Pay Securely
                     </h3>
                     <p className="text-gray-700 text-lg mb-6">
-                      Once you've selected the best offer and reached an agreement, book the service provider by making a secure payment through Pebble.
+                      Once you&apos;ve selected the best offer and reached an agreement, book the service provider by making a secure payment through Pebble.
                     </p>
                     
                     <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-lg p-6">
@@ -864,7 +864,7 @@ const HowItWorksPage = () => {
                         </p>
                         <div className="bg-white rounded-lg p-3 border border-blue-300">
                           <p className="text-gray-700 text-sm">
-                            <strong>We've got your back:</strong> Our team reviews disputes, facilitates communication, and ensures fair outcomes for both customers and service providers.
+                            <strong>We&apos;ve got your back:</strong> Our team reviews disputes, facilitates communication, and ensures fair outcomes for both customers and service providers.
                           </p>
                         </div>
                       </div>
@@ -884,7 +884,7 @@ const HowItWorksPage = () => {
                   <Shield className="w-8 h-8" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">Secure Payments</h3>
-                <p className="text-blue-100">Escrow protection ensures your money is safe until you're satisfied</p>
+                <p className="text-blue-100">Escrow protection ensures your money is safe until you&apos;re satisfied</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">

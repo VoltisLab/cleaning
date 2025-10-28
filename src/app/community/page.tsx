@@ -6,11 +6,8 @@ import {
   Star, 
   Award, 
   TrendingUp, 
-  Heart,
   MessageSquare,
   Share2,
-  Filter,
-  Search,
   CheckCircle,
   Clock,
   Eye,
@@ -18,8 +15,7 @@ import {
   Play,
   Sparkles,
   Trophy,
-  Users,
-  Calendar
+  Users
 } from 'lucide-react';
 import Banner from '@/components/shared/Banner';
 import Image from 'next/image';
