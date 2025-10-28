@@ -143,7 +143,7 @@ const HeroSection: React.FC = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={prevSlide}
-                className="absolute left-0 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
+                className="absolute -left-16 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="w-6 h-6 text-[#4977E5]" />
@@ -192,7 +192,7 @@ const HeroSection: React.FC = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={nextSlide}
-                className="absolute right-0 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
+                className="absolute -right-16 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
                 aria-label="Next slide"
               >
                 <ChevronRight className="w-6 h-6 text-[#4977E5]" />
