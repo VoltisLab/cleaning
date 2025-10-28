@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sparkles, Shield, Clock, Star } from 'lucide-react';
+import { Sparkles, Shield, Clock, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const phoneImages = [
   '/landing/hero/iPhone 20.png',
@@ -19,10 +19,18 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % phoneImages.length);
-    }, 3000); // Change slide every 3 seconds
+    }, 8000); // Change slide every 8 seconds
     
     return () => clearInterval(interval);
   }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % phoneImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + phoneImages.length) % phoneImages.length);
+  };
 
   return (
     <section className="relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-white via-blue-50 to-purple-50" ref={ref}>
@@ -129,41 +137,66 @@ const HeroSection: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="relative flex items-center justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-xs">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Image
-                    src={phoneImages[currentSlide]}
-                    alt={`Pebble Cleaning App ${currentSlide + 1}`}
-                    width={280}
-                    height={560}
-                    className="w-full"
-                    priority={currentSlide === 0}
-                  />
-                </motion.div>
-              </AnimatePresence>
-              
-              {/* Slider Indicators */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
-                {phoneImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentSlide 
-                        ? 'bg-[#4977E5] w-6' 
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
+            <div className="relative w-full max-w-xs flex items-center justify-center gap-4">
+              {/* Left Arrow */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={prevSlide}
+                className="absolute left-0 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-6 h-6 text-[#4977E5]" />
+              </motion.button>
+
+              {/* Phone Image */}
+              <div className="relative w-full max-w-xs">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Image
+                      src={phoneImages[currentSlide]}
+                      alt={`Pebble Cleaning App ${currentSlide + 1}`}
+                      width={280}
+                      height={560}
+                      className="w-full"
+                      priority={currentSlide === 0}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+                
+                {/* Slider Indicators */}
+                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+                  {phoneImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === currentSlide 
+                          ? 'bg-[#4977E5] w-6' 
+                          : 'bg-gray-300 hover:bg-gray-400'
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
+
+              {/* Right Arrow */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={nextSlide}
+                className="absolute right-0 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-6 h-6 text-[#4977E5]" />
+              </motion.button>
             </div>
           </motion.div>
         </div>
