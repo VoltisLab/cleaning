@@ -152,7 +152,7 @@ const CommunityPage = () => {
       author: 'Pebble Team',
       authorImage: '/landing/header/logo.png',
       title: 'How to Remove Stubborn Carpet Stains: A Complete Guide',
-      excerpt: 'From wine spills to pet accidents, here\'s how to tackle the toughest carpet stains effectively...',
+      excerpt: 'From wine spills to pet accidents, here&apos;s how to tackle the toughest carpet stains effectively...',
       content: 'Always blot, never rub! Rubbing pushes the stain deeper into the fibers. For fresh stains, use cold water and work from the outside in. For set-in stains, try a mixture of dish soap and hydrogen peroxide.',
       image: '/cleaning-services/scrub-floor.png',
       likes: 512,
@@ -452,7 +452,7 @@ const CommunityPage = () => {
           <Users className="w-16 h-16 mx-auto mb-6 opacity-90" />
           <h2 className="text-3xl font-bold mb-4">Want to Share Your Expertise?</h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            If you're a verified Pebble cleaner, you can submit your own tips, tricks, and video tutorials to help the community. All submissions are reviewed by our team before publishing.
+            If you&apos;re a verified Pebble cleaner, you can submit your own tips, tricks, and video tutorials to help the community. All submissions are reviewed by our team before publishing.
           </p>
           <button className="bg-white text-[#4977E5] font-bold px-8 py-4 rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
             Submit Your Content
