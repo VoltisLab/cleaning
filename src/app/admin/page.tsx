@@ -66,7 +66,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="w-full mx-auto px-4 sm:px-6 xl:px-8 py-4">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 xl:px-8 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
               <Home className="w-8 h-8 text-[#4977E5]" />
@@ -90,7 +90,7 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <div className="w-full mx-auto px-4 sm:px-6 xl:px-8 py-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 xl:px-8 py-8">
         {/* Navigation Tabs */}
         <div className="bg-white rounded-lg shadow-sm mb-6 overflow-x-auto">
           <div className="flex space-x-1 p-2 min-w-max">

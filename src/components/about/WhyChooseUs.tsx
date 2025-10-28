@@ -85,7 +85,7 @@ const WhyChooseUs: React.FC = () => {
 
   return (
     <section className="py-20 px-5 xl:px-8 bg-white" ref={ref}>
-      <div className="w-full mx-auto">
+      <div className="max-w-[1280px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

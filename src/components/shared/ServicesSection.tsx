@@ -68,7 +68,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
 
   return (
     <section className="pb-20 px-5 xl:px-8" ref={ref}>
-      <div className="w-full mx-auto bg-white">
+      <div className="max-w-[1280px] mx-auto bg-white">
         <motion.div
           variants={headerVariants}
           initial="hidden"

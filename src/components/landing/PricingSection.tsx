@@ -73,7 +73,7 @@ const PricingSection: React.FC = () => {
 
   return (
     <section className="py-20" ref={ref}>
-      <div className="w-full mx-auto flex xl:flex-row items-center flex-col justify-between gap-10 px-4 xl:px-8">
+      <div className="max-w-[1280px] mx-auto flex xl:flex-row items-center flex-col justify-between gap-10 px-4 xl:px-8">
         <motion.div
           variants={headerVariants}
           initial="hidden"

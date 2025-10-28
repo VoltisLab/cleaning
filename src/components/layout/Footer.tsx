@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] text-white md:pt-48 pt-100 pb-16 px-5 xl:px-8" ref={ref}>
-      <div className="w-full mx-auto">
+      <div className="max-w-[1280px] mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"

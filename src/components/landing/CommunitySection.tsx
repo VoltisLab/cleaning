@@ -13,7 +13,7 @@ const CommunitySection: React.FC = () => {
       {/* Decorative background */}
       <div className="absolute top-1/3 right-20 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob"></div>
       <div className="absolute bottom-1/3 left-20 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob-slow"></div>
-      <div className="w-full mx-auto px-5 xl:px-8">
+      <div className="max-w-[1280px] mx-auto px-5 xl:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}

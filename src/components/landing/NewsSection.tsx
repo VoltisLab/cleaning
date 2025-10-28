@@ -30,7 +30,7 @@ const NewsSection: React.FC = () => {
 
   return (
     <section className="pt-20 pb-28 px-5 xl:px-8">
-      <div className="w-full mx-auto">
+      <div className="max-w-[1280px] mx-auto">
         <div className="text-center pb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Latest News</h2>
           <p className="text-gray-600">

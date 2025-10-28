@@ -53,7 +53,7 @@ const HowItWorks: React.FC = () => {
       {/* Subtle background shapes */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
       <div className="absolute bottom-20 left-10 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-      <div className="w-full mx-auto px-5 xl:px-8">
+      <div className="max-w-[1280px] mx-auto px-5 xl:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}

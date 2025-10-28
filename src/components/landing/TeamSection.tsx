@@ -110,7 +110,7 @@ const TeamSection: React.FC = () => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <div className="w-full mx-auto px-4 xl:px-8">
+      <div className="max-w-[1280px] mx-auto px-4 xl:px-8">
         <motion.div 
           variants={headerVariants}
           className="text-center mb-16"

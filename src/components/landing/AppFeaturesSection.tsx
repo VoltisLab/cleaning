@@ -58,7 +58,7 @@ const AppFeaturesSection: React.FC = () => {
       {/* Decorative blobs */}
       <div className="absolute top-10 right-20 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute bottom-10 left-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob-slow"></div>
-      <div className="w-full mx-auto px-5 xl:px-8">
+      <div className="max-w-[1280px] mx-auto px-5 xl:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}

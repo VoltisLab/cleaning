@@ -142,7 +142,7 @@ const ContactForm = () => {
 
   return (
     <motion.div 
-      className="w-full mx-auto px-4 sm:px-6 xl:px-8 py-8 sm:py-12 lg:py-20"
+      className="max-w-[1280px] mx-auto px-4 sm:px-6 xl:px-8 py-8 sm:py-12 lg:py-20"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

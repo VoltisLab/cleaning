@@ -16,7 +16,7 @@ export default function Home() {
 
       <main className="flex-grow mb-32">
         <Heroes />
-        <div className="w-full mx-auto px-4 xl:px-8">
+        <div className="max-w-[1280px] mx-auto px-4 xl:px-8">
           <HowItWorks />
         </div>
       </main>
