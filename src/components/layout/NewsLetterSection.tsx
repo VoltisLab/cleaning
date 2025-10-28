@@ -53,7 +53,7 @@ const NewsletterSection: React.FC = () => {
 
   return (
     <section className="py-8 md:py-16 relative bg-white" ref={ref}>
-      <div className="w-full max-w-[1139px] absolute left-1/2 transform -translate-x-1/2 xl:-top-24 -top-40 px-4 sm:px-6 lg:px-0">
+      <div className="w-full absolute left-1/2 transform -translate-x-1/2 xl:-top-24 -top-40 px-4 sm:px-6 xl:px-8">
         <div className="pt-12 md:pt-16 relative">
           {/* Image positioned outside the blue container */}
           <motion.div 

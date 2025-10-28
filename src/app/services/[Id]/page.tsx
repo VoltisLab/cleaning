@@ -16,7 +16,7 @@ export default function Home() {
 
       <main className="flex-grow mb-32">
         <Heroes />
-        <div className="md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-4">
+        <div className="w-full mx-auto px-4 xl:px-8">
           <HowItWorks />
         </div>
       </main>

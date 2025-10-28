@@ -24,7 +24,7 @@ export default function Heroes() {
         </div>
       </div>
       {/* Main content  */}
-      <div className="relative z-10 px-4 py-9.5 text-white md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto">
+      <div className="relative z-10 px-4 xl:px-8 py-9.5 text-white w-full mx-auto">
         <nav className="font-medium flex items-center gap-2">
           <IoMdHome size={18} />
           <span>Home</span>

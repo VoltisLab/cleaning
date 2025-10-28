@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
         <div className="absolute top-40 -right-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob-slow"></div>
       </div>
       
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-12 pb-20 relative z-10 w-full">
+      <div className="w-full mx-auto px-6 xl:px-8 pt-12 pb-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div

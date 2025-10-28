@@ -42,7 +42,7 @@ const FeaturesSection: React.FC = () => {
 
   return (
     <section id="features" className="py-24 bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="w-full mx-auto px-6 xl:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

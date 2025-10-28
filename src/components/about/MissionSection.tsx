@@ -58,8 +58,8 @@ const MissionSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-5 xl:px-0 bg-gray-50" ref={ref}>
-      <div className="max-w-[1139px] mx-auto">
+    <section className="py-20 px-5 xl:px-8 bg-gray-50" ref={ref}>
+      <div className="w-full mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}

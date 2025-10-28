@@ -476,7 +476,7 @@ const PoliciesPage = () => {
       </div>
 
       {/* Content */}
-      <div className=" lg:px-0 px-4 py-12 mx-auto max-w-[1139px] bg-white">
+      <div className=" xl:px-8 px-4 py-12 mx-auto w-full bg-white">
         {activePolicy === 'privacy' ? <PrivacyPolicy /> : <CookiesPolicy />}
       </div>
     </div>

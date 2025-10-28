@@ -14,7 +14,7 @@ const FAQCard = ({ title, detail, isLast }: FAQCardProp) => {
 
   return (
     <div
-      className={`w-full max-w-[1140px] flex justify-between items-start gap-4 py-4 cursor-pointer transition-all duration-200 hover:bg-gray-50 px-2 -mx-2 rounded-lg
+      className={`w-full flex justify-between items-start gap-4 py-4 cursor-pointer transition-all duration-200 hover:bg-gray-50 px-2 -mx-2 rounded-lg
         ${!isLast ? "border-b" : ""} 
         ${isOpen ? "border-[#4977E5]" : "border-[#838B95]"}
       `}

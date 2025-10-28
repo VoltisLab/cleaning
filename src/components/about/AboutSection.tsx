@@ -47,8 +47,8 @@ const AboutSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 px-5 xl:px-0" ref={ref}>
-      <div className="max-w-[1139px] mx-auto ">
+    <section className="py-20 px-5 xl:px-8" ref={ref}>
+      <div className="w-full mx-auto">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content Section - Now fully responsive */}
           <motion.div
