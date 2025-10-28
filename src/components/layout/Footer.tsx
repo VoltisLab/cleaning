@@ -109,7 +109,7 @@ const Footer: React.FC = () => {
                 <span className="text-white text-xs mb-3 xl:text-[16px] ">hello@pebblecleaning.com</span>
               </motion.div>
               <div className="flex gap-4 mt-3">
-              {[{icon: Facebook, href: '' }, {icon: Instagram, href: 'https://instagram.com/pebblecleaning' }, {icon: Linkedin, href: '' }].map((Icon, index) => (
+              {[{icon: Facebook, href: '' }, {icon: Instagram, href: 'https://instagram.com/pebblecleaning' }, {icon: Linkedin, href: 'https://www.linkedin.com/company/pebbleapp' }].map((Icon, index) => (
                 <motion.a
                 key={index}
                 href={Icon.href}
