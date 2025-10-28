@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { 
   Search, 
   MapPin, 
@@ -909,13 +910,25 @@ const HowItWorksPage = () => {
             <p className="text-xl text-gray-600 mb-6">
               Download the Pebble app today and experience hassle-free cleaning services
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#4977E5] hover:bg-[#3967d4] text-white font-semibold px-8 py-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg">
-                <span>Download on iOS</span>
-              </button>
-              <button className="bg-[#4977E5] hover:bg-[#3967d4] text-white font-semibold px-8 py-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg">
-                <span>Download on Android</span>
-              </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="#" className="hover:opacity-80 transition-opacity">
+                <Image
+                  src="/app-store/apple-store-badge.svg"
+                  alt="Download on the App Store"
+                  width={200}
+                  height={60}
+                  className="h-14 w-auto"
+                />
+              </a>
+              <a href="#" className="hover:opacity-80 transition-opacity">
+                <Image
+                  src="/app-store/google-play-badge.svg"
+                  alt="Get it on Google Play"
+                  width={200}
+                  height={60}
+                  className="h-14 w-auto"
+                />
+              </a>
             </div>
           </section>
         </div>
