@@ -8,12 +8,10 @@ const Footer: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const companyLinks = [{title: 'About', href: '/about' }, {title: 'Business', href: '/business'}, {title: 'Community', href: '/community'}, {title: 'Careers', href: '/careers'}];
+  const companyLinks = [{title: 'About', href: '/about' }];
   const supportLinks = [
-    { title: 'Contact', href: '/contact' },
     { title: 'Terms', href: '/terms' },
-    { title: 'Privacy', href: '/privacy' },
-    { title: 'Site Map', href: '/sitemap' }
+    { title: 'Privacy', href: '/privacy' }
   ];
 
   const containerVariants = {
