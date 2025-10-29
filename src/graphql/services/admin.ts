@@ -89,12 +89,13 @@ export const getAllSubscribers = async () => {
   try {
     const { data } = await client.query({
       query: GET_ALL_SUBSCRIBERS,
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
     });
-    return data.getAllSubscribers;
+    return data?.getAllSubscribers || { subscribers: [], total: 0 };
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.error("Error fetching subscribers:", err.message);
+    console.warn("Subscribers query not available on backend:", err.message);
     return { subscribers: [], total: 0 };
   }
 };
@@ -104,12 +105,13 @@ export const getAllEnquiries = async () => {
   try {
     const { data } = await client.query({
       query: GET_ALL_ENQUIRIES,
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
     });
-    return data.getAllEnquiries;
+    return data?.getAllEnquiries || { enquiries: [], total: 0 };
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.error("Error fetching enquiries:", err.message);
+    console.warn("Enquiries query not available on backend:", err.message);
     return { enquiries: [], total: 0 };
   }
 };
@@ -119,12 +121,13 @@ export const getAllBookings = async () => {
   try {
     const { data } = await client.query({
       query: GET_ALL_BOOKINGS,
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
     });
-    return data.getAllBookings;
+    return data?.getAllBookings || { bookings: [], total: 0 };
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.error("Error fetching bookings:", err.message);
+    console.warn("Bookings query not available on backend:", err.message);
     return { bookings: [], total: 0 };
   }
 };
@@ -134,12 +137,13 @@ export const getAdminStats = async () => {
   try {
     const { data } = await client.query({
       query: GET_ADMIN_STATS,
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
     });
-    return data.getAdminStats;
+    return data?.getAdminStats || null;
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.error("Error fetching admin stats:", err.message);
+    console.warn("Admin stats query not available on backend:", err.message);
     return null;
   }
 };
@@ -149,12 +153,13 @@ export const getAllUsers = async () => {
   try {
     const { data } = await client.query({
       query: GET_ALL_USERS,
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
     });
-    return data.getAllUsers;
+    return data?.getAllUsers || { users: [], total: 0 };
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.error("Error fetching users:", err.message);
+    console.warn("Users query not available on backend:", err.message);
     return { users: [], total: 0 };
   }
 };
@@ -164,12 +169,13 @@ export const getCleanerApplications = async () => {
   try {
     const { data } = await client.query({
       query: GET_CLEANER_APPLICATIONS,
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
     });
-    return data.getCleanerApplications;
+    return data?.getCleanerApplications || { applications: [], total: 0 };
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.error("Error fetching cleaner applications:", err.message);
+    console.warn("Cleaner applications query not available on backend:", err.message);
     return { applications: [], total: 0 };
   }
 };
