@@ -514,16 +514,26 @@ export default function AdminDashboard() {
   const jobsColumns: any = [
     { key: 'id', label: 'Job ID' },
     { key: 'title', label: 'Title' },
-    { key: 'serviceType', label: 'Service Type' },
-    { key: 'location', label: 'Location' },
     { 
-      key: 'price', 
+      key: 'serviceType', 
+      label: 'Service Type',
+      render: (value: Job['serviceType']) => value?.name || 'N/A'
+    },
+    { 
+      key: 'customer', 
+      label: 'Customer',
+      render: (value: Job['customer']) => value?.username || 'N/A'
+    },
+    { key: 'address', label: 'Address' },
+    { key: 'postcode', label: 'Postcode' },
+    { 
+      key: 'customerOfferedPrice', 
       label: 'Price',
       render: (value: number) => `$${value?.toFixed(2) || '0.00'}`
     },
     { 
-      key: 'scheduledDate', 
-      label: 'Scheduled',
+      key: 'preferredDate', 
+      label: 'Preferred Date',
       render: (value: string) => value ? new Date(value).toLocaleDateString() : '-'
     },
     { 
@@ -532,19 +542,19 @@ export default function AdminDashboard() {
       render: (value: string) => (
         <span className={`px-3 py-1 rounded-full text-xs font-medium ${
           value === 'completed' ? 'bg-green-100 text-green-800' : 
-          value === 'in_progress' ? 'bg-blue-100 text-blue-800' : 
-          value === 'scheduled' ? 'bg-yellow-100 text-yellow-800' : 
+          value === 'confirmed' ? 'bg-blue-100 text-blue-800' : 
+          value === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
           value === 'cancelled' ? 'bg-red-100 text-red-800' : 
           'bg-gray-100 text-gray-800'
         }`}>
-          {value?.replace('_', ' ').charAt(0).toUpperCase() + value?.slice(1).replace('_', ' ') || 'Pending'}
+          {value?.charAt(0).toUpperCase() + value?.slice(1) || 'Pending'}
         </span>
       )
     },
     { 
-      key: 'rating', 
-      label: 'Rating',
-      render: (value: number) => value ? `⭐ ${value.toFixed(1)}` : 'N/A'
+      key: 'createdAt', 
+      label: 'Created',
+      render: (value: string) => new Date(value).toLocaleDateString()
     },
   ];
 
