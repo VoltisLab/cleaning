@@ -85,7 +85,7 @@ const HeroWithSlider: React.FC = () => {
                   className="transition-all"
                 >
                   <Image
-                    src="/app-store/apple-app-store.png"
+                    src="/app-store/apple-store-badge.svg"
                     alt="Download on the App Store"
                     width={200}
                     height={60}
@@ -101,7 +101,7 @@ const HeroWithSlider: React.FC = () => {
                   className="transition-all"
                 >
                   <Image
-                    src="/app-store/google-play-store.png"
+                    src="/app-store/google-play-badge.svg"
                     alt="Get it on Google Play"
                     width={200}
                     height={60}
