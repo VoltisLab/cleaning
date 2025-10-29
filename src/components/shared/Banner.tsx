@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const Banner = ({page} : { page: string}) => {
   return (
-    <div className='relative h-60 w-full overflow-hidden'>
+    <div className='relative h-48 sm:h-56 md:h-60 lg:h-64 w-full overflow-hidden'>
       {/* Blue overlay */}
       <div className="bg-[#406ACFC2] size-full absolute inset-0 z-10"></div>
       
@@ -31,7 +31,7 @@ const Banner = ({page} : { page: string}) => {
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white">
         {/* Main heading */}
         <motion.h1 
-          className="text-3xl md:text-4xl xl:text-5xl font-dm-sans font-bold mb-6"
+          className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-dm-sans font-bold mb-4 sm:mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -41,7 +41,7 @@ const Banner = ({page} : { page: string}) => {
 
         {/* Breadcrumb navigation */}
         <motion.nav 
-          className="flex items-center space-x-2 text-lg"
+          className="flex items-center space-x-2 text-sm sm:text-base md:text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}

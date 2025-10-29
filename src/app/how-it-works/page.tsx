@@ -31,18 +31,18 @@ const HowItWorksPage = () => {
       <Banner page='How It Works' />
 
       {/* Content */}
-      <div className="xl:px-8 px-4 py-12 mx-auto max-w-[1280px] bg-white">
-        <div className="flex flex-col gap-12 pb-32">
+      <div className="px-4 sm:px-6 xl:px-8 py-8 sm:py-10 md:py-12 mx-auto max-w-[1280px] bg-white">
+        <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 pb-16 sm:pb-24 md:pb-32">
           
           {/* Introduction */}
-          <section className="text-center max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <section className="text-center max-w-3xl mx-auto px-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Two Simple Ways to Get Your Space
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
                 Sparkling Clean
               </span>
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed px-4">
               Whether you need a specific cleaner or want multiple offers from professionals, Pebble makes it easy to find the perfect cleaning solution for your needs.
             </p>
           </section>

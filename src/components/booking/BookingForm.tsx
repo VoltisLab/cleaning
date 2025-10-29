@@ -45,9 +45,9 @@ export default function BookingForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-3xl mx-auto px-4 py-10 space-y-8"
+      className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-10 space-y-6 sm:space-y-8"
     >
-      <h2 className="text-2xl font-semibold">
+      <h2 className="text-xl sm:text-2xl font-semibold">
         {serviceType
         .split(" ")
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())

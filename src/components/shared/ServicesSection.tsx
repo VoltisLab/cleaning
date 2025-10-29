@@ -67,15 +67,15 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
   };
 
   return (
-    <section className="pb-20 px-5 xl:px-8" ref={ref}>
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-5 xl:px-8" ref={ref}>
       <div className="max-w-[1280px] mx-auto bg-white">
         <motion.div
           variants={headerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="xl:text-[40px] md:text-[32px] text-[24px] font-bold leading-[130%] font-dm-sans xl:max-w-[60%] text-center xl:mx-auto text-[#051625] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] xl:text-[40px] font-bold leading-[130%] font-dm-sans xl:max-w-[60%] text-center xl:mx-auto text-[#051625] mb-4 px-4">
             {title}
           </h2>
         </motion.div>
@@ -97,7 +97,7 @@ const ServicesSection: React.FC<ServiceProps> = ({data, title="Our Services"}) =
                     scale: 1.03,
                     transition: { duration: 0.3 }
                   }}
-                  className={`group ${service.color} rounded-3xl p-4 text-left border border-gray-200 cursor-pointer w-full h-[320px] flex flex-col relative ${
+                  className={`group ${service.color} rounded-2xl sm:rounded-3xl p-4 sm:p-5 text-left border border-gray-200 cursor-pointer w-full min-h-[300px] sm:h-[320px] flex flex-col relative ${
                     index === 0 ? 'text-white' : 'text-gray-800'
                   }`}
                 >
