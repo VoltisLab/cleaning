@@ -589,6 +589,96 @@ export default function AdminDashboard() {
     },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const offersColumns: any = [
+    { key: 'id', label: 'Offer ID' },
+    { key: 'title', label: 'Title' },
+    { key: 'code', label: 'Code' },
+    { key: 'discountType', label: 'Type' },
+    { 
+      key: 'discountValue', 
+      label: 'Value',
+      render: (value: number, row: Offer) => 
+        row.discountType === 'PERCENTAGE' ? `${value}%` : `$${value?.toFixed(2) || '0.00'}`
+    },
+    { 
+      key: 'serviceType', 
+      label: 'Service',
+      render: (value: Offer['serviceType']) => value?.name || 'All Services'
+    },
+    { 
+      key: 'isActive', 
+      label: 'Status',
+      render: (value: boolean) => (
+        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+          value ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+        }`}>
+          {value ? 'Active' : 'Inactive'}
+        </span>
+      )
+    },
+    { 
+      key: 'validUntil', 
+      label: 'Valid Until',
+      render: (value: string) => value ? new Date(value).toLocaleDateString() : 'No expiry'
+    },
+  ];
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const communityPostsColumns: any = [
+    { key: 'id', label: 'Post ID' },
+    { key: 'category', label: 'Category' },
+    { 
+      key: 'contentDelta', 
+      label: 'Content',
+      render: (value: string) => <span className="line-clamp-2" title={value}>{value}</span>
+    },
+    { 
+      key: 'author', 
+      label: 'Author',
+      render: (value: CommunityPost['author']) => value?.username || 'Anonymous'
+    },
+    { key: 'likesCount', label: 'Likes' },
+    { key: 'sharesCount', label: 'Shares' },
+    { key: 'viewsCount', label: 'Views' },
+    { 
+      key: 'isPinned', 
+      label: 'Pinned',
+      render: (value: boolean) => (
+        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+          value ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
+        }`}>
+          {value ? '📌 Yes' : 'No'}
+        </span>
+      )
+    },
+    { 
+      key: 'createdAt', 
+      label: 'Date',
+      render: (value: string) => new Date(value).toLocaleDateString()
+    },
+  ];
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const broadcastsColumns: any = [
+    { key: 'id', label: 'Broadcast ID' },
+    { 
+      key: 'message', 
+      label: 'Message',
+      render: (value: string) => <span className="line-clamp-2" title={value}>{value}</span>
+    },
+    { key: 'targetAudience', label: 'Audience' },
+    { 
+      key: 'sender', 
+      label: 'Sender',
+      render: (value: Broadcast['sender']) => value?.username || 'System'
+    },
+    { 
+      key: 'createdAt', 
+      label: 'Date',
+      render: (value: string) => new Date(value).toLocaleDateString()
+    },
+  ];
 
   if (loading) {
     return (
