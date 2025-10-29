@@ -28,8 +28,10 @@ import {
   getCleanerApplications,
   getAllJobs,
   getAllServices,
-  getAllTransactions,
-  getAllReviews,
+  getAllOffers,
+  getAllCommunityPosts,
+  getPendingPosts,
+  getAllBroadcasts,
   type Subscriber,
   type Enquiry,
   type Booking,
@@ -38,12 +40,13 @@ import {
   type CleanerApplication,
   type Job,
   type Service,
-  type Transaction,
-  type Review,
+  type Offer,
+  type CommunityPost,
+  type Broadcast,
 } from '@/graphql/services/admin';
 import { toast } from 'react-toastify';
 
-type TabType = 'overview' | 'subscribers' | 'enquiries' | 'bookings' | 'users' | 'applications' | 'jobs' | 'services' | 'transactions' | 'reviews';
+type TabType = 'overview' | 'subscribers' | 'enquiries' | 'jobs' | 'services' | 'offers' | 'community' | 'broadcasts';
 
 export default function AdminDashboard() {
   const { logout } = useAdmin();
@@ -54,33 +57,72 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
-  const [bookings, setBookings] = useState<Booking[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
-  const [applications, setApplications] = useState<CleanerApplication[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [services, setServices] = useState<Service[]>([]);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const [offers, setOffers] = useState<Offer[]>([]);
+  const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
+  const [broadcasts, setBroadcasts] = useState<Broadcast[]>([]);
 
   useEffect(() => {
-    fetchData();
+    discoverAndFetchData();
   }, []);
+
+  const discoverAndFetchData = async () => {
+    setLoading(true);
+    
+    // First, discover what queries the backend supports
+    try {
+      const introspectionQuery = `
+        query IntrospectionQuery {
+          __schema {
+            queryType {
+              fields {
+                name
+                args {
+                  name
+                  type {
+                    name
+                    kind
+                  }
+                }
+              }
+            }
+          }
+        }
+      `;
+      
+      const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URI || "https://uat-api.vmodel.app/pebble/graphql/", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: introspectionQuery }),
+      });
+      
+      const introspectionResult = await response.json();
+      const availableQueries = introspectionResult?.data?.__schema?.queryType?.fields?.map((f: any) => f.name) || [];
+      
+      console.log('🔍 Available Backend Queries:', availableQueries);
+      
+      // Now fetch data using available queries
+      await fetchData();
+    } catch (error) {
+      console.error('Schema introspection failed, proceeding with default queries:', error);
+      await fetchData();
+    }
+  };
 
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [statsData, subscribersData, enquiriesData, bookingsData, usersData, applicationsData, jobsData, servicesData, transactionsData, reviewsData] = 
+      const [statsData, subscribersData, enquiriesData, jobsData, servicesData, offersData, communityPostsData, broadcastsData] = 
         await Promise.allSettled([
           getAdminStats(),
           getAllSubscribers(),
           getAllEnquiries(),
-          getAllBookings(),
-          getAllUsers(),
-          getCleanerApplications(),
           getAllJobs(),
           getAllServices(),
-          getAllTransactions(),
-          getAllReviews(),
+          getAllOffers(),
+          getAllCommunityPosts(),
+          getAllBroadcasts(),
         ]);
 
       // Handle stats
@@ -89,18 +131,24 @@ export default function AdminDashboard() {
       } else {
         // Set default stats if API fails
         setStats({
-          totalSubscribers: 0,
-          totalBookers: 0,
           totalCleaners: 0,
-          totalEnquiries: 0,
+          totalCustomers: 0,
+          totalUsers: 0,
           totalBookings: 0,
-          pendingBookings: 0,
           completedBookings: 0,
-          newSubscribersThisMonth: 0,
-          newEnquiriesThisMonth: 0,
-          newBookingsThisMonth: 0,
-          revenueThisMonth: 0,
-          activeUsers: 0,
+          inProgressBookings: 0,
+          confirmedBookings: 0,
+          cancelledBookings: 0,
+          totalRevenue: 0,
+          avgBookingValue: 0,
+          totalCommunityPosts: 0,
+          approvedPosts: 0,
+          pendingPosts: 0,
+          totalLikes: 0,
+          totalShares: 0,
+          totalJobs: 0,
+          totalOffers: 0,
+          totalServices: 0,
         });
       }
 
@@ -114,21 +162,6 @@ export default function AdminDashboard() {
         setEnquiries(enquiriesData.value.enquiries || []);
       }
 
-      // Handle bookings
-      if (bookingsData.status === 'fulfilled' && bookingsData.value) {
-        setBookings(bookingsData.value.bookings || []);
-      }
-
-      // Handle users
-      if (usersData.status === 'fulfilled' && usersData.value) {
-        setUsers(usersData.value.users || []);
-      }
-
-      // Handle applications
-      if (applicationsData.status === 'fulfilled' && applicationsData.value) {
-        setApplications(applicationsData.value.applications || []);
-      }
-
       // Handle jobs
       if (jobsData.status === 'fulfilled' && jobsData.value) {
         setJobs(jobsData.value || []);
@@ -139,14 +172,19 @@ export default function AdminDashboard() {
         setServices(servicesData.value || []);
       }
 
-      // Handle transactions
-      if (transactionsData.status === 'fulfilled' && transactionsData.value) {
-        setTransactions(transactionsData.value || []);
+      // Handle offers
+      if (offersData.status === 'fulfilled' && offersData.value) {
+        setOffers(offersData.value || []);
       }
 
-      // Handle reviews
-      if (reviewsData.status === 'fulfilled' && reviewsData.value) {
-        setReviews(reviewsData.value || []);
+      // Handle community posts
+      if (communityPostsData.status === 'fulfilled' && communityPostsData.value) {
+        setCommunityPosts(communityPostsData.value || []);
+      }
+
+      // Handle broadcasts
+      if (broadcastsData.status === 'fulfilled' && broadcastsData.value) {
+        setBroadcasts(broadcastsData.value || []);
       }
 
       toast.success('Dashboard loaded successfully');
@@ -156,18 +194,24 @@ export default function AdminDashboard() {
       
       // Set default empty data
       setStats({
-        totalSubscribers: 0,
-        totalBookers: 0,
         totalCleaners: 0,
-        totalEnquiries: 0,
+        totalCustomers: 0,
+        totalUsers: 0,
         totalBookings: 0,
-        pendingBookings: 0,
         completedBookings: 0,
-        newSubscribersThisMonth: 0,
-        newEnquiriesThisMonth: 0,
-        newBookingsThisMonth: 0,
-        revenueThisMonth: 0,
-        activeUsers: 0,
+        inProgressBookings: 0,
+        confirmedBookings: 0,
+        cancelledBookings: 0,
+        totalRevenue: 0,
+        avgBookingValue: 0,
+        totalCommunityPosts: 0,
+        approvedPosts: 0,
+        pendingPosts: 0,
+        totalLikes: 0,
+        totalShares: 0,
+        totalJobs: 0,
+        totalOffers: 0,
+        totalServices: 0,
       });
     } finally {
       setLoading(false);
@@ -183,13 +227,11 @@ export default function AdminDashboard() {
     { id: 'overview' as TabType, label: 'Overview', icon: BarChart3 },
     { id: 'jobs' as TabType, label: 'Jobs', icon: Briefcase },
     { id: 'services' as TabType, label: 'Services', icon: TrendingUp },
-    { id: 'users' as TabType, label: 'Users', icon: Users },
-    { id: 'bookings' as TabType, label: 'Bookings', icon: Calendar },
+    { id: 'offers' as TabType, label: 'Offers', icon: DollarSign },
+    { id: 'community' as TabType, label: 'Community', icon: Users },
+    { id: 'broadcasts' as TabType, label: 'Broadcasts', icon: MessageSquare },
     { id: 'subscribers' as TabType, label: 'Subscribers', icon: Mail },
-    { id: 'enquiries' as TabType, label: 'Enquiries', icon: MessageSquare },
-    { id: 'transactions' as TabType, label: 'Transactions', icon: DollarSign },
-    { id: 'reviews' as TabType, label: 'Reviews', icon: Activity },
-    { id: 'applications' as TabType, label: 'Applications', icon: UserPlus },
+    { id: 'enquiries' as TabType, label: 'Enquiries', icon: Activity },
   ];
 
   // Table columns configurations
