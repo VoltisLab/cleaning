@@ -31,6 +31,7 @@ export default function ServiceCard({ service, onDelete, onEdit, onView }: Servi
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ y: -5 }}
+      onClick={() => onView && onView(service)}
       className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all cursor-pointer relative group"
     >
       {/* Service Image */}
@@ -89,7 +90,7 @@ export default function ServiceCard({ service, onDelete, onEdit, onView }: Servi
             <div>
               <p className="text-xs text-gray-500">Price Range</p>
               <p className="text-sm font-bold text-gray-900">
-                ${service.minPrice || 0} - ${service.maxPrice || 0}
+                ${(service.minPrice || 0).toFixed(2)} - ${(service.maxPrice || 0).toFixed(2)}
               </p>
             </div>
           </div>
@@ -161,7 +162,7 @@ export default function ServiceCard({ service, onDelete, onEdit, onView }: Servi
         </p>
 
         {/* Action Buttons */}
-        <div className="flex gap-2">
+        <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
           {onView && (
             <button
               onClick={() => onView(service)}
