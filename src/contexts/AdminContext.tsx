@@ -27,16 +27,13 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // Don't render children until client-side
-  if (!isClient) {
-    return null;
-  }
-
   const login = (username: string, password: string): boolean => {
     // Hardcoded credentials as requested
     if (username === 'Admin' && password === 'Password123!!!') {
       setIsAuthenticated(true);
-      localStorage.setItem('adminAuth', 'true');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('adminAuth', 'true');
+      }
       return true;
     }
     return false;
@@ -44,8 +41,24 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem('adminAuth');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('adminAuth');
+    }
   };
+
+  // Render loading state during SSR/initial hydration
+  if (!isClient) {
+    return (
+      <AdminContext.Provider value={{ isAuthenticated: false, login, logout }}>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading...</p>
+          </div>
+        </div>
+      </AdminContext.Provider>
+    );
+  }
 
   return (
     <AdminContext.Provider value={{ isAuthenticated, login, logout }}>
