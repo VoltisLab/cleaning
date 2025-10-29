@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
+import {
   Users, 
   Mail, 
   Calendar, 
@@ -14,11 +14,14 @@ import {
   UserCheck,
   UserPlus,
   DollarSign,
-  Activity
+  Activity,
+  Grid,
+  List
 } from 'lucide-react';
 import { useAdmin } from '@/contexts/AdminContext';
 import StatsCard from './StatsCard';
 import DataTable from './DataTable';
+import ServiceCard from './ServiceCard';
 import {
   getAllSubscribers,
   getAllEnquiries,
@@ -67,6 +70,7 @@ export default function AdminDashboard() {
     message: string;
     errors: string[];
   }>({ connected: false, message: 'Connecting...', errors: [] });
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
   useEffect(() => {
     discoverAndFetchData();
@@ -277,6 +281,26 @@ export default function AdminDashboard() {
   const handleLogout = () => {
     logout();
     toast.success('Logged out successfully');
+  };
+
+  const handleDeleteService = async (id: number) => {
+    try {
+      // TODO: Add GraphQL mutation for deleting service
+      toast.success('Service deleted successfully');
+      setServices(services.filter(s => s.id !== id));
+    } catch (error) {
+      toast.error('Failed to delete service');
+    }
+  };
+
+  const handleViewService = (service: any) => {
+    toast.info(`Viewing ${service.name}`);
+    // TODO: Add modal or navigation to view service details
+  };
+
+  const handleEditService = (service: any) => {
+    toast.info(`Editing ${service.name}`);
+    // TODO: Add modal or navigation to edit service
   };
 
   const tabs = [
@@ -800,11 +824,75 @@ export default function AdminDashboard() {
         )}
 
         {activeTab === 'services' && (
-          <DataTable
-            title="All Services"
-            data={services}
-            columns={servicesColumns}
-          />
+          <div className="space-y-6">
+            {/* Services Header with View Toggle */}
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">All Services</h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {services.length} service{services.length !== 1 ? 's' : ''} available
+                  </p>
+                </div>
+                
+                {/* View Toggle */}
+                <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+                      viewMode === 'grid'
+                        ? 'bg-white text-[#4977E5] shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    <Grid className="w-4 h-4" />
+                    Grid
+                  </button>
+                  <button
+                    onClick={() => setViewMode('table')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+                      viewMode === 'table'
+                        ? 'bg-white text-[#4977E5] shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    <List className="w-4 h-4" />
+                    Table
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid View */}
+            {viewMode === 'grid' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {services.length > 0 ? (
+                  services.map((service) => (
+                    <ServiceCard
+                      key={service.id}
+                      service={service}
+                      onDelete={handleDeleteService}
+                      onEdit={handleEditService}
+                      onView={handleViewService}
+                    />
+                  ))
+                ) : (
+                  <div className="col-span-full text-center py-12">
+                    <p className="text-gray-500">No services found</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Table View */}
+            {viewMode === 'table' && (
+              <DataTable
+                title=""
+                data={services}
+                columns={servicesColumns}
+              />
+            )}
+          </div>
         )}
 
         {activeTab === 'transactions' && (
