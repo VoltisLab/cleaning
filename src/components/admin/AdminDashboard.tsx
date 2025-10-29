@@ -139,43 +139,39 @@ export default function AdminDashboard() {
           getAllBroadcasts(),
         ]);
 
-      // Handle stats
-      if (statsData.status === 'fulfilled' && statsData.value) {
-        setStats(statsData.value);
-        successCount++;
-      } else {
-        // Set default stats if API fails (don't show error - requires auth)
-        setStats({
-          totalCleaners: 0,
-          totalCustomers: 0,
-          totalBookers: 0,
-          totalUsers: 0,
-          totalSubscribers: subscribers.length,
-          totalBookings: 0,
-          completedBookings: 0,
-          inProgressBookings: 0,
-          confirmedBookings: 0,
-          cancelledBookings: 0,
-          pendingBookings: 0,
-          totalRevenue: 0,
-          avgBookingValue: 0,
-          totalCommunityPosts: 0,
-          approvedPosts: 0,
-          pendingPosts: 0,
-          totalLikes: 0,
-          totalShares: 0,
-          totalJobs: jobs.length,
-          totalOffers: 0,
-          totalServices: services.length,
-          totalBroadcasts: 0,
-          totalEnquiries: enquiries.length,
-          newSubscribersThisMonth: 0,
-          newBookingsThisMonth: 0,
-          newEnquiriesThisMonth: 0,
-          activeUsers: 0,
-          revenueThisMonth: 0,
-        });
-      }
+      // Calculate stats from actual data since backend doesn't have adminAnalytics query
+      const calculatedStats: AdminStats = {
+        totalCleaners: users.filter(u => u.userType === 'cleaner').length,
+        totalCustomers: users.filter(u => u.userType === 'customer').length,
+        totalBookers: users.filter(u => u.userType === 'customer').length,
+        totalUsers: users.length,
+        totalSubscribers: subscribers.length,
+        totalBookings: jobs.length,
+        completedBookings: jobs.filter(j => j.status?.toLowerCase() === 'completed').length,
+        inProgressBookings: jobs.filter(j => j.status?.toLowerCase() === 'in_progress').length,
+        confirmedBookings: jobs.filter(j => j.status?.toLowerCase() === 'confirmed').length,
+        cancelledBookings: jobs.filter(j => j.status?.toLowerCase() === 'cancelled').length,
+        pendingBookings: jobs.filter(j => j.status?.toLowerCase() === 'pending').length,
+        totalRevenue: 0,
+        avgBookingValue: 0,
+        totalCommunityPosts: communityPosts.length,
+        approvedPosts: communityPosts.filter(p => p.isPinned).length,
+        pendingPosts: 0,
+        totalLikes: communityPosts.reduce((sum, p) => sum + (p.likesCount || 0), 0),
+        totalShares: communityPosts.reduce((sum, p) => sum + (p.sharesCount || 0), 0),
+        totalJobs: jobs.length,
+        totalOffers: offers.length,
+        totalServices: services.length,
+        totalBroadcasts: broadcasts.length,
+        totalEnquiries: enquiries.length,
+        newSubscribersThisMonth: subscribers.length, // Could calculate based on createdAt if available
+        newBookingsThisMonth: 0,
+        newEnquiriesThisMonth: enquiries.length,
+        activeUsers: users.filter(u => u.isActive).length,
+        revenueThisMonth: 0,
+      };
+      setStats(calculatedStats);
+      successCount++;
 
       // Handle subscribers
       if (subscribersData.status === 'fulfilled' && subscribersData.value) {
