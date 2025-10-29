@@ -12,14 +12,25 @@ const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export const AdminProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Set client-side flag
+    setIsClient(true);
+    
     // Check if admin is already logged in
-    const adminAuth = localStorage.getItem('adminAuth');
-    if (adminAuth === 'true') {
-      setIsAuthenticated(true);
+    if (typeof window !== 'undefined') {
+      const adminAuth = localStorage.getItem('adminAuth');
+      if (adminAuth === 'true') {
+        setIsAuthenticated(true);
+      }
     }
   }, []);
+
+  // Don't render children until client-side
+  if (!isClient) {
+    return null;
+  }
 
   const login = (username: string, password: string): boolean => {
     // Hardcoded credentials as requested

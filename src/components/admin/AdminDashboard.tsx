@@ -44,8 +44,6 @@ import {
   type Broadcast,
 } from '@/graphql/services/admin';
 import { toast } from 'react-toastify';
-import { gql } from '@apollo/client';
-import { client } from '@/lib/apollo-client';
 
 type TabType = 'overview' | 'subscribers' | 'enquiries' | 'jobs' | 'services' | 'cleanerServices' | 'users' | 'offers' | 'community' | 'broadcasts';
 
