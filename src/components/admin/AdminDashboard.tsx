@@ -25,7 +25,6 @@ import ServiceDetailsModal from './ServiceDetailsModal';
 import {
   getAllSubscribers,
   getAllEnquiries,
-  getAdminStats,
   getAllUsers,
   getAllJobs,
   getAllServices,
@@ -125,9 +124,8 @@ export default function AdminDashboard() {
     let successCount = 0;
     
     try {
-      const [statsData, subscribersData, enquiriesData, jobsData, servicesData, cleanerServicesData, usersData, offersData, communityPostsData, broadcastsData] = 
+      const [subscribersData, enquiriesData, jobsData, servicesData, cleanerServicesData, usersData, offersData, communityPostsData, broadcastsData] = 
         await Promise.allSettled([
-          getAdminStats(),
           getAllSubscribers(),
           getAllEnquiries(),
           getAllJobs(),
@@ -203,8 +201,29 @@ export default function AdminDashboard() {
 
       // Handle cleaner services
       if (cleanerServicesData.status === 'fulfilled' && cleanerServicesData.value && cleanerServicesData.value.length > 0) {
-        setCleanerServices(cleanerServicesData.value || []);
+        const cleanerServs = cleanerServicesData.value || [];
+        setCleanerServices(cleanerServs);
+        
+        // Log cleaner services with creator info
+        console.log('📦 Total Cleaner Services:', cleanerServs.length);
+        cleanerServs.forEach((service: Service) => {
+          const creator = service.createdBy?.userProfile?.user;
+          console.log(`  - ${service.name} by ${creator?.username || 'Unknown'} (${creator?.firstName} ${creator?.lastName})`);
+        });
+        
+        // Specifically look for cleaner03's services
+        const cleaner03Services = cleanerServs.filter((service: Service) => 
+          service.createdBy?.userProfile?.user?.username === 'cleaner03'
+        );
+        if (cleaner03Services.length > 0) {
+          console.log('🎯 Found cleaner03 services:', cleaner03Services);
+        } else {
+          console.log('⚠️ No services found for cleaner03');
+        }
+        
         successCount++;
+      } else {
+        console.log('⚠️ No cleaner services returned from backend');
       }
 
       // Handle users
