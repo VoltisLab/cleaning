@@ -217,15 +217,27 @@ export const getAllBookings = async () => {
 // Fetch admin analytics
 export const getAdminStats = async () => {
   try {
-    const { data } = await client.query({
+    console.log("🔍 Fetching admin analytics from backend...");
+    const { data, errors } = await client.query({
       query: GET_ADMIN_ANALYTICS,
       fetchPolicy: "no-cache",
       errorPolicy: "all",
     });
-    return data?.adminAnalytics || null;
+    
+    if (errors) {
+      console.error("❌ Admin analytics query errors:", errors);
+    }
+    
+    if (data?.adminAnalytics) {
+      console.log("✅ Admin analytics fetched successfully:", data.adminAnalytics);
+      return data.adminAnalytics;
+    }
+    
+    console.warn("⚠️ No admin analytics data returned from backend");
+    return null;
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.warn("Admin analytics query not available on backend:", err.message);
+    console.error("❌ Admin analytics query failed:", err.message, err.graphQLErrors);
     return null;
   }
 };
@@ -247,15 +259,27 @@ export const getCleanerApplications = async () => {
 // Fetch all jobs from marketplace
 export const getAllJobs = async () => {
   try {
-    const { data } = await client.query({
+    console.log("🔍 Fetching jobs from backend...");
+    const { data, errors } = await client.query({
       query: GET_ALL_JOBS,
       fetchPolicy: "no-cache",
       errorPolicy: "all",
     });
-    return data?.allJobs || [];
+    
+    if (errors) {
+      console.error("❌ Jobs query errors:", errors);
+    }
+    
+    if (data?.allJobs) {
+      console.log("✅ Jobs fetched successfully:", data.allJobs.length, "jobs");
+      return data.allJobs;
+    }
+    
+    console.warn("⚠️ No jobs data returned from backend");
+    return [];
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.warn("Jobs query failed:", err.message);
+    console.error("❌ Jobs query failed:", err.message, err.graphQLErrors);
     return [];
   }
 };
@@ -263,15 +287,27 @@ export const getAllJobs = async () => {
 // Fetch all services (categories)
 export const getAllServices = async () => {
   try {
-    const { data } = await client.query({
+    console.log("🔍 Fetching services from backend...");
+    const { data, errors } = await client.query({
       query: GET_ALL_SERVICES,
       fetchPolicy: "no-cache",
       errorPolicy: "all",
     });
-    return data?.categories || [];
+    
+    if (errors) {
+      console.error("❌ Services query errors:", errors);
+    }
+    
+    if (data?.categories) {
+      console.log("✅ Services fetched successfully:", data.categories.length, "services");
+      return data.categories;
+    }
+    
+    console.warn("⚠️ No services data returned from backend");
+    return [];
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.warn("Services query failed:", err.message);
+    console.error("❌ Services query failed:", err.message, err.graphQLErrors);
     return [];
   }
 };
