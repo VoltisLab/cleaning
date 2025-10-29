@@ -72,7 +72,7 @@ export const GET_ALL_JOBS = gql`
   }
 `;
 
-// Get all services (categories)
+// Get all services (system categories)
 export const GET_ALL_SERVICES = gql`
   query GetCategories {
     categories {
@@ -89,6 +89,73 @@ export const GET_ALL_SERVICES = gql`
       images
       includedFeatures
       createdAt
+    }
+  }
+`;
+
+// Get cleaner-created custom services
+export const GET_CLEANER_SERVICES = gql`
+  query GetCleanerServices {
+    cleanerServices {
+      id
+      name
+      description
+      minPrice
+      maxPrice
+      durationHours
+      icon
+      category
+      tags
+      isActive
+      images
+      includedFeatures
+      createdAt
+      createdBy {
+        id
+        userProfile {
+          id
+          user {
+            id
+            username
+            firstName
+            lastName
+            email
+          }
+        }
+      }
+    }
+  }
+`;
+
+// Get all users for admin
+export const GET_ALL_USERS_ADMIN = gql`
+  query GetAllUsersAdmin {
+    allUsers {
+      id
+      email
+      firstName
+      lastName
+      username
+      phone
+      profilePhoto
+      userType
+      isVerified
+      isActive
+      dateJoined
+      lastLogin
+      customer {
+        id
+        totalBookings
+        rating
+      }
+      cleaner {
+        id
+        rating
+        totalJobsCompleted
+        bio
+        experienceYears
+        specialties
+      }
     }
   }
 `;

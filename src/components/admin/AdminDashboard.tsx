@@ -22,6 +22,7 @@ import { useAdmin } from '@/contexts/AdminContext';
 import StatsCard from './StatsCard';
 import DataTable from './DataTable';
 import ServiceCard from './ServiceCard';
+import ServiceDetailsModal from './ServiceDetailsModal';
 import {
   getAllSubscribers,
   getAllEnquiries,
@@ -31,6 +32,7 @@ import {
   getCleanerApplications,
   getAllJobs,
   getAllServices,
+  getCleanerServices,
   getAllOffers,
   getAllCommunityPosts,
   getPendingPosts,
@@ -49,7 +51,7 @@ import {
 } from '@/graphql/services/admin';
 import { toast } from 'react-toastify';
 
-type TabType = 'overview' | 'subscribers' | 'enquiries' | 'jobs' | 'services' | 'offers' | 'community' | 'broadcasts';
+type TabType = 'overview' | 'subscribers' | 'enquiries' | 'jobs' | 'services' | 'cleanerServices' | 'users' | 'offers' | 'community' | 'broadcasts';
 
 export default function AdminDashboard() {
   const { logout } = useAdmin();
@@ -62,9 +64,12 @@ export default function AdminDashboard() {
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [services, setServices] = useState<Service[]>([]);
+  const [cleanerServices, setCleanerServices] = useState<Service[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [offers, setOffers] = useState<Offer[]>([]);
   const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
   const [broadcasts, setBroadcasts] = useState<Broadcast[]>([]);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [backendStatus, setBackendStatus] = useState<{
     connected: boolean;
     message: string;
@@ -125,13 +130,15 @@ export default function AdminDashboard() {
     let successCount = 0;
     
     try {
-      const [statsData, subscribersData, enquiriesData, jobsData, servicesData, offersData, communityPostsData, broadcastsData] = 
+      const [statsData, subscribersData, enquiriesData, jobsData, servicesData, cleanerServicesData, usersData, offersData, communityPostsData, broadcastsData] = 
         await Promise.allSettled([
           getAdminStats(),
           getAllSubscribers(),
           getAllEnquiries(),
           getAllJobs(),
           getAllServices(),
+          getCleanerServices(),
+          getAllUsers(),
           getAllOffers(),
           getAllCommunityPosts(),
           getAllBroadcasts(),
@@ -185,12 +192,24 @@ export default function AdminDashboard() {
         successCount++;
       }
 
-      // Handle services
+      // Handle system categories
       if (servicesData.status === 'fulfilled' && servicesData.value && servicesData.value.length > 0) {
         setServices(servicesData.value || []);
         successCount++;
       } else if (servicesData.status === 'rejected') {
-        errors.push('⚠️ Unable to load services - check backend connection');
+        errors.push('⚠️ Unable to load system categories - check backend connection');
+      }
+
+      // Handle cleaner services
+      if (cleanerServicesData.status === 'fulfilled' && cleanerServicesData.value && cleanerServicesData.value.length > 0) {
+        setCleanerServices(cleanerServicesData.value || []);
+        successCount++;
+      }
+
+      // Handle users
+      if (usersData.status === 'fulfilled' && usersData.value) {
+        setUsers(usersData.value.users || []);
+        if (usersData.value.users?.length > 0) successCount++;
       }
 
       // Handle offers (requires authentication - don't show as error)
@@ -212,15 +231,15 @@ export default function AdminDashboard() {
       }
 
       // Update backend status
-      const totalDataSources = services.length + jobs.length + offers.length + communityPosts.length + broadcasts.length + subscribers.length + enquiries.length;
+      const totalDataSources = services.length + cleanerServices.length + users.length + jobs.length + offers.length + communityPosts.length + broadcasts.length + subscribers.length + enquiries.length;
       
       if (totalDataSources > 0 || successCount > 0) {
         setBackendStatus({
           connected: true,
-          message: `✅ Connected - ${services.length} services loaded`,
+          message: `✅ Connected - ${services.length} categories, ${cleanerServices.length} cleaner services, ${users.length} users`,
           errors: errors.length > 0 ? errors : []
         });
-        if (services.length > 0) {
+        if (services.length > 0 || users.length > 0) {
           toast.success(`Admin dashboard loaded successfully!`);
         }
       } else {
@@ -277,8 +296,7 @@ export default function AdminDashboard() {
   };
 
   const handleViewService = (service: any) => {
-    toast.info(`Viewing ${service.name}`);
-    // TODO: Add modal or navigation to view service details
+    setSelectedService(service);
   };
 
   const handleEditService = (service: any) => {
@@ -288,13 +306,15 @@ export default function AdminDashboard() {
 
   const tabs = [
     { id: 'overview' as TabType, label: 'Overview', icon: BarChart3 },
+    { id: 'users' as TabType, label: 'Users', icon: Users },
     { id: 'jobs' as TabType, label: 'Jobs', icon: Briefcase },
-    { id: 'services' as TabType, label: 'Services', icon: TrendingUp },
+    { id: 'services' as TabType, label: 'System Categories', icon: TrendingUp },
+    { id: 'cleanerServices' as TabType, label: 'Cleaner Services', icon: UserPlus },
     { id: 'offers' as TabType, label: 'Offers', icon: DollarSign },
-    { id: 'community' as TabType, label: 'Community', icon: Users },
-    { id: 'broadcasts' as TabType, label: 'Broadcasts', icon: MessageSquare },
-    { id: 'subscribers' as TabType, label: 'Subscribers', icon: Mail },
-    { id: 'enquiries' as TabType, label: 'Enquiries', icon: Activity },
+    { id: 'community' as TabType, label: 'Community', icon: MessageSquare },
+    { id: 'broadcasts' as TabType, label: 'Broadcasts', icon: Mail },
+    { id: 'subscribers' as TabType, label: 'Newsletter', icon: Activity },
+    { id: 'enquiries' as TabType, label: 'Enquiries', icon: Calendar },
   ];
 
   // Table columns configurations
@@ -391,34 +411,94 @@ export default function AdminDashboard() {
   ];
 
   const usersColumns = [
-    { key: 'name', label: 'Name' },
+    { 
+      key: 'username', 
+      label: 'Username',
+      render: (value: string, row: User) => (
+        <div className="flex items-center gap-2">
+          {row.profilePhoto ? (
+            <img src={row.profilePhoto} alt={value} className="w-8 h-8 rounded-full" />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white font-semibold">
+              {value?.charAt(0).toUpperCase() || 'U'}
+            </div>
+          )}
+          <span className="font-medium">{value || 'N/A'}</span>
+        </div>
+      )
+    },
+    { 
+      key: 'firstName', 
+      label: 'Name',
+      render: (value: string, row: User) => `${value || ''} ${row.lastName || ''}`.trim() || 'N/A'
+    },
     { key: 'email', label: 'Email' },
-    { key: 'phone', label: 'Phone' },
     { 
       key: 'userType', 
-      label: 'Type',
+      label: 'User Type',
       render: (value: string) => (
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-          value === 'cleaner' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+          value === 'cleaner' 
+            ? 'bg-purple-100 text-purple-800' 
+            : value === 'customer'
+            ? 'bg-blue-100 text-blue-800'
+            : 'bg-gray-100 text-gray-800'
         }`}>
-          {value.charAt(0).toUpperCase() + value.slice(1)}
+          {value === 'cleaner' ? '🧹 Cleaner' : value === 'customer' ? '👤 Customer' : value}
         </span>
       )
     },
-    { key: 'totalBookings', label: 'Bookings' },
+    { 
+      key: 'customer', 
+      label: 'Jobs Created',
+      render: (value: any, row: User) => {
+        if (row.userType === 'customer' && value) {
+          return <span className="font-semibold text-blue-600">{value.totalBookings || 0}</span>;
+        }
+        return <span className="text-gray-400">-</span>;
+      }
+    },
+    { 
+      key: 'cleaner', 
+      label: 'Services/Completed',
+      render: (value: any, row: User) => {
+        if (row.userType === 'cleaner' && value) {
+          return <span className="font-semibold text-purple-600">{value.totalJobsCompleted || 0}</span>;
+        }
+        return <span className="text-gray-400">-</span>;
+      }
+    },
+    { 
+      key: 'customer', 
+      label: 'Rating',
+      render: (value: any, row: User) => {
+        const rating = row.userType === 'customer' ? value?.rating : row.cleaner?.rating;
+        if (rating) {
+          return <span className="flex items-center gap-1">⭐ {rating.toFixed(1)}</span>;
+        }
+        return <span className="text-gray-400">No ratings</span>;
+      }
+    },
     { 
       key: 'isVerified', 
-      label: 'Verified',
-      render: (value: boolean) => (
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-          value ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-        }`}>
-          {value ? 'Verified' : 'Pending'}
-        </span>
+      label: 'Status',
+      render: (value: boolean, row: User) => (
+        <div className="flex flex-col gap-1">
+          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+            value ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+          }`}>
+            {value ? '✓ Verified' : '⏳ Pending'}
+          </span>
+          {row.isActive && (
+            <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700">
+              Active
+            </span>
+          )}
+        </div>
       )
     },
     { 
-      key: 'createdAt', 
+      key: 'dateJoined', 
       label: 'Joined',
       render: (value: string) => new Date(value).toLocaleDateString()
     },
@@ -821,9 +901,9 @@ export default function AdminDashboard() {
             <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">All Services</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">System Categories</h2>
                   <p className="text-sm text-gray-600 mt-1">
-                    {services.length} service{services.length !== 1 ? 's' : ''} available
+                    {services.length} predefined service{services.length !== 1 ? 's' : ''} • Used by the mobile app
                   </p>
                 </div>
                 
@@ -870,7 +950,7 @@ export default function AdminDashboard() {
                   ))
                 ) : (
                   <div className="col-span-full text-center py-12">
-                    <p className="text-gray-500">No services found</p>
+                    <p className="text-gray-500">No categories found</p>
                   </div>
                 )}
               </div>
@@ -885,6 +965,87 @@ export default function AdminDashboard() {
               />
             )}
           </div>
+        )}
+
+        {activeTab === 'cleanerServices' && (
+          <div className="space-y-6">
+            {/* Cleaner Services Header */}
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">🧹 Cleaner Services</h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {cleanerServices.length} custom service{cleanerServices.length !== 1 ? 's' : ''} created by cleaners
+                  </p>
+                </div>
+                
+                {/* View Toggle */}
+                <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+                      viewMode === 'grid'
+                        ? 'bg-white text-[#4977E5] shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    <Grid className="w-4 h-4" />
+                    Grid
+                  </button>
+                  <button
+                    onClick={() => setViewMode('table')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+                      viewMode === 'table'
+                        ? 'bg-white text-[#4977E5] shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    <List className="w-4 h-4" />
+                    Table
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid View */}
+            {viewMode === 'grid' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {cleanerServices.length > 0 ? (
+                  cleanerServices.map((service) => (
+                    <ServiceCard
+                      key={service.id}
+                      service={service}
+                      onDelete={handleDeleteService}
+                      onEdit={handleEditService}
+                      onView={handleViewService}
+                    />
+                  ))
+                ) : (
+                  <div className="col-span-full text-center py-12 bg-white rounded-xl border-2 border-dashed border-gray-300">
+                    <p className="text-gray-500 mb-2">No custom cleaner services yet</p>
+                    <p className="text-sm text-gray-400">Cleaners can create custom services in the mobile app</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Table View */}
+            {viewMode === 'table' && (
+              <DataTable
+                title=""
+                data={cleanerServices}
+                columns={servicesColumns}
+              />
+            )}
+          </div>
+        )}
+
+        {activeTab === 'users' && (
+          <DataTable
+            title="All Users (Customers & Cleaners)"
+            data={users}
+            columns={usersColumns}
+          />
         )}
 
         {activeTab === 'transactions' && (
@@ -903,6 +1064,14 @@ export default function AdminDashboard() {
           />
         )}
       </main>
+
+      {/* Service Details Modal */}
+      {selectedService && (
+        <ServiceDetailsModal
+          service={selectedService}
+          onClose={() => setSelectedService(null)}
+        />
+      )}
     </div>
   );
 }

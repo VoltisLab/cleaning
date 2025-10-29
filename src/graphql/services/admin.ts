@@ -5,6 +5,8 @@ import {
   GET_ADMIN_ANALYTICS,
   GET_ALL_JOBS,
   GET_ALL_SERVICES,
+  GET_CLEANER_SERVICES,
+  GET_ALL_USERS_ADMIN,
   GET_ALL_OFFERS,
   GET_ALL_COMMUNITY_POSTS,
   GET_PENDING_POSTS,
@@ -73,15 +75,31 @@ export type AdminStats = {
 };
 
 export type User = {
-  id: string;
-  name: string;
+  id: number;
   email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
   phone: string;
+  profilePhoto: string;
   userType: string;
   isVerified: boolean;
-  createdAt: string;
+  isActive: boolean;
+  dateJoined: string;
   lastLogin: string;
-  totalBookings: number;
+  customer?: {
+    id: number;
+    totalBookings: number;
+    rating: number;
+  };
+  cleaner?: {
+    id: number;
+    rating: number;
+    totalJobsCompleted: number;
+    bio: string;
+    experienceYears: number;
+    specialties: string[];
+  };
 };
 
 export type CleanerApplication = {
@@ -242,11 +260,32 @@ export const getAdminStats = async () => {
   }
 };
 
-// Note: Backend uses currentUser for logged-in user
-// No "getAllUsers" admin query - use adminAnalytics for totals
+// Fetch all users (admin query)
 export const getAllUsers = async () => {
-  console.warn("getAllUsers - Backend uses currentUser (single), no admin query for all users");
-  return { users: [], total: 0 };
+  try {
+    console.log("🔍 Fetching all users from backend...");
+    const { data, errors } = await client.query({
+      query: GET_ALL_USERS_ADMIN,
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    });
+    
+    if (errors) {
+      console.error("❌ Users query errors:", errors);
+    }
+    
+    if (data?.allUsers) {
+      console.log("✅ Users fetched successfully:", data.allUsers.length, "users");
+      return { users: data.allUsers, total: data.allUsers.length };
+    }
+    
+    console.warn("⚠️ No users data returned from backend");
+    return { users: [], total: 0 };
+  } catch (error: unknown) {
+    const err = error as ApolloError;
+    console.error("❌ Users query failed:", err.message, err.graphQLErrors);
+    return { users: [], total: 0 };
+  }
 };
 
 // Note: Backend doesn't have cleaner applications query
@@ -284,10 +323,10 @@ export const getAllJobs = async () => {
   }
 };
 
-// Fetch all services (categories)
+// Fetch all services (system categories)
 export const getAllServices = async () => {
   try {
-    console.log("🔍 Fetching services from backend...");
+    console.log("🔍 Fetching system categories from backend...");
     const { data, errors } = await client.query({
       query: GET_ALL_SERVICES,
       fetchPolicy: "no-cache",
@@ -295,19 +334,47 @@ export const getAllServices = async () => {
     });
     
     if (errors) {
-      console.error("❌ Services query errors:", errors);
+      console.error("❌ Categories query errors:", errors);
     }
     
     if (data?.categories) {
-      console.log("✅ Services fetched successfully:", data.categories.length, "services");
+      console.log("✅ System categories fetched:", data.categories.length, "categories");
       return data.categories;
     }
     
-    console.warn("⚠️ No services data returned from backend");
+    console.warn("⚠️ No categories data returned");
     return [];
   } catch (error: unknown) {
     const err = error as ApolloError;
-    console.error("❌ Services query failed:", err.message, err.graphQLErrors);
+    console.error("❌ Categories query failed:", err.message, err.graphQLErrors);
+    return [];
+  }
+};
+
+// Fetch cleaner-created custom services
+export const getCleanerServices = async () => {
+  try {
+    console.log("🔍 Fetching cleaner services from backend...");
+    const { data, errors } = await client.query({
+      query: GET_CLEANER_SERVICES,
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    });
+    
+    if (errors) {
+      console.error("❌ Cleaner services query errors:", errors);
+    }
+    
+    if (data?.cleanerServices) {
+      console.log("✅ Cleaner services fetched:", data.cleanerServices.length, "custom services");
+      return data.cleanerServices;
+    }
+    
+    console.warn("⚠️ No cleaner services data returned");
+    return [];
+  } catch (error: unknown) {
+    const err = error as ApolloError;
+    console.error("❌ Cleaner services query failed:", err.message, err.graphQLErrors);
     return [];
   }
 };
