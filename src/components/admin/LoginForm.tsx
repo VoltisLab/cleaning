@@ -5,23 +5,38 @@ import { motion } from 'framer-motion';
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
 import { useAdmin } from '@/contexts/AdminContext';
 import { toast } from 'react-toastify';
+import { loginToBackend } from '@/graphql/services/auth';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { login } = useAdmin();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
+    // First check frontend admin credentials
     const success = login(username, password);
     
     if (success) {
-      toast.success('Login successful!');
+      // Also login to backend API for data access
+      const backendLogin = await loginToBackend(username.toLowerCase(), password);
+      
+      if (backendLogin.success) {
+        toast.success('Login successful! Connected to backend');
+      } else {
+        // Frontend login succeeded but backend failed
+        toast.warning('Admin access granted, but backend connection limited. Some data may not be available.');
+        console.warn('Backend login failed:', backendLogin.error);
+      }
     } else {
       toast.error('Invalid credentials');
     }
+    
+    setIsLoading(false);
   };
 
   return (
@@ -89,11 +104,12 @@ export default function LoginForm() {
 
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+            disabled={isLoading}
+            whileHover={{ scale: isLoading ? 1 : 1.02 }}
+            whileTap={{ scale: isLoading ? 1 : 0.98 }}
+            className="w-full bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Sign In
+            {isLoading ? 'Signing In...' : 'Sign In'}
           </motion.button>
         </form>
 
