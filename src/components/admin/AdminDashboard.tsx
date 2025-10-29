@@ -26,16 +26,24 @@ import {
   getAdminStats,
   getAllUsers,
   getCleanerApplications,
+  getAllJobs,
+  getAllServices,
+  getAllTransactions,
+  getAllReviews,
   type Subscriber,
   type Enquiry,
   type Booking,
   type AdminStats,
   type User,
   type CleanerApplication,
+  type Job,
+  type Service,
+  type Transaction,
+  type Review,
 } from '@/graphql/services/admin';
 import { toast } from 'react-toastify';
 
-type TabType = 'overview' | 'subscribers' | 'enquiries' | 'bookings' | 'users' | 'applications';
+type TabType = 'overview' | 'subscribers' | 'enquiries' | 'bookings' | 'users' | 'applications' | 'jobs' | 'services' | 'transactions' | 'reviews';
 
 export default function AdminDashboard() {
   const { logout } = useAdmin();
@@ -49,6 +57,10 @@ export default function AdminDashboard() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [applications, setApplications] = useState<CleanerApplication[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -57,7 +69,7 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [statsData, subscribersData, enquiriesData, bookingsData, usersData, applicationsData] = 
+      const [statsData, subscribersData, enquiriesData, bookingsData, usersData, applicationsData, jobsData, servicesData, transactionsData, reviewsData] = 
         await Promise.allSettled([
           getAdminStats(),
           getAllSubscribers(),
@@ -65,6 +77,10 @@ export default function AdminDashboard() {
           getAllBookings(),
           getAllUsers(),
           getCleanerApplications(),
+          getAllJobs(),
+          getAllServices(),
+          getAllTransactions(),
+          getAllReviews(),
         ]);
 
       // Handle stats
@@ -113,6 +129,26 @@ export default function AdminDashboard() {
         setApplications(applicationsData.value.applications || []);
       }
 
+      // Handle jobs
+      if (jobsData.status === 'fulfilled' && jobsData.value) {
+        setJobs(jobsData.value || []);
+      }
+
+      // Handle services
+      if (servicesData.status === 'fulfilled' && servicesData.value) {
+        setServices(servicesData.value || []);
+      }
+
+      // Handle transactions
+      if (transactionsData.status === 'fulfilled' && transactionsData.value) {
+        setTransactions(transactionsData.value || []);
+      }
+
+      // Handle reviews
+      if (reviewsData.status === 'fulfilled' && reviewsData.value) {
+        setReviews(reviewsData.value || []);
+      }
+
       toast.success('Dashboard loaded successfully');
     } catch (error) {
       toast.warning('Dashboard loaded with limited data - some backend queries may not be available yet');
@@ -145,11 +181,15 @@ export default function AdminDashboard() {
 
   const tabs = [
     { id: 'overview' as TabType, label: 'Overview', icon: BarChart3 },
+    { id: 'jobs' as TabType, label: 'Jobs', icon: Briefcase },
+    { id: 'services' as TabType, label: 'Services', icon: TrendingUp },
+    { id: 'users' as TabType, label: 'Users', icon: Users },
+    { id: 'bookings' as TabType, label: 'Bookings', icon: Calendar },
     { id: 'subscribers' as TabType, label: 'Subscribers', icon: Mail },
     { id: 'enquiries' as TabType, label: 'Enquiries', icon: MessageSquare },
-    { id: 'bookings' as TabType, label: 'Bookings', icon: Calendar },
-    { id: 'users' as TabType, label: 'Users', icon: Users },
-    { id: 'applications' as TabType, label: 'Applications', icon: Briefcase },
+    { id: 'transactions' as TabType, label: 'Transactions', icon: DollarSign },
+    { id: 'reviews' as TabType, label: 'Reviews', icon: Activity },
+    { id: 'applications' as TabType, label: 'Applications', icon: UserPlus },
   ];
 
   // Table columns configurations
@@ -305,6 +345,144 @@ export default function AdminDashboard() {
     { 
       key: 'createdAt', 
       label: 'Applied Date',
+      render: (value: string) => new Date(value).toLocaleDateString()
+    },
+  ];
+
+  const jobsColumns = [
+    { key: 'id', label: 'Job ID' },
+    { key: 'title', label: 'Title' },
+    { key: 'serviceType', label: 'Service Type' },
+    { key: 'location', label: 'Location' },
+    { 
+      key: 'price', 
+      label: 'Price',
+      render: (value: number) => `$${value?.toFixed(2) || '0.00'}`
+    },
+    { 
+      key: 'scheduledDate', 
+      label: 'Scheduled',
+      render: (value: string) => value ? new Date(value).toLocaleDateString() : '-'
+    },
+    { 
+      key: 'status', 
+      label: 'Status',
+      render: (value: string) => (
+        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+          value === 'completed' ? 'bg-green-100 text-green-800' : 
+          value === 'in_progress' ? 'bg-blue-100 text-blue-800' : 
+          value === 'scheduled' ? 'bg-yellow-100 text-yellow-800' : 
+          value === 'cancelled' ? 'bg-red-100 text-red-800' : 
+          'bg-gray-100 text-gray-800'
+        }`}>
+          {value?.replace('_', ' ').charAt(0).toUpperCase() + value?.slice(1).replace('_', ' ') || 'Pending'}
+        </span>
+      )
+    },
+    { 
+      key: 'rating', 
+      label: 'Rating',
+      render: (value: number) => value ? `⭐ ${value.toFixed(1)}` : 'N/A'
+    },
+  ];
+
+  const servicesColumns = [
+    { key: 'name', label: 'Service Name' },
+    { key: 'category', label: 'Category' },
+    { 
+      key: 'description', 
+      label: 'Description',
+      render: (value: string) => (
+        <span className="line-clamp-2" title={value}>
+          {value}
+        </span>
+      )
+    },
+    { 
+      key: 'basePrice', 
+      label: 'Base Price',
+      render: (value: number) => `$${value?.toFixed(2) || '0.00'}`
+    },
+    { 
+      key: 'duration', 
+      label: 'Duration',
+      render: (value: number) => `${value || 0} min`
+    },
+    { 
+      key: 'isActive', 
+      label: 'Status',
+      render: (value: boolean) => (
+        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+          value ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+        }`}>
+          {value ? 'Active' : 'Inactive'}
+        </span>
+      )
+    },
+    { 
+      key: 'createdAt', 
+      label: 'Created',
+      render: (value: string) => new Date(value).toLocaleDateString()
+    },
+  ];
+
+  const transactionsColumns = [
+    { key: 'id', label: 'Transaction ID' },
+    { key: 'userId', label: 'User ID' },
+    { key: 'jobId', label: 'Job ID' },
+    { 
+      key: 'amount', 
+      label: 'Amount',
+      render: (value: number) => `$${value?.toFixed(2) || '0.00'}`
+    },
+    { key: 'paymentMethod', label: 'Payment Method' },
+    { 
+      key: 'status', 
+      label: 'Status',
+      render: (value: string) => (
+        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+          value === 'completed' ? 'bg-green-100 text-green-800' : 
+          value === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
+          value === 'failed' ? 'bg-red-100 text-red-800' : 
+          'bg-gray-100 text-gray-800'
+        }`}>
+          {value?.charAt(0).toUpperCase() + value?.slice(1) || 'Unknown'}
+        </span>
+      )
+    },
+    { 
+      key: 'transactionDate', 
+      label: 'Date',
+      render: (value: string) => new Date(value).toLocaleDateString()
+    },
+  ];
+
+  const reviewsColumns = [
+    { key: 'jobId', label: 'Job ID' },
+    { key: 'customerId', label: 'Customer ID' },
+    { key: 'cleanerId', label: 'Cleaner ID' },
+    { 
+      key: 'rating', 
+      label: 'Rating',
+      render: (value: number) => (
+        <span className="flex items-center gap-1">
+          <span>⭐</span>
+          <span className="font-semibold">{value?.toFixed(1) || 'N/A'}</span>
+        </span>
+      )
+    },
+    { 
+      key: 'comment', 
+      label: 'Comment',
+      render: (value: string) => (
+        <span className="line-clamp-2" title={value}>
+          {value || 'No comment'}
+        </span>
+      )
+    },
+    { 
+      key: 'createdAt', 
+      label: 'Date',
       render: (value: string) => new Date(value).toLocaleDateString()
     },
   ];
@@ -484,6 +662,38 @@ export default function AdminDashboard() {
             title="Cleaner Applications"
             data={applications}
             columns={applicationsColumns}
+          />
+        )}
+
+        {activeTab === 'jobs' && (
+          <DataTable
+            title="All Jobs"
+            data={jobs}
+            columns={jobsColumns}
+          />
+        )}
+
+        {activeTab === 'services' && (
+          <DataTable
+            title="All Services"
+            data={services}
+            columns={servicesColumns}
+          />
+        )}
+
+        {activeTab === 'transactions' && (
+          <DataTable
+            title="All Transactions"
+            data={transactions}
+            columns={transactionsColumns}
+          />
+        )}
+
+        {activeTab === 'reviews' && (
+          <DataTable
+            title="All Reviews"
+            data={reviews}
+            columns={reviewsColumns}
           />
         )}
       </main>

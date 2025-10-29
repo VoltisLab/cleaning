@@ -119,3 +119,73 @@ export const GET_CLEANER_APPLICATIONS = gql`
   }
 `;
 
+// Get all jobs
+export const GET_ALL_JOBS = gql`
+  query GetAllJobs {
+    jobs {
+      id
+      title
+      description
+      status
+      customerId
+      cleanerId
+      serviceType
+      location
+      scheduledDate
+      completedDate
+      price
+      rating
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+// Get all services
+export const GET_ALL_SERVICES = gql`
+  query GetAllServices {
+    services {
+      id
+      name
+      description
+      category
+      basePrice
+      duration
+      isActive
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+// Get all transactions
+export const GET_ALL_TRANSACTIONS = gql`
+  query GetAllTransactions {
+    transactions {
+      id
+      userId
+      jobId
+      amount
+      status
+      paymentMethod
+      transactionDate
+      createdAt
+    }
+  }
+`;
+
+// Get all reviews
+export const GET_ALL_REVIEWS = gql`
+  query GetAllReviews {
+    reviews {
+      id
+      jobId
+      customerId
+      cleanerId
+      rating
+      comment
+      createdAt
+    }
+  }
+`;
+
