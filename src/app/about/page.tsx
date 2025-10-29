@@ -26,7 +26,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a href="#" className="hover:scale-105 transition-transform">
                 <Image
-                  src="/app-store/apple-store-badge.svg"
+                  src="/app-store/app-store-en.png"
                   alt="Download on the App Store"
                   width={200}
                   height={60}
@@ -35,7 +35,7 @@ const About = () => {
               </a>
               <a href="#" className="hover:scale-105 transition-transform">
                 <Image
-                  src="/app-store/google-play-badge.svg"
+                  src="/app-store/google-play-en.png"
                   alt="Get it on Google Play"
                   width={200}
                   height={60}

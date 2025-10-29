@@ -695,7 +695,7 @@ const Header = () => {
                 className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
               >
                 <Image
-                  src="/app-store/google-play-badge.svg"
+                  src="/app-store/google-play-en.png"
                   alt="Get it on Google Play"
                   width={180}
                   height={53}
@@ -713,7 +713,7 @@ const Header = () => {
                 className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
               >
                 <Image
-                  src="/app-store/apple-store-badge.svg"
+                  src="/app-store/app-store-en.png"
                   alt="Download on the App Store"
                   width={160}
                   height={53}
