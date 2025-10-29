@@ -62,6 +62,11 @@ export default function AdminDashboard() {
   const [offers, setOffers] = useState<Offer[]>([]);
   const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
   const [broadcasts, setBroadcasts] = useState<Broadcast[]>([]);
+  const [backendStatus, setBackendStatus] = useState<{
+    connected: boolean;
+    message: string;
+    errors: string[];
+  }>({ connected: false, message: 'Connecting...', errors: [] });
 
   useEffect(() => {
     discoverAndFetchData();
@@ -112,6 +117,9 @@ export default function AdminDashboard() {
 
   const fetchData = async () => {
     setLoading(true);
+    const errors: string[] = [];
+    let successCount = 0;
+    
     try {
       const [statsData, subscribersData, enquiriesData, jobsData, servicesData, offersData, communityPostsData, broadcastsData] = 
         await Promise.allSettled([
@@ -128,7 +136,9 @@ export default function AdminDashboard() {
       // Handle stats
       if (statsData.status === 'fulfilled' && statsData.value) {
         setStats(statsData.value);
+        successCount++;
       } else {
+        errors.push('Admin Analytics failed to load');
         // Set default stats if API fails
         setStats({
           totalCleaners: 0,
@@ -155,39 +165,85 @@ export default function AdminDashboard() {
       // Handle subscribers
       if (subscribersData.status === 'fulfilled' && subscribersData.value) {
         setSubscribers(subscribersData.value.subscribers || []);
+        if (subscribersData.value.subscribers?.length > 0) successCount++;
+      } else {
+        errors.push('Subscribers failed to load (website only)');
       }
 
       // Handle enquiries
       if (enquiriesData.status === 'fulfilled' && enquiriesData.value) {
         setEnquiries(enquiriesData.value.enquiries || []);
+        if (enquiriesData.value.enquiries?.length > 0) successCount++;
+      } else {
+        errors.push('Enquiries failed to load (website only)');
       }
 
       // Handle jobs
-      if (jobsData.status === 'fulfilled' && jobsData.value) {
+      if (jobsData.status === 'fulfilled' && jobsData.value && jobsData.value.length > 0) {
         setJobs(jobsData.value || []);
+        successCount++;
+      } else if (jobsData.status === 'rejected') {
+        errors.push('Jobs failed to load - likely requires authentication');
+      } else {
+        errors.push('No jobs found in database');
       }
 
       // Handle services
-      if (servicesData.status === 'fulfilled' && servicesData.value) {
+      if (servicesData.status === 'fulfilled' && servicesData.value && servicesData.value.length > 0) {
         setServices(servicesData.value || []);
+        successCount++;
+      } else if (servicesData.status === 'rejected') {
+        errors.push('Services failed to load - likely requires authentication');
+      } else {
+        errors.push('No services found in database');
       }
 
       // Handle offers
-      if (offersData.status === 'fulfilled' && offersData.value) {
+      if (offersData.status === 'fulfilled' && offersData.value && offersData.value.length > 0) {
         setOffers(offersData.value || []);
+        successCount++;
+      } else if (offersData.status === 'rejected') {
+        errors.push('Offers failed to load - likely requires authentication');
+      } else {
+        errors.push('No offers found in database');
       }
 
       // Handle community posts
-      if (communityPostsData.status === 'fulfilled' && communityPostsData.value) {
+      if (communityPostsData.status === 'fulfilled' && communityPostsData.value && communityPostsData.value.length > 0) {
         setCommunityPosts(communityPostsData.value || []);
+        successCount++;
+      } else if (communityPostsData.status === 'rejected') {
+        errors.push('Community posts failed to load - likely requires authentication');
+      } else {
+        errors.push('No community posts found in database');
       }
 
       // Handle broadcasts
-      if (broadcastsData.status === 'fulfilled' && broadcastsData.value) {
+      if (broadcastsData.status === 'fulfilled' && broadcastsData.value && broadcastsData.value.length > 0) {
         setBroadcasts(broadcastsData.value || []);
+        successCount++;
+      } else if (broadcastsData.status === 'rejected') {
+        errors.push('Broadcasts failed to load - likely requires authentication');
+      } else {
+        errors.push('No broadcasts found in database');
       }
 
-      toast.success('Dashboard loaded successfully');
+      // Update backend status
+      if (successCount > 0) {
+        setBackendStatus({
+          connected: true,
+          message: `✅ Connected to backend - ${successCount} data sources loaded`,
+          errors: errors.length > 0 ? errors : []
+        });
+        toast.success(`Dashboard loaded - ${successCount} data sources active`);
+      } else {
+        setBackendStatus({
+          connected: false,
+          message: '⚠️ Backend connection issue - No data loaded',
+          errors
+        });
+        toast.error('Unable to load data from backend');
+      }
     } catch (error) {
       toast.warning('Dashboard loaded with limited data - some backend queries may not be available yet');
       console.error('Error fetching admin data:', error);
@@ -546,18 +602,46 @@ export default function AdminDashboard() {
       <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <div>
+            <div className="flex-1">
               <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
               <p className="text-sm text-gray-600">Pebble Cleaning Management System</p>
             </div>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-            >
-              <LogOut className="w-4 h-4" />
-              Logout
-            </button>
+            
+            {/* Backend Status Indicator */}
+            <div className="flex items-center gap-4">
+              <div className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
+                backendStatus.connected 
+                  ? 'bg-green-50 text-green-700 border border-green-200' 
+                  : 'bg-yellow-50 text-yellow-700 border border-yellow-200'
+              }`}>
+                <div className={`w-2 h-2 rounded-full ${backendStatus.connected ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                <span className="text-sm font-medium">{backendStatus.message}</span>
+              </div>
+              
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
+            </div>
           </div>
+          
+          {/* Error Messages */}
+          {backendStatus.errors.length > 0 && (
+            <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <p className="text-sm font-semibold text-yellow-800 mb-2">⚠️ Some data sources could not be loaded:</p>
+              <ul className="text-sm text-yellow-700 list-disc list-inside space-y-1">
+                {backendStatus.errors.map((error, index) => (
+                  <li key={index}>{error}</li>
+                ))}
+              </ul>
+              <p className="text-xs text-yellow-600 mt-2">
+                💡 Tip: Most queries require JWT authentication from the backend. Website-only queries (subscribers, enquiries) may not exist in the mobile backend.
+              </p>
+            </div>
+          )}
         </div>
       </header>
 
