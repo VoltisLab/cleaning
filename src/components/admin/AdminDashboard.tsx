@@ -950,6 +950,30 @@ export default function AdminDashboard() {
           />
         )}
 
+        {activeTab === 'offers' && (
+          <DataTable
+            title="All Offers & Promotions"
+            data={offers}
+            columns={offersColumns}
+          />
+        )}
+
+        {activeTab === 'community' && (
+          <DataTable
+            title="All Community Posts"
+            data={communityPosts}
+            columns={communityPostsColumns}
+          />
+        )}
+
+        {activeTab === 'broadcasts' && (
+          <DataTable
+            title="All Broadcasts"
+            data={broadcasts}
+            columns={broadcastsColumns}
+          />
+        )}
+
       </main>
 
       {/* Service Details Modal */}
