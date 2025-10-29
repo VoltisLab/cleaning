@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import {
   Users, 
   Mail, 
@@ -26,23 +25,18 @@ import ServiceDetailsModal from './ServiceDetailsModal';
 import {
   getAllSubscribers,
   getAllEnquiries,
-  getAllBookings,
   getAdminStats,
   getAllUsers,
-  getCleanerApplications,
   getAllJobs,
   getAllServices,
   getCleanerServices,
   getAllOffers,
   getAllCommunityPosts,
-  getPendingPosts,
   getAllBroadcasts,
   type Subscriber,
   type Enquiry,
-  type Booking,
   type AdminStats,
   type User,
-  type CleanerApplication,
   type Job,
   type Service,
   type Offer,
@@ -79,6 +73,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     discoverAndFetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const discoverAndFetchData = async () => {
@@ -112,7 +107,7 @@ export default function AdminDashboard() {
       });
       
       const introspectionResult = await response.json();
-      const availableQueries = introspectionResult?.data?.__schema?.queryType?.fields?.map((f: any) => f.name) || [];
+      const availableQueries = introspectionResult?.data?.__schema?.queryType?.fields?.map((f: { name: string }) => f.name) || [];
       
       console.log('🔍 Available Backend Queries:', availableQueries);
       
@@ -153,12 +148,15 @@ export default function AdminDashboard() {
         setStats({
           totalCleaners: 0,
           totalCustomers: 0,
+          totalBookers: 0,
           totalUsers: 0,
+          totalSubscribers: subscribers.length,
           totalBookings: 0,
           completedBookings: 0,
           inProgressBookings: 0,
           confirmedBookings: 0,
           cancelledBookings: 0,
+          pendingBookings: 0,
           totalRevenue: 0,
           avgBookingValue: 0,
           totalCommunityPosts: 0,
@@ -166,9 +164,16 @@ export default function AdminDashboard() {
           pendingPosts: 0,
           totalLikes: 0,
           totalShares: 0,
-          totalJobs: services.length, // Use actual service count
+          totalJobs: jobs.length,
           totalOffers: 0,
           totalServices: services.length,
+          totalBroadcasts: 0,
+          totalEnquiries: enquiries.length,
+          newSubscribersThisMonth: 0,
+          newBookingsThisMonth: 0,
+          newEnquiriesThisMonth: 0,
+          activeUsers: 0,
+          revenueThisMonth: 0,
         });
       }
 
@@ -258,12 +263,15 @@ export default function AdminDashboard() {
       setStats({
         totalCleaners: 0,
         totalCustomers: 0,
+        totalBookers: 0,
         totalUsers: 0,
+        totalSubscribers: 0,
         totalBookings: 0,
         completedBookings: 0,
         inProgressBookings: 0,
         confirmedBookings: 0,
         cancelledBookings: 0,
+        pendingBookings: 0,
         totalRevenue: 0,
         avgBookingValue: 0,
         totalCommunityPosts: 0,
@@ -274,6 +282,13 @@ export default function AdminDashboard() {
         totalJobs: 0,
         totalOffers: 0,
         totalServices: 0,
+        totalBroadcasts: 0,
+        totalEnquiries: 0,
+        newSubscribersThisMonth: 0,
+        newBookingsThisMonth: 0,
+        newEnquiriesThisMonth: 0,
+        activeUsers: 0,
+        revenueThisMonth: 0,
       });
     } finally {
       setLoading(false);
@@ -290,16 +305,16 @@ export default function AdminDashboard() {
       // TODO: Add GraphQL mutation for deleting service
       toast.success('Service deleted successfully');
       setServices(services.filter(s => s.id !== id));
-    } catch (error) {
+    } catch {
       toast.error('Failed to delete service');
     }
   };
 
-  const handleViewService = (service: any) => {
+  const handleViewService = (service: Service) => {
     setSelectedService(service);
   };
 
-  const handleEditService = (service: any) => {
+  const handleEditService = (service: Service) => {
     toast.info(`Editing ${service.name}`);
     // TODO: Add modal or navigation to edit service
   };
@@ -318,7 +333,8 @@ export default function AdminDashboard() {
   ];
 
   // Table columns configurations
-  const subscribersColumns = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const subscribersColumns: any = [
     { key: 'email', label: 'Email' },
     { 
       key: 'userType', 
@@ -349,7 +365,8 @@ export default function AdminDashboard() {
     },
   ];
 
-  const enquiriesColumns = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const enquiriesColumns: any = [
     { key: 'name', label: 'Name' },
     { key: 'email', label: 'Email' },
     { key: 'serviceType', label: 'Service Type' },
@@ -382,42 +399,16 @@ export default function AdminDashboard() {
     },
   ];
 
-  const bookingsColumns = [
-    { key: 'name', label: 'Name' },
-    { key: 'email', label: 'Email' },
-    { key: 'phone', label: 'Phone' },
-    { key: 'city', label: 'City' },
-    { key: 'serviceType', label: 'Service' },
-    { 
-      key: 'date', 
-      label: 'Booking Date',
-      render: (value: string) => new Date(value).toLocaleDateString()
-    },
-    { key: 'timeSlot', label: 'Time' },
-    { 
-      key: 'status', 
-      label: 'Status',
-      render: (value: string) => (
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-          value === 'completed' ? 'bg-green-100 text-green-800' : 
-          value === 'confirmed' ? 'bg-blue-100 text-blue-800' : 
-          value === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
-          'bg-red-100 text-red-800'
-        }`}>
-          {value.charAt(0).toUpperCase() + value.slice(1)}
-        </span>
-      )
-    },
-  ];
-
-  const usersColumns = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const usersColumns: any = [
     { 
       key: 'username', 
       label: 'Username',
       render: (value: string, row: User) => (
         <div className="flex items-center gap-2">
           {row.profilePhoto ? (
-            <img src={row.profilePhoto} alt={value} className="w-8 h-8 rounded-full" />
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={row.profilePhoto as string} alt={value as string || 'User'} className="w-8 h-8 rounded-full" />
           ) : (
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white font-semibold">
               {value?.charAt(0).toUpperCase() || 'U'}
@@ -451,7 +442,7 @@ export default function AdminDashboard() {
     { 
       key: 'customer', 
       label: 'Jobs Created',
-      render: (value: any, row: User) => {
+      render: (value: User['customer'], row: User) => {
         if (row.userType === 'customer' && value) {
           return <span className="font-semibold text-blue-600">{value.totalBookings || 0}</span>;
         }
@@ -461,7 +452,7 @@ export default function AdminDashboard() {
     { 
       key: 'cleaner', 
       label: 'Services/Completed',
-      render: (value: any, row: User) => {
+      render: (value: User['cleaner'], row: User) => {
         if (row.userType === 'cleaner' && value) {
           return <span className="font-semibold text-purple-600">{value.totalJobsCompleted || 0}</span>;
         }
@@ -471,7 +462,7 @@ export default function AdminDashboard() {
     { 
       key: 'customer', 
       label: 'Rating',
-      render: (value: any, row: User) => {
+      render: (value: User['customer'], row: User) => {
         const rating = row.userType === 'customer' ? value?.rating : row.cleaner?.rating;
         if (rating) {
           return <span className="flex items-center gap-1">⭐ {rating.toFixed(1)}</span>;
@@ -504,37 +495,8 @@ export default function AdminDashboard() {
     },
   ];
 
-  const applicationsColumns = [
-    { 
-      key: 'firstName', 
-      label: 'Name',
-      render: (value: string, row: CleanerApplication) => `${row.firstName} ${row.lastName}`
-    },
-    { key: 'email', label: 'Email' },
-    { key: 'phone', label: 'Phone' },
-    { key: 'experience', label: 'Experience' },
-    { key: 'availability', label: 'Availability' },
-    { 
-      key: 'status', 
-      label: 'Status',
-      render: (value: string) => (
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-          value === 'approved' ? 'bg-green-100 text-green-800' : 
-          value === 'rejected' ? 'bg-red-100 text-red-800' : 
-          'bg-yellow-100 text-yellow-800'
-        }`}>
-          {value.charAt(0).toUpperCase() + value.slice(1)}
-        </span>
-      )
-    },
-    { 
-      key: 'createdAt', 
-      label: 'Applied Date',
-      render: (value: string) => new Date(value).toLocaleDateString()
-    },
-  ];
-
-  const jobsColumns = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const jobsColumns: any = [
     { key: 'id', label: 'Job ID' },
     { key: 'title', label: 'Title' },
     { key: 'serviceType', label: 'Service Type' },
@@ -571,7 +533,8 @@ export default function AdminDashboard() {
     },
   ];
 
-  const servicesColumns = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const servicesColumns: any = [
     { key: 'name', label: 'Service Name' },
     { key: 'category', label: 'Category' },
     { 
@@ -611,66 +574,6 @@ export default function AdminDashboard() {
     },
   ];
 
-  const transactionsColumns = [
-    { key: 'id', label: 'Transaction ID' },
-    { key: 'userId', label: 'User ID' },
-    { key: 'jobId', label: 'Job ID' },
-    { 
-      key: 'amount', 
-      label: 'Amount',
-      render: (value: number) => `$${value?.toFixed(2) || '0.00'}`
-    },
-    { key: 'paymentMethod', label: 'Payment Method' },
-    { 
-      key: 'status', 
-      label: 'Status',
-      render: (value: string) => (
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-          value === 'completed' ? 'bg-green-100 text-green-800' : 
-          value === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
-          value === 'failed' ? 'bg-red-100 text-red-800' : 
-          'bg-gray-100 text-gray-800'
-        }`}>
-          {value?.charAt(0).toUpperCase() + value?.slice(1) || 'Unknown'}
-        </span>
-      )
-    },
-    { 
-      key: 'transactionDate', 
-      label: 'Date',
-      render: (value: string) => new Date(value).toLocaleDateString()
-    },
-  ];
-
-  const reviewsColumns = [
-    { key: 'jobId', label: 'Job ID' },
-    { key: 'customerId', label: 'Customer ID' },
-    { key: 'cleanerId', label: 'Cleaner ID' },
-    { 
-      key: 'rating', 
-      label: 'Rating',
-      render: (value: number) => (
-        <span className="flex items-center gap-1">
-          <span>⭐</span>
-          <span className="font-semibold">{value?.toFixed(1) || 'N/A'}</span>
-        </span>
-      )
-    },
-    { 
-      key: 'comment', 
-      label: 'Comment',
-      render: (value: string) => (
-        <span className="line-clamp-2" title={value}>
-          {value || 'No comment'}
-        </span>
-      )
-    },
-    { 
-      key: 'createdAt', 
-      label: 'Date',
-      render: (value: string) => new Date(value).toLocaleDateString()
-    },
-  ];
 
   if (loading) {
     return (
@@ -734,7 +637,7 @@ export default function AdminDashboard() {
                 ✅ Successfully connected to backend • {services.length} services available
               </p>
               <p className="text-xs text-green-600 mt-1">
-                💡 To access Jobs, Offers, and Community features, ensure you're logged in with proper backend credentials.
+                💡 To access Jobs, Offers, and Community features, ensure you&apos;re logged in with proper backend credentials.
               </p>
             </div>
           )}
@@ -863,27 +766,11 @@ export default function AdminDashboard() {
           />
         )}
 
-        {activeTab === 'bookings' && (
-          <DataTable
-            title="All Bookings"
-            data={bookings}
-            columns={bookingsColumns}
-          />
-        )}
-
         {activeTab === 'users' && (
           <DataTable
             title="All Users"
             data={users}
             columns={usersColumns}
-          />
-        )}
-
-        {activeTab === 'applications' && (
-          <DataTable
-            title="Cleaner Applications"
-            data={applications}
-            columns={applicationsColumns}
           />
         )}
 
@@ -1048,21 +935,6 @@ export default function AdminDashboard() {
           />
         )}
 
-        {activeTab === 'transactions' && (
-          <DataTable
-            title="All Transactions"
-            data={transactions}
-            columns={transactionsColumns}
-          />
-        )}
-
-        {activeTab === 'reviews' && (
-          <DataTable
-            title="All Reviews"
-            data={reviews}
-            columns={reviewsColumns}
-          />
-        )}
       </main>
 
       {/* Service Details Modal */}

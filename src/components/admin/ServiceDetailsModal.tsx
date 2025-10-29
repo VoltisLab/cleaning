@@ -4,8 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, DollarSign, Clock, Tag, User, Calendar, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 
+import { Service } from '@/graphql/services/admin';
+
 interface ServiceDetailsModalProps {
-  service: any;
+  service: Service;
   onClose: () => void;
 }
 

@@ -2,17 +2,17 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Download, Filter } from 'lucide-react';
+import { Search, Download } from 'lucide-react';
 
 interface Column {
   key: string;
   label: string;
-  render?: (value: any, row: any) => React.ReactNode;
+  render?: (value: unknown, row: Record<string, unknown>) => React.ReactNode;
 }
 
 interface DataTableProps {
   title: string;
-  data: any[];
+  data: Record<string, unknown>[];
   columns: Column[];
   searchable?: boolean;
   exportable?: boolean;
@@ -121,14 +121,14 @@ export default function DataTable({
                   transition={{ delay: index * 0.05 }}
                   className="hover:bg-gray-50 transition-colors"
                 >
-                  {columns.map((column) => (
-                    <td key={column.key} className="px-6 py-4 text-sm text-gray-900">
-                      {column.render 
-                        ? column.render(row[column.key], row)
-                        : row[column.key] || '-'
-                      }
-                    </td>
-                  ))}
+                    {columns.map((column) => (
+                      <td key={column.key} className="px-6 py-4 text-sm text-gray-900">
+                        {column.render 
+                          ? column.render(row[column.key], row)
+                          : String(row[column.key] || '-')
+                        }
+                      </td>
+                    ))}
                 </motion.tr>
               ))
             ) : (

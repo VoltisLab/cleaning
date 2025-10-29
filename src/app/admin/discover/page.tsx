@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { discoverBackendQueries } from '@/utils/discoverBackend';
 
 export default function DiscoverPage() {
-  const [queries, setQueries] = useState<any[]>([]);
+  const [queries, setQueries] = useState<Array<{ name: string; description?: string }>>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,7 +38,12 @@ export default function DiscoverPage() {
           </p>
           
           <div className="space-y-4">
-            {queries.map((query: any, index: number) => (
+            {queries.map((query: { 
+              name: string; 
+              description?: string; 
+              args?: Array<{ name: string }>;
+              type?: { name?: string; ofType?: { name?: string } };
+            }, index: number) => (
               <div key={index} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
                 <h3 className="text-xl font-semibold text-blue-600 mb-2">
                   {query.name}
@@ -50,7 +55,7 @@ export default function DiscoverPage() {
                   <div className="mb-2">
                     <span className="text-sm font-medium text-gray-700">Arguments: </span>
                     <span className="text-sm text-gray-600">
-                      {query.args.map((arg: any) => arg.name).join(', ')}
+                      {query.args.map((arg) => arg.name).join(', ')}
                     </span>
                   </div>
                 )}
@@ -70,7 +75,7 @@ export default function DiscoverPage() {
             Check Browser Console
           </h2>
           <p className="text-blue-700">
-            Open your browser's developer console (F12) to see the detailed list of all available queries
+            Open your browser&apos;s developer console (F12) to see the detailed list of all available queries
           </p>
         </div>
       </div>

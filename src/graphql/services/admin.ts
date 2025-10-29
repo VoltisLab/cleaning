@@ -53,12 +53,15 @@ export type Booking = {
 export type AdminStats = {
   totalCleaners: number;
   totalCustomers: number;
+  totalBookers: number;
   totalUsers: number;
+  totalSubscribers: number;
   totalBookings: number;
   completedBookings: number;
   inProgressBookings: number;
   confirmedBookings: number;
   cancelledBookings: number;
+  pendingBookings: number;
   totalRevenue: number;
   avgBookingValue: number;
   totalCommunityPosts: number;
@@ -69,9 +72,25 @@ export type AdminStats = {
   totalJobs: number;
   totalOffers: number;
   totalServices: number;
-  mostBookedCleaner?: any;
-  mostBookedService?: any;
-  mostLikedPost?: any;
+  totalBroadcasts: number;
+  totalEnquiries: number;
+  newSubscribersThisMonth: number;
+  newBookingsThisMonth: number;
+  newEnquiriesThisMonth: number;
+  activeUsers: number;
+  revenueThisMonth: number;
+  mostBookedCleaner?: {
+    id: number;
+    name: string;
+  };
+  mostBookedService?: {
+    id: number;
+    name: string;
+  };
+  mostLikedPost?: {
+    id: number;
+    title: string;
+  };
 };
 
 export type User = {
@@ -119,8 +138,16 @@ export type Job = {
   title: string;
   description: string;
   status: string;
-  customer: any;
-  serviceType: any;
+  customer: {
+    id: number;
+    username: string;
+    email: string;
+  };
+  serviceType: {
+    id: number;
+    name: string;
+    category: string;
+  };
   images: string[];
   address: string;
   postcode: string;
@@ -149,6 +176,19 @@ export type Service = {
   images: string[];
   includedFeatures: string[];
   createdAt: string;
+  createdBy?: {
+    id: number;
+    userProfile?: {
+      id: number;
+      user?: {
+        id: number;
+        username: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+      };
+    };
+  };
 };
 
 export type Offer = {
@@ -160,7 +200,10 @@ export type Offer = {
   discountValue: number;
   originalPrice: number;
   discountedPrice: number;
-  serviceType: any;
+  serviceType: {
+    id: number;
+    name: string;
+  };
   imageUrl: string;
   validFrom: string;
   validUntil: string;
@@ -180,7 +223,11 @@ export type CommunityPost = {
   isPinned: boolean;
   createdAt: string;
   updatedAt: string;
-  author: any;
+  author: {
+    id: number;
+    username: string;
+    profilePhoto?: string;
+  };
 };
 
 export type Broadcast = {
@@ -188,8 +235,14 @@ export type Broadcast = {
   message: string;
   targetAudience: string;
   createdAt: string;
-  readBy: any[];
-  sender: any;
+  readBy: Array<{
+    id: number;
+    userId: number;
+  }>;
+  sender: {
+    id: number;
+    username: string;
+  };
 };
 
 // Fetch all subscribers

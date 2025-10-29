@@ -38,13 +38,18 @@ export const discoverBackendQueries = async () => {
     });
     
     console.log("=== AVAILABLE BACKEND QUERIES ===");
-    data.__schema.queryType.fields.forEach((field: any) => {
+    data.__schema.queryType.fields.forEach((field: { 
+      name: string; 
+      description?: string; 
+      args?: Array<{ name: string }>; 
+      type: { name?: string; ofType?: { name?: string } } 
+    }) => {
       console.log(`\n📌 Query: ${field.name}`);
       if (field.description) {
         console.log(`   Description: ${field.description}`);
       }
       if (field.args && field.args.length > 0) {
-        console.log(`   Arguments:`, field.args.map((arg: any) => arg.name).join(', '));
+        console.log(`   Arguments:`, field.args.map((arg) => arg.name).join(', '));
       }
       console.log(`   Returns: ${field.type.name || field.type.ofType?.name || 'Unknown'}`);
     });

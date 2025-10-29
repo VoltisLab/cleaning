@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Trash2, Edit, Eye, DollarSign, Clock, Tag } from 'lucide-react';
 import Image from 'next/image';
+import { Service } from '@/graphql/services/admin';
 
 interface ServiceCardProps {
-  service: any;
+  service: Service;
   onDelete: (id: number) => void;
-  onEdit?: (service: any) => void;
-  onView?: (service: any) => void;
+  onEdit?: (service: Service) => void;
+  onView?: (service: Service) => void;
 }
 
 export default function ServiceCard({ service, onDelete, onEdit, onView }: ServiceCardProps) {
@@ -200,7 +201,7 @@ export default function ServiceCard({ service, onDelete, onEdit, onView }: Servi
           >
             <h3 className="text-lg font-bold text-gray-900 mb-2">Delete Service?</h3>
             <p className="text-sm text-gray-600 mb-4">
-              Are you sure you want to delete "{service.name}"? This action cannot be undone.
+              Are you sure you want to delete &quot;{service.name}&quot;? This action cannot be undone.
             </p>
             <div className="flex gap-3">
               <button
