@@ -82,7 +82,7 @@ const HeroSection: React.FC = () => {
                   className="transition-all"
                 >
                   <Image
-                    src="/app-store/app-store-en.png"
+                    src="/app-store/apple-app-store.png"
                     alt="Download on the App Store"
                     width={200}
                     height={60}
@@ -98,7 +98,7 @@ const HeroSection: React.FC = () => {
                   className="transition-all"
                 >
                   <Image
-                    src="/app-store/google-play-en.png"
+                    src="/app-store/google-play-store.png"
                     alt="Get it on Google Play"
                     width={200}
                     height={60}

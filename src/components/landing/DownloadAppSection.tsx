@@ -1,7 +1,7 @@
 'use client';
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Apple, Smartphone } from "lucide-react";
+import Image from "next/image";
 
 const DownloadAppSection: React.FC = () => {
   const ref = useRef(null);
@@ -28,31 +28,35 @@ const DownloadAppSection: React.FC = () => {
             Download Pebble on iOS or Android and experience the easiest way to keep your home or business spotless.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8">
             <motion.a
               href="#"
-              whileHover={{ scale: 1.05, y: -3 }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white/90 backdrop-blur-sm text-[#4977E5] px-10 py-5 rounded-2xl font-bold inline-flex items-center justify-center gap-3 hover:bg-white hover:shadow-2xl transition-all"
+              className="transition-all"
             >
-              <Apple className="w-6 h-6" />
-              <div className="text-left">
-                <div className="text-xs">Download on the</div>
-                <div className="text-lg font-bold">App Store</div>
-              </div>
+              <Image
+                src="/app-store/apple-app-store.png"
+                alt="Download on the App Store"
+                width={200}
+                height={60}
+                className="w-auto h-[60px]"
+              />
             </motion.a>
 
             <motion.a
               href="#"
-              whileHover={{ scale: 1.05, y: -3 }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white/90 backdrop-blur-sm text-[#4977E5] px-10 py-5 rounded-2xl font-bold inline-flex items-center justify-center gap-3 hover:bg-white hover:shadow-2xl transition-all"
+              className="transition-all"
             >
-              <Smartphone className="w-6 h-6" />
-              <div className="text-left">
-                <div className="text-xs">GET IT ON</div>
-                <div className="text-lg font-bold">Google Play</div>
-              </div>
+              <Image
+                src="/app-store/google-play-store.png"
+                alt="Get it on Google Play"
+                width={200}
+                height={60}
+                className="w-auto h-[60px]"
+              />
             </motion.a>
           </div>
 

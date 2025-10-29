@@ -911,18 +911,18 @@ const HowItWorksPage = () => {
               Download the Pebble app today and experience hassle-free cleaning services
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="#" className="hover:opacity-80 transition-opacity">
+              <a href="#" className="hover:scale-105 transition-transform">
                 <Image
-                  src="/app-store/apple-store-badge.svg"
+                  src="/app-store/apple-app-store.png"
                   alt="Download on the App Store"
                   width={200}
                   height={60}
                   className="h-14 w-auto"
                 />
               </a>
-              <a href="#" className="hover:opacity-80 transition-opacity">
+              <a href="#" className="hover:scale-105 transition-transform">
                 <Image
-                  src="/app-store/google-play-badge.svg"
+                  src="/app-store/google-play-store.png"
                   alt="Get it on Google Play"
                   width={200}
                   height={60}
