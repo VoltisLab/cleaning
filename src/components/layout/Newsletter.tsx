@@ -1,7 +1,7 @@
 'use client';
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Send } from "lucide-react";
+import { Mail, Send, User, Briefcase } from "lucide-react";
 import { subscribeToNewsletter } from "@/graphql/services/NewsLetter";
 import { toast } from "react-toastify";
 
@@ -9,6 +9,7 @@ const Newsletter: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [email, setEmail] = useState('');
+  const [userType, setUserType] = useState<'booker' | 'cleaner'>('booker');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -16,11 +17,12 @@ const Newsletter: React.FC = () => {
     if (!email) return;
     
     setLoading(true);
-    const res = await subscribeToNewsletter(email);
+    const res = await subscribeToNewsletter(email, userType);
     
     if (res?.subscribeToNewsletter?.success) {
       toast.success(res.subscribeToNewsletter.message || "Subscribed successfully!");
       setEmail("");
+      setUserType('booker');
     } else {
       toast.error(res?.subscribeToNewsletter?.message || "Something went wrong.");
     }
@@ -68,6 +70,38 @@ const Newsletter: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="max-w-md mx-auto"
           >
+            {/* User Type Selection */}
+            <div className="flex gap-3 mb-4 justify-center">
+              <motion.button
+                type="button"
+                onClick={() => setUserType('booker')}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
+                  userType === 'booker'
+                    ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                <User className="w-5 h-5" />
+                Book Services
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => setUserType('cleaner')}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
+                  userType === 'cleaner'
+                    ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                <Briefcase className="w-5 h-5" />
+                Join as Cleaner
+              </motion.button>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />

@@ -8,17 +8,19 @@ type SubscribeResponse = {
     success: boolean;
     subscription: {
       email: string;
+      userType: string;
     };
   };
 };
 
 export const subscribeToNewsletter = async (
-  email: string
+  email: string,
+  userType: string
 ): Promise<SubscribeResponse> => {
   try {
     const { data } = await client.mutate<SubscribeResponse>({
       mutation: SUBSCRIBE_TO_NEWSLETTER,
-      variables: { email },
+      variables: { email, userType },
     });
 
     return data!;
@@ -29,7 +31,7 @@ export const subscribeToNewsletter = async (
       subscribeToNewsletter: {
         success: false,
         message: err?.message || "An error occurred while subscribing.",
-        subscription: { email },
+        subscription: { email, userType },
       },
     };
   }
