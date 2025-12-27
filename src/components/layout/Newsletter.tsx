@@ -2,7 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, Send, User, Briefcase } from "lucide-react";
-import { subscribeToNewsletter } from "@/graphql/services/NewsLetter";
+import { saveEmailSubscription } from "@/utils/emailCollection";
 import { toast } from "react-toastify";
 
 const Newsletter: React.FC = () => {
@@ -17,14 +17,14 @@ const Newsletter: React.FC = () => {
     if (!email) return;
     
     setLoading(true);
-    const res = await subscribeToNewsletter(email, userType);
+    const result = await saveEmailSubscription(email, 'Newsletter Footer', userType);
     
-    if (res?.subscribeToNewsletter?.success) {
-      toast.success(res.subscribeToNewsletter.message || "Subscribed successfully!");
+    if (result.success) {
+      toast.success(result.message || "Subscribed successfully!");
       setEmail("");
       setUserType('booker');
     } else {
-      toast.error(res?.subscribeToNewsletter?.message || "Something went wrong.");
+      toast.error(result.message || "Something went wrong.");
     }
     setLoading(false);
   };

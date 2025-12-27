@@ -1,39 +1,12 @@
 'use client';
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import Image from "next/image";
-import { Wallet, TrendingUp, Users, Shield, Clock, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { Wallet, TrendingUp, Users, Shield, Clock, Sparkles } from "lucide-react";
 
 const CleanersBenefitsSection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const sliderImages = [
-    '/landing/hero/9.jpeg',
-    '/landing/hero/10.jpeg'
-  ];
-
-  useEffect(() => {
-    if (sliderImages.length === 0) return;
-    
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => {
-        const next = (prev + 1) % sliderImages.length;
-        return next;
-      });
-    }, 8000); // Change slide every 8 seconds
-
-    return () => clearInterval(interval);
-  }, [sliderImages.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
-  };
 
   const benefits = [
     {
@@ -122,81 +95,26 @@ const CleanersBenefitsSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Content - Image Slider */}
-          {sliderImages.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative flex items-center justify-center lg:justify-end"
-            >
-            <div className="relative w-full max-w-[400px] flex items-center justify-center gap-4">
-              {/* Left Arrow */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={prevSlide}
-                className="absolute -left-16 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-6 h-6 text-[#4977E5]" />
-              </motion.button>
-
-              {/* Image */}
-              <div className="relative w-full max-w-[400px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {sliderImages[currentSlide] && (
-                      <Image
-                        src={sliderImages[currentSlide]}
-                        alt={`Cleaner Benefits ${currentSlide + 1}`}
-                        width={400}
-                        height={800}
-                        className="w-full rounded-2xl"
-                        priority={currentSlide === 0}
-                        unoptimized
-                        quality={100}
-                      />
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-
-                  {/* Slider Indicators */}
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
-                    {sliderImages.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentSlide
-                            ? 'bg-[#4977E5] w-6'
-                            : 'bg-gray-300 hover:bg-gray-400'
-                        }`}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right Arrow */}
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={nextSlide}
-                  className="absolute -right-16 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:shadow-xl"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-6 h-6 text-[#4977E5]" />
-                </motion.button>
-              </div>
-            </motion.div>
-          )}
+          {/* Right Content - Single Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative flex items-center justify-center lg:justify-end"
+          >
+            <div className="relative w-full max-w-xs">
+              <Image
+                src="/landing/hero/phone-min.png"
+                alt="Cleaner Benefits"
+                width={320}
+                height={640}
+                className="w-full rounded-2xl"
+                priority
+                unoptimized
+                quality={100}
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

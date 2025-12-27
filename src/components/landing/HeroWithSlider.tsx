@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Sparkles, Shield, Clock, Star, ChevronLeft, ChevronRight, User, Briefcase } from 'lucide-react';
 
 const HeroWithSlider: React.FC = () => {
@@ -11,12 +12,9 @@ const HeroWithSlider: React.FC = () => {
   const [userType, setUserType] = useState<'booker' | 'cleaner'>('booker');
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Placeholder images - you can replace these with actual image URLs
   const images = [
-    "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&h=600&fit=crop"
+    '/landing/hero/tablet-iPad Pro 12.9 Inches-1-min.png',
+    '/landing/hero/tablet-iPad Pro 12.9 Inches-min.png'
   ];
 
   // Auto-play slider
@@ -64,7 +62,7 @@ const HeroWithSlider: React.FC = () => {
             </motion.div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               Cleaning Made
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
                 Simple & Smart
@@ -72,7 +70,7 @@ const HeroWithSlider: React.FC = () => {
             </h1>
 
             {/* Subheading */}
-            <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed">
+            <p className="text-xl text-gray-600 mb-10 leading-relaxed">
               From offices to Airbnbs, manage multiple properties, recurring bookings, and team invoicing - all from your Pebble Business Dashboard.
             </p>
 
@@ -224,20 +222,28 @@ const HeroWithSlider: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="relative flex items-center justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-lg aspect-square">
+            <div className="relative w-full max-w-2xl">
               {/* Image Container */}
-              <div className="relative w-full h-full overflow-hidden rounded-3xl shadow-2xl">
+              <div className="relative w-full">
                 <AnimatePresence mode="wait">
-                  <motion.img
+                  <motion.div
                     key={currentIndex}
-                    src={images[currentIndex]}
-                    alt={`Cleaning service ${currentIndex + 1}`}
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -100 }}
                     transition={{ duration: 0.5 }}
-                    className="w-full h-full object-cover"
-                  />
+                  >
+                    <Image
+                      src={images[currentIndex]}
+                      alt={`Cleaning service ${currentIndex + 1}`}
+                      width={1200}
+                      height={1600}
+                      className="w-full h-auto object-contain"
+                      priority={currentIndex === 0}
+                      unoptimized
+                      quality={100}
+                    />
+                  </motion.div>
                 </AnimatePresence>
 
                 {/* Navigation Arrows */}

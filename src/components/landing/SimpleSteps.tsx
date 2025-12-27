@@ -60,8 +60,8 @@ const SimpleSteps: React.FC = () => {
             >
               {/* Number Circle */}
               <div className="relative mb-6">
-                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto shadow-xl">
-                  <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
+                <div className="w-16 h-16 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center mx-auto shadow-xl">
+                  <span className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
                     {step.number}
                   </span>
                 </div>

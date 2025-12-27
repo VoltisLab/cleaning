@@ -8,6 +8,7 @@ import Newsletter from "@/components/layout/Newsletter";
 
 import { ApolloProviderWrapper } from "@/lib/ApolloProviderWrapper";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",

@@ -2,6 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
+import { MapPin } from "lucide-react";
 
 const AppShowcase: React.FC = () => {
   const ref = useRef(null);
@@ -18,20 +19,21 @@ const AppShowcase: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Your cleaning,
+              Work on Your
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#4977E5] to-[#5B7AFF]">
-                your control
+                Own Terms
               </span>
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              From booking to payment, everything happens in the app. No phone calls, no paperwork, no hassle.
+              As a cleaner on Pebble, you have full control over your work, schedule, and earnings.
             </p>
 
             <div className="space-y-6">
               {[
-                { title: "Smart Scheduling", desc: "Book one-time or recurring cleans that fit your life" },
-                { title: "Instant Notifications", desc: "Get updates when your cleaner is on the way" },
-                { title: "Transparent Pricing", desc: "See costs upfront. No hidden fees, ever." }
+                { title: "Choose Your Jobs", desc: "See available jobs and accept only the ones that fit your schedule, location, and preferences." },
+                { title: "Set Your Price", desc: "You decide what a job is worth. Pebble makes pricing and negotiation clear, simple, and respectful." },
+                { title: "Built-in Negotiation", desc: "No endless messages. Counter offers, agree on terms, and confirm work — all inside the app." },
+                { title: "Clear Terms, No Surprises", desc: "Job details, expectations, and payments are visible upfront so everyone knows what's agreed." }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -70,7 +72,7 @@ const AppShowcase: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Status</p>
-                    <p className="font-bold text-sm">Booking Confirmed</p>
+                    <p className="font-bold text-sm">Offer Accepted</p>
                   </div>
                 </div>
               </motion.div>
@@ -82,17 +84,17 @@ const AppShowcase: React.FC = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-[#4977E5] to-[#5B7AFF] rounded-full flex items-center justify-center">
-                    <span className="text-white text-xl">★</span>
+                    <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500">Rating</p>
-                    <p className="font-bold text-sm">5.0 Stars</p>
+                    <p className="text-xs text-gray-500">Location</p>
+                    <p className="font-bold text-sm">3.5 Miles away</p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Phones - Side by Side */}
-              <div className="flex items-center justify-center gap-6">
+              {/* Phones - Stacked on mobile, side by side on larger screens */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                 <Image
                   src="/landing/hero/3.png"
                   alt="Pebble Cleaning App - Screen 1"
