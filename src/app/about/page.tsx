@@ -1,5 +1,7 @@
 'use client';
-import React from 'react'
+import React, { useState, useRef } from 'react'
+import { User, Briefcase } from 'lucide-react'
+import { motion } from 'framer-motion'
 import Banner from '@/components/shared/Banner'
 import AboutSection from '@/components/about/AboutSection'
 import MissionSection from '@/components/about/MissionSection'
@@ -7,6 +9,9 @@ import WhyChooseUs from '@/components/about/WhyChooseUs'
 import ServicesSection from '@/components/shared/ServicesSection'
 import TestimonialsSection from '@/components/shared/TestimonialSection'
 const About = () => {
+  const [userType, setUserType] = useState<'booker' | 'cleaner'>('booker');
+  const formRef = useRef<HTMLFormElement>(null);
+
   return (
     <div className='min-h-screen bg-white '>
         <Banner page='About Us' />
@@ -23,21 +28,55 @@ const About = () => {
             <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
               Download our app and connect with trusted cleaning professionals in your area
             </p>
-            <p className="text-lg font-medium text-gray-700 mb-6">
+            <p className="text-lg font-medium text-gray-700 mb-4">
               Be the first to know when Pebble launches!
             </p>
+            {/* User Type Selection */}
+            <div className="flex gap-3 mb-4 justify-center max-w-md mx-auto">
+              <motion.button
+                type="button"
+                onClick={() => setUserType('booker')}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                  userType === 'booker'
+                    ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                <User className="w-4 h-4" />
+                Book Services
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => setUserType('cleaner')}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                  userType === 'cleaner'
+                    ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                <Briefcase className="w-4 h-4" />
+                Join as Cleaner
+              </motion.button>
+            </div>
             {/* Subscription Form */}
             <form
+              ref={formRef}
               onSubmit={async (e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
                 const email = formData.get('email') as string;
                 const { saveEmailSubscription } = await import('@/utils/emailCollection');
                 const { toast } = await import('react-toastify');
-                const result = await saveEmailSubscription(email, 'About Page');
+                const result = await saveEmailSubscription(email, 'About Page', userType);
                 if (result.success) {
                   toast.success(result.message || 'Subscribed successfully!');
-                  e.currentTarget.reset();
+                  if (formRef.current) {
+                    formRef.current.reset();
+                  }
                 } else {
                   toast.error(result.message || 'Failed to subscribe');
                 }

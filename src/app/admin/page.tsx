@@ -2,12 +2,12 @@
 
 import { useAdmin, AdminProvider } from '@/contexts/AdminContext';
 import LoginForm from '@/components/admin/LoginForm';
-import AdminDashboard from '@/components/admin/AdminDashboard';
+import SimpleSubscribersDashboard from '@/components/admin/SimpleSubscribersDashboard';
 
 function AdminPageContent() {
   const { isAuthenticated } = useAdmin();
 
-  return isAuthenticated ? <AdminDashboard /> : <LoginForm />;
+  return isAuthenticated ? <SimpleSubscribersDashboard /> : <LoginForm />;
 }
 
 export default function AdminPage() {

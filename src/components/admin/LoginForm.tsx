@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
 import { useAdmin } from '@/contexts/AdminContext';
 import { toast } from 'react-toastify';
-import { loginToBackend } from '@/graphql/services/auth';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -18,20 +17,11 @@ export default function LoginForm() {
     e.preventDefault();
     setIsLoading(true);
     
-    // First check frontend admin credentials
+    // Check frontend admin credentials
     const success = login(username, password);
     
     if (success) {
-      // Also login to backend API for data access
-      const backendLogin = await loginToBackend(username.toLowerCase(), password);
-      
-      if (backendLogin.success) {
-        toast.success('Login successful! Connected to backend');
-      } else {
-        // Frontend login succeeded but backend failed
-        toast.warning('Admin access granted, but backend connection limited. Some data may not be available.');
-        console.warn('Backend login failed:', backendLogin.error);
-      }
+      toast.success('Login successful!');
     } else {
       toast.error('Invalid credentials');
     }

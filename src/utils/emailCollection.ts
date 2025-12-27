@@ -45,15 +45,6 @@ export const saveEmailSubscription = async (
     const updated = [...existing, newSubscription];
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
 
-    // Try to save to backend via GraphQL (optional, won't fail if backend is down)
-    try {
-      const { subscribeToNewsletter } = await import('@/graphql/services/NewsLetter');
-      await subscribeToNewsletter(email, userType);
-    } catch (error) {
-      // Backend save failed, but localStorage save succeeded
-      console.log('Backend save failed, email saved locally:', error);
-    }
-
     return { success: true, message: 'Email subscribed successfully!' };
   } catch (error) {
     console.error('Error saving email subscription:', error);

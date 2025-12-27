@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, Menu, X, Download } from 'lucide-react';
+import { ChevronDown, ChevronRight, Menu, X, Download, User, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -48,6 +48,8 @@ const Header = () => {
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [isDownloadPopupOpen, setIsDownloadPopupOpen] = useState<boolean>(false);
   const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  const [userType, setUserType] = useState<'booker' | 'cleaner'>('booker');
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Properly type the ref for HTMLDivElement
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -688,18 +690,52 @@ const Header = () => {
               <p className="text-gray-700 font-medium text-center mb-4">
                 Be the first to know when Pebble launches!
               </p>
+              {/* User Type Selection */}
+              <div className="flex gap-3 mb-4">
+                <motion.button
+                  type="button"
+                  onClick={() => setUserType('booker')}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-sm flex-1 ${
+                    userType === 'booker'
+                      ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <User className="w-4 h-4" />
+                  Book Services
+                </motion.button>
+                <motion.button
+                  type="button"
+                  onClick={() => setUserType('cleaner')}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-sm flex-1 ${
+                    userType === 'cleaner'
+                      ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <Briefcase className="w-4 h-4" />
+                  Join as Cleaner
+                </motion.button>
+              </div>
               {/* Subscription Form */}
               <form
+                ref={formRef}
                 onSubmit={async (e) => {
                   e.preventDefault();
                   const formData = new FormData(e.currentTarget);
                   const email = formData.get('email') as string;
                   const { saveEmailSubscription } = await import('@/utils/emailCollection');
                   const { toast } = await import('react-toastify');
-                  const result = await saveEmailSubscription(email, 'Header Popup');
+                  const result = await saveEmailSubscription(email, 'Header Popup', userType);
                   if (result.success) {
                     toast.success(result.message || 'Subscribed successfully!');
-                    e.currentTarget.reset();
+                    if (formRef.current) {
+                      formRef.current.reset();
+                    }
                     setIsDownloadPopupOpen(false);
                   } else {
                     toast.error(result.message || 'Failed to subscribe');

@@ -2,12 +2,14 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Sparkles, Shield, Clock, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, Shield, Clock, Star, ChevronLeft, ChevronRight, User, Briefcase } from 'lucide-react';
 
 const HeroWithSlider: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [userType, setUserType] = useState<'booker' | 'cleaner'>('booker');
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Placeholder images - you can replace these with actual image URLs
   const images = [
@@ -83,42 +85,80 @@ const HeroWithSlider: React.FC = () => {
             >
               Be the first to know when Pebble launches!
             </motion.p>
-            <motion.form
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const formData = new FormData(e.currentTarget);
-                const email = formData.get('email') as string;
-                const { saveEmailSubscription } = await import('@/utils/emailCollection');
-                const { toast } = await import('react-toastify');
-                const result = await saveEmailSubscription(email, 'Hero With Slider');
-                if (result.success) {
-                  toast.success(result.message || 'Subscribed successfully!');
-                  e.currentTarget.reset();
-                } else {
-                  toast.error(result.message || 'Failed to subscribe');
-                }
-              }}
-              className="flex flex-col sm:flex-row gap-3 mb-12 max-w-md"
+              className="mb-12 max-w-md"
             >
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-                className="flex-1 px-4 py-3 rounded-lg bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4977E5]/50 focus:border-[#4977E5] transition-all"
-              />
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
+              {/* User Type Selection */}
+              <div className="flex gap-3 mb-4">
+                <motion.button
+                  type="button"
+                  onClick={() => setUserType('booker')}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                    userType === 'booker'
+                      ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <User className="w-4 h-4" />
+                  Book Services
+                </motion.button>
+                <motion.button
+                  type="button"
+                  onClick={() => setUserType('cleaner')}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                    userType === 'cleaner'
+                      ? 'bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <Briefcase className="w-4 h-4" />
+                  Join as Cleaner
+                </motion.button>
+              </div>
+              <form
+                ref={formRef}
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const email = formData.get('email') as string;
+                  const { saveEmailSubscription } = await import('@/utils/emailCollection');
+                  const { toast } = await import('react-toastify');
+                  const result = await saveEmailSubscription(email, 'Hero With Slider', userType);
+                  if (result.success) {
+                    toast.success(result.message || 'Subscribed successfully!');
+                    if (formRef.current) {
+                      formRef.current.reset();
+                    }
+                  } else {
+                    toast.error(result.message || 'Failed to subscribe');
+                  }
+                }}
+                className="flex flex-col sm:flex-row gap-3"
               >
-                Subscribe
-              </motion.button>
-            </motion.form>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                  className="flex-1 px-4 py-3 rounded-lg bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4977E5]/50 focus:border-[#4977E5] transition-all"
+                />
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
+                >
+                  Subscribe
+                </motion.button>
+              </form>
+            </motion.div>
 
             {/* App Store Logos - Commented Out */}
             {/* <div className="flex flex-col sm:flex-row gap-4 mb-12">
