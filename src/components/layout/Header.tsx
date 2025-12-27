@@ -685,46 +685,79 @@ const Header = () => {
 
             {/* Content */}
             <div className="p-8 space-y-5">
-              {/* Google Play Store */}
-              <button
-                onClick={() => {
-                  // Add your Android app link here
-                  window.open('https://play.google.com/store', '_blank');
+              <p className="text-gray-700 font-medium text-center mb-4">
+                Be the first to know when Pebble launches!
+              </p>
+              {/* Subscription Form */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const email = formData.get('email') as string;
+                  // Handle subscription logic here
+                  console.log('Subscribed:', email);
                   setIsDownloadPopupOpen(false);
                 }}
-                className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
+                className="space-y-4"
               >
-                <Image
-                  src="/app-store/google-play-en.png"
-                  alt="Get it on Google Play"
-                  width={180}
-                  height={53}
-                  className="w-full max-w-[180px] mx-auto drop-shadow-lg hover:drop-shadow-2xl transition-all"
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-gray-50 border-2 border-gray-200 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4977E5]/50 focus:border-[#4977E5] transition-all"
                 />
-              </button>
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                >
+                  Subscribe
+                </motion.button>
+              </form>
 
-              {/* Apple App Store */}
-              <button
-                onClick={() => {
-                  // Add your iOS app link here
-                  window.open('https://apps.apple.com', '_blank');
-                  setIsDownloadPopupOpen(false);
-                }}
-                className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
-              >
-                <Image
-                  src="/app-store/app-store-en.png"
-                  alt="Download on the App Store"
-                  width={160}
-                  height={53}
-                  className="w-full max-w-[160px] mx-auto drop-shadow-lg hover:drop-shadow-2xl transition-all"
-                />
-              </button>
+              {/* App Store Logos - Commented Out */}
+              {/* <div className="space-y-5">
+                <button
+                  onClick={() => {
+                    // Add your Android app link here
+                    window.open('https://play.google.com/store', '_blank');
+                    setIsDownloadPopupOpen(false);
+                  }}
+                  className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
+                >
+                  <Image
+                    src="/app-store/google-play-en.png"
+                    alt="Get it on Google Play"
+                    width={180}
+                    height={53}
+                    className="w-full max-w-[180px] mx-auto drop-shadow-lg hover:drop-shadow-2xl transition-all"
+                  />
+                </button>
+
+                <button
+                  onClick={() => {
+                    // Add your iOS app link here
+                    window.open('https://apps.apple.com', '_blank');
+                    setIsDownloadPopupOpen(false);
+                  }}
+                  className="w-full hover:scale-[1.08] active:scale-95 transition-all duration-200 group"
+                >
+                  <Image
+                    src="/app-store/app-store-en.png"
+                    alt="Download on the App Store"
+                    width={160}
+                    height={53}
+                    className="w-full max-w-[160px] mx-auto drop-shadow-lg hover:drop-shadow-2xl transition-all"
+                  />
+                </button>
+              </div> */}
 
               {/* Info Text */}
               <div className="pt-4 border-t border-gray-200">
                 <p className="text-sm text-gray-500 text-center">
-                  Get exclusive app-only features and book services on the go!
+                  Launching in 2026
                 </p>
               </div>
             </div>

@@ -2,8 +2,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Sparkles, Shield, Clock, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const HeroWithSlider: React.FC = () => {
@@ -60,7 +58,7 @@ const HeroWithSlider: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-8 border border-blue-100 w-fit"
             >
               <Sparkles className="w-4 h-4 text-[#4977E5]" />
-              <span className="text-sm font-semibold text-[#4977E5]">Trusted by over 500 businesses</span>
+              <span className="text-sm font-semibold text-[#4977E5]">Launching in 2026</span>
             </motion.div>
 
             {/* Main Heading */}
@@ -76,8 +74,47 @@ const HeroWithSlider: React.FC = () => {
               From offices to Airbnbs, manage multiple properties, recurring bookings, and team invoicing - all from your Pebble Business Dashboard.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            {/* Subscription Form */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-lg font-medium text-gray-700 mb-4"
+            >
+              Be the first to know when Pebble launches!
+            </motion.p>
+            <motion.form
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const email = formData.get('email') as string;
+                // Handle subscription logic here
+                console.log('Subscribed:', email);
+              }}
+              className="flex flex-col sm:flex-row gap-3 mb-12 max-w-md"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                className="flex-1 px-4 py-3 rounded-lg bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4977E5]/50 focus:border-[#4977E5] transition-all"
+              />
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-[#4977E5] to-[#5B7AFF] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
+              >
+                Subscribe
+              </motion.button>
+            </motion.form>
+
+            {/* App Store Logos - Commented Out */}
+            {/* <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link href="/booking">
                 <motion.div
                   whileHover={{ scale: 1.08 }}
@@ -109,7 +146,7 @@ const HeroWithSlider: React.FC = () => {
                   />
                 </motion.div>
               </Link>
-            </div>
+            </div> */}
 
             {/* Trust Indicators */}
             <motion.div 
