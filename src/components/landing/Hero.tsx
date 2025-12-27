@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { Sparkles, Shield, Clock, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const phoneImages = [
-  '/landing/hero/iPhone 20.png',
-  '/landing/hero/iPhone 21.png'
+  '/landing/hero/1.png',
+  '/landing/hero/8.png'
 ];
 
 const HeroSection: React.FC = () => {
@@ -85,12 +85,19 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
                 const email = formData.get('email') as string;
-                // Handle subscription logic here
-                console.log('Subscribed:', email);
+                const { saveEmailSubscription } = await import('@/utils/emailCollection');
+                const { toast } = await import('react-toastify');
+                const result = await saveEmailSubscription(email, 'Hero Section');
+                if (result.success) {
+                  toast.success(result.message || 'Subscribed successfully!');
+                  e.currentTarget.reset();
+                } else {
+                  toast.error(result.message || 'Failed to subscribe');
+                }
               }}
               className="flex flex-col sm:flex-row gap-3 mb-8 max-w-md"
             >
@@ -200,10 +207,12 @@ const HeroSection: React.FC = () => {
                     <Image
                       src={phoneImages[currentSlide]}
                       alt={`Pebble Cleaning App ${currentSlide + 1}`}
-                      width={280}
-                      height={560}
+                      width={320}
+                      height={640}
                       className="w-full"
                       priority={currentSlide === 0}
+                      unoptimized
+                      quality={100}
                     />
                   </motion.div>
                 </AnimatePresence>

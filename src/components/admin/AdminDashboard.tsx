@@ -54,6 +54,7 @@ export default function AdminDashboard() {
   // Data states
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
+  const [localEmails, setLocalEmails] = useState<Array<{email: string; timestamp: string; source: string; userType?: string}>>([]);
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [services, setServices] = useState<Service[]>([]);
@@ -72,8 +73,19 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     discoverAndFetchData();
+    loadLocalEmails();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const loadLocalEmails = async () => {
+    try {
+      const { getStoredEmails } = await import('@/utils/emailCollection');
+      const emails = getStoredEmails();
+      setLocalEmails(emails);
+    } catch (error) {
+      console.error('Error loading local emails:', error);
+    }
+  };
 
   const discoverAndFetchData = async () => {
     setLoading(true);
@@ -866,11 +878,88 @@ export default function AdminDashboard() {
         )}
 
         {activeTab === 'subscribers' && (
-          <DataTable
-            title="All Subscribers"
-            data={subscribers}
-            columns={subscribersColumns}
-          />
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900">Website Email Subscriptions</h3>
+                <div className="flex gap-2">
+                  <button
+                    onClick={async () => {
+                      const { exportEmailsAsCSV } = await import('@/utils/emailCollection');
+                      const csv = exportEmailsAsCSV();
+                      const blob = new Blob([csv], { type: 'text/csv' });
+                      const url = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = `pebble-emails-${new Date().toISOString().split('T')[0]}.csv`;
+                      a.click();
+                      window.URL.revokeObjectURL(url);
+                    }}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                  >
+                    Export CSV
+                  </button>
+                  <button
+                    onClick={() => {
+                      loadLocalEmails();
+                    }}
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium"
+                  >
+                    Refresh
+                  </button>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 mb-4">
+                Total: <span className="font-semibold text-gray-900">{localEmails.length}</span> email subscriptions collected from website forms
+              </p>
+              <DataTable
+                title=""
+                data={localEmails.map(email => ({
+                  email: email.email,
+                  userType: email.userType || 'booker',
+                  source: email.source,
+                  timestamp: email.timestamp,
+                }))}
+                columns={[
+                  { key: 'email', label: 'Email' },
+                  { 
+                    key: 'userType', 
+                    label: 'Type',
+                    render: (value: unknown) => {
+                      const val = value as string;
+                      return (
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          val === 'cleaner' 
+                            ? 'bg-purple-100 text-purple-800' 
+                            : 'bg-blue-100 text-blue-800'
+                        }`}>
+                          {val === 'cleaner' ? '🧹 Cleaner' : '👤 Booker'}
+                        </span>
+                      );
+                    }
+                  },
+                  { key: 'source', label: 'Source' },
+                  { 
+                    key: 'timestamp', 
+                    label: 'Date',
+                    render: (value: unknown) => new Date(value as string).toLocaleString()
+                  },
+                ]}
+                searchable={true}
+                exportable={false}
+              />
+            </div>
+            {subscribers.length > 0 && (
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Backend Subscribers</h3>
+                <DataTable
+                  title=""
+                  data={subscribers}
+                  columns={subscribersColumns}
+                />
+              </div>
+            )}
+          </div>
         )}
 
         {activeTab === 'enquiries' && (

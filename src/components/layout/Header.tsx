@@ -690,13 +690,20 @@ const Header = () => {
               </p>
               {/* Subscription Form */}
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
                   const formData = new FormData(e.currentTarget);
                   const email = formData.get('email') as string;
-                  // Handle subscription logic here
-                  console.log('Subscribed:', email);
-                  setIsDownloadPopupOpen(false);
+                  const { saveEmailSubscription } = await import('@/utils/emailCollection');
+                  const { toast } = await import('react-toastify');
+                  const result = await saveEmailSubscription(email, 'Header Popup');
+                  if (result.success) {
+                    toast.success(result.message || 'Subscribed successfully!');
+                    e.currentTarget.reset();
+                    setIsDownloadPopupOpen(false);
+                  } else {
+                    toast.error(result.message || 'Failed to subscribe');
+                  }
                 }}
                 className="space-y-4"
               >

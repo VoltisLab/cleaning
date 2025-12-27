@@ -3,7 +3,6 @@ import HeroWithSlider from "@/components/landing/HeroWithSlider";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import SimpleSteps from "@/components/landing/SimpleSteps";
 import AppShowcase from "@/components/landing/AppShowcase";
-import TestimonialsSection from "@/components/shared/TestimonialSection";
 import DownloadCTA from "@/components/landing/DownloadCTA";
 
 const Home: React.FC = () => {
@@ -14,7 +13,6 @@ const Home: React.FC = () => {
       <HeroWithSlider />
       <SimpleSteps />
       <AppShowcase />
-      <TestimonialsSection />
       <DownloadCTA />
     </div>
   );

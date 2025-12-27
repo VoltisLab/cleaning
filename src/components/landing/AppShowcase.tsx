@@ -91,14 +91,25 @@ const AppShowcase: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Phone */}
-              <div className="flex items-center justify-center">
+              {/* Phones - Side by Side */}
+              <div className="flex items-center justify-center gap-6">
                 <Image
-                  src="/landing/showcase-phone.png"
-                  alt="Pebble Cleaning App Showcase"
-                  width={280}
-                  height={560}
+                  src="/landing/hero/3.png"
+                  alt="Pebble Cleaning App - Screen 1"
+                  width={320}
+                  height={640}
                   className="w-full max-w-xs"
+                  unoptimized
+                  quality={100}
+                />
+                <Image
+                  src="/landing/hero/4.png"
+                  alt="Pebble Cleaning App - Screen 2"
+                  width={320}
+                  height={640}
+                  className="w-full max-w-xs"
+                  unoptimized
+                  quality={100}
                 />
               </div>
             </div>

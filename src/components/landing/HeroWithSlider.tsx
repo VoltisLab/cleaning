@@ -87,12 +87,19 @@ const HeroWithSlider: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
                 const email = formData.get('email') as string;
-                // Handle subscription logic here
-                console.log('Subscribed:', email);
+                const { saveEmailSubscription } = await import('@/utils/emailCollection');
+                const { toast } = await import('react-toastify');
+                const result = await saveEmailSubscription(email, 'Hero With Slider');
+                if (result.success) {
+                  toast.success(result.message || 'Subscribed successfully!');
+                  e.currentTarget.reset();
+                } else {
+                  toast.error(result.message || 'Failed to subscribe');
+                }
               }}
               className="flex flex-col sm:flex-row gap-3 mb-12 max-w-md"
             >

@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
         hostname: 'd4frp46yandr8.cloudfront.net',
       },
     ],
+    unoptimized: true, // Disable image optimization to preserve original quality
   },
 };
 
