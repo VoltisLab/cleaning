@@ -352,29 +352,8 @@ const ContactForm = () => {
               >
                 <motion.a 
                   href="#" 
-                  className="w-10 h-10 sm:w-12 sm:h-12 text-white rounded-lg flex items-center justify-center"
-                  variants={{
-                    hidden: { opacity: 0, scale: 0 },
-                    visible: { opacity: 1, scale: 1 }
-                  }}
-                  whileHover={{ 
-                    scale: 1.2, 
-                    rotate: 360,
-                    boxShadow: "0 5px 15px rgba(37, 99, 235, 0.4)"
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Image
-                    src="/contact/Facebook.svg"
-                    alt="Facebook"
-                    width={20}
-                    height={20}
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                  />
-                </motion.a>
-                <motion.a 
-                  href="#" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 sm:w-12 sm:h-12 text-white rounded-lg flex items-center justify-center"
                   variants={{
                     hidden: { opacity: 0, scale: 0 },
@@ -398,6 +377,8 @@ const ContactForm = () => {
                 </motion.a>
                 <motion.a 
                   href="#" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 sm:w-12 sm:h-12 text-white rounded-lg flex items-center justify-center"
                   variants={{
                     hidden: { opacity: 0, scale: 0 },

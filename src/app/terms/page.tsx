@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Shield, FileText, Scale, AlertCircle, Users, CreditCard, Calendar, CheckCircle, XCircle, Book, Mail } from 'lucide-react';
+import { Shield, FileText, Scale, AlertCircle, Users, CreditCard, Calendar, CheckCircle, XCircle, Book } from 'lucide-react';
 import Banner from '@/components/shared/Banner';
 
 const TermsPage = () => {
@@ -528,27 +528,11 @@ const TermsPage = () => {
             </div>
           </section>
 
-          {/* 18. Contact Information */}
-          <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div className="flex items-center gap-3 mb-6">
-              <Mail className="w-6 h-6 text-[#4977E5]" />
-              <h2 className="text-xl font-semibold text-gray-900">18. Contact Information</h2>
-            </div>
-            <p className="text-gray-700 mb-4">If you have any questions, concerns, or complaints regarding these Terms or the Services, please contact us at:</p>
-            <div className="bg-blue-50 border-l-4 border-[#4977E5] p-4 rounded-r-lg">
-              <p className="font-semibold text-gray-900 mb-2">Pebble Customer Support</p>
-              <ul className="space-y-2 text-gray-700">
-                <li><strong>Email:</strong> <a href="mailto:hello@pebblecleaning.com" className="text-[#4977E5] hover:underline">hello@pebblecleaning.com</a></li>
-                <li><strong>Website:</strong> <a href="https://pebblecleaning.com" className="text-[#4977E5] hover:underline">pebblecleaning.com</a></li>
-              </ul>
-            </div>
-          </section>
-
-          {/* 19. Acknowledgment */}
+          {/* 18. Acknowledgment */}
           <section className="bg-gradient-to-br from-[#4977E5]/10 to-blue-100 p-6 rounded-xl border-2 border-[#4977E5]">
             <div className="flex items-center gap-3 mb-4">
               <CheckCircle className="w-8 h-8 text-[#4977E5]" />
-              <h2 className="text-xl font-semibold text-gray-900">19. Acknowledgment</h2>
+              <h2 className="text-xl font-semibold text-gray-900">18. Acknowledgment</h2>
             </div>
             <p className="text-gray-800 font-medium">
               BY USING THE PEBBLE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS.

@@ -176,7 +176,6 @@ const Header = () => {
   ];
 
   const socials: Social[] = [
-    { name: 'Facebook', path: "/landing/header/facebook.svg", href:"" },
     { name: 'Instagram', path: "/landing/header/instagram.svg", href: "https://instagram.com/pebblecleaning" },
   ];
 
@@ -637,9 +636,11 @@ const Header = () => {
 
             <div className="flex items-center justify-center space-x-4 pt-3">
               {socials.map((social, index) => (
-                <Link
+                <a
                 href={social.href}
                 key={index}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 bg-[#4977E5] rounded-full flex items-center justify-center hover:bg-[#4977E5]/80 transition-colors cursor-pointer"
                 >
                   <Image
@@ -649,7 +650,7 @@ const Header = () => {
                     height={15}
                     className="filter brightness-0 invert"
                   />
-                </Link>
+                </a>
               ))}
             </div>
           </div>

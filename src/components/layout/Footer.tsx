@@ -1,6 +1,6 @@
 'use client';
 import { motion, useInView } from "framer-motion";
-import { Facebook, Instagram, Linkedin} from "lucide-react";
+import { Instagram, Linkedin} from "lucide-react";
 import Image from 'next/image'
 import Link from "next/link";
 import { useRef } from "react";
@@ -110,10 +110,12 @@ const Footer: React.FC = () => {
                 <span className="text-white text-xs mb-3 xl:text-[16px] ">hello@pebblecleaning.com</span>
               </motion.div>
               <div className="flex gap-4 mt-3">
-              {[{icon: Facebook, href: '' }, {icon: Instagram, href: 'https://instagram.com/pebblecleaning' }, {icon: Linkedin, href: 'https://www.linkedin.com/company/pebbleapp' }].map((Icon, index) => (
+              {[{icon: Instagram, href: 'https://instagram.com/pebblecleaning' }, {icon: Linkedin, href: 'https://www.linkedin.com/company/pebbleapp' }].map((Icon, index) => (
                 <motion.a
                 key={index}
                 href={Icon.href}
+                target="_blank"
+                rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -3 }}
                   whileTap={{ scale: 0.9 }}
                 >

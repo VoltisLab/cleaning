@@ -32,10 +32,6 @@ const DownloadCTA: React.FC = () => {
             </span>
           </h2>
 
-          <p className="text-xl text-blue-100 mb-4 max-w-2xl mx-auto">
-            Download the Pebble app and get your first booking done in minutes
-          </p>
-
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
